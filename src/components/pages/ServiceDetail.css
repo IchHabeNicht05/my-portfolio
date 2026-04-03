@@ -1,0 +1,388 @@
+/* ZÁKLAD STRÁNKY */
+.sd-section {
+  min-height: 100vh;
+  padding: 120px 0 100px;
+  position: relative;
+  background-color: #020617; /* Velmi tmavá (Slate 950) */
+  color: #f8fafc;
+}
+
+.sd-bg-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sd-container {
+  max-width: 1140px; /* Rozšířeno pro 2 sloupce */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 1;
+}
+
+.text-primary { color: #3b82f6; }
+
+/* TOP BAR (Zpět) */
+.sd-top-bar { margin-bottom: 40px; }
+
+.btn-back-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-back-ghost:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-5px);
+}
+
+/* =========================================
+   DVOU-SLOUPCOVÝ GRID
+   ========================================= */
+.sd-layout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Levý sloupec větší */
+  gap: 60px;
+  align-items: start; /* Důležité pro sticky */
+}
+
+/* --- LEVÝ SLOUPEC (Obsah) --- */
+.sd-content-column {
+  padding-top: 10px;
+}
+
+.sd-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.sd-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin: 0 0 20px 0;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sd-subtitle {
+  font-size: 1.3rem;
+  color: #60a5fa; /* Světlejší modrá */
+  font-weight: 400;
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+}
+
+.sd-divider {
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), transparent);
+  margin-bottom: 40px;
+}
+
+.sd-text-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.sd-long-desc {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
+
+.sd-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+  color: white;
+}
+
+/* =========================================
+   --- KLÍČOVÉ VLASTNOSTI (Liquid Glass) --- 
+   ========================================= */
+.sd-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sd-feature-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  padding: 16px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1rem;
+  color: #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sd-feature-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
+}
+
+.sd-feature-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sd-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sd-feature-card:hover::before {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.sd-check-circle {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1; /* Aby zůstalo nad vrstvami skla */
+}
+
+/* =========================================
+   --- PRAVÝ SLOUPEC (Sticky Formulář - Liquid Glass) --- 
+   ========================================= */
+.sd-sidebar-column {
+  position: sticky;
+  top: 100px;
+}
+
+.sd-sticky-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  border-radius: 24px;
+  overflow: hidden; /* Udrží banner hezky oříznutý v rozích */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.sd-sticky-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(25px) saturate(200%); backdrop-filter: blur(25px) saturate(200%);
+}
+
+.sd-sticky-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+  pointer-events: none; /* Důležité, aby se dalo klikat na formulář! */
+}
+
+.sd-price-banner {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 64, 175, 0.05) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.sd-price-label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.sd-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+}
+
+.sd-form-wrapper { 
+  padding: 30px; 
+  position: relative;
+  z-index: 1;
+}
+
+.sd-form-title {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.sd-form-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.sd-form-group { margin-bottom: 20px; }
+
+.sd-form-group label {
+  display: block;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.sd-input, .sd-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.sd-textarea { resize: vertical; min-height: 100px; }
+
+.sd-input:focus, .sd-textarea:focus {
+  border-color: #3b82f6;
+  background: rgba(30, 41, 59, 0.8);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  background: white;
+  color: black;
+  margin-top: 10px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #f8fafc;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-submit.sending { opacity: 0.7; }
+.btn-submit.success { background: #22c55e; color: white; }
+.sd-spin { animation: spin 1s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* =========================================
+   RESPONZIVITA (MOBILY A TABLETY)
+   ========================================= */
+@media (max-width: 992px) {
+  .sd-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .sd-sidebar-column {
+    position: static;
+  }
+  
+  .sd-title { font-size: 2.8rem; }
+}
+
+@media (max-width: 600px) {
+  .sd-title { font-size: 2.2rem; }
+  .sd-features-grid { grid-template-columns: 1fr; }
+  .sd-sticky-card { border-radius: 20px; }
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (Light Mode) --- 
+   ========================================= */
+body.light-mode .sd-section { background-color: #f8fafc; color: #0f172a; }
+body.light-mode .sd-title { background: linear-gradient(to right, #0f172a, #475569); -webkit-background-clip: text; background-clip: text;  color: transparent; }
+body.light-mode .sd-subtitle { color: #2563eb; }
+body.light-mode .sd-text-content h3, body.light-mode .sd-section-title { color: #0f172a; }
+body.light-mode .sd-long-desc { color: #475569; }
+body.light-mode .sd-form-title { color: #0f172a; }
+body.light-mode .sd-form-subtitle { color: #475569; }
+body.light-mode .sd-price { color: #0f172a; }
+body.light-mode .sd-price-label { color: #475569; }
+body.light-mode .sd-form-group label { color: #475569; }
+body.light-mode .sd-divider { background: linear-gradient(to right, rgba(0,0,0,0.1), transparent); }
+body.light-mode .sd-feature-card { color: #1e293b; }
+
+/* Přepsání Liquid Glass efektu pro Light Mode */
+body.light-mode .sd-feature-card::before,
+body.light-mode .sd-sticky-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .sd-feature-card:hover { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
+body.light-mode .sd-feature-card:hover::before { border-color: rgba(37, 99, 235, 0.3); }
+
+/* Vstupy ve světlém režimu */
+body.light-mode .sd-input, body.light-mode .sd-textarea {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+}
+body.light-mode .sd-input:focus, body.light-mode .sd-textarea:focus {
+  background: white;
+  border-color: #3b82f6;
+}

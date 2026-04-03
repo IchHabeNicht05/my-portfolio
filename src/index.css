@@ -1,0 +1,521 @@
+/* =========================================
+   --- 1. ZÁKLADNÍ PROMĚNNÉ (DARK MODE) --- 
+   ========================================= */
+:root {
+  /* Apple Dark Mode Palette */
+  --bg-main: #000000;
+  --bg-surface: #151516;
+  --bg-surface-hover: #1c1c1e;
+  --text-main: #f5f5f7;
+  --text-muted: #86868b;
+  --primary: #2997ff;
+  
+  /* Borders & Glass */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(0, 0, 0, 0.7);
+  --glass-blur: blur(20px);
+  
+  /* Layout */
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  --max-width: 1100px;
+  --nav-height: 60px;
+}
+
+/* =========================================
+   --- 2. RESET A GLOBÁLNÍ STYLY --- 
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+body {
+  font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.app {
+  background-color: var(--bg-main);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Posuvník (Scrollbar) --- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg-main); }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+::selection {
+  background: rgba(41, 151, 255, 0.3);
+  color: white;
+  text-shadow: 0 0 10px rgba(41, 151, 255, 0.5);
+}
+
+/* =========================================
+   --- 3. ANIMACE A AURORA (POZADÍ) --- 
+   ========================================= */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.fade-in-content {
+  animation: fadeInApp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInApp {
+  0% { opacity: 0; transform: scale(0.98); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+.noise-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 9999; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.ambient-glow {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1; overflow: hidden; background-color: var(--bg-main);
+}
+
+.glow-orb {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+.orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(41, 151, 255, 0.4) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: 0s; }
+.orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, rgba(0, 0, 0, 0) 70%); animation-delay: -5s; }
+.orb-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(0, 0, 0, 0) 70%); animation: floatReverse 25s infinite alternate ease-in-out; }
+
+@keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 50px) scale(1.1); } 100% { transform: translate(-30px, 20px) scale(0.9); } }
+@keyframes floatReverse { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-60px, -40px) rotate(10deg); } }
+
+/* =========================================================================
+   ======================= 4. SVĚTLÝ MOTIV (LIGHT MODE) ====================
+   ========================================================================= */
+
+/* --- A. ZÁKLADNÍ POZADÍ --- */
+body.light-mode {
+  --bg-main: #f8fbff !important; /* Ledová modrá - svěží základ */
+  --bg-surface: #ffffff !important;
+  --bg-surface-hover: #f1f7ff !important;
+  --text-main: #1e293b !important; /* Tmavá břidlice místo černé */
+  --text-muted: #64748b !important;
+  background-color: var(--bg-main) !important;
+}
+
+body.light-mode #root,
+body.light-mode .app,
+body.light-mode .ambient-glow {
+  background-color: var(--bg-main) !important;
+}
+
+/* Světlá barevná Aurora */
+body.light-mode .glow-orb { opacity: 0.6 !important; }
+body.light-mode .orb-1 { background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%) !important; }
+body.light-mode .orb-2 { background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%) !important; }
+
+/* --- B. OŽIVENÍ VŠECH NADPISŮ (Gradientní modrá) --- */
+body.light-mode :is(
+  .hero-title,
+  .projects-title-large,
+  .services-title-large, 
+  .pricing-title-large, 
+  .testimonials-title-large, 
+  .contact-title-large, 
+  .feedback-title-large,
+  .about-title,
+  .section-title-small
+) {
+  background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+body.light-mode .text-gradient {
+  background: linear-gradient(to right, #3b82f6, #9333ea) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* --- C. BĚŽNÉ NADPISY A TEXTY --- */
+/* Zde byla třída .service-title odstraněna, aby nepřebírala černou barvu */
+body.light-mode :is(
+  h1, h2, h3, h4, h5, h6, strong,
+  .name-highlight, .hero-name, .service-price, 
+  .project-title, .bento-content h3, .window-title, 
+  .glass-cta h2, .contact-header-wrapper h2, .success-message h3, 
+  .exp-header h3, .fb-title, .total-price, .review-name, 
+  .info-item h3, .tech-header, .label-row, .bold-text, 
+  .summary-card h3, .text-white, .modal-title
+) {
+  color: #0f172a !important;
+}
+
+/* OPRAVA: Vynucení barvy břidlice pro nadpis služby (normální stav i hover) */
+body.light-mode .service-title {
+  color: #1e293b !important; 
+}
+body.light-mode .service-card:hover .service-title {
+  color: #1e293b !important; 
+}
+
+/* Odstavce a běžný text */
+body.light-mode :is(
+  p, li, label,
+  .hero-text, .projects-description, .text-muted, .project-short-desc, 
+  .service-desc, .bento-content p, .cookie-text, 
+  .footer-bottom-bar p, .about-text p, .service-item, .exp-desc, 
+  .about-desc, .services-description, .pricing-description, 
+  .testimonials-description, .contact-description, .feedback-description, 
+  .feedback-subtitle, .review-text, .review-role, .info-item p, 
+  .info-item a, .form-label, .window-body, .fb-price, .small-text, 
+  .summary-item, .vat-note, .modal-description
+) {
+  color: #475569 !important;
+}
+
+/* Výjimky pro barvy */
+body.light-mode :is(.hero-btn-primary, .btn-accept, .btn-primary, .submit-btn, .view-detail-btn, .btn-primary-glow) { color: #ffffff !important; }
+body.light-mode :is(.text-primary, .exp-date, .highlight, .brand-dot) { color: #2563eb !important; -webkit-text-fill-color: #2563eb !important; }
+
+/* --- E. KARTY, BOXY, FORMULÁŘE (Skleněný modrý efekt) --- */
+body.light-mode :is(
+  .service-card, .experience-card, .feedback-glass-card, .project-card, 
+  .glass-cta, .window-body, .bento-card, .modal-content, .info-item, 
+  .contact-form, .review-card, .summary-card, .feature-box, .pricing-controls
+) {
+  background: rgba(255, 255, 255, 0.8) !important;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(37, 99, 235, 0.12) !important;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.08) !important;
+  color: #1e293b !important;
+}
+
+/* Hover na karty */
+body.light-mode :is(.bento-card, .service-card, .experience-card, .project-card, .feature-box, .review-card, .info-item):hover {
+  background: #ffffff !important;
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(41, 151, 255, 0.4) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* Ceník: Modrý rámeček u vybrané položky */
+body.light-mode .feature-box.selected {
+  background: rgba(37, 99, 235, 0.08) !important;
+  border-color: #2563eb !important;
+}
+
+body.light-mode .summary-divider { background: rgba(37, 99, 235, 0.1) !important; }
+body.light-mode .feature-tooltip {
+  background: #ffffff !important; border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  color: #475569 !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* =========================================
+   --- PŘEPÍNAČ EXPRESNÍHO DODÁNÍ (LIGHT MODE) ---
+   ========================================= */
+body.light-mode .slider-lg {
+  background: rgba(15, 23, 42, 0.1) !important; 
+}
+body.light-mode .slider-lg:before {
+  background: #0f172a !important; 
+}
+body.light-mode .switch-lg input:checked + .slider-lg {
+  background: #ffc002 !important; 
+}
+body.light-mode .switch-lg input:checked + .slider-lg:before {
+  background: #ffffff !important;
+}
+
+body.light-mode .window-header {
+  background: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* Primární svítící tlačítko */
+body.light-mode .btn-primary-glow {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3) !important;
+}
+body.light-mode .btn-primary-glow:hover {
+  transform: scale(1.05) !important;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+}
+
+/* Sekundární skleněné tlačítko */
+body.light-mode .btn-secondary-glass {
+  background: transparent !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.2) !important;
+}
+body.light-mode .btn-secondary-glass:hover {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border-color: #0f172a !important;
+}
+
+/* --- F. TLAČÍTKA A FORMULÁŘE (Royal Blue místo černé) --- */
+body.light-mode :is(.hero-btn-primary, .submit-btn, .btn-accept, .btn-primary, .view-detail-btn, .btn-service) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25) !important;
+}
+body.light-mode :is(.hero-btn-primary, .submit-btn, .btn-accept, .btn-primary, .view-detail-btn, .btn-service):hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35) !important;
+}
+
+body.light-mode :is(.hero-btn-secondary, .btn-outline, .btn-decline, .btn-secondary, .btn-secondary-modal) {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+body.light-mode :is(.hero-btn-secondary, .btn-outline, .btn-decline, .btn-secondary, .btn-secondary-modal):hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.light-mode input, body.light-mode textarea, body.light-mode select {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+body.light-mode input:focus, body.light-mode textarea:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* --- G. TAGY, ŠTÍTKY A TECHNOLOGIE (Modré pilulky) --- */
+body.light-mode :is(
+  .contact-tag, .feedback-tag, .projects-tag, .services-tag, 
+  .pricing-tag, .testimonials-tag, .tech-badge
+) {
+  background: rgba(37, 99, 235, 0.08) !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  color: #2563eb !important; 
+  font-weight: 600 !important;
+  -webkit-text-fill-color: #2563eb !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .mini-tag {
+  background: rgba(37, 99, 235, 0.05) !important;
+  border-color: rgba(37, 99, 235, 0.1) !important;
+  color: #2563eb !important;
+}
+
+body.light-mode .tech-item {
+  color: #2563eb !important;
+  -webkit-text-fill-color: #2563eb !important;
+}
+
+/* --- Spodní menu (Dock) --- */
+body.light-mode .dock-container {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(59, 130, 246, 0.15) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) !important;
+}
+body.light-mode .dock-item { color: #64748b !important; }
+body.light-mode .dock-item:hover { color: #0f172a !important; background: rgba(37, 99, 235, 0.05) !important; }
+body.light-mode .dock-item.active { color: #2563eb !important; background: rgba(37, 99, 235, 0.1) !important; }
+
+body.light-mode .menu-icon { color: #0f172a; }
+
+/* --- Oddělovače a čáry --- */
+body.light-mode .section-divider-line,
+body.light-mode .timeline-line {
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent) !important;
+}
+body.light-mode .section-divider-dot { background: #2563eb !important; box-shadow: 0 0 10px rgba(37, 99, 235, 0.5) !important; }
+
+/* OPRAVA SPODNÍ ČÁSTI KARTY PROJEKTU */
+body.light-mode .project-footer { border-top: 1px solid rgba(37, 99, 235, 0.1) !important; background: transparent !important; }
+body.light-mode .modal-divider { background: rgba(37, 99, 235, 0.15) !important; border: none !important; height: 1px !important; }
+
+/* Hero Gradient za hlavním nadpisem */
+body.light-mode .hero-glow-backdrop { background: radial-gradient(closest-side, rgba(255,255,255,0.8) 0%, transparent 100%) !important; }
+
+/* Průhledný overlay u obrázku na kartě projektů */
+body.light-mode .project-overlay { background: rgba(255, 255, 255, 0.6) !important; -webkit-backdrop-filter: blur(4px) !important; backdrop-filter: blur(4px) !important; }
+
+/* Patička */
+body.light-mode .footer-glass { background-color: rgba(255, 255, 255, 0.8) !important; border-top: 1px solid rgba(37, 99, 235, 0.1) !important; }
+body.light-mode .footer-glow-bg, body.light-mode .contact-bg-glow { opacity: 0.1 !important; }
+body.light-mode .footer-socials-minimal a { color: #475569 !important; }
+body.light-mode .footer-socials-minimal a:hover { color: #2563eb !important; }
+body.light-mode .footer-brand a { color: #0f172a !important; font-weight: 700 !important; }
+body.light-mode .footer-nav-minimal a { color: #475569 !important; transition: color 0.2s ease !important; }
+body.light-mode .footer-nav-minimal a:hover { color: #2563eb !important; }
+
+/* Scroll-to-top tlačítko */
+body.light-mode .scroll-to-top { color: #475569 !important; background: transparent !important; }
+body.light-mode .scroll-to-top:hover { color: #0f172a !important; }
+body.light-mode .scroll-to-top .icon-circle {
+  background: #f1f5f9 !important; color: #0f172a !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+body.light-mode .scroll-to-top:hover .icon-circle {
+  background: #2563eb !important; color: #ffffff !important;
+  border-color: #2563eb !important; transform: translateY(-2px) !important;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+body.light-mode .arrow-circle {
+  background: #f1f5f9; color: #0f172a; border: 1px solid #e2e8f0;
+}
+body.light-mode .arrow-circle:hover {
+  background: #eff6ff; color: #2563eb; border-color: #bfdbfe;
+}
+
+/* --- DETAILY PROJEKTŮ A SLUŽEB (SD/PD) --- */
+body.light-mode .sd-section, 
+body.light-mode .pd-section {
+  background-color: var(--bg-main);
+  color: #1e293b;
+}
+
+body.light-mode .sd-bg-glow { background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 60%); }
+body.light-mode .pd-bg-glow { background: radial-gradient(circle, rgba(37, 99, 235, 0.08), transparent 60%); }
+
+/* TLAČÍTKA ZPĚT */
+body.light-mode .btn-back-ghost {
+  background: #ffffff; border: 1px solid #e2e8f0; color: #64748b;
+}
+body.light-mode .btn-back-ghost:hover {
+  background: #f8fafc; color: #0f172a; border-color: #cbd5e1;
+}
+
+/* TEXTY A NADPISY V DETAILECH */
+body.light-mode .sd-title, 
+body.light-mode .pd-title {
+  background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+body.light-mode .sd-subtitle, 
+body.light-mode .pd-short-desc { color: #2563eb; }
+
+body.light-mode .sd-text-content h3, 
+body.light-mode .pd-text-block h3,
+body.light-mode .sd-section-title,
+body.light-mode .pd-features-section h3,
+body.light-mode .pd-gallery h3 { color: #0f172a; }
+
+body.light-mode .sd-long-desc, 
+body.light-mode .pd-text-block p { color: #475569; }
+
+body.light-mode .sd-divider, 
+body.light-mode .pd-divider,
+body.light-mode .pd-sidebar-divider { background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.15), transparent); }
+
+/* KARTIČKY VLASTNOSTÍ (Features v detailech) */
+body.light-mode .sd-feature-card, 
+body.light-mode .pd-feature-card {
+  background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(37, 99, 235, 0.1); color: #334155;
+}
+body.light-mode .sd-feature-card:hover {
+  background: #ffffff; border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.08); transform: translateY(-2px);
+}
+
+body.light-mode .sd-check-circle { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+
+/* STICKY SIDEBAR KARTY V DETAILECH */
+body.light-mode .sd-sticky-card, 
+body.light-mode .pd-sticky-card {
+  background: rgba(255, 255, 255, 0.9); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px);
+  border: 1px solid rgba(37, 99, 235, 0.15); box-shadow: 0 20px 50px rgba(59, 130, 246, 0.08);
+}
+body.light-mode .sd-price-banner { background: #f8fbff; border-bottom: 1px solid rgba(37, 99, 235, 0.1); }
+body.light-mode .sd-price { color: #0f172a; }
+body.light-mode .sd-form-title, body.light-mode .pd-sidebar-title, body.light-mode .pd-meta-value { color: #0f172a; }
+
+/* FORMULÁŘE V DETAILECH */
+body.light-mode .sd-input, 
+body.light-mode .sd-textarea {
+  background: #ffffff; border: 1px solid #cbd5e1; color: #0f172a;
+}
+body.light-mode .sd-input:focus, 
+body.light-mode .sd-textarea:focus {
+  border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+body.light-mode .btn-submit {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: none;
+}
+body.light-mode .btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+/* PROJEKTOVÁ META DATA & TAGY V DETAILECH */
+body.light-mode .pd-meta-icon { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+body.light-mode .pd-tech-tag {
+  background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.15); color: #2563eb; font-weight: 600;
+}
+
+body.light-mode .btn-primary-link {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: none;
+}
+body.light-mode .btn-outline-link {
+  border: 1px solid #cbd5e1; color: #0f172a; background: #ffffff;
+}
+body.light-mode .btn-outline-link:hover {
+  background: #f8fafc; border-color: #94a3b8;
+}
+
+/* CTA BANNER V DETAILECH */
+body.light-mode .pd-cta-banner {
+  background: linear-gradient(135deg, #f8fbff 0%, #eff6ff 100%); border: 1px solid #bfdbfe;
+}
+body.light-mode .pd-cta-banner h2 { color: #0f172a; }
+body.light-mode .pd-cta-banner p { color: #475569; }
+
+/* VÝJIMKA PRO ANIMACE (aby se transition netloukla s @keyframes) */
+.tech-item-badge, .levitating, .animate-float {
+  transition: transform 0.1s linear, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+}

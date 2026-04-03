@@ -1,0 +1,174 @@
+/* --- MOBILNÍ ZÁKLAD (Vše pod sebe) --- */
+.cookie-banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 9999;
+  
+  /* =========================================
+     LIQUID GLASS EFEKT (Dark Mode - Základ)
+     ========================================= */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),           /* Vnější stín */
+    inset 1px 1px 0px rgba(255, 255, 255, 0.1); /* Typický Liquid Glass odlesk na horní hraně */
+  
+  padding: 20px;
+  border-radius: 16px;
+  
+  /* Animace při načtení */
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.cookie-content {
+  display: flex;
+  flex-direction: column; /* Na mobilu pod sebou */
+  gap: 16px;
+}
+
+.cookie-text {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #cbd5e1; /* O kousek světlejší text pro lepší čitelnost na skle */
+  line-height: 1.5;
+  text-align: left;
+}
+
+.cookie-link {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.cookie-link:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-direction: column; /* Tlačítka pod sebou na mobilu */
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-decline, .btn-accept {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%; /* Na mobilu přes celou šířku modalu */
+  text-align: center;
+}
+
+.btn-decline {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+.btn-decline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-accept {
+  background: white;
+  border: 1px solid white;
+  color: #0f172a;
+}
+
+.btn-accept:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   --- LIQUID GLASS EFEKT (Light Mode) --- 
+   ========================================= */
+
+body.light-mode .cookie-banner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%) !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08), 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.8) !important; /* Bílý odlesk pro světlý motiv */
+}
+
+body.light-mode .cookie-text {
+  color: #475569;
+}
+
+body.light-mode .cookie-link {
+  color: #2563eb !important;
+}
+body.light-mode .cookie-link:hover {
+  color: #1d4ed8 !important;
+}
+
+body.light-mode .btn-decline {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+body.light-mode .btn-decline:hover {
+  background: #ffffff !important;
+  border-color: #94a3b8 !important;
+}
+
+body.light-mode .btn-accept {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25) !important;
+}
+body.light-mode .btn-accept:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* --- DESKTOP / TABLET (Od 768px výš) --- */
+@media (min-width: 768px) {
+  .cookie-banner {
+    left: auto; /* Zrušíme fixaci zleva */
+    right: 24px;
+    bottom: 24px;
+    width: auto;
+    max-width: 500px; /* Omezení šířky, aby to nebylo moc dlouhé */
+  }
+
+  .cookie-content {
+    flex-direction: row; /* Text a tlačítka vedle sebe */
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cookie-text {
+    flex: 1; /* Text zabere maximum volného místa */
+  }
+
+  .cookie-buttons {
+    flex-direction: row; /* Tlačítka vedle sebe */
+    width: auto;
+    flex-shrink: 0; /* Zabrání zmačkání tlačítek */
+  }
+
+  .btn-decline, .btn-accept {
+    width: auto; /* Šířka jen podle textu */
+    padding: 10px 20px;
+  }
+}

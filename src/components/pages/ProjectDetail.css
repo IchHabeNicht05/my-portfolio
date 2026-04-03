@@ -1,0 +1,382 @@
+/* ZÁKLAD */
+.pd-section {
+  min-height: 100vh;
+  padding: 100px 0 100px;
+  background-color: #020617;
+  color: #f8fafc;
+  position: relative;
+}
+
+.pd-bg-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pd-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.relative-z { position: relative; z-index: 1; }
+.text-primary { color: #3b82f6; }
+
+/* TLAČÍTKO ZPĚT */
+.pd-top-bar { margin-bottom: 30px; }
+
+.btn-back-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-back-ghost:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-5px);
+}
+
+/* HERO OBRÁZEK */
+.pd-hero-image-wrapper {
+  width: 100%;
+  height: 400px;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.pd-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* GRID LAYOUT (2 Sloupce) */
+.pd-layout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* LEVÝ SLOUPEC: Texty */
+.pd-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.pd-short-desc {
+  font-size: 1.2rem;
+  color: #60a5fa;
+  margin: 0 0 40px 0;
+}
+
+.pd-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 40px;
+}
+
+.pd-text-block {
+  margin-bottom: 40px;
+}
+
+.pd-text-block h3 {
+  font-size: 1.6rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.pd-text-block p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #94a3b8;
+}
+
+/* =========================================
+   --- KLÍČOVÉ VLASTNOSTI (Liquid Glass) --- 
+   ========================================= */
+.pd-features-section { margin-bottom: 50px; }
+.pd-features-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+}
+
+.pd-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.pd-feature-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd-feature-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
+}
+
+.pd-feature-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.pd-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pd-feature-card:hover::before {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+/* =========================================
+   --- PRAVÝ SLOUPEC (Sticky Sidebar - Liquid Glass) --- 
+   ========================================= */
+.pd-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.pd-sticky-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  border-radius: 24px;
+  padding: 32px;
+  transition: box-shadow 0.3s ease;
+}
+
+.pd-sticky-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(25px) saturate(200%); backdrop-filter: blur(25px) saturate(200%);
+}
+
+.pd-sticky-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+
+.pd-sidebar-title {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.pd-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pd-meta-icon {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+}
+
+.pd-meta-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pd-meta-value {
+  font-size: 1.05rem;
+  color: white;
+  font-weight: 500;
+}
+
+.pd-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.pd-tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.pd-sidebar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 24px 0;
+}
+
+.pd-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-primary-link, .btn-outline-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary-link { background: white; color: black; }
+.btn-primary-link:hover { background: #f1f5f9; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+
+.btn-outline-link { background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.2); }
+.btn-outline-link:hover { background: rgba(255, 255, 255, 0.05); border-color: white; }
+
+/* =========================================
+   --- CTA BANNER DOLE (Liquid Glass) --- 
+   ========================================= */
+.pd-cta-banner {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  margin-top: 80px;
+  border-radius: 24px;
+  padding: 50px 30px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.pd-cta-banner::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+}
+
+.pd-cta-banner::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  /* Zachoval jsem ten lehce modrý nádech z tvého původního kódu */
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.15) 0%, rgba(20, 20, 22, 0.6) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+}
+
+.pd-cta-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+.pd-cta-banner h2 { font-size: 2rem; margin-bottom: 12px; color: white; }
+.pd-cta-banner p { color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; }
+
+.btn-cta {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cta:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+
+/* RESPONZIVITA */
+@media (max-width: 992px) {
+  .pd-layout-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pd-sidebar { position: static; }
+  .pd-hero-image-wrapper { height: 300px; }
+}
+
+@media (max-width: 600px) {
+  .pd-title { font-size: 2.2rem; }
+  .pd-features-grid, .pd-gallery-grid { grid-template-columns: 1fr; }
+  .pd-hero-image-wrapper { height: 200px; }
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (Light Mode) --- 
+   ========================================= */
+body.light-mode .pd-section { background-color: #f8fafc; color: #0f172a; }
+body.light-mode .pd-title { background: linear-gradient(to right, #0f172a, #475569); -webkit-background-clip: text; background-clip: text;  color: transparent; }
+body.light-mode .pd-short-desc { color: #2563eb; }
+body.light-mode .pd-text-block h3 { color: #0f172a; }
+body.light-mode .pd-text-block p { color: #475569; }
+body.light-mode .pd-sidebar-title { color: #0f172a; }
+body.light-mode .pd-meta-value { color: #0f172a; }
+body.light-mode .pd-cta-banner h2 { color: #0f172a; }
+body.light-mode .pd-divider, body.light-mode .pd-sidebar-divider { background: rgba(0,0,0,0.1); }
+body.light-mode .pd-feature-card { color: #1e293b; }
+
+/* Light Mode Liquid Glass Overrides */
+body.light-mode .pd-feature-card::before,
+body.light-mode .pd-sticky-card::before,
+body.light-mode .pd-cta-banner::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .pd-feature-card:hover { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
+body.light-mode .pd-feature-card:hover::before { border-color: rgba(37, 99, 235, 0.3); }
+
+body.light-mode .pd-cta-banner:hover { box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1); }
+
+body.light-mode .pd-tech-tag {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #475569;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/logo.svg">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.svg">
+
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="theme-color" content="#050505">
+    
+    <title>Martin Habenicht | FullStack Vývojář</title>
+    <meta name="description" content="Tvořím moderní, rychlé a responzivní webové aplikace, které pomáhají firmám růst." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.tvujweb.cz/" />
+    <meta property="og:title" content="Martin Habenicht | Web Developer" />
+    <meta property="og:description" content="Tvořím moderní, rychlé a responzivní webové aplikace." />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.tvujweb.cz/" />
+    <meta property="twitter:title" content="Martin Habenicht | Web Developer" />
+    <meta property="twitter:description" content="Tvořím moderní, rychlé a responzivní webové aplikace." />
+  </head>
+  <body>
+    <svg style="display: none; position: absolute; width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg">
+  <filter id="container-glass" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise" />
+    <feGaussianBlur in="noise" stdDeviation="0.02" result="blur" />
+    <feDisplacementMap in="SourceGraphic" in2="blur" scale="77" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+
+  <filter id="btn-glass" primitiveUnits="objectBoundingBox">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="0.02" result="blur" />
+    <feDisplacementMap in="SourceGraphic" in2="blur" scale="1" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

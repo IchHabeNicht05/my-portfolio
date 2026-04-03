@@ -1,0 +1,212 @@
+/* --- ZÁKLADNÍ NASTAVENÍ --- */
+.testimonials-section {
+  padding: 80px 0 120px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Ambientní záře (Fialová pro Reference) */
+.testimonials-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 70%); /* Purple glow */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.testimonials-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- HLAVIČKA (Sjednocená s ostatními) --- */
+.testimonials-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.testimonials-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(168, 85, 247, 0.1); /* Fialová */
+  color: #a855f7;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+}
+
+.testimonials-title-large {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  background: linear-gradient(to right, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.testimonials-description {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* --- KONTEJNER SCROLLERU --- */
+.scroller {
+  max-width: 100%;
+  overflow: hidden;
+  /* Maska pro plynulé mizení na krajích (Fade In/Out) */
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  );
+}
+
+.scroller-inner {
+  padding-block: 1rem;
+  display: flex;
+  gap: 2rem; /* Mezera mezi kartami */
+  width: max-content; /* Důležité: natáhne se podle obsahu */
+  flex-wrap: nowrap;
+  
+  /* ANIMACE */
+  animation: scroll 60s linear infinite; /* Zpomalil jsem na 60s pro plynulejší čtení */
+}
+
+/* Zastavit animaci, když na to uživatel najede myší */
+.scroller:hover .scroller-inner {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  to {
+    /* Posuneme o polovinu šířky obsahu */
+    transform: translate(calc(-50% - 1rem)); /* -1rem je polovina gapu */
+  }
+}
+
+/* --- KARTIČKA REFERENCE (Glassmorphism 2.0) --- */
+.review-card {
+  width: 380px; /* Pevná šířka karty */
+  flex-shrink: 0;
+  background: rgba(30, 41, 59, 0.3); /* Slate dark transparent */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, background 0.3s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card:hover {
+  background: rgba(30, 41, 59, 0.6);
+  transform: translateY(-5px);
+  border-color: rgba(168, 85, 247, 0.3); /* Fialový okraj při hoveru */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Dekorativní uvozovky na pozadí */
+.card-quote-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.review-avatar {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6); /* Blue to Purple */
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: white;
+  font-size: 1rem;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.review-name {
+  color: white;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.review-role {
+  color: #94a3b8; /* Slate 400 */
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.review-text {
+  color: #cbd5e1; /* Slate 300 */
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsivita */
+@media (max-width: 768px) {
+  .testimonials-title-large {
+    font-size: 2.2rem;
+  }
+  
+  .testimonials-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .review-card {
+    width: 300px; /* Užší karty na mobilu */
+    padding: 24px;
+  }
+}

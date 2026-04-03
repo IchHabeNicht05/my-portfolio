@@ -1,0 +1,508 @@
+:root {
+  --primary-glow: #2997ff;
+  --secondary-glow: #9f5afd;
+}
+
+.about-section {
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden; /* Aby záře nepřetékala */
+}
+
+/* --- AMBIENTNÍ ZÁŘE (To barevné pozadí) --- */
+.ambient-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(41, 151, 255, 0.15), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+}
+.ambient-glow.left { top: -100px; left: -100px; }
+.ambient-glow.right { bottom: -100px; right: -100px; background: radial-gradient(circle, rgba(159, 90, 253, 0.1), transparent 70%); }
+
+.about-container {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* --- HLAVIČKA A TEXT --- */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.icon-box {
+  background: rgba(41, 151, 255, 0.1);
+  color: var(--primary-glow);
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+}
+
+.section-tag {
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--primary-glow);
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fff, #999);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-desc {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+.text-white { color: white; }
+
+/* =========================================
+   --- TECH GRID (Čipy) - LIQUID GLASS --- 
+   ========================================= */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.tech-card {
+  padding: 12px 16px;
+  border-radius: 12px;
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
+}
+
+.tech-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tech-card:hover::before {
+  border-color: rgba(41, 151, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(41, 151, 255, 0.05) 100%);
+}
+
+.tech-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tech-icon { color: var(--primary-glow); }
+
+.tech-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tech-fill { height: 100%; border-radius: 4px; }
+.tech-fill.react { width: 90%; background: #61dafb; }
+.tech-fill.next\.js { width: 75%; background: white; }
+.tech-fill.tailwind { width: 95%; background: #38bdf8; }
+.tech-fill.typescript { width: 60%; background: #3178c6; }
+
+/* --- TLAČÍTKA --- */
+.about-buttons { display: flex; gap: 16px; }
+
+.btn-primary-glow {
+  background: white;
+  color: black;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s;
+}
+.btn-primary-glow:hover { transform: scale(1.05); }
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s;
+}
+.btn-secondary-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: white; }
+
+/* =========================================
+   --- PRAVÁ STRANA (Image Frame) - LIQUID GLASS --- 
+   ========================================= */
+.about-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  padding: 10px;
+  isolation: isolate;
+  background: transparent !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.image-frame::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+}
+
+.image-frame::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 18, 20, 0.3) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.image-frame:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(41, 151, 255, 0.2);
+}
+
+.image-frame:hover::before {
+  border-color: rgba(41, 151, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(41, 151, 255, 0.1) 100%);
+}
+
+.image-frame .dark-gradient-overlay {
+  content: ''; position: absolute;
+  bottom: 10px; left: 10px; right: 10px; height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  border-radius: 0 0 18px 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.main-image {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  filter: grayscale(20%) brightness(0.8) contrast(1.1);
+  transition: all 0.5s ease;
+}
+
+.image-frame:hover .main-image {
+  filter: grayscale(0%) brightness(1) contrast(1.1);
+}
+
+/* =========================================
+   --- CODE WINDOW - LIQUID GLASS --- 
+   ========================================= */
+.code-window {
+  position: absolute;
+  bottom: 40px;
+  left: -30px;
+  width: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Fira Code', monospace;
+  animation: float 6s ease-in-out infinite;
+  z-index: 2; 
+  isolation: isolate;
+  background: transparent !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.code-window::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(25px) saturate(200%); backdrop-filter: blur(25px) saturate(200%);
+}
+
+.code-window::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  /* Tmavší podklad pro čitelnost kódu */
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.7) 0%, rgba(15, 15, 15, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.window-header {
+  background: rgba(0, 0, 0, 0.3); /* Skleněný header */
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dots { display: flex; gap: 6px; margin-right: 12px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.window-title { color: #888; font-size: 0.75rem; }
+
+.window-body {
+  padding: 16px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #d4d4d4;
+}
+
+/* Syntax Highlighting */
+.k { color: #569cd6; } 
+.f { color: #dcdcaa; } 
+.b { color: #ffd700; } 
+.t { color: #4ec9b0; } 
+.p { color: #9cdcfe; } 
+.s { color: #ce9178; } 
+
+.indent { padding-left: 12px; }
+.double-indent { padding-left: 24px; }
+.triple-indent { padding-left: 36px; }
+
+/* =========================================
+   --- STATISTIKY - LIQUID GLASS --- 
+   ========================================= */
+.stats-wrapper { margin-top: 80px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+}
+
+.stat-card {
+  border-radius: 24px;
+  padding: 32px 20px;
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.stat-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
+}
+
+.stat-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.5) 20%, rgba(18, 18, 20, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15), inset 0 0 4px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.stat-card:hover::before {
+  border-color: rgba(41, 151, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(41, 151, 255, 0.05) 100%);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1;
+  background: linear-gradient(135deg, #2997ff 0%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #a0a0a0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+  .about-grid { grid-template-columns: 1fr; gap: 50px; }
+  .code-window { left: 50%; transform: translateX(-50%); bottom: 20px; animation: none; }
+  .about-title { font-size: 2.2rem; }
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
+   ========================================= */
+
+body.light-mode .text-gradient {
+  background: linear-gradient(90deg, #1e293b, #64748b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.light-mode .text-white { color: #0f172a; }
+body.light-mode .about-title { color: #0f172a; }
+body.light-mode .about-desc { color: #475569; }
+
+body.light-mode .btn-primary-glow {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+body.light-mode .btn-secondary-glass {
+  background: #ffffff; color: #0f172a; border-color: #cbd5e1;
+}
+body.light-mode .btn-secondary-glass:hover {
+  background: #f8fafc; border-color: #94a3b8;
+}
+
+/* Tech Grid Light Mode */
+body.light-mode .tech-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+body.light-mode .tech-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+body.light-mode .tech-card:hover::before {
+  border-color: rgba(37, 99, 235, 0.3);
+}
+body.light-mode .tech-header { color: #1e293b; }
+body.light-mode .tech-icon { color: #2563eb; }
+body.light-mode .tech-bar { background: #f1f5f9; }
+body.light-mode .tech-fill.next\.js { background: #0f172a; }
+
+/* Image Frame Light Mode */
+body.light-mode .image-frame::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+body.light-mode .image-frame:hover {
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+}
+body.light-mode .image-frame:hover::before {
+  border-color: rgba(37, 99, 235, 0.4);
+}
+body.light-mode .image-frame .dark-gradient-overlay {
+  background: linear-gradient(to top, rgba(255,255,255,0.7), transparent);
+}
+body.light-mode .main-image {
+  opacity: 1 !important;
+  filter: saturate(0.9) brightness(0.95) contrast(1.15);
+}
+body.light-mode .image-frame:hover .main-image {
+  filter: saturate(1.1) brightness(1.05) contrast(1.15);
+}
+
+/* Code Window Light Mode */
+body.light-mode .code-window {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .code-window::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 1);
+}
+body.light-mode .window-header {
+  background: rgba(241, 245, 249, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+body.light-mode .window-title { color: #475569; }
+body.light-mode .window-body { color: #1e293b; }
+
+/* Syntaxe Light Mode */
+body.light-mode .k { color: #2563eb; }
+body.light-mode .f { color: #c026d3; }
+body.light-mode .b { color: #1e293b; }
+body.light-mode .t { color: #166534; }
+body.light-mode .p { color: #7e22ce; }
+body.light-mode .s { color: #ca8a04; }
+
+/* Statistiky Light Mode */
+body.light-mode .stat-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+body.light-mode .stat-card:hover {
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.15);
+}
+body.light-mode .stat-card:hover::before {
+  border-color: rgba(41, 151, 255, 0.4);
+}
+body.light-mode .stat-number {
+  background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.light-mode .stat-label { color: #64748b; }

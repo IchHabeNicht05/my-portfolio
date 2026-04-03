@@ -1,0 +1,247 @@
+/* =========================================
+   --- ULTRA-MODERNÍ TECH STACK (Levitující oblak + Shine efekt) --- 
+   ========================================= */
+
+/* --- A. HLAVNÍ SEKCE --- */
+.tech-stack {
+  padding: 80px 0;
+  text-align: center;
+  overflow: hidden; /* Pro jistotu, aby levitace nepřetekla */
+}
+
+.tech-label {
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+/* --- B. ROZLOŽENÍ OBLAKU --- */
+.tech-cloud {
+  display: flex;
+  flex-wrap: wrap; /* Umožní přeskládání na menších obrazovkách */
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   --- C. LIQUID GLASS ŠTÍTEK (Badge) --- 
+   ========================================= */
+.tech-item-badge {
+  position: relative;
+  overflow: hidden; /* Skryje paprsek světla mimo štítek */
+  z-index: 10;
+  isolation: isolate;
+  background: transparent !important; /* Pozadí řeší pseudo-elementy */
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 100px; /* Perfektně kulaté hrany */
+  
+  /* Vnější stín dáváme přímo na rodiče, aby ho neuseklo overflow:hidden */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+  /* Moderní oddělené transformace pro plynulost */
+  scale: 1;
+  translate: 0 0;
+  
+  transition: scale 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+              
+  cursor: default;
+  white-space: nowrap; /* Zabrání zalamování textu */
+
+  /* ORGANICKÁ LEVITACE */
+  animation: levitate 6s ease-in-out infinite;
+}
+
+/* Čistý Blur (Spodní vrstva skla) */
+.tech-item-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  background: transparent; 
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  backdrop-filter: blur(15px) saturate(180%); 
+}
+
+/* Odlesky a tmavý tón (Vrchní vrstva skla) */
+.tech-item-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-sizing: border-box; 
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.03) 0%, 
+    rgba(18, 18, 20, 0.5) 20%, 
+    rgba(18, 18, 20, 0.6) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Vnitřní 3D stíny */
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
+    inset 0 0 4px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+}
+
+/* Odlišné rychlosti a zpoždění pro přirozený pocit z oblaku */
+.tech-item-badge:nth-child(2n) { animation-duration: 7s; animation-delay: -1s; }
+.tech-item-badge:nth-child(3n) { animation-duration: 5s; animation-delay: -3s; }
+.tech-item-badge:nth-child(4n) { animation-duration: 8s; animation-delay: -2s; }
+.tech-item-badge:nth-child(5n) { animation-duration: 6.5s; animation-delay: -4s; }
+
+@keyframes levitate {
+  0%, 100% { translate: 0 0px; }
+  50% { translate: 0 -8px; }
+}
+
+/* --- HOVER EFEKT NA ŠTÍTKU --- */
+.tech-item-badge:hover {
+  animation-play-state: paused; /* Zastaví levitaci */
+  scale: 1.05; /* Plynule se zvětší */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  z-index: 20; /* Vystoupí nad ostatní štítky */
+}
+
+/* Hover pro Liquid Glass ::before */
+.tech-item-badge:hover::before {
+  border-color: rgba(41, 151, 255, 0.4);
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(41, 151, 255, 0.05) 100%
+  );
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+
+/* --- D. IKONY A TEXT --- */
+.tech-icon {
+  height: 24px;
+  max-height: 24px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  z-index: 1; /* Nad světelným paprskem a vrstvami skla */
+  display: block;
+}
+
+.tech-item-badge:hover .tech-icon {
+  transform: scale(1.1) rotate(-5deg); /* Hravé naklonění */
+}
+
+.tech-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7); /* Tlumená bílá */
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  z-index: 1; /* Nad světelným paprskem a vrstvami skla */
+  transition: color 0.3s ease;
+}
+
+.tech-item-badge:hover .tech-name {
+  color: #ffffff; /* Rozsvítí se */
+}
+
+/* Invertování černých log (Github, Next.js) v tmavém režimu */
+body:not(.light-mode) .invert-on-dark {
+  filter: invert(1) brightness(200%);
+}
+
+/* --- E. SVĚTELNÝ PAPRSEK (SHINE EFFECT) --- */
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  width: 50px;
+  height: 100%;
+  z-index: 0; /* Bezpečně ukryto mezi sklem a textem */
+  
+  /* Gradient světla */
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  
+  transform: skewX(-20deg); /* Šikmý sklon paprsku */
+  pointer-events: none;
+}
+
+/* Spuštění paprsku při najetí myší */
+.tech-item-badge:hover .shine-effect {
+  animation: singleGlint 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes singleGlint {
+  0% { left: -100px; opacity: 0; }
+  20% { opacity: 0.5; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* =========================================
+   --- F. SVĚTLÝ MOTIV (LIGHT MODE) --- 
+   ========================================= */
+
+body.light-mode .tech-item-badge {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+body.light-mode .tech-item-badge:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .tech-item-badge::before {
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.6) 0%, 
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .tech-item-badge:hover::before {
+  border-color: rgba(41, 151, 255, 0.3);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .tech-name {
+  color: #475569;
+}
+
+body.light-mode .tech-item-badge:hover .tech-name {
+  color: #0f172a;
+}
+
+body.light-mode .invert-on-dark {
+  filter: none; /* Ve světlém režimu se loga neinvertují */
+}
+
+/* Paprsek ve světlém režimu bude lehce modrý místo bílého */
+body.light-mode .shine-effect {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(41, 151, 255, 0.2) 50%,
+    transparent 100%
+  );
+}

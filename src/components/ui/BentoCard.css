@@ -1,0 +1,44 @@
+.bento-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  position: relative;
+  min-height: 400px;
+}
+
+.bento-card:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+.bento-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.bento-content p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.bento-visual {
+  margin-top: 32px;
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+}
+
+/* Modifier třídy pro velikost */
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 1; } /* Default mobile */
+
+@media (min-width: 768px) {
+  .col-span-2 { grid-column: span 2; }
+}

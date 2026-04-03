@@ -1,0 +1,360 @@
+:root {
+  --primary: #3b82f6;
+  --text-muted: #94a3b8;
+  --border-light: rgba(255, 255, 255, 0.08);
+}
+
+.services-section {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.services-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 1;
+}
+
+.services-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.services-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.services-title-large {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.services-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* =========================================
+   --- KARTA SLUŽBY - LIQUID GLASS --- 
+   ========================================= */
+.service-card {
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  isolation: isolate;
+  background: transparent !important; /* Důležité pro oddělené sklo */
+}
+
+/* Rozmazávací (blur) vrstva vespod */
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Poloprůhledná vrchní vrstva (odlesky, okraje) */
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(20, 20, 22, 0.4) 100%);
+  border: 1px solid var(--border-light);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.service-card:hover::before {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(59, 130, 246, 0.1) 100%);
+}
+
+/* Pokud máš speciální styl pro "Popular" kartu, přizpůsobíme mu Liquid Glass */
+.service-card.popular-card::before {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15), 0 0 20px rgba(59, 130, 246, 0.1);
+}
+.service-card.popular-card:hover::before {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.2), 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Ostatní styly karet */
+.service-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.package-badge {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.service-icon-box {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  padding: 12px;
+  border-radius: 14px;
+  display: inline-flex;
+}
+
+.service-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.service-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.service-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  border: 1px solid var(--border-light);
+}
+
+.target-icon {
+  color: var(--text-muted);
+}
+
+.service-target strong {
+  color: white;
+  font-weight: 600;
+}
+
+.service-meta-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 7px; 
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-light);
+  align-items: flex-start; 
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.meta-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.meta-row span {
+  line-height: 1.4;
+}
+
+.meta-row strong {
+  color: white;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.label-meta {
+  color: #d4d4d4;
+}
+
+.service-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.price-label { font-size: 0.9rem; color: #64748b; }
+.service-price { font-size: 1.4rem; font-weight: 800; color: white; }
+
+.service-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin-bottom: 24px;
+}
+
+.service-list {
+  margin: 0 0 32px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.check-icon {
+  color: var(--primary);
+  min-width: 16px; 
+  margin-top: 2px;
+}
+
+.btn-service {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  transition: all 0.2s ease;
+}
+
+.btn-service:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .services-title-large { font-size: 2.2rem; }
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
+   ========================================= */
+
+body.light-mode .services-title-large {
+  background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+body.light-mode .services-description { color: #475569; }
+
+body.light-mode .services-tag {
+  background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Sklo ve světlém módu */
+body.light-mode .service-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+body.light-mode .service-card:hover {
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+}
+body.light-mode .service-card:hover::before {
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+/* Ostatní texty a boxíky ve světlém módu */
+body.light-mode .service-title { color: #0f172a; }
+body.light-mode .service-desc { color: #475569; }
+body.light-mode .service-price { color: #0f172a; }
+body.light-mode .service-divider { background: rgba(0, 0, 0, 0.05); }
+
+body.light-mode .service-meta-box,
+body.light-mode .service-target {
+  background: rgba(15, 23, 42, 0.03); border-color: rgba(0, 0, 0, 0.05);
+}
+body.light-mode .meta-row { color: #475569; }
+body.light-mode .meta-row strong { color: #0f172a; }
+body.light-mode .label-meta { color: #000000; } /* Zachováno z tvého kódu */
+
+body.light-mode .service-item { color: #334155; }
+
+body.light-mode .btn-service {
+  background: rgba(15, 23, 42, 0.05); color: #ffffff; border-color: rgba(0, 0, 0, 0.1);
+}
+body.light-mode .btn-service:hover {
+  background: #2563eb; color: white; border-color: #2563eb;
+}

@@ -1,0 +1,166 @@
+/* ZÁKLAD STRÁNKY */
+.pp-section {
+  min-height: 100vh;
+  padding: 120px 0 100px;
+  position: relative;
+  background-color: #020617; /* Slate 950 */
+  color: #f8fafc;
+}
+
+.pp-bg-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pp-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 1;
+}
+
+.text-primary { color: #3b82f6; }
+
+/* TOP BAR (Zpět) */
+.btn-back-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 40px;
+}
+
+.btn-back-ghost:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-5px);
+}
+
+/* NADPIS */
+.pp-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+/* GRID PRO KARTIČKY */
+.pp-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================================
+   --- LIQUID GLASS KARTIČKY --- 
+   ========================================= */
+.pp-card {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  padding: 32px;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pp-card::after {
+  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
+  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
+}
+
+.pp-card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.pp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pp-card:hover::before {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.pp-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.pp-card p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.pp-card p:last-child {
+  margin-bottom: 0;
+}
+
+.pp-card strong {
+  color: white;
+}
+
+/* PATIČKA (DATUM) */
+.pp-footer-date {
+  margin-top: 40px;
+  font-size: 0.95rem;
+  color: #64748b;
+  text-align: center;
+}
+
+/* RESPONZIVITA */
+@media (max-width: 600px) {
+  .pp-title { font-size: 2.2rem; }
+  .pp-card { padding: 24px; }
+  .pp-card h2 { font-size: 1.2rem; }
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (Light Mode) --- 
+   ========================================= */
+body.light-mode .pp-section { background-color: #f8fafc; color: #0f172a; }
+body.light-mode .pp-title { background: linear-gradient(to right, #0f172a, #475569); -webkit-background-clip: text; background-clip: text; color: transparent; }
+body.light-mode .pp-card h2 { color: #0f172a; }
+body.light-mode .pp-card p { color: #475569; }
+body.light-mode .pp-card strong { color: #0f172a; }
+
+body.light-mode .pp-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode .pp-card:hover { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
+body.light-mode .pp-card:hover::before { border-color: rgba(37, 99, 235, 0.3); }

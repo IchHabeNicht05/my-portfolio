@@ -1,0 +1,201 @@
+:root {
+  --phosphor-main: #33ff33;
+  --phosphor-glow: rgba(51, 255, 51, 0.55);
+  --monitor-bg: #111;
+  --plastic-color: #2b2b2b;
+  --plastic-dark: #1a1a1a;
+}
+
+.terminal-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'VT323', 'Courier New', monospace; 
+  overflow: hidden;
+}
+
+/* --- NOVÝ NADPIS --- */
+.terminal-title {
+  color: #e0e0e0;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+  font-weight: normal;
+  text-align: center;
+  /* Animace problikávání jako starý neon */
+  animation: titleFlicker 4s infinite;
+}
+
+@keyframes titleFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+/* --- HARDWARE --- */
+.monitor-casing {
+  position: relative;
+  background-color: var(--plastic-color);
+  padding: 30px 30px 50px 30px;
+  border-radius: 20px;
+  box-shadow: 
+    inset 0 0 0 2px #000,
+    inset 4px 4px 10px rgba(255,255,255,0.1),
+    inset -4px -4px 10px rgba(0,0,0,0.5),
+    0 0 0 4px var(--plastic-dark),
+    0 20px 50px rgba(0,0,0,0.8);
+  width: 90%;
+  max-width: 800px;
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- OBRAZOVKA --- */
+.crt-screen {
+  flex: 1;
+  background-color: var(--monitor-bg);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: inset 0 0 20px 5px rgba(0,0,0,0.9);
+  color: var(--phosphor-main);
+  text-shadow: 0 0 2px var(--phosphor-glow), 0 0 8px var(--phosphor-glow);
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+.crt-screen.success-state {
+  color: #aaffaa;
+  text-shadow: 0 0 10px var(--phosphor-main);
+}
+
+.screen-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.3) 3px,
+    rgba(0, 0, 0, 0.3) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.6;
+}
+
+.screen-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(51, 255, 51, 0.04) 0%, transparent 80%);
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.7);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* --- OBSAH --- */
+.terminal-content {
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  overflow-y: auto;
+  /*scrollbar-width: none; */
+}
+.terminal-content::-webkit-scrollbar { display: none; }
+
+.term-line {
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  min-height: 1.4em;
+}
+
+/* --- INPUT --- */
+.input-line {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.prompt { margin-right: 10px; color: var(--phosphor-main); }
+.cmd-text { white-space: pre-wrap; word-break: break-all; }
+
+.hidden-input {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: default;
+  font-size: 16px;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background: var(--phosphor-main);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  box-shadow: 0 0 5px var(--phosphor-main);
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- SPODNÍ LIŠTA --- */
+.monitor-chin {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 45px;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  color: #666; font-weight: bold; font-size: 0.9rem; letter-spacing: 1px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.1);
+}
+.brand-logo .model { font-weight: normal; font-size: 0.7rem; margin-left: 5px; opacity: 0.7; }
+
+.led-light {
+  width: 8px; height: 8px; background-color: #111; border-radius: 50%;
+  transition: all 0.3s;
+}
+.led-light.on { background-color: #00ff00; box-shadow: 0 0 5px #00ff00; }
+.led-light.off { background-color: #330000; box-shadow: none; }
+.power-indicator { display: flex; align-items: center; gap: 8px; }
+.power-text { font-size: 0.6rem; color: #555; font-weight: bold; }
+
+/* --- ANIMACE VYPNUTÍ (RETRO TV EFFECT) --- */
+.crt-screen.turn-off {
+  animation: switchOff 0.6s ease-in-out forwards;
+}
+
+@keyframes switchOff {
+  0% { transform: scale(1, 1); filter: brightness(1); }
+  40% { transform: scale(1, 0.005); filter: brightness(2); } 
+  100% { transform: scale(0, 0); filter: brightness(0); }   
+}
+
+.terminal-overlay.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease 0.6s; 
+}
+
+/* Responsivita */
+@media (max-width: 600px) {
+  .monitor-casing { padding: 15px; width: 95%; aspect-ratio: unset; height: 70vh; }
+  .brand-logo { display: none; }
+  .crt-screen { font-size: 1rem; }
+  .terminal-title { font-size: 1.5rem; }
+}

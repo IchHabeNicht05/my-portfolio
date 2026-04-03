@@ -1,0 +1,502 @@
+/* --- HLAVNÍ KONTEJNER --- */
+.pricing-section {
+  padding: 80px 20px;
+  position: relative;
+  overflow: visible; /* Důležité pro sticky elementy */
+}
+
+.pricing-container-wide {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- HLAVIČKA --- */
+.pricing-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.pricing-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(41, 151, 255, 0.1); /* Modrá */
+  color: #2997ff;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  box-shadow: 0 0 15px rgba(41, 151, 255, 0.1);
+}
+
+.pricing-title-large {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  /* Gradient text */
+  background: linear-gradient(to right, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing-description {
+  font-size: 1.1rem;
+  color: #94a3b8; /* Muted text */
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* --- GRID LAYOUT (Dva sloupce) --- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr; /* Levý širší, pravý užší */
+  gap: 40px;
+  align-items: start;
+}
+
+/* --- LEVÁ STRANA (OVLÁDÁNÍ) --- */
+.pricing-controls {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 30px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.page-counter {
+  background: rgba(41, 151, 255, 0.15);
+  color: #2997ff;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+/* --- CUSTOM SLIDER --- */
+.range-wrapper {
+  padding: 10px 0;
+}
+
+.styled-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  outline: none;
+  /* Pozadí se dynamicky mění v Reactu, zde jen základ */
+  background-image: linear-gradient(#2997ff, #2997ff);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* Slider Thumb (Kolečko) */
+.styled-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2997ff;
+  box-shadow: 0 0 15px rgba(41, 151, 255, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.styled-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.styled-slider::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2997ff;
+  cursor: pointer;
+}
+
+.range-ticks {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* --- SLEVOVÁ HLÁŠKA --- */
+.discount-info {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.02);
+  color: #888;
+  transition: all 0.3s ease;
+}
+
+.discount-info.active {
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.divider-light {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 25px 0;
+}
+
+/* --- GRID SLUŽEB --- */
+.features-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.feature-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative; /* Pro tooltip */
+}
+
+.feature-box:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.feature-box.selected {
+  border-color: #2997ff;
+  background: rgba(41, 151, 255, 0.08);
+  box-shadow: 0 4px 15px rgba(41, 151, 255, 0.1);
+}
+
+.fb-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.fb-icon { color: #888; transition: color 0.2s; }
+.feature-box.selected .fb-icon { color: #2997ff; }
+
+.fb-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+
+.feature-box.selected .fb-check {
+  background: #2997ff;
+  border-color: #2997ff;
+  color: white;
+}
+
+.fb-title { font-weight: 600; font-size: 0.95rem; color: #eee; margin-bottom: 4px; }
+.fb-price { font-size: 0.85rem; color: #666; }
+
+/* --- TOOLTIP --- */
+.feature-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 8px;
+  width: 220px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  font-size: 0.8rem;
+  color: #ccc;
+  pointer-events: none;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2997ff;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* --- EXPRES TOGGLE --- */
+.express-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 192, 2, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 192, 2, 0.1);
+}
+
+.express-label {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.express-icon { color: #ffc002; }
+.express-icon.pulse { animation: pulse 2s infinite; }
+
+.bold-text { display: block; font-weight: 600; color: #fff; }
+.small-text { font-size: 0.8rem; color: #888; }
+
+/* Switch Large */
+.switch-lg {
+  position: relative;
+  width: 60px;
+  height: 32px;
+}
+.switch-lg input { opacity: 0; width: 0; height: 0; }
+.slider-lg {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.1); transition: .4s;
+  border-radius: 34px;
+}
+.slider-lg:before {
+  position: absolute; content: ""; height: 24px; width: 24px;
+  left: 4px; bottom: 4px; background: white; transition: .4s;
+  border-radius: 50%;
+}
+.switch-lg input:checked + .slider-lg { background: #ffc002; }
+.switch-lg input:checked + .slider-lg:before { transform: translateX(28px); }
+
+/* --- PRAVÁ STRANA (STICKY SUMMARY) --- */
+.pricing-summary-wrapper {
+  position: sticky;
+  top: 100px;
+  z-index: 10;
+}
+
+.summary-card {
+  background: #111;
+  border: 1px solid #333;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.summary-card h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.feature-item { color: #2997ff; }
+.discount-item { color: #00ff88; font-weight: 500; }
+.express-item { color: #ffc002; font-weight: 500; }
+
+.summary-divider {
+  height: 1px;
+  background: #333;
+  margin: 20px 0;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.total-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.vat-note {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* --- KONTAKTNÍ INPUTY --- */
+.input-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.calculator-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px; /* Místo pro ikonu */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.calculator-input:focus {
+  border-color: #2997ff;
+  background: rgba(41, 151, 255, 0.05);
+  box-shadow: 0 0 15px rgba(41, 151, 255, 0.1);
+}
+
+.calculator-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.calculator-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calculator-input.date-input {
+  color-scheme: dark; /* Tohle zajistí, že ikonka kalendáře bude bílá */
+  cursor: pointer;
+}
+
+/* Pokud chceš, aby placeholder (mm/dd/yyyy) nebyl tak výrazný, dokud se nevybere */
+.calculator-input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.calculator-input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* --- BUTTON & MESSAGES --- */
+.w-full {
+  width: 100%;
+  justify-content: center;
+}
+
+.success-message {
+  text-align: center;
+  color: #00ff88;
+  font-size: 0.85rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 255, 136, 0.1);
+  border-radius: 8px;
+  animation: popIn 0.3s ease-out;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.animate-pop-in { animation: popIn 0.2s ease-out forwards; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin { animation: spin 1s linear infinite; }
+
+/* --- RESPONSIBILITA (MOBIL) --- */
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr; /* Vše pod sebe */
+  }
+  
+  .pricing-summary-wrapper {
+    position: static; /* Zrušit sticky na mobilu */
+  }
+  
+  .feature-tooltip {
+    display: none !important; /* Tooltipy na dotyku vypnout */
+  }
+  
+  .features-grid-compact {
+    grid-template-columns: 1fr; /* Služby pod sebe na malém mobilu */
+  }
+}
+
+@media (min-width: 901px) {
+  /* Fix pro tooltip animaci jen na desktopu, aby se nepřepisovala s media query */
+  @keyframes popIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+}

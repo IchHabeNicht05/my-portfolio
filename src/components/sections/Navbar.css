@@ -1,0 +1,271 @@
+/* =========================================
+   --- ZÁKLADNÍ OBAL --- 
+   ========================================= */
+:root {
+  --nav-height: 54px;
+}
+
+.navbar-wrapper {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 0 20px;
+}
+
+/* =========================================
+   --- LIQUID GLASS KONTEJNER --- 
+   ========================================= */
+.navbar-container {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 960px;
+  height: var(--nav-height);
+  padding: 0 8px 0 24px;
+  border-radius: 100px;
+  
+  white-space: nowrap; 
+  flex-wrap: nowrap;
+  
+  isolation: isolate; 
+  background: transparent !important;
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* SPODNÍ VRSTVA: ČISTÁ SKLENĚNÁ ČOČKA (Vlnění) */
+.navbar-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  
+  background: transparent; 
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  backdrop-filter: blur(8px) saturate(150%); 
+  
+  -webkit-filter: url(#container-glass);
+  filter: url(#container-glass);
+  
+  overflow: hidden;
+}
+
+/* HORNÍ VRSTVA: TMAVÝ TÓN, GRADIENT A HRANY */
+.navbar-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-sizing: border-box; /* Zajišťuje, že border nezvětší prvek */
+  
+  /* 3. Jemný gradient na pozadí (Lom světla) */
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.03) 0%, 
+    rgba(18, 18, 20, 0.5) 20%, 
+    rgba(18, 18, 20, 0.6) 100%
+  );
+  
+  /* 2. Dokonalejší hrana skla (Micro-border) */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
+    inset 0 0 4px rgba(255, 255, 255, 0.05);
+    
+  pointer-events: none;
+}
+
+/* =========================================
+   --- OBSAH NAVBARU (Layout) --- 
+   ========================================= */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+/* 4. Aktivní stav / Hover pro tvé jméno */
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 10;
+  transition: text-shadow 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+.nav-logo:hover {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  opacity: 0.9;
+}
+
+.highlight { 
+  color: #2997ff; 
+}
+
+.nav-location-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  transform: rotate(15deg);
+  z-index: 10;
+}
+
+.nav-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  z-index: 10;
+}
+
+/* =========================================
+   --- IKONY A TLAČÍTKA --- 
+   ========================================= */
+.nav-icon, .theme-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+
+.nav-icon::after, .theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: 50%;
+  background: transparent; 
+  transition: 0.3s ease;
+}
+
+.nav-icon:hover::after, .theme-toggle:hover::after {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  -webkit-filter: url(#btn-glass);
+  filter: url(#btn-glass);
+}
+
+.nav-icon::before, .theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08); 
+  box-shadow: inset 1px 1px 0px -1px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.nav-icon:hover::before, .theme-toggle:hover::before {
+  opacity: 1;
+}
+
+.nav-icon:hover, .theme-toggle:hover {
+  color: #ffffff;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 6px;
+  z-index: 10;
+}
+
+.nav-btn-contact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-left: 4px;
+  transition: 0.3s ease;
+  z-index: 10;
+}
+
+.nav-btn-contact:hover {
+  transform: scale(1.04);
+}
+
+/* =========================================
+   --- LIGHT MODE --- 
+   ========================================= */
+/* 1. Změníme stín přímo na hlavním kontejneru (přepíšeme ten velký černý) */
+body.light-mode .navbar-container {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .navbar-container::after {
+  background: transparent;
+}
+
+/* 2. Na ::before zrušíme stín (už je na rodiči) a necháme jen pozadí a rámeček */
+body.light-mode .navbar-container::before {
+  background: rgba(255, 255, 255, 0.6); 
+  box-shadow: none; 
+  border: 1px solid rgba(0, 0, 0, 0.06); 
+}
+
+body.light-mode .nav-logo { color: #1d1d1f; }
+/* Vyladěný hover loga pro světlý režim (aby nesvítil bíle na bílém) */
+body.light-mode .nav-logo:hover { 
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.15); 
+  color: #000000; 
+} 
+
+body.light-mode .nav-location { color: #86868b; }
+body.light-mode .nav-location-divider, body.light-mode .divider { background: rgba(0, 0, 0, 0.15); }
+body.light-mode .nav-icon, body.light-mode .theme-toggle { color: #515154; }
+body.light-mode .nav-btn-contact { background: #1d1d1f; color: #ffffff; }
+
+/* =========================================
+   --- RESPONSIVITA --- 
+   ========================================= */
+@media (max-width: 768px) {
+  .nav-location, .nav-location-divider, .divider, .social-icons {
+    display: none;
+  }
+}

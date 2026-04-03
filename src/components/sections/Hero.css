@@ -1,0 +1,366 @@
+/* --- ZÁKLAD --- */
+.hero {
+  /* Zvětšíme horní padding, protože navbar je teď průhledný */
+  padding-top: 220px; 
+  padding-bottom: 140px;
+  text-align: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.name-highlight {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Jemná záře přímo za textem */
+.hero-glow-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 400px;
+  background: radial-gradient(closest-side, rgba(0,0,0,0.5) 0%, transparent 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- STATUS BADGE --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* VERZE: DOSTUPNÝ */
+.status-badge.available {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+}
+
+/* VERZE: PLNÝ */
+.status-badge.busy {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+/* Tečka a animace */
+.status-dot-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.status-badge.available .status-dot {
+  background-color: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.status-badge.busy .status-dot {
+  background-color: #ff0000;
+  box-shadow: 0 0 8px #fb3c3c;
+}
+
+/* Pulzující efekt */
+.status-dot-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.7;
+}
+
+.status-badge.available .status-dot-ping { background-color: #4ade80; }
+.status-badge.busy .status-dot-ping { background-color: #ff0000; }
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   --- MODERNÍ JMÉNO (Kompletní přepis) --- 
+   ========================================= */
+.hero-name {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #94a3b8; /* Decentní šedo-modrá (Slate 400), která neruší */
+  margin-bottom: 16px; /* Jemný odstup od velkého nadpisu */
+  letter-spacing: 0.02em;
+}
+
+/* Hlavní jméno s subtilním stříbrným shimmering gradientem */
+.name-main-glow {
+  font-size: 1.6rem; /* Větší než dříve */
+  background: linear-gradient(
+    to right, 
+    #f1f5f9 20%, /* Pure Silver/White */
+    #88888c 50%, /* Mid Gray */
+    #f1f5f9 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Pomalejší, subtilnější shine animace */
+  animation: shineSubtle 6s linear infinite;
+}
+
+/* Technický Suffix .dev (Monospace) */
+.name-tech-suffix {
+  font-family: 'Monaco', 'Consolas', monospace; /* Shoda s Navbarem */
+  font-size: 0.95rem;
+  color: #3b82f6; /* Modrá highight barva */
+  opacity: 0.6;
+  font-weight: 400;
+  margin-top: 3px; /* Mírné zarovnání na baseline */
+}
+
+/* Pomalejší shinny animace pro jméno */
+@keyframes shineSubtle {
+  to { background-position: 200% center; }
+}
+
+/* ========================================= */
+
+/* --- Nadpis --- */
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: white;
+}
+
+/* Animovaný gradient text */
+.text-gradient-shine {
+  background: linear-gradient(
+    to right, 
+    #ffffff 20%, 
+    #2997ff 50%, 
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+/* --- TLAČÍTKA --- */
+/* --- KONTEJNER PRO TLAČÍTKA --- */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 48px;
+}
+
+/* --- SPOLEČNÝ ZÁKLAD PRO LIQUID GLASS TLAČÍTKA --- */
+.hero-btn-primary, 
+.hero-btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  isolation: isolate; /* Drží text nad skleněným efektem */
+  overflow: hidden;
+}
+
+/* --- PRIMÁRNÍ TLAČÍTKO (Bílé tekuté sklo) --- */
+.hero-btn-primary {
+  background: white;
+  color: black;
+  border: 1px solid white;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.25);
+  background: #fdfdfd;
+}
+
+/* Ta záře, kterou už v JSX máš */
+.btn-glow-effect {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.hero-btn-primary:hover .btn-glow-effect {
+  opacity: 1;
+}
+
+/* --- SEKUNDÁRNÍ TLAČÍTKO (Temné tekuté sklo) --- */
+.hero-btn-secondary {
+  background: transparent;
+  color: white;
+  border: none;
+}
+
+/* Vrstva pro rozostření (Blur) */
+.hero-btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* Vrstva pro gradient a odlesk hrany */
+.hero-btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.1), /* Horní hrana skla */
+    0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-btn-secondary:hover::before {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.2),
+    0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn-secondary:hover {
+  transform: translateY(-3px);
+  color: white;
+}
+
+/* --- RESPONSIVITA --- */
+@media (max-width: 600px) {
+  .hero-buttons {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 30px;
+  }
+  
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero { padding-top: 180px; }
+  .hero-name { font-size: 1.1rem; } /* Zmenšení na mobilu */
+  .hero-title { font-size: 3rem; }
+  .hero-text { font-size: 1.1rem; }
+}
+
+/* =========================================
+   --- HERO SEKCE PRO SVĚTLÝ MOTIV --- 
+   ========================================= */
+
+body.light-mode .hero-title {
+  /* Základní text (s důrazem na detail) bude tmavý */
+  color: #0f172a; 
+}
+
+/* Animovaný gradient text pro světlý motiv */
+body.light-mode .text-gradient-shine {
+  background: linear-gradient(
+    to right, 
+    #0f172a 20%,   /* Tmavý základ */
+    #2563eb 40%,   /* Výrazná modrá pro 'shine' */
+    #9333ea 60%,   /* Přechod do fialové pro hloubku */
+    #0f172a 80%    /* Návrat k tmavé */
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 5s linear infinite; /* Mírně pomalejší pro jemnější dojem */
+}
+
+/* Úprava popisku pod nadpisem */
+body.light-mode .hero-text {
+  color: #475569; /* Příjemná břidlicově šedá */
+}
+
+/* Pokud používáš animaci slide-up, zajistíme, aby byla plynulá */
+body.light-mode .animate-slide-up {
+  opacity: 0;
+  animation: lightSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes lightSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
