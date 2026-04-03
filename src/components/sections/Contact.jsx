@@ -81,9 +81,10 @@ const Contact = () => {
                 className="map-wrapper static-map"
               >
                 <img 
-                  src="/mapa-ceska-lipa.png" 
+                  src="/mapa-ceska-lipa.webp" 
                   alt="Mapa Česká Lípa" 
                   className="map-image"
+                  loading='lazy'
                 />
                 <div className="map-pin-overlay">
                   <div className="pin-pulse"></div>
