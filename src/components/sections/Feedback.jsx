@@ -35,10 +35,9 @@ const Feedback = () => {
       user_message: formData.text,
     };
 
-    // VLOŽ SVÉ ÚDAJE Z EMAILJS
-    const SERVICE_ID = "service_2y8jhwd"; 
-    const TEMPLATE_ID = "template_xcuknfm"; 
-    const PUBLIC_KEY = "2EFc1OxTmEHEbJin4"; 
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_FEEDBACK_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
       .then((response) => {
