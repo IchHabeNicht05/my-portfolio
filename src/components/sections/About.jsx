@@ -66,12 +66,20 @@ const About = () => {
             </div>
 
             <div className="about-buttons">
-              <button className="btn-primary-glow" aria-label="Spolupracovat se mnou na projektu">
+              {/* Tlačítko Spolupracovat - Odkaz na kontakt */}
+              <a href="#contact" className="btn-primary-glow" aria-label="Přejít na sekci kontakt">
                 Spolupracovat <ArrowUpRight size={18} />
-              </button>
-              <button className="btn-secondary-glass" aria-label="Stáhnout mé CV">
+              </a>
+
+              {/* Tlačítko Stáhnout CV - Přímý download PDF */}
+              <a 
+                href="/Resume_Martin_Habenicht.pdf" 
+                download="Resume_Martin_Habenicht.pdf" 
+                className="btn-secondary-glass" 
+                aria-label="Stáhnout mé CV ve formátu PDF"
+              >
                 Stáhnout CV <Download size={18} />
-              </button>
+              </a>
             </div>
           </div>
 

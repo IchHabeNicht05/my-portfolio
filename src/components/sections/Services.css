@@ -77,15 +77,46 @@
   max-width: 600px;
 }
 
+/* --- SPECIÁLNÍ NABÍDKA (SLEVA) --- */
+.special-promo-badge {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 12px 28px;
+  border-radius: 100px;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+  animation: promo-pulse 3s infinite ease-in-out;
+}
+
+.promo-icon {
+  color: #60a5fa;
+}
+
+.special-promo-badge strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@keyframes promo-pulse {
+  0% { border-color: rgba(59, 130, 246, 0.2); transform: translateY(0); }
+  50% { border-color: rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
+  100% { border-color: rgba(59, 130, 246, 0.2); transform: translateY(0); }
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
-/* =========================================
-   --- KARTA SLUŽBY - LIQUID GLASS --- 
-   ========================================= */
+/* --- KARTA SLUŽBY - LIQUID GLASS --- */
 .service-card {
   border-radius: 24px;
   padding: 32px;
@@ -94,10 +125,9 @@
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   isolation: isolate;
-  background: transparent !important; /* Důležité pro oddělené sklo */
+  background: transparent !important;
 }
 
-/* Rozmazávací (blur) vrstva vespod */
 .service-card::after {
   content: '';
   position: absolute;
@@ -108,7 +138,6 @@
   backdrop-filter: blur(20px) saturate(180%);
 }
 
-/* Poloprůhledná vrchní vrstva (odlesky, okraje) */
 .service-card::before {
   content: '';
   position: absolute;
@@ -131,17 +160,6 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(59, 130, 246, 0.1) 100%);
 }
 
-/* Pokud máš speciální styl pro "Popular" kartu, přizpůsobíme mu Liquid Glass */
-.service-card.popular-card::before {
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15), 0 0 20px rgba(59, 130, 246, 0.1);
-}
-.service-card.popular-card:hover::before {
-  border-color: rgba(59, 130, 246, 0.6);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.2), 0 0 30px rgba(59, 130, 246, 0.2);
-}
-
-/* Ostatní styly karet */
 .service-header {
   margin-bottom: 20px;
   display: flex;
@@ -184,34 +202,12 @@
   flex-grow: 1;
 }
 
-.service-target {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 10px 14px;
-  border-radius: 10px;
-  margin-bottom: 24px;
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  border: 1px solid var(--border-light);
-}
-
-.target-icon {
-  color: var(--text-muted);
-}
-
-.service-target strong {
-  color: white;
-  font-weight: 600;
-}
-
 .service-meta-box {
   display: flex;
   flex-direction: column;
   gap: 12px;
   background: rgba(255, 255, 255, 0.03);
-  padding: 7px; 
+  padding: 12px; 
   border-radius: 12px;
   margin-bottom: 24px;
   border: 1px solid var(--border-light);
@@ -231,19 +227,13 @@
   flex-shrink: 0;
 }
 
-.meta-row span {
-  line-height: 1.4;
-}
-
 .meta-row strong {
   color: white;
   font-weight: 600;
   margin-left: 4px;
 }
 
-.label-meta {
-  color: #d4d4d4;
-}
+.label-meta { color: #d4d4d4; }
 
 .service-price-row {
   display: flex;
@@ -252,7 +242,6 @@
   margin-bottom: 20px;
 }
 
-.price-label { font-size: 0.9rem; color: #64748b; }
 .service-price { font-size: 1.4rem; font-weight: 800; color: white; }
 
 .service-divider {
@@ -307,7 +296,20 @@
 
 @media (max-width: 768px) {
   .services-title-large { font-size: 2.2rem; }
+  .special-promo-badge { font-size: 0.8rem; padding: 10px 20px; }
 }
+
+/* LIGHT MODE */
+body.light-mode .services-title-large {
+  background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+body.light-mode .special-promo-badge {
+  background: rgba(37, 99, 235, 0.05);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #1e293b;
+}
+body.light-mode .special-promo-badge strong { color: #2563eb; }
 
 /* =========================================
    --- SVĚTLÝ MOTIV (LIGHT MODE) --- 

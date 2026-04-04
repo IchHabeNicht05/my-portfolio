@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-import { ArrowLeft, Check, Mail, Loader2, Sparkles } from 'lucide-react';
+import { ArrowLeft, Check, Mail, Loader2, Sparkles, User } from 'lucide-react'; // Přidána ikonka User
 import { ServicesData } from '../../data/servicesData';
 import './ServiceDetail.css';
 
@@ -9,10 +9,12 @@ const ServiceDetail = () => {
   const { id } = useParams();
   const service = ServicesData.find(s => s.id === id);
 
-  const SERVICE_ID = "service_2y8jhwd"; 
-  const TEMPLATE_ID = "template_69wxdal";
-  const PUBLIC_KEY = "2EFc1OxTmEHEbJin4";
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+  // STAVY FORMULÁŘE
+  const [userName, setUserName] = useState(""); // Nový stav pro jméno
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [emailStatus, setEmailStatus] = useState("idle");
@@ -33,13 +35,22 @@ const ServiceDetail = () => {
   }
 
   const handleSendInquiry = async () => {
+    // VALIDACE
+    if (!userName.trim()) { alert("Prosím vyplňte vaše jméno."); return; }
     if (!email || !email.includes("@")) { alert("Prosím vyplňte platný email."); return; }
     if (!message) { alert("Prosím napište zprávu."); return; }
 
     setEmailStatus("sending");
 
-    const fullMessage = `ZÁJEM O SLUŽBU: ${service.title}\n\nZpráva:\n${message}`;
-    const templateParams = { user_email: email, message: fullMessage, user_name: "Zájemce o služby" };
+    // PŘÍPRAVA DAT PRO EMAILJS
+    const fullMessage = `ZÁJEM O SLUŽBU: ${service.title}\n\nOd: ${userName}\nZpráva:\n${message}`;
+    
+    const templateParams = { 
+      user_email: email, 
+      user_name: userName, // Teď posíláme reálné jméno místo statického textu
+      message: fullMessage,
+      service_title: service.title // Můžeš využít v šabloně jako {{service_title}}
+    };
 
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
@@ -113,6 +124,19 @@ const ServiceDetail = () => {
                 <h3 className="sd-form-title">Poptat tuto službu</h3>
                 <p className="sd-form-subtitle">Napište mi detaily a obratem se vám ozvu s dalším postupem.</p>
                 
+                {/* NOVÉ POLE: JMÉNO */}
+                <div className="sd-form-group">
+                  <label>Vaše Jméno</label>
+                  <input 
+                     type="text" 
+                     placeholder="Jan Novák" 
+                     className="sd-input"
+                     value={userName}
+                     onChange={(e) => setUserName(e.target.value)}
+                     disabled={emailStatus === "success" || emailStatus === "sending"}
+                  />
+                </div>
+
                 <div className="sd-form-group">
                   <label>Váš Email</label>
                   <input 

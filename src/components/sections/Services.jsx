@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 /* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
 /* eslint-enable no-unused-vars */
-import { Briefcase, ArrowRight, Check, User, Clock } from 'lucide-react';
-import { ServicesData } from '../../data/servicesData'; // Uprav si cestu
+import { Briefcase, ArrowRight, Check, User, Clock, Tag } from 'lucide-react';
+import { ServicesData } from '../../data/servicesData'; 
 import './Services.css';
 
 const Services = () => {
@@ -23,6 +23,20 @@ const Services = () => {
           <p className="services-description">
             Od jednoduchých úprav po komplexní weby a aplikace. Vyberte si balíček, který nejlépe sedí vašim potřebám.
           </p>
+
+          {/* --- POZNÁMKA O SLEVĚ --- */}
+          <motion.div 
+            className="special-promo-badge"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <Tag size={16} className="promo-icon" />
+            <span>
+              <strong>Bonus pro nové klienty:</strong> Na náš první společný projekt získáte slevu <strong>20 %</strong>!
+            </span>
+          </motion.div>
         </div>
         
         {/* GRID KARET S ANIMACÍ */}
@@ -30,7 +44,6 @@ const Services = () => {
           {ServicesData.map((service, index) => (
             <motion.div 
               key={service.id} 
-              /* Zůstává třída service-card pro náš Liquid Glass efekt */
               className={`service-card ${service.isPopular ? 'popular-card' : ''}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
