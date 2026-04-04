@@ -10,7 +10,7 @@ import About from './components/sections/About';
 import Contact from './components/sections/Contact';
 import Footer from './components/sections/Footer';
 import Services from './components/sections/Services';
-//import Testimonials from './components/sections/Testimonials';
+import Testimonials from './components/sections/Testimonials';
 import Feedback from './components/sections/Feedback';
 //import PricingCalculator from './components/sections/PricingCalculator'; 
 import NotFound from './components/sections/NotFound'; 
@@ -73,8 +73,8 @@ const HomePortfolio = ({ activeSection, setActiveSection }) => {
         <SectionDivider />
         {/* <section id='pricing'><RevealOnScroll><PricingCalculator /></RevealOnScroll></section> */}
         {/*<SectionDivider /> */}
-        {/* <section id='reviews'><RevealOnScroll><Testimonials /></RevealOnScroll></section> */}
-        {/*<SectionDivider /> */}
+        <section id='reviews'><RevealOnScroll><Testimonials /></RevealOnScroll></section>
+        <SectionDivider />
         <section id='contact'><RevealOnScroll><Contact /></RevealOnScroll></section>
         <SectionDivider />
         <section id='feedback'><RevealOnScroll><Feedback /></RevealOnScroll></section>

@@ -100,5 +100,22 @@ export const ProjectsData = [
     image: "/ManagementSys.webp",
     liveLink: "#",
     githubLink: "https://github.com/IchHabeNicht05/GymFlow-Membership-Managament",
+  },
+  {
+    id: 7,
+    title: "MovieDB - API Projekt",
+    category: "Webová stránka",
+    platform: "JavaScript",
+    role: "Frontend Developer",
+    year: "2025",
+    challenge: "Vytvořit webovou stránku, která bude komunikovat s externím API.",
+    solution: "Použil jsem JavaScript pro vytvoření webové stránky, která bude komunikovat s externím API. Zaměřil jsem se na čistý design a základní interaktivitu.",
+    features: ["Komunikace s externím API"],
+    shortDesc: "Webová stránka vytvořená pro práci s externím API.",
+    longDesc: "Webová stránka vytvořená pro práci s externím API.",
+    tech: ["HTML", "CSS", "JavaScript", "API"],
+    image: "/moviedb.webp",
+    liveLink: "#",
+    githubLink: "https://github.com/IchHabeNicht05/MovieDB",
   }
 ];
