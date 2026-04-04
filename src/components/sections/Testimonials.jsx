@@ -5,7 +5,7 @@ import { Star, MessageSquare, Quote } from 'lucide-react';
 const reviews = [
   {
     id: 1,
-    name: "Štěpán Matys",
+    name: "Štěpán M.",
     role: "Student VŠ",
     text: "Spolupráce s tebou byla velmi dobrá, práce je odvedená kvalitně a výsledek vypadá opravdu dobře. Navíc jsi byl ochotný pomoct i s věcmi mimo samotný projekt, čehož si vážím.",
     avatar: "ŠM",
