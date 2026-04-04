@@ -24,7 +24,7 @@ const CookieConsent = () => {
       <div className="cookie-content">
         <p className="cookie-text">
           Tento web používá cookies pro základní analytiku a lepší uživatelský zážitek. 🍪
-          <Link to="/privacy" className="cookie-link"> Více informací</Link>
+          <Link to="/privacy-policy" className="cookie-link"> Více informací</Link>
         </p>
         <div className="cookie-buttons">
           <button onClick={handleDecline} className="btn-decline">Pouze nutné</button>
