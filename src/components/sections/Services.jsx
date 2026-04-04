@@ -25,7 +25,14 @@ const Services = () => {
           </p>
 
           {/* INFO O DPH - důležité pro firemní klienty */}
-          <p className="dph-notice">Nejsem plátce DPH.</p>
+          <div className="services-info-meta">
+            <span className="dph-notice">Nejsem plátce DPH</span>
+            <span className="info-divider">•</span>
+            <p className="payment-notice">
+              <Check size={14} className="text-primary" /> 
+              Práce začínají po uhrazení <strong>50% zálohy</strong>
+            </p>
+          </div>
 
           {/* --- POZNÁMKA O SLEVĚ --- */}
           <motion.div 
@@ -37,7 +44,7 @@ const Services = () => {
           >
             <Tag size={16} className="promo-icon" />
             <span>
-              <strong>Bonus pro nové klienty:</strong> Na náš první společný projekt získáte slevu <strong>20 %</strong>!
+              <strong>Bonus pro nové klienty:</strong> Na náš první projekt sleva <strong>20 %</strong>!
             </span>
           </motion.div>
         </div>

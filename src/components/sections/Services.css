@@ -77,14 +77,41 @@
   max-width: 600px;
 }
 
+.services-info-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Pro mobily */
+}
+
+.info-divider {
+  color: #475569;
+  opacity: 0.5;
+}
+
 .dph-notice { 
-  color: #64748b; 
-  font-size: 0.85rem; 
-  margin-top: 12px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  color: #94a3b8; 
+  font-size: 0.75rem; /* O něco menší než hlavní text */
+  font-weight: 600;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  opacity: 0.8;
+  margin: 0; /* Resetujeme marginy */
+}
+
+.payment-notice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0; /* Resetujeme marginy */
+}
+
+.payment-notice strong {
+  color: #3b82f6;
+  font-weight: 600;
 }
 
 /* --- SPECIÁLNÍ NABÍDKA (SLEVA) --- */
@@ -92,6 +119,7 @@
   margin-top: 32px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
   border: 1px solid rgba(59, 130, 246, 0.2);
@@ -307,6 +335,20 @@
 @media (max-width: 768px) {
   .services-title-large { font-size: 2.2rem; }
   .special-promo-badge { font-size: 0.8rem; padding: 10px 20px; }
+}
+
+@media (max-width: 640px) {
+  .services-info-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .info-divider {
+    display: none; /* Skryjeme tečku na mobilu */
+  }
+  .special-promo-badge {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
 }
 
 /* LIGHT MODE */

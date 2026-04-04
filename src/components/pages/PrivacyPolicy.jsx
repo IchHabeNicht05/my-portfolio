@@ -43,6 +43,29 @@ const PrivacyPolicy = () => {
             <h2><Scale className="text-primary" size={24} /> 4. Vaše práva</h2>
             <p>Máte právo kdykoliv požádat o informaci, jaké údaje o vás eviduji, a požádat o jejich úplné vymazání na mém kontaktním e-mailu.</p>
           </div>
+
+          <div className="pp-card">
+            <h2><UserCheck className="text-primary" size={24} /> 5. Reference a zpětná vazba</h2>
+            <p>
+              Pokud mi po dokončení projektu poskytnete dobrovolnou zpětnou vazbu (e-mailem nebo přes formulář), 
+              mohu váš text, křestní jméno (případně název firmy) a logo využít v sekci <strong>Reference</strong> na tomto webu pro prezentaci své práce.
+            </p>
+            <p>
+              Vaše soukromí je prioritou – pokud si budete přát svou referenci dodatečně upravit, anonymizovat nebo zcela odstranit, 
+              stačí mi napsat a obratem tak učiním.
+            </p>
+          </div>
+
+          <div className="pp-card">
+            <h2><Scale className="text-primary" size={24} /> 6. Platební podmínky a zálohy</h2>
+            <p>
+              Standardní postup spolupráce vyžaduje úhradu <strong>zálohové faktury ve výši 50 %</strong> z dohodnuté ceny před zahájením vývojových prací. 
+              Tato částka pokrývá úvodní analýzu zadání, návrh architektury a přípravu vývojového prostředí.
+            </p>
+            <p>
+              Doplatek zbývajících 50 % je splatný po dokončení díla a jeho finálním odsouhlasení, nejpozději však před ostrým nasazením na vaši doménu nebo předáním zdrojových kódů.
+            </p>
+          </div>
         </div>
 
         <p className="pp-footer-date">Poslední aktualizace: Březen 2026</p>
