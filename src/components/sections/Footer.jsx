@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.css';
-import { Github, Linkedin, ArrowUp, Mail } from 'lucide-react';
+import { Github, Linkedin, ArrowUp, Mail, FileText } from 'lucide-react'; // Přidána ikona FileText
 
 const Footer = () => {
   const location = useLocation();
@@ -27,25 +28,21 @@ const Footer = () => {
 
   return (
     <footer className="footer-glass">
-      {/* Obrovská jemná záře na pozadí, ladící s Hero sekcí */}
       <div className="footer-glow-bg"></div>
 
       <div className="container relative-z">
-        
-        {/* LEVITUJÍCÍ SKLENĚNÁ KARTA (Hlavní CTA) */}
+        {/* CTA KARTA */}
         <div className="glass-cta-card">        
           <h2 className="glass-cta-heading">
             Máte nápad na projekt? <br/>
             <span className="text-gradient">Pojďme ho realizovat.</span>
           </h2>
-          
           <a href="mailto:martin.habenicht05@gmail.com" className="primary-glow-btn">
-            <Mail size={18} />
-            Napsat zprávu
+            <Mail size={18} /> Napsat zprávu
           </a>
         </div>
 
-        {/* SPODNÍ NAVIGACE A ODKAZY */}
+        {/* ODKAZY */}
         <div className="footer-links-row">
           <div className="footer-brand">
             <a href="/" onClick={(e) => handleNavClick(e, 'home')}>
@@ -57,6 +54,8 @@ const Footer = () => {
             <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>O mně</a>
             <a href="#services" onClick={(e) => handleNavClick(e, 'services')}>Služby</a>
             <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projekty</a>
+            {/* Přidán odkaz na Privacy Policy i sem pro snadnou dostupnost */}
+            <Link to="/privacy-policy">Soukromí</Link>
           </nav>
 
           <div className="footer-socials-minimal">
@@ -65,12 +64,20 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* ODDĚLOVACÍ LINKA */}
         <div className="footer-divider"></div>
 
-        {/* COPYRIGHT A ZPĚT NAHORU */}
+        {/* SPODNÍ LIŠTA S KOMPLETNÍMI ÚDAJI */}
         <div className="footer-bottom-bar">
-          <p>© {new Date().getFullYear()} Martin Habenicht. Všechna práva vyhrazena.</p>
+          <div className="footer-info-group">
+            <p>© {new Date().getFullYear()} <strong>Martin Habenicht</strong>. Všechna práva vyhrazena.</p>
+            
+            {/*<div className="footer-billing-info">
+              <FileText size={12} />
+              <span>
+                IČO: 12345678 • [Ulice a č.p., PSČ Město] • Fyzická osoba zapsaná v živnostenském rejstříku. Nejsem plátce DPH.
+              </span>
+            </div>*/}
+          </div>
           
           <button onClick={scrollToTop} className="scroll-to-top" aria-label="Zpět nahoru">
             <span>Zpět nahoru</span>
@@ -79,7 +86,6 @@ const Footer = () => {
             </div>
           </button>
         </div>
-
       </div>
     </footer>
   );

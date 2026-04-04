@@ -24,6 +24,9 @@ const Services = () => {
             Od jednoduchých úprav po komplexní weby a aplikace. Vyberte si balíček, který nejlépe sedí vašim potřebám.
           </p>
 
+          {/* INFO O DPH - důležité pro firemní klienty */}
+          <p className="dph-notice">Nejsem plátce DPH.</p>
+
           {/* --- POZNÁMKA O SLEVĚ --- */}
           <motion.div 
             className="special-promo-badge"

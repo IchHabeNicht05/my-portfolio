@@ -124,6 +124,11 @@
   margin-bottom: 12px;
 }
 
+.pp-card p strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
 .pp-card p:last-child {
   margin-bottom: 0;
 }
@@ -155,6 +160,9 @@ body.light-mode .pp-title { background: linear-gradient(to right, #0f172a, #4755
 body.light-mode .pp-card h2 { color: #0f172a; }
 body.light-mode .pp-card p { color: #475569; }
 body.light-mode .pp-card strong { color: #0f172a; }
+body.light-mode .pp-card p strong {
+  color: #0f172a;
+}
 
 body.light-mode .pp-card::before {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);

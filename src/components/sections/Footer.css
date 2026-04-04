@@ -11,7 +11,7 @@
   width: 100%;
 }
 
-/* Ambiantní záře pod kartou (tekutý efekt) */
+/* Ambientní záře pod kartou (tekutý efekt) */
 .footer-glow-bg {
   position: absolute;
   top: 50%;
@@ -41,7 +41,7 @@
    ========================================= */
 .glass-cta-card {
   position: relative;
-  isolation: isolate; /* Udržuje obsah nad skleněnými vrstvami */
+  isolation: isolate; 
   background: transparent !important;
   border-radius: 32px;
   padding: 80px 40px;
@@ -54,7 +54,7 @@
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Vrstva 1: Rozostření (Blur & Saturation) */
+/* Vrstvy pro skleněný efekt */
 .glass-cta-card::after {
   content: '';
   position: absolute;
@@ -65,7 +65,6 @@
   backdrop-filter: blur(25px) saturate(180%);
 }
 
-/* Vrstva 2: Textura, odlesky a stíny */
 .glass-cta-card::before {
   content: '';
   position: absolute;
@@ -79,8 +78,8 @@
   );
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.1), /* Horní hrana skla */
-    0 25px 50px rgba(0, 0, 0, 0.4);             /* Hloubka pod kartou */
+    inset 1px 1px 0px rgba(255, 255, 255, 0.1), 
+    0 25px 50px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
 }
 
@@ -95,9 +94,6 @@
     0 35px 70px rgba(0, 0, 0, 0.5);
 }
 
-/* =========================================
-   --- TYPOGRAFIE A TLAČÍTKA --- 
-   ========================================= */
 .glass-cta-heading {
   font-size: 3.5rem;
   font-weight: 800;
@@ -186,7 +182,7 @@
 }
 
 /* =========================================
-   --- SPODNÍ LIŠTA --- 
+   --- ODDĚLOVAČ A SPODNÍ LIŠTA --- 
    ========================================= */
 .footer-divider {
   width: 100%;
@@ -203,6 +199,39 @@
   font-size: 0.9rem;
 }
 
+/* COPYRIGHT A INFO GROUP */
+.footer-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Trochu větší mezera pro čitelnost */
+  align-items: flex-start;
+}
+
+.footer-info-group p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.footer-billing-info {
+  display: flex;
+  align-items: flex-start; /* Zarovnání na začátek kvůli více řádkům */
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #52525b; 
+  line-height: 1.5;
+  max-width: 450px; /* Aby se adresa hezky zalamovala */
+  transition: color 0.3s ease;
+}
+
+.footer-billing-info span {
+  display: inline-block;
+}
+
+.footer-billing-info:hover {
+  color: #a1a1aa;
+}
+
+/* Zpět nahoru tlačítko */
 .scroll-to-top {
   background: transparent;
   border: none;
@@ -233,7 +262,7 @@
 }
 
 /* =========================================
-   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
+   --- LIGHT MODE --- 
    ========================================= */
 body.light-mode .footer-glass { background-color: #f8fafc; color: #1e293b; }
 
@@ -251,17 +280,11 @@ body.light-mode .primary-glow-btn {
   box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
 }
 
-body.light-mode .footer-divider {
-  background: linear-gradient(to right, transparent, rgba(0,0,0,0.05), transparent);
-}
+body.light-mode .footer-billing-info { color: #94a3b8; }
 
 /* =========================================
    --- RESPONZIVITA --- 
    ========================================= */
-@media (max-width: 850px) {
-  .footer-nav-minimal { gap: 20px; }
-}
-
 @media (max-width: 768px) {
   .glass-cta-heading { font-size: 2.5rem; }
   .glass-cta-card { padding: 60px 24px; }
@@ -273,5 +296,19 @@ body.light-mode .footer-divider {
   }
   
   .footer-nav-minimal { flex-direction: column; gap: 16px; }
-  .footer-bottom-bar { flex-direction: column-reverse; gap: 32px; text-align: center; }
+  
+  .footer-bottom-bar { 
+    flex-direction: column-reverse; 
+    gap: 32px; 
+    text-align: center; 
+  }
+
+  .footer-info-group {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-billing-info {
+    justify-content: center;
+  }
 }

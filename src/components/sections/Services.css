@@ -77,6 +77,16 @@
   max-width: 600px;
 }
 
+.dph-notice { 
+  color: #64748b; 
+  font-size: 0.85rem; 
+  margin-top: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
 /* --- SPECIÁLNÍ NABÍDKA (SLEVA) --- */
 .special-promo-badge {
   margin-top: 32px;
@@ -336,6 +346,10 @@ body.light-mode .service-card:hover {
 }
 body.light-mode .service-card:hover::before {
   border-color: rgba(37, 99, 235, 0.4);
+}
+
+body.light-mode .dph-notice {
+  color: #94a3b8;
 }
 
 /* Ostatní texty a boxíky ve světlém módu */
