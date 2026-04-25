@@ -1,0 +1,298 @@
+/* =========================================
+   --- WORKFLOW SECTION (Categorized Process) --- 
+   ========================================= */
+
+/* =========================================
+   --- WORKFLOW HLAVIČKA ---
+   ========================================= */
+
+.workflow-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 60px auto;
+  max-width: 700px;
+}
+
+.workflow-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(41, 151, 255, 0.1);
+  color: #2997ff;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  box-shadow: 0 0 15px rgba(41, 151, 255, 0.1);
+}
+
+.workflow-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #ffffff, #999999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- B. ROZLOŽENÍ ČASOVÉ OSY --- */
+.workflow-timeline {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  flex-wrap: wrap; /* Pro responzivitu */
+}
+
+.workflow-step {
+  flex: 1;
+  min-width: 260px; /* Aby karty na mobilu nebyly moc úzké */
+  max-width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================================
+   --- C. LIQUID GLASS KARTA --- 
+   ========================================= */
+.workflow-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  isolation: isolate;
+  background: transparent !important;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 30px;
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  
+  /* Přejatý Glassmorphism a stíny z TechStack */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* Levitace (použijeme stejnou animaci) */
+  animation: levitate 7s ease-in-out infinite;
+}
+
+/* Rozdílné časy levitace pro přirozený pocit */
+.workflow-step:nth-child(2n) .workflow-card { animation-delay: -1.5s; }
+.workflow-step:nth-child(3n) .workflow-card { animation-delay: -3s; }
+
+/* Pseudo-element pro skleněné pozadí */
+.workflow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass-bg, linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.5) 20%, rgba(18, 18, 20, 0.6) 100%));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  backdrop-filter: blur(15px) saturate(180%);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+}
+
+/* Hover efekty */
+.workflow-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Barevný glow na hover (použijeme proměnnou z JSX) */
+.workflow-card:hover::before {
+  border-color: var(--step-color);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 18, 20, 0.5) 20%, rgba(18, 18, 20, 0.6) 100%);
+  box-shadow: inset 0 0 15px rgba(var(--step-color), 0.1);
+}
+
+/* --- D. PRVKY UVNITŘ KARTY --- */
+
+/* Číslo kroku (plovoucí nad kartou) */
+.step-number {
+  position: absolute;
+  top: -25px;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--step-color);
+  opacity: 0.15;
+  letter-spacing: -2px;
+  transition: opacity 0.3s ease;
+}
+
+.workflow-card:hover .step-number {
+  opacity: 0.4;
+}
+
+/* Ikona s glow efektem */
+.step-icon-wrapper {
+  color: var(--step-color);
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  filter: drop-shadow(0 0 10px rgba(var(--step-color), 0.3));
+  transition: all 0.3s ease;
+}
+
+.workflow-card:hover .step-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(var(--step-color), 0.05);
+  border-color: rgba(var(--step-color), 0.2);
+}
+
+.step-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.step-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* --- E. SPOJOVACÍ ČÁRA (Desktop only) --- */
+.step-connector {
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(to right, var(--step-color), transparent);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* --- F. CTA BANNER --- */
+.workflow-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 80px;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  color: #94a3b8;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-workflow-cta {
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-workflow-cta:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* --- G. RESPONZIVITA (Mobil) --- */
+@media (max-width: 992px) {
+  .workflow-timeline {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .workflow-step {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .step-connector {
+    display: none; /* Schováme čáry na mobilu */
+  }
+  
+  .workflow-title {
+    font-size: 2rem;
+    margin-bottom: 60px;
+  }
+  
+  .workflow-cta {
+    flex-direction: column;
+    border-radius: 20px;
+    text-align: center;
+  }
+}
+
+/* Opětovná definice animace levitace (pokud už není v TechStack.css) */
+@keyframes levitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* --- LIGHT MODE PRO WORKFLOW --- */
+body.light-mode .workflow-title {
+  color: #1e293b;
+}
+
+body.light-mode .workflow-card::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.5) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 1);
+}
+
+body.light-mode .workflow-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .step-title {
+  color: #1e293b;
+}
+
+body.light-mode .step-desc {
+  color: #475569;
+}
+
+body.light-mode .step-icon-wrapper {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .workflow-cta {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #64748b;
+}
+
+/* Light mode */
+.light-mode .workflow-title {
+  background: linear-gradient(90deg, #0f172a, #64748b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

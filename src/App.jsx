@@ -15,10 +15,15 @@ import Feedback from './components/sections/Feedback';
 //import PricingCalculator from './components/sections/PricingCalculator'; 
 import NotFound from './components/sections/NotFound'; 
 import Experience from './components/sections/Experience';
+import Workflow from './components/sections/Workflow';
+import FAQ from './components/sections/FAQ';
+import Playground from './components/sections/Playground';
+import Insights from './components/sections/Insights';
 
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import ProjectDetail from './components/pages/ProjectDetail';
 import ServiceDetail from './components/pages/ServiceDetail';
+import PostDetail from './components/pages/PostDetail';
 
 import SectionDivider from './components/ui/SectionDivider';
 import CookieConsent from './components/ui/CookieConsent';
@@ -69,11 +74,19 @@ const HomePortfolio = ({ activeSection, setActiveSection }) => {
         <SectionDivider />
         <section id='projects'><RevealOnScroll><Projects /></RevealOnScroll></section>
         <SectionDivider />
+        <section id='playground'><RevealOnScroll><Playground /></RevealOnScroll></section>
+        <SectionDivider />
         <section id='services'><RevealOnScroll><Services /></RevealOnScroll></section>
+        <SectionDivider />
+        <section id='workflow'><RevealOnScroll><Workflow /></RevealOnScroll></section>
+        <SectionDivider />
+        <section id='faq'><RevealOnScroll><FAQ /></RevealOnScroll></section>
         <SectionDivider />
         {/* <section id='pricing'><RevealOnScroll><PricingCalculator /></RevealOnScroll></section> */}
         {/*<SectionDivider /> */}
         <section id='reviews'><RevealOnScroll><Testimonials /></RevealOnScroll></section>
+        <SectionDivider />
+        <section id='insights'><RevealOnScroll><Insights /></RevealOnScroll></section>
         <SectionDivider />
         <section id='contact'><RevealOnScroll><Contact /></RevealOnScroll></section>
         <SectionDivider />
@@ -137,6 +150,15 @@ function App() {
             element={
               <PageLayout>
                 <ServiceDetail />
+              </PageLayout>
+            } 
+          />
+
+          <Route 
+            path="/insight/:id" 
+            element={
+              <PageLayout>
+                <PostDetail />
               </PageLayout>
             } 
           />

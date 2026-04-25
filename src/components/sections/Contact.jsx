@@ -27,7 +27,7 @@ const Contact = () => {
     setStatus('loading');
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      .then((result) => {
+      .then(() => {
           setStatus('success');
           setFormData({ user_name: '', user_email: '', message: '' }); 
           setTimeout(() => setStatus(null), 5000);

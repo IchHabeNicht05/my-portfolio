@@ -1,247 +1,271 @@
 /* =========================================
-   --- ULTRA-MODERNÍ TECH STACK (Levitující oblak + Shine efekt) --- 
+   --- TECH STACK (Final Liquid Glass) --- 
    ========================================= */
+
+:root {
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.5) 20%, rgba(18, 18, 20, 0.6) 100%);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-muted: #94a3b8;
+  --primary-glow: rgba(41, 151, 255, 0.4);
+}
 
 /* --- A. HLAVNÍ SEKCE --- */
 .tech-stack {
-  padding: 80px 0;
+  padding: 100px 0;
   text-align: center;
-  overflow: hidden; /* Pro jistotu, aby levitace nepřetekla */
+  /* Nutné pro zobrazení tooltipů, které vyčnívají ze sekce */
+  overflow: visible; 
 }
 
 .tech-label {
-  color: var(--text-muted, #94a3b8);
-  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  margin-bottom: 50px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  margin-bottom: 70px;
+  opacity: 0.6;
 }
 
-/* --- B. ROZLOŽENÍ OBLAKU --- */
-.tech-cloud {
+/* --- B. ROZLOŽENÍ KATEGORIÍ --- */
+.tech-categories-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Umožní přeskládání na menších obrazovkách */
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  max-width: 900px;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  align-items: center; 
 }
 
-/* =========================================
-   --- C. LIQUID GLASS ŠTÍTEK (Badge) --- 
-   ========================================= */
-.tech-item-badge {
-  position: relative;
-  overflow: hidden; /* Skryje paprsek světla mimo štítek */
-  z-index: 10;
-  isolation: isolate;
-  background: transparent !important; /* Pozadí řeší pseudo-elementy */
-  
+.tech-category-group {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center; 
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- C. HLAVIČKA KATEGORIE (Symetrické linky) --- */
+.category-header {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 10px 20px;
-  border-radius: 100px; /* Perfektně kulaté hrany */
-  
-  /* Vnější stín dáváme přímo na rodiče, aby ho neuseklo overflow:hidden */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  
-  /* Moderní oddělené transformace pro plynulost */
-  scale: 1;
-  translate: 0 0;
-  
-  transition: scale 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-              
-  cursor: default;
-  white-space: nowrap; /* Zabrání zalamování textu */
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 35px auto;
+  gap: 20px;
+}
 
-  /* ORGANICKÁ LEVITACE */
+.category-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  flex-shrink: 0; 
+  text-align: center;
+}
+
+.category-header::before,
+.category-line {
+  content: "";
+  height: 1px;
+  flex: 1; 
+  opacity: 0.3; /* Zvýšená viditelnost */
+}
+
+.category-header::before {
+  background: linear-gradient(to left, currentColor, transparent);
+}
+
+.category-line {
+  background: linear-gradient(to right, currentColor, transparent);
+}
+
+/* Barvy kategorií */
+.tech-category-group:nth-child(1) .category-name { color: #60a5fa; } 
+.tech-category-group:nth-child(2) .category-name { color: #a78bfa; } 
+.tech-category-group:nth-child(3) .category-name { color: #94a3b8; } 
+.tech-category-group:nth-child(4) .category-name { color: #f87171; }
+
+/* --- D. CLOUD --- */
+.tech-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 16px;
+  max-width: 850px;
+}
+
+/* --- E. LIQUID GLASS ŠTÍTEK (Badge) --- */
+.tech-item-badge {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
   animation: levitate 6s ease-in-out infinite;
 }
 
-/* Čistý Blur (Spodní vrstva skla) */
-.tech-item-badge::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-  background: transparent; 
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%); 
+/* Tento kontejner řeší sklo a OŘEZÁVÁ shine efekt */
+.badge-content {
+  position: relative;
+  overflow: hidden; /* Zde se ořízne odlesk */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;
+  border-radius: 100px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
 }
 
-/* Odlesky a tmavý tón (Vrchní vrstva skla) */
-.tech-item-badge::before {
-  content: '';
+/* Variace levitace */
+.tech-item-badge:nth-child(2n) { animation-duration: 7s; }
+.tech-item-badge:nth-child(3n) { animation-duration: 5.5s; }
+
+@keyframes levitate {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Hover efekty */
+.tech-item-badge:hover {
+  animation-play-state: paused;
+  z-index: 100; /* Musí být nad ostatními kvůli tooltipu */
+}
+
+.tech-item-badge:hover .badge-content {
+  transform: scale(1.08) translateY(-2px);
+  border-color: var(--primary-glow);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(41, 151, 255, 0.1) 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --- F. SHINE EFFECT (Teď už správně oříznutý) --- */
+.shine-effect {
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  box-sizing: border-box; 
+  top: 0;
+  left: -100px;
+  width: 40px;
+  height: 100%;
   background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.03) 0%, 
-    rgba(18, 18, 20, 0.5) 20%, 
-    rgba(18, 18, 20, 0.6) 100%
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  /* Vnitřní 3D stíny */
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: skewX(-25deg);
   pointer-events: none;
 }
 
-/* Odlišné rychlosti a zpoždění pro přirozený pocit z oblaku */
-.tech-item-badge:nth-child(2n) { animation-duration: 7s; animation-delay: -1s; }
-.tech-item-badge:nth-child(3n) { animation-duration: 5s; animation-delay: -3s; }
-.tech-item-badge:nth-child(4n) { animation-duration: 8s; animation-delay: -2s; }
-.tech-item-badge:nth-child(5n) { animation-duration: 6.5s; animation-delay: -4s; }
-
-@keyframes levitate {
-  0%, 100% { translate: 0 0px; }
-  50% { translate: 0 -8px; }
+.tech-item-badge:hover .shine-effect {
+  animation: glint 0.7s ease-in-out forwards;
 }
 
-/* --- HOVER EFEKT NA ŠTÍTKU --- */
-.tech-item-badge:hover {
-  animation-play-state: paused; /* Zastaví levitaci */
-  scale: 1.05; /* Plynule se zvětší */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  z-index: 20; /* Vystoupí nad ostatní štítky */
+@keyframes glint {
+  0% { left: -100px; }
+  100% { left: 150%; }
 }
 
-/* Hover pro Liquid Glass ::before */
-.tech-item-badge:hover::before {
-  border-color: rgba(41, 151, 255, 0.4);
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(41, 151, 255, 0.05) 100%
-  );
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.2);
-}
-
-
-/* --- D. IKONY A TEXT --- */
+/* --- G. IKONY A TEXT --- */
 .tech-icon {
-  height: 24px;
-  max-height: 24px;
+  height: 22px;
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-  z-index: 1; /* Nad světelným paprskem a vrstvami skla */
-  display: block;
 }
 
 .tech-item-badge:hover .tech-icon {
-  transform: scale(1.1) rotate(-5deg); /* Hravé naklonění */
+  transform: scale(1.15) rotate(-5deg);
 }
 
 .tech-name {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.7); /* Tlumená bílá */
-  letter-spacing: 0.5px;
-  text-transform: capitalize;
-  z-index: 1; /* Nad světelným paprskem a vrstvami skla */
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.3px;
   transition: color 0.3s ease;
 }
 
 .tech-item-badge:hover .tech-name {
-  color: #ffffff; /* Rozsvítí se */
+  color: #ffffff;
 }
 
-/* Invertování černých log (Github, Next.js) v tmavém režimu */
-body:not(.light-mode) .invert-on-dark {
-  filter: invert(1) brightness(200%);
-}
-
-/* --- E. SVĚTELNÝ PAPRSEK (SHINE EFFECT) --- */
-.shine-effect {
+/* --- I. TOOLTIP (Opravené pozicování) --- */
+.tech-tooltip {
   position: absolute;
-  top: 0;
-  left: -100px;
-  width: 50px;
-  height: 100%;
-  z-index: 0; /* Bezpečně ukryto mezi sklem a textem */
-  
-  /* Gradient světla */
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 100%
-  );
-  
-  transform: skewX(-20deg); /* Šikmý sklon paprsku */
+  bottom: calc(100% + 15px); /* Přesně nad bublinu */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 15, 20, 0.95);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
   pointer-events: none;
+  z-index: 200;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Spuštění paprsku při najetí myší */
-.tech-item-badge:hover .shine-effect {
-  animation: singleGlint 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+.tech-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15) transparent transparent transparent;
 }
 
-@keyframes singleGlint {
-  0% { left: -100px; opacity: 0; }
-  20% { opacity: 0.5; }
-  100% { left: 100%; opacity: 0; }
+/* --- J. LIGHT MODE --- */
+body.light-mode .badge-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 1), 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================================
-   --- F. SVĚTLÝ MOTIV (LIGHT MODE) --- 
-   ========================================= */
+body.light-mode .tech-name { color: #334155; }
+body.light-mode .tech-item-badge:hover .tech-name { color: #000000; }
 
-body.light-mode .tech-item-badge {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+body.light-mode .tech-tooltip {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .tech-item-badge:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+body.light-mode .tech-tooltip::after {
+  border-color: rgba(0, 0, 0, 0.1) transparent transparent transparent;
 }
 
-body.light-mode .tech-item-badge::before {
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.6) 0%, 
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
+/* Invertování log v dark modu (GitHub, Next.js) */
+body:not(.light-mode) .invert-on-dark {
+  filter: invert(1) brightness(1.5);
 }
 
-body.light-mode .tech-item-badge:hover::before {
-  border-color: rgba(41, 151, 255, 0.3);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
-}
-
-body.light-mode .tech-name {
-  color: #475569;
-}
-
-body.light-mode .tech-item-badge:hover .tech-name {
-  color: #0f172a;
-}
-
-body.light-mode .invert-on-dark {
-  filter: none; /* Ve světlém režimu se loga neinvertují */
-}
-
-/* Paprsek ve světlém režimu bude lehce modrý místo bílého */
-body.light-mode .shine-effect {
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(41, 151, 255, 0.2) 50%,
-    transparent 100%
-  );
+/* --- K. RESPONZIVITA --- */
+@media (max-width: 768px) {
+  .category-header { gap: 12px; }
+  .category-name { font-size: 0.8rem; }
+  .tech-cloud { gap: 10px; }
+  
+  /* Na mobilu tooltipy vypínáme pro lepší UX */
+  .tech-tooltip { display: none !important; }
 }

@@ -10,6 +10,7 @@ const CookieConsent = () => {
   const handleAccept = () => {
     localStorage.setItem('cookieConsent', 'accepted');
     setIsVisible(false);
+    window.dispatchEvent(new Event('cookieConsentUpdated'));
   };
 
   const handleDecline = () => {

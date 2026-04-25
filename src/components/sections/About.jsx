@@ -1,24 +1,11 @@
 import React from 'react';
+import { STATS } from '../../data/statsData';
+import { TECH_STACK } from '../../data/techStackData';
 import './About.css';
 import { 
   ArrowUpRight, Download, Terminal, 
-  Zap 
+  Zap, Video, Film
 } from 'lucide-react';
-
-const TECH_STACK = [
-  { name: "React", level: "Advanced" },
-  { name: "Next.js", level: "Intermediate" },
-  { name: "Tailwind", level: "Advanced" },
-  { name: "TypeScript", level: "Learning" }
-];
-
-// Data pro tvé statistiky
-/* const STATS = [
-  { id: 1, number: '3+', label: 'Roky praxe' },
-  { id: 2, number: '15+', label: 'Dokončených projektů' },
-  { id: 3, number: '100%', label: 'Spokojenost klientů' },
-  { id: 4, number: '24/7', label: 'Support & Údržba' },
-]; */
 
 const About = () => {
   return (
@@ -47,19 +34,23 @@ const About = () => {
             <p className="about-desc">
               Zatímco ostatní řeší teorii, já stavím projekty. Specializuji se na 
               <strong className="text-white"> React ekosystém</strong>. Můj kód je čistý, 
-              weby rychlé a spolupráce se mnou bezbolestná.
+              weby rychlé a spolupráce se mnou bezbolestná. Kromě toho miluji video editaci, kde se snažím o dokonalou synchronizaci obrazu a zvuku.
             </p>
 
             {/* Tech Stack Grid */}
             <div className="tech-grid">
               {TECH_STACK.map((tech, index) => (
-                <div key={index} className="tech-card">
+                <div key={index} className={`tech-card ${tech.type}`}>
                   <div className="tech-header">
-                    <Zap size={14} className="tech-icon" />
+                    {tech.type === 'dev' ? (
+                      <Zap size={14} className="tech-icon dev" />
+                    ) : (
+                      <Film size={14} className="tech-icon edit" />
+                    )}
                     <span className="tech-name">{tech.name}</span>
                   </div>
                   <div className="tech-bar">
-                    <div className={`tech-fill ${tech.name.toLowerCase()}`}></div>
+                    <div className={`tech-fill ${tech.name.toLowerCase().replace(/\s+/g, '-')}`}></div>
                   </div>
                 </div>
               ))}
@@ -120,7 +111,7 @@ const About = () => {
                     <span className="p">passion</span>=<span className="s">"100%"</span>
                   </div>
                   <div className="code-line triple-indent">
-                    <span className="p">skills</span>=<span className="b">{`{['React', 'Next']}`}</span>
+                    <span className="p">skills</span>=<span className="b">{`{['React', 'Next', 'Video Editing']}`}</span>
                   </div>
                   <div className="code-line double-indent">
                     /&gt;
@@ -137,7 +128,7 @@ const About = () => {
 
         </div>
 
-        {/* --- STATISTIKY --- 
+        { /* --- STATISTIKY --- */ }
         <div className="stats-wrapper">
           <div className="stats-grid">
             {STATS.map((stat) => (
@@ -148,8 +139,6 @@ const About = () => {
             ))}
           </div>
         </div>
-        */}
-
       </div>
     </section>
   );

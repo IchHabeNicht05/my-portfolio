@@ -1,0 +1,285 @@
+/* =========================================
+   --- DIGITAL GARDEN / INSIGHTS SECTION ---
+   ========================================= */
+
+.insights-section {
+  padding: 140px 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================
+   --- HLAVIČKA SEKCE (Intro) ---
+   ========================================= */
+
+/* =========================================
+   --- INSIGHTS HLAVIČKA ---
+   ========================================= */
+
+.insights-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 60px auto;
+  max-width: 700px;
+}
+
+.p-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(41, 151, 255, 0.1);
+  color: #2997ff;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  box-shadow: 0 0 15px rgba(41, 151, 255, 0.1);
+}
+
+.p-main-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #ffffff, #999999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Zvýrazněné slovo "Garden" si zachová tvůj fialovo-modrý gradient */
+.p-main-title span {
+  background: linear-gradient(135deg, #2997ff 0%, #d946ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.p-sub-desc {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* =========================================
+   --- KARTA (Liquid Glass Effect) ---
+   ========================================= */
+
+.insight-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 28px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Skrytá záře, která se objeví při hoveru */
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(800px circle at 50% 100%, rgba(255, 255, 255, 0.04), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Hover stavy */
+.insight-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.insight-card:hover::before {
+  opacity: 1;
+}
+
+/* =========================================
+   --- TYPOGRAFIE A OBSAH KARTY ---
+   ========================================= */
+
+.insight-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Společný styl pro všechny tagy */
+.insight-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+/* Dynamické barvy tagů */
+.tag-tech { 
+  color: #2997ff; 
+  background: rgba(41, 151, 255, 0.1); 
+  border: 1px solid rgba(41, 151, 255, 0.2);
+}
+.tag-design { 
+  color: #d946ef; 
+  background: rgba(217, 70, 239, 0.1); 
+  border: 1px solid rgba(217, 70, 239, 0.2);
+}
+.tag-performance { 
+  color: #22c55e; 
+  background: rgba(34, 197, 94, 0.1); 
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+.tag-architecture { 
+  color: #f59e0b; /* Oranžovo-jantarová pro stabilitu a strukturu */
+  background: rgba(245, 158, 11, 0.1); 
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.tag-css { 
+  color: #6366f1; /* Moderní indigo/fialová, často spojovaná s CSS */
+  background: rgba(99, 102, 241, 0.1); 
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+.tag-ux { 
+  color: #f43f5e; /* Výrazná malinová/červená pro emoce a interakci */
+  background: rgba(244, 63, 94, 0.1); 
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+.tag-default { 
+  color: #94a3b8; 
+  background: rgba(148, 163, 184, 0.1); 
+}
+
+.insight-date {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.insight-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+  flex-grow: 1; /* Zatlačí link na čtení dolů */
+}
+
+/* Odkaz "Číst více" */
+.insight-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.link-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Změna barvy odkazu a animace šipky při hoveru na celou kartu */
+.insight-card:hover .insight-link {
+  color: #ffffff;
+}
+
+.insight-card:hover .link-icon {
+  transform: translate(3px, -3px);
+  color: #2997ff;
+}
+
+/* =========================================
+   --- LIGHT MODE ---
+   ========================================= */
+
+.light-mode .insight-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.light-mode .insight-card::before {
+  background: radial-gradient(800px circle at 50% 100%, rgba(0, 0, 0, 0.02), transparent 40%);
+}
+
+.light-mode .insight-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .insight-title {
+  color: #0f172a;
+}
+
+.light-mode .insight-link {
+  color: #64748b;
+}
+
+.light-mode .insight-card:hover .insight-link {
+  color: #0f172a;
+}
+
+/* Jemnější pozadí tagů pro světlý režim */
+.light-mode .tag-tech { background: rgba(41, 151, 255, 0.05); }
+.light-mode .tag-design { background: rgba(217, 70, 239, 0.05); }
+.light-mode .tag-performance { background: rgba(34, 197, 94, 0.05); }
+
+/* --- LIGHT MODE VARIACE PRO HLAVIČKU --- */
+.light-mode .insights-intro .p-main-title {
+  color: #0f172a;
+}
+
+.light-mode .insights-intro .p-sub-desc {
+  color: #64748b;
+}
+
+/* (Volitelné) Tmavší gradient pro světlý režim, aby byl lépe čitelný */
+.light-mode .insights-intro .p-main-title span {
+  background: linear-gradient(135deg, #007aff 0%, #af52de 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light mode */
+.light-mode .p-main-title {
+  background: linear-gradient(90deg, #0f172a, #64748b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.light-mode .p-sub-desc {
+  color: #64748b;
+}

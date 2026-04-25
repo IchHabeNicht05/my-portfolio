@@ -39,7 +39,7 @@ export const experienceData = [
       title: 'První krůčky v kódování',
       company: 'HTML, CSS & JS',
       description: 'Úplné začátky s tvorbou webů, pochopení struktury stránek a základní interaktivity. Zde začala moje vášeň pro frontend.',
-      icon: Briefcase
+      icon: Code
     },
     {
       id: 6,
@@ -48,5 +48,13 @@ export const experienceData = [
       company: 'Střední průmyslová škola Česká Lípa',
       description: 'Studium se zaměřením na informační technologie, programování a algoritmizaci. Získávání pevných základů v IT architektuře a týmové práci.',
       icon: GraduationCap
+    },
+    {
+      id: 7,
+      year: '2020 - současnost',
+      title: 'Video editace a grafika',
+      company: 'Freelance video editor',
+      description: 'Střih a postprodukce videí pro klienty, tvorba grafiky a animací. Zvládnutí nástrojů jako Premiere Pro, Sony Vegas a DaVinci Resolve.',
+      icon: Briefcase
     }
   ];

@@ -1,4 +1,4 @@
-import { Smartphone, Code, Layout, Settings, RefreshCw, ShoppingCart } from 'lucide-react';
+import { Smartphone, Code, Layout, Settings, RefreshCw, ShoppingCart, Video } from 'lucide-react';
 
 export const ServicesData = [
   {
@@ -9,7 +9,7 @@ export const ServicesData = [
     target: 'Živnostníci a malé firmy',
     price: 'od 10 000 Kč',
     deliveryTime: '2-4 týdny',
-    isPopular: true, // <-- Tímto kartu graficky zvýrazníme
+    isPopular: true,
     desc: 'Postavím vám web od A do Z. Moderní vzhled, blesková rychlost a čistý kód.',
     longDesc: 'Nemusíte mít vlastní grafický návrh. Stačí mi říct vaši představu nebo poslat ukázku webu, který se vám líbí. Vytvořím pro vás moderní, přehledné stránky rovnou v kódu. Výsledkem je rychlý web, který vypadá profesionálně a funguje na jedničku.',
     features: ["Moderní design na míru", "Základní SEO optimalizace", "Responzivita", "Nasazení na doménu"]
@@ -35,8 +35,8 @@ export const ServicesData = [
     desc: 'Váš současný web už neodpovídá moderním trendům nebo je pomalý? Postavím ho úplně od znova – moderně, rychle a s ohledem na dnešní standardy.',
     target: 'Firmy se starým webem',
     deliveryTime: '3-5 týdnů',
-    price: 'od 15 000 Kč', // Cenu si samozřejmě uprav podle sebe
-    isPopular: false, // Pokud z tohoto chceš udělat hlavní kartu, dej true
+    price: 'od 15 000 Kč',
+    isPopular: false,
     features: [
       'Vylepšení současného stavu',
       'Nový moderní UX/UI design',
@@ -65,7 +65,7 @@ export const ServicesData = [
   {
     id: 'responsive',
     icon: Smartphone,
-    title: 'Mobilní optimalizace',
+    title: 'Responzivita & Mobilní optimalizace',
     packageLabel: 'Rychlá pomoc',
     target: 'Firmy s rozbitým webem',
     price: 'od 2 500 Kč',
@@ -74,6 +74,18 @@ export const ServicesData = [
     desc: 'Váš web se bude perfektně zobrazovat na telefonech, tabletech i počítačích.',
     longDesc: 'Máte web, který se na mobilu špatně čte nebo má rozbité menu? Opravím to. Upravím styly (CSS) tak, aby se váš obsah automaticky přizpůsobil velikosti displeje. Dnes je mobilní verze důležitější než ta počítačová.',
     features: ["Mobile-first přístup", "Oprava rozbitého menu", "Testování na zařízeních", "Lepší čitelnost textu"]
+  },
+  {
+    id: 'seo-analytics',
+    icon: Layout,
+    title: 'SEO & Analytika',
+    packageLabel: 'Viditelnost',
+    target: 'Weby, které chtějí růst',
+    price: 'od 3 500 Kč',
+    deliveryTime: '1 týden',
+    isPopular: false,
+    desc: 'Nastavím váš web tak, aby ho lidé i Google milovali. Od měření návštěvnosti po pozice ve vyhledávání.',
+    features: ["Nastavení Google Analytics 4", "Optimalizace pro vyhledávače", "Indexace stránek", "Rychlostní audit"]
   },
   {
     id: 'maintenance',
@@ -87,5 +99,39 @@ export const ServicesData = [
     desc: 'Potřebujete něco změnit, opravit texty nebo aktualizovat fotky? Jsem tu pro vás.',
     longDesc: 'Web není jednorázová záležitost. Nabízím dlouhodobou spolupráci při správě vašeho webu. Ať už potřebujete přepsat ceník, vyměnit fotky v galerii nebo provést drobné úpravy v kódu. Platíte jen za čas, který reálně odpracuji.',
     features: ["Aktualizace obsahu", "Drobné opravy kódu", "Prioritní komunikace", "Zálohování webu"]
+  },
+  {
+    id: 'video',
+    icon: Video,
+    title: 'Střih & Postprodukce',
+    packageLabel: 'Vizuální obsah',
+    target: 'Tvůrci a firmy',
+    price: 'Na domluvě',
+    deliveryTime: '3-7 dní',
+    isPopular: false,
+    desc: 'Proměňte své surové záběry v poutavý příběh. Střihám Reels, reklamy i produktová videa pro váš web.',
+    longDesc: 'Kvalitní web si zaslouží kvalitní video. Ať už potřebujete dynamické Reels na Instagram, krátkou video-vizitku na úvodní stránku nebo sestříhat záznam z akce, postarám se o barvy, zvuk i rytmus tak, aby výsledek zaujal na první pohled.',
+    features: [
+      "Barevné korekce a sound design",
+      "Tvorba videopozadí pro web",
+      "Dodání v libovolném formátu"
+    ]
+  },
+  {
+    id: 'video',
+    icon: Video,
+    title: 'Reels & Krátká videa',
+    packageLabel: 'Vizuální obsah',
+    target: 'Tvůrci a firmy',
+    price: 'Na domluvě',
+    deliveryTime: '3-7 dní',
+    isPopular: false,
+    desc: 'Proměňte své surové záběry v poutavý příběh. Střihám Reels, reklamy i produktová videa pro váš web.',
+    longDesc: 'Kvalitní web si zaslouží kvalitní video. Ať už potřebujete dynamické Reels na Instagram, krátkou video-vizitku na úvodní stránku nebo sestříhat záznam z akce, postarám se o barvy, zvuk i rytmus tak, aby výsledek zaujal na první pohled.',
+    features: [
+      "Střih pro sociální sítě (Instagram/TikTok)",
+      "Dynamické úpravy pro maximální engagement",
+      "Dodání v libovolném formátu"
+    ]
   }
 ];

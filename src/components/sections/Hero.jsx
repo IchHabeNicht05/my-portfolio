@@ -41,13 +41,13 @@ const Hero = () => {
         
         {/* Vylepšený nadpis s gradientem */}
         <h1 className="hero-title animate-slide-up" style={{animationDelay: '0.1s'}}>
-          <span className="text-gradient-shine">Vývojář a Designér</span>
+          <span className="text-gradient-shine">Vývojář a Video editor</span>
           <br /> s důrazem na detail.
         </h1>
         
         <p className="hero-text animate-slide-up" style={{animationDelay: '0.3s'}}>
           Jsem frontend vývojář specializující se na React a moderní UI. 
-          Měním komplexní problémy na jednoduchá a krásná rozhraní.
+          Měním komplexní problémy na jednoduchá a krásná rozhraní. Rád také tvořím video editace, které zaujmou publikum.
         </p>
         
         <div className="hero-buttons animate-slide-up" style={{animationDelay: '0.5s'}}>
