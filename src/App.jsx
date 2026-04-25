@@ -17,7 +17,7 @@ import NotFound from './components/sections/NotFound';
 import Experience from './components/sections/Experience';
 import Workflow from './components/sections/Workflow';
 import FAQ from './components/sections/FAQ';
-import Playground from './components/sections/Playground';
+//import Playground from './components/sections/Playground';
 import Insights from './components/sections/Insights';
 
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
@@ -74,8 +74,8 @@ const HomePortfolio = ({ activeSection, setActiveSection }) => {
         <SectionDivider />
         <section id='projects'><RevealOnScroll><Projects /></RevealOnScroll></section>
         <SectionDivider />
-        <section id='playground'><RevealOnScroll><Playground /></RevealOnScroll></section>
-        <SectionDivider />
+        {/*<section id='playground'><RevealOnScroll><Playground /></RevealOnScroll></section>
+        <SectionDivider /> */}
         <section id='services'><RevealOnScroll><Services /></RevealOnScroll></section>
         <SectionDivider />
         <section id='workflow'><RevealOnScroll><Workflow /></RevealOnScroll></section>

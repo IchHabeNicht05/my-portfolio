@@ -101,7 +101,7 @@ export const ServicesData = [
     features: ["Aktualizace obsahu", "Drobné opravy kódu", "Prioritní komunikace", "Zálohování webu"]
   },
   {
-    id: 'video',
+    id: 'video-postprodukce',
     icon: Video,
     title: 'Střih & Postprodukce',
     packageLabel: 'Vizuální obsah',
@@ -118,7 +118,7 @@ export const ServicesData = [
     ]
   },
   {
-    id: 'video',
+    id: 'video-reels',
     icon: Video,
     title: 'Reels & Krátká videa',
     packageLabel: 'Vizuální obsah',

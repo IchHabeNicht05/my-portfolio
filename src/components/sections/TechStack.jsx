@@ -60,6 +60,7 @@ const TechStack = () => {
                             exit={{ opacity: 0, y: 5, x: "-50%", scale: 0.95 }}
                             transition={{ duration: 0.2 }}
                             className="tech-tooltip"
+                            viewport={{ once: true }}
                           >
                             {skill.info}
                           </motion.div>

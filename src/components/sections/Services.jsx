@@ -37,8 +37,8 @@ const Services = () => {
           {/* --- POZNÁMKA O SLEVĚ --- */}
           <motion.div 
             className="special-promo-badge"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
@@ -55,8 +55,8 @@ const Services = () => {
             <motion.div 
               key={service.id} 
               className={`service-card ${service.isPopular ? 'popular-card' : ''}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >

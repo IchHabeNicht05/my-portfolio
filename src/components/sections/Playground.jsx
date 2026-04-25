@@ -73,7 +73,7 @@ const TiltVisual = () => {
       x.set(e.clientX - (r.left + r.width / 2));
       y.set(e.clientY - (r.top + r.height / 2));
     }} onMouseLeave={() => {x.set(0); y.set(0)}}>
-      <motion.div style={{ rotateX: rX, rotateY: rY, perspective: 800 }} className="tilt-card-mini"><FiLayers /></motion.div>
+      <motion.div style={{ rotateX: rX, rotateY: rY, perspective: 800 }} viewport={{ once: true }} className="tilt-card-mini"><FiLayers /></motion.div>
     </div>
   );
 };
@@ -81,7 +81,7 @@ const TiltVisual = () => {
 const PulseVisual = () => (
   <div className="visual-area pulse-container">
     {[...Array(5)].map((_, i) => (
-      <motion.div key={i} className="pulse-bar" animate={{ height: [20, 60, 20] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }} />
+      <motion.div key={i} className="pulse-bar" animate={{ height: [20, 60, 20] }} transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }} viewport={{ once: true }} />
     ))}
   </div>
 );

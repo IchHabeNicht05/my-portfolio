@@ -30,6 +30,8 @@
   margin: 0;
   padding: 0;
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 
 body {
@@ -518,4 +520,22 @@ body.light-mode .pd-cta-banner p { color: #475569; }
 /* VÝJIMKA PRO ANIMACE (aby se transition netloukla s @keyframes) */
 .tech-item-badge, .levitating, .animate-float {
   transition: transform 0.1s linear, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+@media (max-width: 768px) {
+  .insight-card,
+  .project-card,
+  .project-card-inner,
+  .service-card,
+  .service-card-popular,
+  .timeline-content-card,
+  .workflow-card,
+  .p-card,
+  .feedback-glass-card,
+  .glass-cta-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: rgba(25, 25, 25, 0.98) !important; /* Pevná barva, která vypadá dobře */
+    box-shadow: none !important; /* Volitelně: stíny v pohybu taky berou výkon */
+  }
 }

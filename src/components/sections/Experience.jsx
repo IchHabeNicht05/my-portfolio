@@ -40,8 +40,8 @@ const Experience = () => {
             <motion.div 
               key={item.id} 
               className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-15%" }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >

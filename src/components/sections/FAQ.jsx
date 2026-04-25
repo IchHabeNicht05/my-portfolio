@@ -60,6 +60,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="faq-answer-wrapper"
+                    viewport={{ once: true }}
                   >
                     <div className="faq-answer">
                       <p>{faq.answer}</p>

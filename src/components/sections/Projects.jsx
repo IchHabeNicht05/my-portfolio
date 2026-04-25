@@ -59,26 +59,17 @@ const Projects = () => {
         </div>
 
         {/* GRID PROJEKTŮ S ANIMACÍ PŘECHODU */}
-        <motion.div layout className="projects-grid">
+        <motion.div className="projects-grid">
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
+                viewport={{ once: true }}
               >
-                <Tilt
-                  tiltMaxAngleX={6}
-                  tiltMaxAngleY={6}
-                  perspective={1000}
-                  scale={1.02}
-                  glareEnable={true}
-                  glareMaxOpacity={0.12}
-                  className="tilt-wrapper"
-                >
                   <div 
                     className="project-card"
                     onClick={() => navigate(`/project/${project.id}`)}
@@ -120,7 +111,6 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
-                </Tilt>
               </motion.div>
             ))}
           </AnimatePresence>
