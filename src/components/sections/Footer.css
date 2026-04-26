@@ -277,3 +277,16 @@ body.light-mode .footer-billing-info { color: #94a3b8; }
   .footer-info-group { align-items: center; }
   .footer-nav-minimal { flex-direction: column; gap: 15px; }
 }
+
+@media (min-width: 1600px) {
+  .footer-glass .container {
+    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
+    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  }
+}
+
+@media (min-width: 2000px) {
+  .footer-glass .container {
+    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  }
+}

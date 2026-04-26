@@ -269,3 +269,16 @@ body.light-mode .nav-btn-contact { background: #1d1d1f; color: #ffffff; }
     display: none;
   }
 }
+
+@media (min-width: 1600px) {
+  .navbar-container {
+    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
+    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  }
+}
+
+@media (min-width: 2000px) {
+  .navbar-container {
+    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  }
+}

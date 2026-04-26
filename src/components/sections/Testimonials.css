@@ -190,6 +190,20 @@
   .review-text { font-size: 1.05rem; }
 }
 
+@media (min-width: 1600px) {
+  .testimonials-container  {
+    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
+    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  }
+}
+
+@media (min-width: 2000px) {
+  .testimonials-container  {
+    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  }
+}
+
+
 /* --- LIGHT MODE --- */
 body.light-mode .testimonials-title-large {
   color: #1e293b;

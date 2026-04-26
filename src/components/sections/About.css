@@ -184,3 +184,16 @@
   .about-grid { grid-template-columns: 1fr; gap: 60px; }
   .stats-grid-pro { grid-template-columns: 1fr 1fr; }
 }
+
+@media (min-width: 1600px) {
+  .about-container {
+    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
+    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  }
+}
+
+@media (min-width: 2000px) {
+  .about-container {
+    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  }
+}

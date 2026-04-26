@@ -325,3 +325,9 @@ body.light-mode .sd-divider, body.light-mode .pd-divider, body.light-mode .pd-si
     background-color: #ffffff !important; border: 1px solid #e2e8f0 !important;
   }
 }
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 18px; /* Standard je 16px. Všechno, co je v "rem", se tímto proporcionálně zvětší o cca 12% */
+  }
+}

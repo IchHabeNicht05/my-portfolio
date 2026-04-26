@@ -280,6 +280,20 @@
   .info-item { padding: 25px; }
 }
 
+/* --- OPTIMALIZACE PRO VELKÉ MONITORY (2K, 4K a více) --- */
+@media (min-width: 1600px) {
+  .contact-container {
+    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
+    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  }
+}
+
+@media (min-width: 2000px) {
+  .contact-container {
+    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  }
+}
+
 /* --- LIGHT MODE OPTIMALIZACE --- */
 body.light-mode .contact-title-large { color: #1e293b; background: none; -webkit-text-fill-color: initial; }
 body.light-mode .info-item, 
