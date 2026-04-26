@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Zap, Code, BarChart3, MessageCircle, Sparkles } from 'lucide-react';
+import ScrollReveal from '../ui/RevealOnScroll';
 import './Workflow.css';
 
 const Workflow = () => {
@@ -33,6 +34,7 @@ const Workflow = () => {
 
   return (
     <section id="workflow" className="workflow-section">
+      <ScrollReveal direction="up" delay={0.1}>
       <div className="container relative-z">
         
         <div className="workflow-header">
@@ -80,6 +82,7 @@ const Workflow = () => {
         </div>
 
       </div>
+      </ScrollReveal>
     </section>
   );
 };

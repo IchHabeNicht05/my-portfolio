@@ -1,109 +1,106 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-/* eslint-disable no-unused-vars */
-import { motion } from 'framer-motion';
-/* eslint-enable no-unused-vars */
-import { Briefcase, ArrowRight, Check, User, Clock, Tag } from 'lucide-react';
+import { Briefcase, ArrowRight, Check, User, Clock, Tag, ShieldCheck } from 'lucide-react';
 import { ServicesData } from '../../data/servicesData'; 
+import ScrollReveal from '../ui/RevealOnScroll';
 import './Services.css';
 
 const Services = () => {
   return (
     <section id="services" className="services-section">
-      <div className="services-bg-glow" />
+      <div className="services-ambient-glow" />
 
       <div className="container relative-z">
-        {/* HLAVIČKA */}
-        <div className="services-header-wrapper">
-          <div className="services-tag">
-            <Briefcase size={14} />
-            CO NABÍZÍM
-          </div>
-          <h2 className="services-title-large">Moje Služby & Balíčky</h2>
-          <p className="services-description">
-            Od jednoduchých úprav po komplexní weby a aplikace. Vyberte si balíček, který nejlépe sedí vašim potřebám.
-          </p>
-
-          {/* INFO O DPH - důležité pro firemní klienty */}
-          <div className="services-info-meta">
-            <span className="dph-notice">Nejsem plátce DPH</span>
-            <span className="info-divider">•</span>
-            <p className="payment-notice">
-              <Check size={14} className="text-primary" /> 
-              Práce začínají po uhrazení <strong>50% zálohy</strong>
-            </p>
-          </div>
-
-          {/* --- POZNÁMKA O SLEVĚ --- */}
-          <motion.div 
-            className="special-promo-badge"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <Tag size={16} className="promo-icon" />
-            <span>
-              <strong>Bonus pro nové klienty:</strong> Na náš první projekt sleva <strong>20 %</strong>!
-            </span>
-          </motion.div>
-        </div>
         
-        {/* GRID KARET S ANIMACÍ */}
+        {/* HLAVIČKA, INFO A PROMO - Vyjede jako první */}
+        <ScrollReveal direction="up" delay={0}>
+          <div className="services-header-pro">
+            <div className="section-tag-pro">
+              <Briefcase size={14} style={{ marginRight: '8px' }} />
+              NABÍDKA SPOLUPRÁCE
+            </div>
+            <h2 className="section-title-pro">Služby & <span className="text-pro-gradient">Digitální Řešení</span></h2>
+            <p className="services-desc-pro">
+              Od rychlých iterací po komplexní systémy. Vyberte si model, 
+              který nejlépe odpovídá cílům vašeho byznysu.
+            </p>
+
+            {/* INFO O DPH & ZÁLOZE */}
+            <div className="services-meta-info-pro">
+              <span className="pro-label-muted">Nejsem plátce DPH</span>
+              <span className="pro-separator">•</span>
+              <p className="pro-payment-info">
+                <ShieldCheck size={14} className="text-indigo" /> 
+                Realizace začíná po uhrazení <strong>50% zálohy</strong>
+              </p>
+            </div>
+
+            {/* PROMO BADGE */}
+            <div className="special-promo-badge-pro">
+              <Tag size={16} className="promo-icon-pro" />
+              <span>
+                <strong>Startovací bonus:</strong> Získejte zvýhodnění <strong>20 %</strong> na náš první společný projekt.
+              </span>
+            </div>
+          </div>
+        </ScrollReveal>
+        
+        {/* GRID KARET S KASKÁDOVÝM EFEKTEM */}
         <div className="services-grid">
           {ServicesData.map((service, index) => (
-            <motion.div 
-              key={service.id} 
-              className={`service-card ${service.isPopular ? 'popular-card' : ''}`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+            <ScrollReveal 
+              key={service.id || index} 
+              direction="up" 
+              delay={0.1 + index * 0.15} // Stagger efekt pro každou kartu
             >
-              
-              <div className="service-header">
-                <div className="service-icon-box">
-                  <service.icon size={24} />
+              <div className={`service-card-pro ${service.isPopular ? 'popular' : ''}`}>
+                {service.isPopular && <div className="popular-badge">Doporučeno</div>}
+                
+                <div className="service-card-header">
+                  <div className="service-icon-wrapper">
+                    <service.icon size={24} />
+                  </div>
+                  <span className={`package-badge-pro ${service.isPopular ? 'badge-popular-pro' : ''}`}>
+                    {service.packageLabel}
+                  </span>
                 </div>
-                <span className={`package-badge ${service.isPopular ? 'badge-popular' : ''}`}>
-                  {service.packageLabel}
-                </span>
-              </div>
-              
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-desc">{service.desc}</p>
-              
-              {/* PRO KOHO & DOBA DODÁNÍ */}
-              <div className="service-meta-box">
-                <div className="meta-row">
-                  <User size={15} className="meta-icon" />
-                  <span className='label-meta'>Pro koho: <strong>{service.target}</strong></span>
+                
+                <h3 className="service-card-title">{service.title}</h3>
+                <p className="service-card-desc">{service.desc}</p>
+                
+                {/* CÍLOVKA & TIME */}
+                <div className="service-specs-box">
+                  <div className="spec-row">
+                    <User size={15} className="spec-icon" />
+                    <span>Pro: <strong>{service.target}</strong></span>
+                  </div>
+                  <div className="spec-row">
+                    <Clock size={15} className="spec-icon" />
+                    <span>Dodání: <strong>{service.deliveryTime}</strong></span>
+                  </div>
                 </div>
-                <div className="meta-row">
-                  <Clock size={15} className="meta-icon" />
-                  <span className='label-meta'>Doba dodání: <strong>{service.deliveryTime}</strong></span>
-                </div>
-              </div>
-              
-              <div className="service-price-row">
-                <span className="service-price">{service.price}</span>
-              </div>
-              
-              <div className="service-divider" />
+                
+                <div className="service-card-price">{service.price}</div>
+                
+                <div className="service-card-divider" />
 
-              <ul className="service-list">
-                {service.features.slice(0, 4).map((feature, i) => (
-                  <li key={i} className="service-item">
-                    <Check size={16} className="check-icon" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              
-              <Link to={`/service/${service.id}`} className={`btn-service ${service.isPopular ? 'btn-popular' : ''}`}>
-                Více info & Poptat <ArrowRight size={16} />
-              </Link>
-            </motion.div>
+                <ul className="service-features-list">
+                  {service.features.slice(0, 4).map((feature, i) => (
+                    <li key={i}>
+                      <Check size={16} className="check-icon-pro" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                
+                <Link 
+                  to={`/service/${service.id}`} 
+                  className={`btn-service-pro ${service.isPopular ? 'btn-indigo' : 'btn-outline'}`}
+                >
+                  Detail řešení <ArrowRight size={16} />
+                </Link>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

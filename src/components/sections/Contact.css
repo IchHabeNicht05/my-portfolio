@@ -1,456 +1,296 @@
 /* =========================================
-   --- ZÁKLADNÍ NASTAVENÍ --- 
+   --- CONTACT SECTION (High-End Indigo) --- 
    ========================================= */
+
 .contact-section {
-  padding: 80px 0 120px;
+  padding: 120px 0 160px;
   position: relative;
   overflow: hidden;
+  background: #020617;
 }
 
+/* Ambientní Indigo záře na pozadí */
 .contact-bg-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(41, 151, 255, 0.08) 0%, transparent 70%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
   z-index: 0;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(80px);
 }
 
+/* Sjednocení kontejneru na 1400px */
 .contact-container {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 1300px;
+  width: 95%;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-/* =========================================
-   --- HLAVIČKA --- 
-   ========================================= */
+/* --- HLAVIČKA --- */
 .contact-header-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .contact-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(41, 151, 255, 0.1);
-  color: #2997ff;
-  padding: 8px 16px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  padding: 10px 20px;
   border-radius: 100px;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin-bottom: 24px;
-  border: 1px solid rgba(41, 151, 255, 0.2);
-  box-shadow: 0 0 15px rgba(41, 151, 255, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .contact-title-large {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
   font-weight: 800;
   color: white;
   margin-bottom: 16px;
   line-height: 1.1;
-  background: linear-gradient(90deg, #fff, #999);
+  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-description {
-  font-size: 1.1rem;
-  color: #a0a0a0;
+  font-size: 1.15rem;
+  color: #94a3b8;
   line-height: 1.7;
   max-width: 600px;
 }
 
-/* =========================================
-   --- GRID LAYOUT --- 
-   ========================================= */
+/* --- GRID LAYOUT (MASIVNÍ) --- */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1.6fr; /* Pravý formulář bude dominantní */
+  gap: 50px;
   align-items: start;
 }
 
-/* =========================================
-   --- LIQUID GLASS KARTY --- 
-   ========================================= */
-.info-item,
-.contact-form {
-  position: relative;
-  z-index: 10;
-  isolation: isolate;
-  background: transparent !important;
-}
-
-.info-item::after,
-.contact-form::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-  background: transparent; 
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%); 
-  overflow: hidden;
-}
-
-.info-item::before,
-.contact-form::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  box-sizing: border-box; 
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.03) 0%, 
-    rgba(18, 18, 20, 0.5) 20%, 
-    rgba(18, 18, 20, 0.6) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  pointer-events: none;
-}
-
-/* --- LEVÁ ČÁST: INFO KARTY --- */
+/* --- INFO KARTY (LEVÁ ČÁST) --- */
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
   gap: 20px;
-  padding: 24px;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: pointer;
 }
 
-.info-item:hover {
-  transform: translateY(-4px);
-}
-
-.info-item:hover::before {
-  border-color: rgba(41, 151, 255, 0.4);
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(41, 151, 255, 0.05) 100%
-  );
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.2), 
-    0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.icon-box {
-  width: 48px;
-  height: 48px;
-  background: rgba(41, 151, 255, 0.1);
-  color: #2997ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  flex-shrink: 0;
-  border: 1px solid rgba(41, 151, 255, 0.2);
-}
-
-.info-item h3 {
-  margin: 0 0 4px 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: white;
-}
-
-.info-item p {
-  margin: 0;
-  color: #a0a0a0;
-  font-size: 0.95rem;
-  transition: color 0.3s;
-}
-
-.info-item:hover p {
-  color: #cfcfcf;
-}
-
-/* =========================================
-   --- ÚPRAVA PRO STATICKOU MAPU --- 
-   ========================================= */
 .info-item.map-item {
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
-  cursor: default;
+  gap: 20px;
 }
 
-.map-header {
+.map-header-row {
   display: flex;
   align-items: center;
+  gap: 24px;
+}
+
+.map-header-row h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.info-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 35px;
+  border-radius: 32px;
+  text-decoration: none;
+  background: rgba(13, 14, 18, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.info-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(20, 22, 28, 0.6) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.icon-box {
+  width: 56px;
+  height: 56px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  flex-shrink: 0;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.3s ease;
+}
+
+.info-item:hover .icon-box {
+  background: #6366f1;
+  color: white;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.info-content h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.info-content p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* --- STATICKÁ MAPA --- */
+.info-item.map-item {
+  flex-direction: column;
+  align-items: stretch;
   gap: 20px;
 }
 
 .map-wrapper.static-map {
   position: relative;
-  display: block;
-  width: 100%;
-  height: 140px;
-  border-radius: 12px;
+  height: 180px;
+  border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #1e1e1e; /* Záložní barva, kdyby se obrázek nenačetl */
-  text-decoration: none;
 }
 
 .map-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: contrast(1.1) brightness(0.7) grayscale(0.3);
-  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.5s ease;
+  filter: contrast(1.1) brightness(0.6) grayscale(0.5);
+  transition: transform 0.6s ease, filter 0.6s ease;
 }
 
 .map-wrapper.static-map:hover .map-image {
-  transform: scale(1.08);
-  filter: contrast(1.1) brightness(0.9) grayscale(0);
+  transform: scale(1.1);
+  filter: contrast(1.1) brightness(0.8) grayscale(0);
 }
 
-/* Ukazatel na mapě s pulzováním */
 .map-pin-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #2997ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+  color: #6366f1;
 }
 
-.pin-pulse {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: rgba(41, 151, 255, 0.3);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-  z-index: -1;
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.5); opacity: 1; }
-  100% { transform: scale(1.8); opacity: 0; }
-}
-
-/* --- PRAVÁ ČÁST: FORMULÁŘ --- */
+/* --- FORMULÁŘ (PRAVÁ ČÁST) --- */
 .contact-form {
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  padding: 60px;
+  background: rgba(13, 14, 18, 0.4) !important;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .form-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .form-label {
-  font-size: 0.9rem;
-  color: #ccc;
-  font-weight: 500;
-  margin-left: 4px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .contact-input {
   width: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.01) 0%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 14px 18px;
-  border-radius: 12px;
+  padding: 16px 20px;
+  border-radius: 16px;
   color: white;
-  font-size: 0.95rem;
-  font-family: inherit;
+  font-size: 1rem;
   transition: all 0.3s ease;
   outline: none;
 }
 
-.textarea-resize-vertical {
-  resize: vertical;
-  min-height: 120px;
-}
-
 .contact-input:focus {
-  border-color: #2997ff;
-  box-shadow: 0 0 0 4px rgba(41, 151, 255, 0.1);
-}
-
-.contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  background: rgba(99, 102, 241, 0.03);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
 .submit-btn {
   width: 100%;
-  padding: 16px 32px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 12px;
+  padding: 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 16px;
   cursor: pointer;
+  background: #6366f1;
+  color: white;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-  margin-top: 10px;
-  background: white;
-  color: black;
-  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background: #f0f0f0;
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+  filter: brightness(1.1);
 }
 
-.submit-btn:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-/* Status zprávy */
-.status-msg {
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.status-msg.success {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  color: #10b981;
-}
-
-/* =========================================
-   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
-   ========================================= */
-body.light-mode .contact-title-large,
-body.light-mode .info-item h3,
-body.light-mode .map-header h3 {
-  color: #0f172a;
-}
-
-body.light-mode .contact-title-large {
-  background: linear-gradient(90deg, #1e293b, #64748b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-body.light-mode .contact-description,
-body.light-mode .info-item p,
-body.light-mode .form-label {
-  color: #475569;
-}
-
-body.light-mode .info-item::before,
-body.light-mode .contact-form::before {
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.6) 0%, 
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.8), 
-    0 10px 30px rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode .contact-form {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-}
-
-body.light-mode .info-item:hover::before {
-  border-color: rgba(37, 99, 235, 0.3);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.8), 
-    0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-body.light-mode .map-wrapper.static-map {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .contact-input {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  color: #0f172a;
-}
-
-body.light-mode .contact-input::placeholder {
-  color: #94a3b8;
-}
-
-body.light-mode .contact-input:focus {
-  background: #ffffff;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
-body.light-mode .submit-btn {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
-}
-
-body.light-mode .submit-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-}
-
-/* =========================================
-   --- RESPONSIVITA --- 
-   ========================================= */
-@media (max-width: 900px) {
+/* --- RESPONZIVITA --- */
+@media (max-width: 1100px) {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
-  .contact-title-large {
-    font-size: 2.2rem;
-  }
-  
-  .contact-form {
-    padding: 24px;
-  }
+}
+
+@media (max-width: 768px) {
+  .contact-title-large { font-size: 2.2rem; }
+  .contact-form { padding: 40px 25px; }
+  .info-item { padding: 25px; }
+}
+
+/* --- LIGHT MODE OPTIMALIZACE --- */
+body.light-mode .contact-title-large { color: #1e293b; background: none; -webkit-text-fill-color: initial; }
+body.light-mode .info-item, 
+body.light-mode .contact-form {
+  background: white !important;
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+body.light-mode .info-content h3 { color: #1e293b; }
+body.light-mode .info-content p { color: #475569; }
+body.light-mode .contact-input { background: #f8fafc; border-color: #cbd5e1; color: #1e293b; }
+body.light-mode .map-header-row h3 { 
+  color: #1e293b; 
 }

@@ -1,42 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
-const RevealOnScroll = ({ children, delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Jakmile je prvek viditelný z 10 %, spustí se animace
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target); // Animujeme jen jednou (nechceme, aby to blikalo při scrollování nahoru/dolů)
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px" // Spustí se trochu dříve, než prvek vyjede úplně nahoru
-      }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) observer.unobserve(ref.current);
-    };
-  }, []);
+const ScrollReveal = ({ children, direction = "up", delay = 0 }) => {
+  const directions = {
+    up: { y: 40, x: 0 },
+    down: { y: -40, x: 0 },
+    left: { x: 40, y: 0 },
+    right: { x: -40, y: 0 },
+  };
 
   return (
-    <div 
-      ref={ref} 
-      className={`reveal-item ${isVisible ? 'is-visible' : ''}`}
-      style={{ transitionDelay: `${delay}s` }}
+    <motion.div
+      initial={{ 
+        opacity: 0, 
+        y: directions[direction].y, 
+        x: directions[direction].x 
+      }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        x: 0 
+      }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        duration: 0.8, 
+        delay: delay, 
+        ease: [0.21, 0.47, 0.32, 0.98] // Smooth High-end easing
+      }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 
-export default RevealOnScroll;
+export default ScrollReveal;

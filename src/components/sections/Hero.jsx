@@ -1,73 +1,63 @@
 import React from 'react';
 import './Hero.css';
-import { ArrowRight } from 'lucide-react';
-
-/* --- KONFIGURACE DOSTUPNOSTI --- */
-const WORK_LOAD = {
-  current: 0,      // Kolik máš teď projektů
-  max: 2,          // Kolik zvládneš maximálně
-  nextDate: "Březen 2026" // Kdy budeš mít čas (pokud jsi plný)
-};
+import ScrollReveal from '../ui/RevealOnScroll';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 
 const Hero = () => {
-
-    const isAvailable = WORK_LOAD.current < WORK_LOAD.max;
+  // Pro firmy je důležitá dostupnost a jasný timeline
+  const isAvailable = true; 
 
   return (
     <section className="hero">
-      {/* Efekt záře za textem pro lepší čitelnost na Aurora pozadí */}
-      <div className="hero-glow-backdrop"></div>
+      <div className="hero-ambient-glow"></div>
+      <ScrollReveal direction="up" delay={0.1}>
 
       <div className="container hero-content">
         
-        {/* --- STATUS BADGE (Automatizovaný) --- */}
-        <div className={`status-badge ${isAvailable ? 'available' : 'busy'} animate-fade-in`}>
-          <div className="status-dot-container">
-            <span className="status-dot"></span>
-            <span className="status-dot-ping"></span>
-          </div>
-          <span className="status-text">
-            {isAvailable 
-              ? "Dostupný pro nové projekty" 
-              : `Nejsem dostupný do ${WORK_LOAD.nextDate}`
-            }
+        {/* Status Badge - čistší, korporátní design */}
+        <div className="status-badge-pro animate-fade-in">
+          <span className="status-indicator"></span>
+          <span className="status-label">
+            {isAvailable ? "Přijímám nové projekty" : "Aktuálně plná kapacita"}
           </span>
         </div>
 
-        {/* --- TVOJE JMÉNO (NOVÉ) --- */}
-        <h2 className="hero-name animate-slide-up" style={{animationDelay: '0.05s'}}>
-            Ahoj, jsem <span className="name-highlight">Martin Habenicht</span>
-        </h2>
-        
-        {/* Vylepšený nadpis s gradientem */}
-        <h1 className="hero-title animate-slide-up" style={{animationDelay: '0.1s'}}>
-          <span className="text-gradient-shine">Vývojář a Video editor</span>
-          <br /> s důrazem na detail.
+        {/* Headline - Ocelový gradient a precizní typografie */}
+        <h1 className="hero-title animate-slide-up">
+          Stavím digitální řešení, <br />
+          která <span className="hero-text-gradient">pohánějí váš byznys.</span>
         </h1>
         
-        <p className="hero-text animate-slide-up" style={{animationDelay: '0.3s'}}>
-          Jsem frontend vývojář specializující se na React a moderní UI. 
-          Měním komplexní problémy na jednoduchá a krásná rozhraní. Rád také tvořím video editace, které zaujmou publikum.
+        <p className="hero-text animate-slide-up">
+          Full-stack vývojář specializovaný na výkonné webové aplikace a vizuální identitu. 
+          Spojuji technickou preciznost s designem, který buduje autoritu vaší značky.
         </p>
         
-        <div className="hero-buttons animate-slide-up" style={{animationDelay: '0.5s'}}>
-  
-            {/* PRIMÁRNÍ TLAČÍTKO */}
-            <a href="#projects" className="hero-btn-primary" aria-label="Zobrazit mé projekty">
-                <span className="btn-content">
-                Moje práce <ArrowRight size={18} className="btn-icon" />
-                </span>
-                {/* Záře na pozadí tlačítka */}
-                <div className="btn-glow-effect"></div>
+        <div className="hero-buttons animate-slide-up">
+            <a href="#projects" className="btn-pro-primary">
+                Zobrazit případové studie
+                <ArrowRight size={18} strokeWidth={2.5} />
             </a>
 
-            {/* SEKUNDÁRNÍ TLAČÍTKO */}
-            <a href="#contact" className="hero-btn-secondary" aria-label="Kontaktovat mě">
-                Kontaktovat
+            <a href="#contact" className="btn-pro-secondary">
+                Konzultovat projekt
             </a>
-
         </div>
+
+        {/* Trust Section - pro firmy zásadní
+        <div className="hero-trust-bar animate-fade-in">
+          <p>Technologický stack</p>
+          <div className="trust-logos">
+            <span>React / Next.js</span>
+            <span>TypeScript</span>
+            <span>Node.js</span>
+            <span>Python / Django</span>
+            <span>PostgreSQL</span>
+          </div>
+        </div>
+        */}
       </div>
+      </ScrollReveal>
     </section>
   );
 };

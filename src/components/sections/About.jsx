@@ -1,145 +1,118 @@
 import React from 'react';
 import { STATS } from '../../data/statsData';
-import { TECH_STACK } from '../../data/techStackData';
+import ScrollReveal from '../ui/RevealOnScroll'; // Tvůj import
 import './About.css';
 import { 
-  ArrowUpRight, Download, Terminal, 
-  Zap, Video, Film
+  ArrowUpRight, Download, ShieldCheck, 
+  CheckCircle2, Laptop, Video
 } from 'lucide-react';
 
 const About = () => {
   return (
     <section id="about" className="about-section">
-      {/* Ambientní pozadí (záře) */}
-      <div className="ambient-glow left"></div>
-      <div className="ambient-glow right"></div>
+      {/* Ambientní indigo záře */}
+      <div className="ambient-glow-pro"></div>
+      <ScrollReveal direction="up" delay={0.1}>
 
       <div className="container about-container">
         <div className="about-grid">
           
-          {/* LEVÁ ČÁST - TEXT */}
+          {/* LEVÁ ČÁST - TEXT A STRATEGIE */}
           <div className="about-content">
-            <div className="section-header">
-              <div className="icon-box">
-                <Terminal size={20} />
+            <div className="section-header-pro">
+              <div className="icon-box-pro">
+                <ShieldCheck size={18} />
               </div>
-              <span className="section-tag">O mně</span>
+              <span className="section-tag-pro">Strategický partner</span>
             </div>
 
-            <h2 className="about-title">
-              Nejsem jen student. <br />
-              <span className="text-gradient">Jsem tvůrce.</span>
+            <h2 className="about-title-pro">
+              Vaše vize. <br />
+              <span className="text-pro-gradient">Moje exekutiva.</span>
             </h2>
 
-            <p className="about-desc">
-              Zatímco ostatní řeší teorii, já stavím projekty. Specializuji se na 
-              <strong className="text-white"> React ekosystém</strong>. Můj kód je čistý, 
-              weby rychlé a spolupráce se mnou bezbolestná. Kromě toho miluji video editaci, kde se snažím o dokonalou synchronizaci obrazu a zvuku.
+            <p className="about-desc-pro">
+              Pomáhám firmám transformovat nápady do prémiových digitálních produktů. 
+              Můj přístup stojí na <strong className="text-white">maximální efektivitě</strong>, čistém kódu a vizuálním storytellingu. 
+              Nedělám jen weby, tvořím nástroje pro váš růst.
             </p>
 
-            {/* Tech Stack Grid */}
-            <div className="tech-grid">
-              {TECH_STACK.map((tech, index) => (
-                <div key={index} className={`tech-card ${tech.type}`}>
-                  <div className="tech-header">
-                    {tech.type === 'dev' ? (
-                      <Zap size={14} className="tech-icon dev" />
-                    ) : (
-                      <Film size={14} className="tech-icon edit" />
-                    )}
-                    <span className="tech-name">{tech.name}</span>
-                  </div>
-                  <div className="tech-bar">
-                    <div className={`tech-fill ${tech.name.toLowerCase().replace(/\s+/g, '-')}`}></div>
-                  </div>
-                </div>
-              ))}
+            <div className="expertise-list">
+              <div className="expertise-item-pro">
+                <div className="check-circle"><CheckCircle2 size={16} /></div>
+                <span>Enterprise-ready weby</span>
+              </div>
+              <div className="expertise-item-pro">
+                <div className="check-circle"><CheckCircle2 size={16} /></div>
+                <span>E-commerce a firemní systémy</span>
+              </div>
+              <div className="expertise-item-pro">
+                <div className="check-circle"><CheckCircle2 size={16} /></div>
+                <span>High-end postprodukce a video</span>
+              </div>
+              <div className="expertise-item-pro">
+                <div className="check-circle"><CheckCircle2 size={16} /></div>
+                <span>SEO a technická optimalizace</span>
+              </div>
             </div>
 
-            <div className="about-buttons">
-              {/* Tlačítko Spolupracovat - Odkaz na kontakt */}
-              <a href="#contact" className="btn-primary-glow" aria-label="Přejít na sekci kontakt">
-                Spolupracovat <ArrowUpRight size={18} />
+            <div className="about-buttons-pro">
+              <a href="#contact" className="btn-pro-primary">
+                Konzultovat projekt <ArrowUpRight size={18} />
               </a>
 
-              {/* Tlačítko Stáhnout CV - Přímý download PDF */}
-              <a 
-                href="/Resume_Martin_Habenicht.pdf" 
-                download="Resume_Martin_Habenicht.pdf" 
-                className="btn-secondary-glass" 
-                aria-label="Stáhnout mé CV ve formátu PDF"
-              >
+              <a href="/Resume_Martin_Habenicht.pdf" className="btn-pro-outline">
                 Stáhnout CV <Download size={18} />
               </a>
             </div>
           </div>
 
-          {/* PRAVÁ ČÁST - FOTKA + KÓD */}
-          <div className="about-visual">
-            <div className="image-frame">
+          {/* PRAVÁ ČÁST - FOTKA + PROFI VIZUÁL */}
+          <div className="about-visual-pro">
+            <div className="image-frame-pro">
               <img 
                 src="/me.webp" 
-                alt="Workspace" 
-                className="main-image" 
-                loading="lazy"
+                alt="Martin Habenicht" 
+                className="main-image-pro" 
               />
+              <div className="image-overlay"></div>
               
-              {/* Přidaný overlay pro tmavý gradient pod oknem kódu */}
-              <div className="dark-gradient-overlay"></div>
-              
-              {/* Plovoucí okno s kódem */}
-              <div className="code-window">
-                <div className="window-header">
-                  <div className="dots">
-                    <span className="dot red"></span>
-                    <span className="dot yellow"></span>
-                    <span className="dot green"></span>
+              {/* Solution Code Window */}
+              <div className="code-window-pro">
+                <div className="window-header-pro">
+                  <div className="dots-pro">
+                    <span className="d-red"></span>
+                    <span className="d-yellow"></span>
+                    <span className="d-green"></span>
                   </div>
-                  <span className="window-title">Developer.jsx</span>
+                  <span className="w-title">Production.ts</span>
                 </div>
-                <div className="window-body">
-                  <div className="code-line">
-                    <span className="k">const</span> <span className="f">Martin</span> = <span className="b">()</span> <span className="k">=&gt;</span> <span className="b">{`{`}</span>
-                  </div>
-                  <div className="code-line indent">
-                    <span className="k">return</span> (
-                  </div>
-                  <div className="code-line double-indent">
-                    <span className="t">&lt;Developer</span>
-                  </div>
-                  <div className="code-line triple-indent">
-                    <span className="p">passion</span>=<span className="s">"100%"</span>
-                  </div>
-                  <div className="code-line triple-indent">
-                    <span className="p">skills</span>=<span className="b">{`{['React', 'Next', 'Video Editing']}`}</span>
-                  </div>
-                  <div className="code-line double-indent">
-                    /&gt;
-                  </div>
-                  <div className="code-line indent">
-                    );
-                  </div>
-                  <div className="code-line"><span className="b">{`}`}</span></div>
+                <div className="window-body-pro">
+                  <span className="k">const</span> <span className="f">Quality</span> = <span className="b">{`{`}</span>
+                  <div className="indent"><span className="p">performance:</span> <span className="s">100</span>,</div>
+                  <div className="indent"><span className="p">ui_precision:</span> <span className="s">'Pixel-Perfect'</span>,</div>
+                  <div className="indent"><span className="p">status:</span> <span className="s">'Scalable'</span></div>
+                  <span className="b">{`}`}</span>;
                 </div>
               </div>
-
             </div>
           </div>
 
         </div>
 
         { /* --- STATISTIKY --- */ }
-        <div className="stats-wrapper">
-          <div className="stats-grid">
+        <div className="stats-wrapper-pro">
+          <div className="stats-grid-pro">
             {STATS.map((stat) => (
-              <div key={stat.id} className="stat-card">
-                <h3 className="stat-number">{stat.number}</h3>
-                <p className="stat-label">{stat.label}</p>
+              <div key={stat.id} className="stat-card-pro">
+                <h3 className="stat-num">{stat.number}</h3>
+                <p className="stat-txt">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

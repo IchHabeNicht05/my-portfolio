@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
-  ArrowLeft, 
-  Github, 
-  CheckCircle, 
-  Code2, 
-  Briefcase, 
-  LayoutTemplate,
-  Clock,
-  Maximize,
-  Cpu,
-  Youtube,
-  Lock
+  ArrowLeft, Github, CheckCircle, Code2, Briefcase, 
+  LayoutTemplate, Clock, Maximize, Cpu, Youtube, Lock 
 } from 'lucide-react';
-import { ProjectsData } from '../../data/projectsData';
+import { ProjectsData } from '../../data/projectsData'; // Uprav cestu ke svým datům
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -21,24 +12,19 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = ProjectsData.find(p => p.id === parseInt(id) || p.id === id);
 
-  // 1. STAV PRO COOKIES
   const [cookieConsent, setCookieConsent] = useState(
     localStorage.getItem('cookieConsent') === 'accepted'
   );
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // 2. NASLOUCHÁNÍ NA ZMĚNU (pro okamžitý update bez refreshu)
     const handleConsentChange = () => {
       setCookieConsent(localStorage.getItem('cookieConsent') === 'accepted');
     };
-
     window.addEventListener('cookieConsentUpdated', handleConsentChange);
     return () => window.removeEventListener('cookieConsentUpdated', handleConsentChange);
   }, [id]);
 
-  // Funkce pro schválení přímo v placeholderu
   const handleInlineAccept = () => {
     localStorage.setItem('cookieConsent', 'accepted');
     window.dispatchEvent(new Event('cookieConsentUpdated'));
@@ -48,7 +34,7 @@ const ProjectDetail = () => {
     return (
       <div className="pd-not-found">
         <h2>Projekt nenalezen</h2>
-        <button onClick={() => navigate(-1)} className="btn-back">
+        <button onClick={() => navigate(-1)} className="btn-back-ghost">
           <ArrowLeft size={16} /> Zpět
         </button>
       </div>
@@ -60,7 +46,7 @@ const ProjectDetail = () => {
   return (
     <section className="pd-section">
       <div className="pd-bg-glow" />
-
+      
       <div className="pd-container relative-z">
         
         <div className="pd-top-bar">
@@ -69,41 +55,47 @@ const ProjectDetail = () => {
           </button>
         </div>
 
-        {/* 3. HLAVNÍ VIZUÁL: Podmíněné zobrazení podle Cookies */}
-        {isVideo && project.videoUrl && (
+        {/* HLAVNÍ VIZUÁL - Zmenšený a vycentrovaný */}
+        <div className="pd-hero-visual-wrapper">
           <div className="pd-hero-visual">
-            {cookieConsent ? (
-              /* PŘEHRÁVAČ */
-              <div className="pd-video-wrapper">
-                <iframe 
-                  src={project.videoUrl} 
-                  title={project.title}
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen
-                ></iframe>
-              </div>
-            ) : (
-              /* PLACEHOLDER POKUD COOKIES CHYBÍ */
-              <div className="video-blocked-placeholder">
-                <div className="blocked-content">
-                  <div className="blocked-icon-wrapper">
-                    <Youtube size={40} className="yt-icon" />
-                    <Lock size={20} className="lock-icon" />
-                  </div>
-                  <h3>Video je zablokováno</h3>
-                  <p>
-                    Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies. 
-                    Můžete tak učinit kliknutím na tlačítko níže.
-                  </p>
-                  <button onClick={handleInlineAccept} className="btn-accept-inline">
-                    Povolit cookies a přehrát
-                  </button>
+            {isVideo && project.videoUrl ? (
+              cookieConsent ? (
+                <div className="pd-video-wrapper">
+                  <iframe 
+                    src={project.videoUrl} 
+                    title={project.title}
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
+              ) : (
+                <div className="video-blocked-placeholder">
+                  <div className="blocked-content">
+                    <div className="blocked-icon-wrapper">
+                      <div className="icon-circle">
+                        <Youtube size={48} className="yt-icon" />
+                      </div>
+                      <div className="lock-badge">
+                        <Lock size={16} className="lock-icon" />
+                      </div>
+                    </div>
+                    <h3>Video je chráněno</h3>
+                    <p>Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies.</p>
+                    <button onClick={handleInlineAccept} className="btn-accept-inline">
+                      Povolit cookies a přehrát
+                    </button>
+                  </div>
+                </div>
+              )
+            ) : (
+              /* Fallback pro běžné projekty (obrázek) */
+              <div className="pd-image-wrapper">
+                <img src={project.image || '/api/placeholder/1200/600'} alt={project.title} />
               </div>
             )}
           </div>
-        )}
+        </div>
 
         <div className="pd-layout-grid">
           
@@ -120,37 +112,37 @@ const ProjectDetail = () => {
             {isVideo && (
               <div className="pd-video-specs">
                 <div className="spec-item">
-                  <Clock size={18} />
+                  <div className="spec-icon-box"><Clock size={18} /></div>
                   <span>{project.duration || '0:00'}</span>
                 </div>
                 <div className="spec-item">
-                  <Maximize size={18} />
+                  <div className="spec-icon-box"><Maximize size={18} /></div>
                   <span>{project.resolution || '4K'}</span>
                 </div>
                 <div className="spec-item">
-                  <Cpu size={18} />
+                  <div className="spec-icon-box"><Cpu size={18} /></div>
                   <span>{project.fps || '60'} FPS</span>
                 </div>
               </div>
             )}
 
             <div className="pd-text-block">
-              <h3>{isVideo ? 'O videu a konceptu' : 'Úvod a Výzva'}</h3>
+              <h3><LayoutTemplate size={22} className="title-icon" /> {isVideo ? 'O videu a konceptu' : 'Úvod a Výzva'}</h3>
               <p>{project.challenge}</p>
             </div>
 
             <div className="pd-text-block">
-              <h3>{isVideo ? 'Postprodukce' : 'Moje Řešení'}</h3>
+              <h3><CheckCircle size={22} className="title-icon" /> {isVideo ? 'Postprodukce' : 'Moje Řešení'}</h3>
               <p>{project.solution}</p>
             </div>
 
             {project.features && (
               <div className="pd-features-section">
-                <h3><LayoutTemplate size={20} className="text-primary" /> {isVideo ? 'Použité techniky' : 'Klíčové vlastnosti'}</h3>
+                <h3>Použité techniky</h3>
                 <div className="pd-features-grid">
                   {project.features.map((feature, i) => (
                     <div key={i} className="pd-feature-card">
-                      <CheckCircle size={16} className="text-primary" />
+                      <CheckCircle size={18} className="check-icon" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -165,7 +157,7 @@ const ProjectDetail = () => {
               <h3 className="pd-sidebar-title">Detaily projektu</h3>
               
               <div className="pd-meta-item">
-                <div className="pd-meta-icon"><Briefcase size={16} /></div>
+                <div className="pd-meta-icon"><Briefcase size={18} /></div>
                 <div>
                   <span className="pd-meta-label">Moje role</span>
                   <span className="pd-meta-value">{project.role}</span>
@@ -173,7 +165,7 @@ const ProjectDetail = () => {
               </div>
 
               <div className="pd-meta-item">
-                <div className="pd-meta-icon"><Code2 size={16} /></div>
+                <div className="pd-meta-icon"><Code2 size={18} /></div>
                 <div>
                   <span className="pd-meta-label">{isVideo ? 'Software' : 'Technologie'}</span>
                   <div className="pd-tech-tags">

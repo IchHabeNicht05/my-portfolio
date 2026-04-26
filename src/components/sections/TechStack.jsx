@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
 import './TechStack.css';
 import { SKILLS } from '../../data/skills';
+import ScrollReveal from '../ui/RevealOnScroll';
 
 const TechStack = () => {
   const categoryOrder = ["Frontend", "Backend & Cloud", "Nástroje", "Video Produkce"];
@@ -18,6 +17,7 @@ const TechStack = () => {
 
   return (
     <section className="tech-stack">
+      <ScrollReveal direction="up" delay={0.1}>
       <div className="container">
         <p className="tech-label">Technologie, které ovládám</p>
         
@@ -51,21 +51,11 @@ const TechStack = () => {
                       </div>
 
                       {/* Tooltip je mimo badge-content, aby mohl vyčnívat ven */}
-                      <AnimatePresence>
-                        {hoveredTech === skill.name && skill.info && (
-                          <motion.div 
-                            // Tady je ta změna: x: "-50%" musí být v initial i animate
-                            initial={{ opacity: 0, y: 10, x: "-50%", scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, x: "-50%", scale: 1 }}
-                            exit={{ opacity: 0, y: 5, x: "-50%", scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            className="tech-tooltip"
-                            viewport={{ once: true }}
-                          >
-                            {skill.info}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      {hoveredTech === skill.name && skill.info && (
+                        <div className="tech-tooltip">
+                          {skill.info}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -74,6 +64,7 @@ const TechStack = () => {
           })}
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

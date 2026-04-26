@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import ScrollReveal from '../ui/RevealOnScroll';
 import emailjs from '@emailjs/browser';
 import './Contact.css';
 
@@ -41,6 +42,7 @@ const Contact = () => {
   return (
     <section className="contact-section" id="kontakt">
       <div className="contact-bg-glow"></div>
+      <ScrollReveal direction="up" delay={0.1}>
       
       <div className="contact-container">
         <div className="contact-header-wrapper">
@@ -70,7 +72,7 @@ const Contact = () => {
             </a>
 
             <div className="info-item map-item">
-              <div className="map-header">
+              <div className="map-header-row">
                 <div className="icon-box"><MapPin size={24} /></div>
                 <h3>Česká Lípa, ČR</h3>
               </div>
@@ -96,10 +98,11 @@ const Contact = () => {
 
           <form className="contact-form" ref={formRef} onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label">Jméno</label>
+              <label htmlFor="user_name" className="form-label">Jméno</label>
               <input 
+                id="user_name"
                 type="text" 
-                name="user_name" // Musí odpovídat {{user_name}}
+                name="user_name" 
                 value={formData.user_name}
                 onChange={handleChange}
                 className="contact-input" 
@@ -109,10 +112,11 @@ const Contact = () => {
             </div>
             
             <div className="form-group">
-              <label className="form-label">Email</label>
+              <label htmlFor="user_email" className="form-label">Email</label>
               <input 
+                id="user_email"
                 type="email" 
-                name="user_email" // Musí odpovídat {{user_email}}
+                name="user_email" 
                 value={formData.user_email}
                 onChange={handleChange}
                 className="contact-input" 
@@ -122,9 +126,10 @@ const Contact = () => {
             </div>
             
             <div className="form-group">
-              <label className="form-label">Zpráva</label>
+              <label htmlFor="message" className="form-label">Zpráva</label>
               <textarea 
-                name="message" // Musí odpovídat {{message}}
+                id="message"
+                name="message" 
                 value={formData.message}
                 onChange={handleChange}
                 className="contact-input textarea-resize-vertical" 
@@ -157,6 +162,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

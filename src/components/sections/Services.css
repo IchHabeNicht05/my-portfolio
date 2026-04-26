@@ -1,418 +1,336 @@
-:root {
-  --primary: #3b82f6;
-  --text-muted: #94a3b8;
-  --border-light: rgba(255, 255, 255, 0.08);
-}
+/* Globální Indigo akcent */
+.text-indigo { color: #6366f1 !important; }
 
 .services-section {
-  padding: 100px 0;
+  padding: 140px 0;
+  background: #020617; /* Hluboká námořnická černá */
   position: relative;
   overflow: hidden;
-  background-color: transparent;
 }
 
-.services-bg-glow {
+.services-section .container {
+  max-width: 1400px; /* Zvětšeno z původních 1200px */
+  width: 95%;
+  margin: 0 auto;
+}
+
+.services-ambient-glow {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 800px;
+  width: 1000px;
   height: 800px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 70%);
-  z-index: 0;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.04), transparent 70%);
   pointer-events: none;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+/* =========================================
+   --- SECTION TAG PRO (Nabídka spolupráce) --- 
+   ========================================= */
 
-.relative-z {
-  position: relative;
-  z-index: 1;
-}
-
-.services-header-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.services-tag {
+.section-tag-pro {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--primary);
-  padding: 8px 16px;
+  justify-content: center;
+  
+  /* Indigo skleněný podklad */
+  background: rgba(99, 102, 241, 0.1);
+  color: #818cf8; /* Světlejší indigo pro lepší čitelnost v tmě */
+  
+  padding: 10px 20px;
   border-radius: 100px;
+  
+  /* Typografie podle tvého screenshotu */
   font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-
-.services-title-large {
-  font-size: 3rem;
   font-weight: 800;
-  color: white;
-  margin: 0 0 16px 0;
-  line-height: 1.1;
-  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.services-description {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-.services-info-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-  flex-wrap: wrap; /* Pro mobily */
-}
-
-.info-divider {
-  color: #475569;
-  opacity: 0.5;
-}
-
-.dph-notice { 
-  color: #94a3b8; 
-  font-size: 0.75rem; /* O něco menší než hlavní text */
-  font-weight: 600;
-  letter-spacing: 1px;
   text-transform: uppercase;
-  margin: 0; /* Resetujeme marginy */
-}
-
-.payment-notice {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  margin: 0; /* Resetujeme marginy */
-}
-
-.payment-notice strong {
-  color: #3b82f6;
-  font-weight: 600;
-}
-
-/* --- SPECIÁLNÍ NABÍDKA (SLEVA) --- */
-.special-promo-badge {
-  margin-top: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  padding: 12px 28px;
-  border-radius: 100px;
-  color: #e2e8f0;
-  font-size: 0.95rem;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
-  animation: promo-pulse 3s infinite ease-in-out;
-}
-
-.promo-icon {
-  color: #60a5fa;
-}
-
-.special-promo-badge strong {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-@keyframes promo-pulse {
-  0% { border-color: rgba(59, 130, 246, 0.2); transform: translateY(0); }
-  50% { border-color: rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
-  100% { border-color: rgba(59, 130, 246, 0.2); transform: translateY(0); }
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-/* --- KARTA SLUŽBY - LIQUID GLASS --- */
-.service-card {
-  border-radius: 24px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  isolation: isolate;
-  background: transparent !important;
-}
-
-.service-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(20, 20, 22, 0.4) 100%);
-  border: 1px solid var(--border-light);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+  letter-spacing: 2px; /* Rozestupy mezi písmeny dělají ten "luxusní" look */
+  
+  /* Jemný Indigo border */
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  
+  /* Glass efekt */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  
+  margin-bottom: 24px;
   transition: all 0.4s ease;
 }
 
-.service-card:hover {
+/* Styl pro ikonku kufříku (Briefcase) uvnitř */
+.section-tag-pro svg {
+  color: #6366f1; /* Sytější indigo pro ikonku */
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+  margin-right: 10px; /* Sjednocení mezery */
+}
+
+/* Hover efekt pro celou sekci */
+.section-tag-pro:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+  color: #a5b4fc;
+}
+
+/* Hlavička */
+.services-header-pro {
+  text-align: center;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services-desc-pro {
+  color: #94a3b8;
+  max-width: 600px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Meta info pod nadpisem */
+.services-meta-info-pro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.pro-separator { color: #334155; }
+.pro-label-muted { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.pro-payment-info { display: flex; align-items: center; gap: 6px; }
+.pro-payment-info strong { color: #e2e8f0; }
+
+/* Promo Badge */
+.special-promo-badge-pro {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  padding: 12px 28px;
+  border-radius: 100px;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.promo-icon-pro { color: #6366f1; }
+
+/* Grid a Karty */
+.services-grid {
+  display: grid;
+  /* Nastavíme 3 sloupce napevno pro desktop, ale s min šířkou */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px; /* Mezera mezi kartami */
+  width: 100%;
+}
+
+.service-card-pro {
+  position: relative;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  
+  /* Zvětšený vnitřní padding dělá kartu luxusnější */
+  padding: 50px 40px; 
+  
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Karty budou stejně vysoké v řádku */
+  transition: all 0.4s ease;
+}
+
+/* Volitelné: pokud chceš, aby karty byly i pocitově vyšší */
+.service-card-pro {
+  min-height: 580px;
+}
+.service-card-pro:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(99, 102, 241, 0.3);
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
 }
 
-.service-card:hover::before {
-  border-color: rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(59, 130, 246, 0.1) 100%);
+.service-card-pro.popular {
+  border-color: rgba(99, 102, 241, 0.4);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.03) 0%, rgba(2, 6, 23, 0) 100%);
 }
 
-.service-header {
-  margin-bottom: 20px;
+.popular-badge {
+  position: absolute;
+  top: 24px;
+  right: 40px;
+  background: #6366f1;
+  color: white;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.service-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 28px;
 }
 
-.package-badge {
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 100px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.service-icon-box {
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--primary);
+.service-icon-wrapper {
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
   padding: 12px;
-  border-radius: 14px;
-  display: inline-flex;
+  border-radius: 12px;
 }
 
-.service-title {
-  font-size: 1.4rem;
+.package-badge-pro {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.badge-popular-pro {
+  background: rgba(99, 102, 241, 0.15);
+  color: #6366f1;
+}
+
+.service-card-title {
+  font-size: 1.6rem;
   font-weight: 700;
   color: white;
-  margin: 0 0 12px 0;
+  margin-bottom: 12px;
 }
 
-.service-desc {
-  color: var(--text-muted);
+.service-card-desc {
+  color: #94a3b8;
   font-size: 0.95rem;
-  margin-bottom: 24px;
   line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Specs Box (Pro koho / Doba) */
+.service-specs-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+
+.spec-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.spec-row:last-child { margin-bottom: 0; }
+.spec-icon { color: #475569; }
+.spec-row strong { color: #f8fafc; margin-left: 4px; }
+
+.service-card-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 24px;
+}
+
+.service-card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+  margin-bottom: 28px;
+}
+
+.service-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
   flex-grow: 1;
 }
 
-.service-meta-box {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 12px; 
-  border-radius: 12px;
-  margin-bottom: 24px;
-  border: 1px solid var(--border-light);
-  align-items: flex-start; 
-}
-
-.meta-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: #cbd5e1;
-}
-
-.meta-icon {
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-.meta-row strong {
-  color: white;
-  font-weight: 600;
-  margin-left: 4px;
-}
-
-.label-meta { color: #d4d4d4; }
-
-.service-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.service-price { font-size: 1.4rem; font-weight: 800; color: white; }
-
-.service-divider {
-  height: 1px;
-  background: var(--border-light);
-  margin-bottom: 24px;
-}
-
-.service-list {
-  margin: 0 0 32px 0;
-  padding: 0;
-  list-style: none;
-}
-
-.service-item {
+.service-features-list li {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   color: #cbd5e1;
-  margin-bottom: 12px;
   font-size: 0.95rem;
+  margin-bottom: 16px;
 }
 
-.check-icon {
-  color: var(--primary);
-  min-width: 16px; 
+.check-icon-pro {
+  color: #6366f1;
   margin-top: 2px;
+  flex-shrink: 0;
 }
 
-.btn-service {
+/* Tlačítka */
+.btn-service-pro {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-weight: 600;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
   text-decoration: none;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  transition: all 0.2s ease;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s ease;
 }
 
-.btn-service:hover {
-  background: rgba(255, 255, 255, 0.1);
+.btn-indigo {
+  background: #6366f1;
+  color: white;
+  border: none;
+}
+
+.btn-indigo:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
+/* Responzivita - když se nevejdou, skočí pod sebe */
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .services-title-large { font-size: 2.2rem; }
-  .special-promo-badge { font-size: 0.8rem; padding: 10px 20px; }
-}
-
-@media (max-width: 640px) {
-  .services-info-meta {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .info-divider {
-    display: none; /* Skryjeme tečku na mobilu */
-  }
-  .special-promo-badge {
-    padding: 10px 20px;
-    font-size: 0.85rem;
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* LIGHT MODE */
-body.light-mode .services-title-large {
-  background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-body.light-mode .special-promo-badge {
-  background: rgba(37, 99, 235, 0.05);
-  border-color: rgba(37, 99, 235, 0.2);
-  color: #1e293b;
-}
-body.light-mode .special-promo-badge strong { color: #2563eb; }
-
-/* =========================================
-   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
-   ========================================= */
-
-body.light-mode .services-title-large {
-  background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-body.light-mode .services-description { color: #475569; }
-
-body.light-mode .services-tag {
-  background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);
-}
-
-/* Sklo ve světlém módu */
-body.light-mode .service-card::before {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.1);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
-}
-body.light-mode .service-card:hover {
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
-}
-body.light-mode .service-card:hover::before {
-  border-color: rgba(37, 99, 235, 0.4);
-}
-
-body.light-mode .dph-notice {
-  color: #94a3b8;
-}
-
-/* Ostatní texty a boxíky ve světlém módu */
-body.light-mode .service-title { color: #0f172a; }
-body.light-mode .service-desc { color: #475569; }
-body.light-mode .service-price { color: #0f172a; }
-body.light-mode .service-divider { background: rgba(0, 0, 0, 0.05); }
-
-body.light-mode .service-meta-box,
-body.light-mode .service-target {
-  background: rgba(15, 23, 42, 0.03); border-color: rgba(0, 0, 0, 0.05);
-}
-body.light-mode .meta-row { color: #475569; }
-body.light-mode .meta-row strong { color: #0f172a; }
-body.light-mode .label-meta { color: #000000; } /* Zachováno z tvého kódu */
-
-body.light-mode .service-item { color: #334155; }
-
-body.light-mode .btn-service {
-  background: rgba(15, 23, 42, 0.05); color: #ffffff; border-color: rgba(0, 0, 0, 0.1);
-}
-body.light-mode .btn-service:hover {
-  background: #2563eb; color: white; border-color: #2563eb;
+/* --- LIGHT MODE VARIANT --- */
+body.light-mode .section-tag-pro {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4f46e5;
+  border-color: rgba(99, 102, 241, 0.15);
 }

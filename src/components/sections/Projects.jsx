@@ -1,120 +1,139 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
-import { Layers, Monitor, Video, ArrowRight } from 'lucide-react';
+import { Layers, Monitor, Video, ArrowRight, Star } from 'lucide-react';
 import { ProjectsData } from '../../data/projectsData';
+import ScrollReveal from '../ui/RevealOnScroll';
 import './Projects.css';
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState('web');
   const navigate = useNavigate();
 
-  // Filtrování projektů podle typu (web / video)
-  const filteredProjects = ProjectsData.filter(project => project.type === activeTab);
+  const featuredProject = ProjectsData.find(project => project.isFeatured) || ProjectsData[0];
+  
+  const filteredProjects = ProjectsData.filter(
+    project => project.type === activeTab && project.id !== featuredProject?.id
+  );
 
   return (
     <section id="projects" className="projects-section">
-      <div className="projects-bg-glow" />
+      <div className="projects-ambient-glow" />
 
       <div className="container relative-z">
+        
         {/* HLAVIČKA SEKCE */}
-        <div className="projects-header-wrapper">
-          <div className="projects-tag">
-            <Layers size={14} />
-            PORTFOLIO
+        <ScrollReveal direction="up" delay={0}>
+          <div className="projects-header-pro">
+            <div className="section-tag-pro">
+              <Layers size={14} style={{ marginRight: '8px' }} />
+              VYBRANÁ PRÁCE
+            </div>
+            <h2 className="section-title-pro">Případové <span className="text-pro-gradient">studie</span></h2>
+            <p className="projects-desc-pro">
+              Ukázky toho, jak měním složité problémy na elegantní digitální produkty, 
+              které přinášejí reálné výsledky.
+            </p>
           </div>
-          <h2 className="projects-title-large">Moje tvorba</h2>
-          <p className="projects-description">
-            Od moderních webových aplikací po dynamický video obsah. 
-            Vyberte si kategorii, která vás zajímá.
-          </p>
+        </ScrollReveal>
 
-          {/* PŘEPÍNAČ (TABS) */}
-          <div className="projects-tabs-container">
-            <div className="projects-tabs">
+        {/* --- HLAVNÍ PROJEKT (SHOWCASE) --- */}
+        {featuredProject && (
+          <ScrollReveal direction="up" delay={0.2}>
+            <div className="featured-card-pro">
+              <div className="featured-content-pro">
+                <div className="featured-badge-pro">
+                  <Star size={14} className="star-icon-pro" /> Vlajkový projekt
+                </div>
+                <h3 className="featured-title-pro">{featuredProject.title}</h3>
+                <p className="featured-text-pro">{featuredProject.shortDesc}</p>
+                
+                <div className="tech-stack-pro">
+                  {featuredProject.tech.slice(0, 4).map(t => (
+                    <span key={t} className="tech-tag-pro">{t}</span>
+                  ))}
+                </div>
+
+                <button 
+                  className="btn-pro btn-indigo"
+                  onClick={() => navigate(`/project/${featuredProject.id}`)}
+                >
+                  Prohlédnout Case Study <ArrowRight size={18} />
+                </button>
+              </div>
+
+              <div 
+                className="featured-image-wrapper-pro"
+                onClick={() => navigate(`/project/${featuredProject.id}`)}
+              >
+                <div className="indigo-overlay-pro"></div>
+                <img src={featuredProject.image} alt={featuredProject.title} loading="lazy" />
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
+
+        {/* ODDĚLOVAČ A PŘEPÍNAČ */}
+        <ScrollReveal direction="up" delay={0.1}>
+          <div className="projects-filter-wrapper-pro">
+            <h3 className="filter-title-pro">Projekty</h3>
+            <div className="tabs-pro">
               <button 
-                className={`tab-btn ${activeTab === 'web' ? 'active' : ''}`}
+                className={`tab-btn-pro ${activeTab === 'web' ? 'active' : ''}`}
                 onClick={() => setActiveTab('web')}
               >
-                <Monitor size={18} />
-                <span>Weby & Apps</span>
+                <Monitor size={16} />
+                <span>Weby</span>
               </button>
               <button 
-                className={`tab-btn ${activeTab === 'video' ? 'active' : ''}`}
+                className={`tab-btn-pro ${activeTab === 'video' ? 'active' : ''}`}
                 onClick={() => setActiveTab('video')}
               >
-                <Video size={18} />
-                <span>Video tvorba</span>
+                <Video size={16} />
+                <span>Video</span>
               </button>
-              {/* Animované pozadí aktivního tabu */}
-              <motion.div 
-                className="tab-indicator" 
-                animate={{ x: activeTab === 'web' ? 0 : '100%' }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              />
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* GRID PROJEKTŮ S ANIMACÍ PŘECHODU */}
-        <motion.div className="projects-grid">
-          <AnimatePresence mode='popLayout'>
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                viewport={{ once: true }}
-              >
-                  <div 
-                    className="project-card"
-                    onClick={() => navigate(`/project/${project.id}`)}
-                  >
-                    <div className="project-image-wrapper">
-                      <img src={project.image} alt={project.title} loading="lazy" />
-                      <div className="project-overlay">
-                        <span className="view-detail-btn">
-                          {activeTab === 'video' ? 'Přehrát video' : 'Zobrazit detail'}
-                        </span>
-                      </div>
-                      {/* project.type === 'video' && <div className="video-badge">4K CONTENT</div> */}
+        {/* GRID OSTATNÍCH PROJEKTŮ - ZDE JE KOUZLO S INDEXEM */}
+        <div className="projects-grid-pro">
+          {filteredProjects.map((project, index) => (
+            <ScrollReveal 
+              key={project.id} 
+              direction="up" 
+              delay={0.1 + index * 0.15} // Každá další karta má o 0.15s větší zpoždění
+            >
+              <div className="project-card-pro" onClick={() => navigate(`/project/${project.id}`)}>
+                <div className="card-image-pro">
+                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <div className="card-overlay-pro">
+                    <span className="overlay-btn-pro">
+                      {activeTab === 'video' ? 'Přehrát video' : 'Zobrazit detail'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="card-content-pro">
+                  <span className="card-category-pro">{project.category}</span>
+                  <h3 className="card-title-pro">{project.title}</h3>
+                  <p className="card-desc-pro">{project.shortDesc}</p>
+                  
+                  <div className="card-footer-pro">
+                    <div className="card-tech-pro">
+                      {project.tech.slice(0, 3).map(t => (
+                        <span key={t} className="tech-tag-pro">{t}</span>
+                      ))}
                     </div>
-
-                    <div className="project-content">
-                      <div className="project-meta">
-                        <span className="project-category">{project.category}</span>
-                        <div className="tech-dots">
-                          <span className="dot dot-blue"></span>
-                          <span className="dot dot-purple"></span>
-                        </div>
-                      </div>
-                      
-                      <h3 className="project-title">{project.title}</h3>
-                      <p className="project-short-desc">{project.shortDesc}</p>
-                      
-                      <div className="project-footer">
-                        <div className="tech-tags-mini">
-                          {project.tech.slice(0, 3).map(t => (
-                            <span key={t} className="mini-tag">{t}</span>
-                          ))}
-                          {project.tech.length > 3 && (
-                            <span className="mini-tag-count">+{project.tech.length - 3}</span>
-                          )}
-                        </div>
-                        <div className="arrow-circle">
-                          <ArrowRight size={18} />
-                        </div>
-                      </div>
+                    <div className="arrow-circle-pro">
+                      <ArrowRight size={16} />
                     </div>
                   </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
       </div>
     </section>
   );

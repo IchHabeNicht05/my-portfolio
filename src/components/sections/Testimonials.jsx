@@ -1,6 +1,7 @@
 import React from 'react';
 import './Testimonials.css';
 import { Star, MessageSquare, Quote } from 'lucide-react';
+import ScrollReveal from '../ui/RevealOnScroll';
 
 const reviews = [
   {
@@ -18,6 +19,7 @@ const Testimonials = () => {
     <section id='reviews' className="testimonials-section">
       {/* Ambientní fialová záře na pozadí */}
       <div className="testimonials-bg-glow" />
+      <ScrollReveal direction="up" delay={0.1}>
 
       <div className="testimonials-container">
         
@@ -67,6 +69,7 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

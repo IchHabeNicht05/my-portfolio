@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import ScrollReveal from '../ui/RevealOnScroll';
 import './FAQ.css';
 
 const faqs = [
@@ -28,6 +27,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="faq-section">
+      <ScrollReveal direction="up" delay={0.1}>
       <div className="container">
         <div className="faq-header">
             <p className="faq-label">
@@ -52,26 +52,18 @@ const FAQ = () => {
                 <ChevronDown className={`chevron ${activeIndex === index ? 'rotate' : ''}`} />
               </div>
 
-              <AnimatePresence>
-                {activeIndex === index && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="faq-answer-wrapper"
-                    viewport={{ once: true }}
-                  >
-                    <div className="faq-answer">
-                      <p>{faq.answer}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {activeIndex === index && (
+                <div className="faq-answer-wrapper">
+                  <div className="faq-answer">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

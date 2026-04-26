@@ -1,37 +1,37 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 
+// --- SECTIONS ---
 import Navbar from './components/sections/Navbar';
 import Hero from './components/sections/Hero';
 import TechStack from './components/sections/TechStack';
 import Projects from './components/sections/Projects';
 import About from './components/sections/About'; 
-import Contact from './components/sections/Contact';
-import Footer from './components/sections/Footer';
+import Experience from './components/sections/Experience'; // Vráceno
 import Services from './components/sections/Services';
+import Workflow from './components/sections/Workflow';     // Vráceno
 import Testimonials from './components/sections/Testimonials';
-import Feedback from './components/sections/Feedback';
-//import PricingCalculator from './components/sections/PricingCalculator'; 
-import NotFound from './components/sections/NotFound'; 
-import Experience from './components/sections/Experience';
-import Workflow from './components/sections/Workflow';
 import FAQ from './components/sections/FAQ';
-//import Playground from './components/sections/Playground';
-import Insights from './components/sections/Insights';
+import Contact from './components/sections/Contact';
+import Feedback from './components/sections/Feedback';
+import NotFound from './components/sections/NotFound'; 
+import Footer from './components/sections/Footer';
 
+// --- PAGES ---
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
 import ProjectDetail from './components/pages/ProjectDetail';
 import ServiceDetail from './components/pages/ServiceDetail';
-import PostDetail from './components/pages/PostDetail';
 
-import SectionDivider from './components/ui/SectionDivider';
+// --- UI COMPONENTS ---
 import CookieConsent from './components/ui/CookieConsent';
 import ScrollToTop from './components/ui/ScrollToTop';
-import PageLayout from './components/ui/PageLayout';
-import RevealOnScroll from './components/ui/RevealOnScroll';
+import PageLayout from './components/ui/PageLayout'; 
 import Dock from './components/ui/Dock';
+import ScrollReveal from './components/ui/RevealOnScroll';
 
+/* =========================================
+   KOMPONENTA DOMOVSKÉ STRÁNKY
+   ========================================= */
 /* =========================================
    KOMPONENTA DOMOVSKÉ STRÁNKY
    ========================================= */
@@ -56,125 +56,101 @@ const HomePortfolio = ({ activeSection, setActiveSection }) => {
   }, [setActiveSection]);
 
   return (
-  <>
-    <div className="app fade-in-content">
-      <div className="ambient-glow">
-        <div className="glow-orb orb-1"></div>
-        <div className="glow-orb orb-2"></div>
-        <div className="glow-orb orb-3"></div>
-      </div>
-      
-      <main>
-        <section id='home'><Hero /></section>
-        <RevealOnScroll delay={0.2}><TechStack /></RevealOnScroll>
-        <SectionDivider />
-        <section id='about'><RevealOnScroll><About /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='experience'><RevealOnScroll><Experience /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='projects'><RevealOnScroll><Projects /></RevealOnScroll></section>
-        <SectionDivider />
-        {/*<section id='playground'><RevealOnScroll><Playground /></RevealOnScroll></section>
-        <SectionDivider /> */}
-        <section id='services'><RevealOnScroll><Services /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='workflow'><RevealOnScroll><Workflow /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='faq'><RevealOnScroll><FAQ /></RevealOnScroll></section>
-        <SectionDivider />
-        {/* <section id='pricing'><RevealOnScroll><PricingCalculator /></RevealOnScroll></section> */}
-        {/*<SectionDivider /> */}
-        <section id='reviews'><RevealOnScroll><Testimonials /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='insights'><RevealOnScroll><Insights /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='contact'><RevealOnScroll><Contact /></RevealOnScroll></section>
-        <SectionDivider />
-        <section id='feedback'><RevealOnScroll><Feedback /></RevealOnScroll></section>
-      </main>
-      
-      <Footer />
-    </div>
+    <>
+      <div className="app fade-in-content">
+        <div className="ambient-glow">
+          <div className="glow-orb orb-1" />
+          <div className="glow-orb orb-2" />
+          <div className="glow-orb orb-3" />
+        </div>
+        
+        <main>
+          {/* Hero sekce - animuje se shora dolů hned při načtení */}
+          <section id='home'>
+              <Hero />
+          </section>
 
-    <Dock activeSection={activeSection} />
-  </>
+          <section>
+              <TechStack /> 
+          </section>
+          
+          {/* O mně - klasický výjezd nahoru */}
+          <section id='about'>
+              <About />
+          </section>
+
+          {/* Zkušenosti - nástup zleva pro dynamiku */}
+          <section id='experience'>
+              <Experience />
+          </section>
+          
+          {/* Projekty - bezpečný výjezd nahoru, aby vynikly karty */}
+          <section id='projects'>
+              <Projects />
+          </section>
+          
+          {/* Služby - nástup zprava */}
+          <section id='services'>
+              <Services />
+          </section>
+
+          {/* Workflow - vyžaduje soustředění, proto čistý výjezd nahoru */}
+          <section id='workflow'>
+              <Workflow />
+          </section>
+          
+          <section id='faq'>
+              <FAQ />
+          </section>
+          
+          {/* Reference - jemný delay pro pocit lehkosti */}
+          <section id='reviews'>
+              <Testimonials />
+          </section>
+          
+          {/* Kontakt a Feedback - vizuální "sevření" (jeden zleva, druhý zprava) */}
+          <section id='contact'>
+              <Contact />
+          </section>
+          
+          <section id='feedback'>
+              <Feedback />
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+
+      <Dock activeSection={activeSection} />
+    </>
   );
 };
 
 /* =========================================
-   HLAVNÍ APP KOMPONENTA (S Routováním)
+   HLAVNÍ APP KOMPONENTA
    ========================================= */
 function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const location = useLocation(); // <--- Důležité pro sledování změny URL
+  const location = useLocation();
 
   return (
     <>
       <Navbar />
       <ScrollToTop />
 
-      {/* Zabalíme Routes do AnimatePresence */}
-      <AnimatePresence mode="wait">
-        {/* Důležité: Předáváme location a key, aby Framer poznal změnu stránky */}
-        <Routes location={location} key={location.pathname}>
-          
-          <Route 
-            path="/" 
-            element={
-              <PageLayout>
-                <HomePortfolio activeSection={activeSection} setActiveSection={setActiveSection} />
-              </PageLayout>
-            } 
-          />
-
-          <Route 
-            path="/privacy-policy" 
-            element={
-              <PageLayout>
-                <PrivacyPolicy />
-              </PageLayout>
-            } 
-          />
-
-          <Route 
-            path="/project/:id" 
-            element={
-              <PageLayout>
-                <ProjectDetail />
-              </PageLayout>
-            } 
-          />
-
-          <Route 
-            path="/service/:id" 
-            element={
-              <PageLayout>
-                <ServiceDetail />
-              </PageLayout>
-            } 
-          />
-
-          <Route 
-            path="/insight/:id" 
-            element={
-              <PageLayout>
-                <PostDetail />
-              </PageLayout>
-            } 
-          />
-
-          <Route 
-            path="*" 
-            element={
-              <PageLayout>
-                <NotFound />
-              </PageLayout>
-            } 
-          />
-          
-        </Routes>
-      </AnimatePresence>
-        <CookieConsent />
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={
+          <PageLayout>
+            <HomePortfolio activeSection={activeSection} setActiveSection={setActiveSection} />
+          </PageLayout>
+        } />
+        <Route path="/privacy-policy" element={<PageLayout><PrivacyPolicy /></PageLayout>} />
+        <Route path="/project/:id" element={<PageLayout><ProjectDetail /></PageLayout>} />
+        <Route path="/service/:id" element={<PageLayout><ServiceDetail /></PageLayout>} />
+        <Route path="*" element={<PageLayout><NotFound /></PageLayout>} />
+      </Routes>
+      
+      <CookieConsent />
     </>
   );
 }

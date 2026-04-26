@@ -1,526 +1,545 @@
-/* ZÁKLAD */
-.pd-section {
-  min-height: 100vh;
-  padding: 100px 0 100px;
-  background-color: #020617;
-  color: #f8fafc;
-  position: relative;
+/* ============================================================
+   PROJECT DETAIL - FROSTED MIDNIGHT / INDIGO STYLE
+   ============================================================ */
+
+:root {
+  --indigo-primary: #6366f1;
+  --indigo-glow: rgba(99, 102, 241, 0.4);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --text-muted: #94a3b8;
 }
 
+.pd-section {
+  min-height: 100vh;
+  padding: 140px 0 100px;
+  background-color: #020617; /* Slate 950 */
+  color: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- AMBIENTNÍ POZADÍ --- */
 .pd-bg-glow {
   position: absolute;
-  top: 10%;
+  top: -10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%);
+  width: 100%;
+  max-width: 1200px;
+  height: 700px;
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
 .pd-container {
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 10;
 }
 
-.relative-z { position: relative; z-index: 1; }
-.text-primary { color: #3b82f6; }
-
-/* TLAČÍTKO ZPĚT */
-.pd-top-bar { margin-bottom: 30px; }
+/* --- NAVIGACE & ZPĚT --- */
+.pd-top-bar {
+  margin-bottom: 40px;
+}
 
 .btn-back-ghost {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  gap: 10px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 10px 22px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .btn-back-ghost:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--indigo-primary);
+  background: rgba(99, 102, 241, 0.1);
   transform: translateX(-5px);
 }
 
-/* HERO OBRÁZEK */
-.pd-hero-image-wrapper {
-  width: 100%;
-  height: 400px;
-  border-radius: 24px;
-  overflow: hidden;
-  margin-bottom: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+/* --- HLAVNÍ VIZUÁL (VIDEO/IMAGE) --- */
+.pd-hero-visual-wrapper {
+  max-width: 950px; /* Zmenšená šířka pro prémiový vzhled */
+  margin: 0 auto 70px auto;
 }
 
-.pd-hero-image {
+.pd-hero-visual {
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  background: #000;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.pd-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* Poměr 16:9 */
+  height: 0;
+}
+
+.pd-video-wrapper iframe {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+.pd-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.pd-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* GRID LAYOUT (2 Sloupce) */
+/* --- COOKIE PLACEHOLDER PRO VIDEO --- */
+.video-blocked-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.blocked-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blocked-icon-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.icon-circle {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.yt-icon {
+  color: #ff0000; /* Zůstává červená pro jasnou asociaci */
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.4));
+}
+
+.lock-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--indigo-primary);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #020617;
+  box-shadow: 0 0 15px var(--indigo-glow);
+}
+
+.lock-icon { 
+  color: white; 
+}
+
+.video-blocked-placeholder h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.video-blocked-placeholder p {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  max-width: 450px;
+  line-height: 1.6;
+  margin: 0 auto 24px;
+}
+
+.btn-accept-inline {
+  background: var(--indigo-primary);
+  color: white;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px var(--indigo-glow);
+}
+
+.btn-accept-inline:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px var(--indigo-glow);
+}
+
+/* --- LAYOUT GRID --- */
 .pd-layout-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 380px; 
+  gap: 80px;
   align-items: start;
 }
 
-/* LEVÝ SLOUPEC: Texty */
-.pd-title {
-  font-size: 3rem;
+/* --- HLAVNÍ OBSAH --- */
+.pd-header-meta {
+  margin-bottom: 20px;
+}
+
+.pd-badge {
+  background: rgba(99, 102, 241, 0.1);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.75rem;
   font-weight: 800;
-  margin: 0 0 16px 0;
-  background: linear-gradient(to right, #ffffff, #94a3b8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.pd-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
   line-height: 1.1;
+  margin: 0 0 24px;
+  color: white;
+  letter-spacing: -0.04em;
 }
 
 .pd-short-desc {
-  font-size: 1.2rem;
-  color: #60a5fa;
-  margin: 0 0 40px 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #cbd5e1;
 }
 
 .pd-divider {
   height: 1px;
-  background: rgba(255,255,255,0.1);
-  margin-bottom: 40px;
+  background: linear-gradient(to right, var(--border-glass), transparent);
+  margin: 40px 0;
 }
 
-.pd-text-block {
-  margin-bottom: 40px;
+/* --- VIDEO SPECIFIKACE --- */
+.pd-video-specs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
 }
 
-.pd-text-block h3 {
-  font-size: 1.6rem;
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.spec-icon-box {
+  width: 42px;
+  height: 42px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+  transition: all 0.3s ease;
+}
+
+.spec-item:hover .spec-icon-box {
+  background: var(--indigo-primary);
   color: white;
-  margin-bottom: 16px;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--indigo-glow);
+}
+
+/* --- TEXTOVÉ BLOKY --- */
+.pd-text-block h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  color: #818cf8;
+  filter: drop-shadow(0 0 8px var(--indigo-glow));
 }
 
 .pd-text-block p {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #94a3b8;
+  margin-bottom: 40px;
 }
 
-.video-blocked-placeholder {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.blocked-content {
-  padding: 40px;
-  max-width: 400px;
-}
-
-.blocked-icon {
-  color: #ef4444; /* YouTube červená */
-  margin-bottom: 20px;
-  opacity: 0.8;
-}
-
-.blocked-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-  color: white;
-}
-
-.blocked-content p {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  margin-bottom: 24px;
-}
-
-.btn-accept-inline {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-accept-inline:hover {
-  background: white;
-  color: black;
-  transform: translateY(-2px);
-}
-
-/* =========================================
-   --- KLÍČOVÉ VLASTNOSTI (Liquid Glass) --- 
-   ========================================= */
-.pd-features-section { margin-bottom: 50px; }
+/* --- VLASTNOSTI (GRID) --- */
 .pd-features-section h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  color: white;
   margin-bottom: 24px;
 }
 
 .pd-features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
 
 .pd-feature-card {
-  position: relative;
-  isolation: isolate;
-  background: transparent !important;
-  padding: 16px;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  padding: 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: #e2e8f0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 14px;
+  transition: all 0.3s ease;
+  color: #cbd5e1;
+  font-weight: 500;
 }
 
-.pd-feature-card::after {
-  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
-  -webkit-backdrop-filter: blur(15px) saturate(180%); backdrop-filter: blur(15px) saturate(180%);
-}
-
-.pd-feature-card::before {
-  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(18, 18, 20, 0.4) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+.check-icon {
+  color: #818cf8;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
 .pd-feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-.pd-feature-card:hover::before {
-  border-color: rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(59, 130, 246, 0.05) 100%);
+.pd-feature-card:hover .check-icon {
+  color: #4ade80; /* Zelená při najetí myší */
+  filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.4));
+  transform: scale(1.1);
 }
 
-/* =========================================
-   --- PRAVÝ SLOUPEC (Sticky Sidebar - Liquid Glass) --- 
-   ========================================= */
-.pd-sidebar {
+/* --- SIDEBAR --- */
+.pd-sticky-card {
+  background: #0a0f1e;
+  border: 1px solid var(--border-glass);
+  border-radius: 32px;
+  padding: 40px;
   position: sticky;
   top: 100px;
-}
-
-.pd-sticky-card {
-  position: relative;
-  isolation: isolate;
-  background: transparent !important;
-  border-radius: 24px;
-  padding: 32px;
-  transition: box-shadow 0.3s ease;
-}
-
-.pd-sticky-card::after {
-  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
-  -webkit-backdrop-filter: blur(25px) saturate(200%); backdrop-filter: blur(25px) saturate(200%);
-}
-
-.pd-sticky-card::before {
-  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 18, 20, 0.4) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .pd-sidebar-title {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  color: white;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
 }
 
 .pd-meta-item {
   display: flex;
-  align-items: flex-start;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .pd-meta-icon {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  padding: 10px;
+  width: 46px;
+  height: 46px;
+  background: #1e293b;
+  border: 1px solid var(--border-glass);
   border-radius: 12px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.pd-meta-item:hover .pd-meta-icon {
+  background: var(--indigo-primary);
+  border-color: var(--indigo-primary);
+  color: white;
+  box-shadow: 0 5px 15px var(--indigo-glow);
+  transform: scale(1.05);
 }
 
 .pd-meta-label {
   display: block;
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-bottom: 4px;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
 .pd-meta-value {
-  font-size: 1.05rem;
   color: white;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.05rem;
 }
 
+/* TECH TAGS */
 .pd-tech-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .pd-tech-tag {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
+  border: 1px solid var(--border-glass);
   padding: 6px 12px;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.3s ease;
+}
+
+.pd-tech-tag:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--indigo-primary);
+  color: white;
 }
 
 .pd-sidebar-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin: 24px 0;
+  background: var(--border-glass);
+  margin: 32px 0;
 }
 
+/* AKČNÍ TLAČÍTKA */
 .pd-action-buttons {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.btn-primary-link, .btn-outline-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.btn-primary-link { background: white; color: black; }
-.btn-primary-link:hover { background: #f1f5f9; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
-
-.btn-outline-link { background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.2); }
-.btn-outline-link:hover { background: rgba(255, 255, 255, 0.05); border-color: white; }
-
-/* =========================================
-   --- CTA BANNER DOLE (Liquid Glass) --- 
-   ========================================= */
-.pd-cta-banner {
-  position: relative;
-  isolation: isolate;
-  background: transparent !important;
-  margin-top: 80px;
-  border-radius: 24px;
-  padding: 50px 30px;
-  text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.pd-cta-banner::after {
-  content: ''; position: absolute; inset: 0; z-index: -2; border-radius: inherit;
-  -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
-}
-
-.pd-cta-banner::before {
-  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
-  /* Zachoval jsem ten lehce modrý nádech z tvého původního kódu */
-  background: linear-gradient(135deg, rgba(30, 64, 175, 0.15) 0%, rgba(20, 20, 22, 0.6) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15);
-  transition: all 0.4s ease;
-}
-
-.pd-cta-banner:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.15);
-}
-
-.pd-cta-banner h2 { font-size: 2rem; margin-bottom: 12px; color: white; }
-.pd-cta-banner p { color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; }
-
-.btn-cta {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 16px 32px;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-cta:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-
-.pd-hero-visual {
-  margin-bottom: 50px;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
-
-.pd-video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-  height: 0;
-}
-
-.pd-video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* VIDEO SPECS BAR */
-.pd-video-specs {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 30px;
-  padding: 15px 25px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  width: fit-content;
-}
-
-.spec-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #60a5fa;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-/* BADGES */
-.pd-header-meta {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.pd-badge {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  padding: 4px 12px;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.video-badge {
-  background: rgba(168, 85, 247, 0.1);
-  color: #a855f7;
-}
-
-/* YOUTUBE TLAČÍTKO */
 .btn-video-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  background: #ff0000; /* YouTube Red */
+  background: var(--indigo-primary);
   color: white;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 800;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 10px 20px var(--indigo-glow);
 }
 
 .btn-video-link:hover {
-  background: #cc0000;
+  background: #4f46e5;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
 }
 
-/* RESPONZIVITA */
-@media (max-width: 992px) {
-  .pd-layout-grid { grid-template-columns: 1fr; gap: 40px; }
-  .pd-sidebar { position: static; }
-  .pd-hero-image-wrapper { height: 300px; }
+.btn-outline-link {
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  color: white;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 600px) {
+.btn-outline-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: white;
+}
+
+/* 404 NENALEZENO */
+.pd-not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #020617;
+  color: white;
+}
+
+.pd-not-found h2 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+}
+
+/* --- RESPONZIVITA --- */
+@media (max-width: 1200px) {
+  .pd-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .pd-sticky-card {
+    position: static;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pd-section { padding-top: 100px; }
   .pd-title { font-size: 2.2rem; }
-  .pd-features-grid, .pd-gallery-grid { grid-template-columns: 1fr; }
-  .pd-hero-image-wrapper { height: 200px; }
-}
-
-/* =========================================
-   --- SVĚTLÝ MOTIV (Light Mode) --- 
-   ========================================= */
-body.light-mode .pd-section { background-color: #f8fafc; color: #0f172a; }
-body.light-mode .pd-title { background: linear-gradient(to right, #0f172a, #475569); -webkit-background-clip: text; background-clip: text;  color: transparent; }
-body.light-mode .pd-short-desc { color: #2563eb; }
-body.light-mode .pd-text-block h3 { color: #0f172a; }
-body.light-mode .pd-text-block p { color: #475569; }
-body.light-mode .pd-sidebar-title { color: #0f172a; }
-body.light-mode .pd-meta-value { color: #0f172a; }
-body.light-mode .pd-cta-banner h2 { color: #0f172a; }
-body.light-mode .pd-divider, body.light-mode .pd-sidebar-divider { background: rgba(0,0,0,0.1); }
-body.light-mode .pd-feature-card { color: #1e293b; }
-
-/* Light Mode Liquid Glass Overrides */
-body.light-mode .pd-feature-card::before,
-body.light-mode .pd-sticky-card::before,
-body.light-mode .pd-cta-banner::before {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.1);
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.8);
-}
-
-body.light-mode .pd-feature-card:hover { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); }
-body.light-mode .pd-feature-card:hover::before { border-color: rgba(37, 99, 235, 0.3); }
-
-body.light-mode .pd-cta-banner:hover { box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1); }
-
-body.light-mode .pd-tech-tag {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  color: #475569;
+  
+  .pd-hero-visual-wrapper {
+    margin-bottom: 40px;
+    border-radius: 20px;
+  }
+  
+  .video-blocked-placeholder h3 { font-size: 1.5rem; }
+  .video-blocked-placeholder p { font-size: 0.95rem; }
+  .icon-circle { width: 80px; height: 80px; }
+  
+  .pd-video-specs {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .pd-sticky-card { 
+    padding: 24px; 
+    border-radius: 24px; 
+  }
 }

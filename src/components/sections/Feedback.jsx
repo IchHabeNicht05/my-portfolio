@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Feedback.css";
-import Button from "../ui/Button"; // Tvá UI komponenta
 import { Star, Send, CheckCircle, Loader2, MessageSquare } from "lucide-react";
 import emailjs from '@emailjs/browser';
+import ScrollReveal from '../ui/RevealOnScroll';
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -61,6 +61,8 @@ const Feedback = () => {
       <div className="ambient-glow left"></div>
       <div className="ambient-glow right"></div>
 
+      <ScrollReveal direction="up" delay={0.1}>
+
       {/* Nový obal kontejneru pro vycentrování obsahu */}
       <div className="container feedback-container">
         
@@ -117,7 +119,9 @@ const Feedback = () => {
                   <div className="form-group">
                     <label className="form-label">Vaše jméno</label>
                     <input
+                    id="feedback_name"
                       type="text"
+                      name="name"
                       className="glass-input"
                       placeholder="Petr Novák"
                       required
@@ -128,7 +132,9 @@ const Feedback = () => {
                   <div className="form-group">
                     <label className="form-label">Projekt / Firma</label>
                     <input
+                    id="feedback_text"
                       type="text"
+                      name="text"
                       className="glass-input"
                       placeholder="E-shop s kávou"
                       value={formData.project}
@@ -154,8 +160,8 @@ const Feedback = () => {
                 {error && <p className="error-text">{error}</p>}
 
                 <div className="submit-wrapper">
-                  <Button 
-                    variant="primary" 
+                  <div
+                    type="button"
                     className="btn-feedback"
                     disabled={isSending}
                     aria-label='Odeslat hodnocení'
@@ -165,7 +171,7 @@ const Feedback = () => {
                     ) : (
                       <>Odeslat hodnocení <Send size={18} style={{ marginLeft: 8 }} /></>
                     )}
-                  </Button>
+                  </div>
                 </div>
               </form>
             </>
@@ -188,6 +194,7 @@ const Feedback = () => {
           )}
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 };

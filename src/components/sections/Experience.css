@@ -1,328 +1,255 @@
-:root {
-  --primary-glow: #2997ff;
-  --secondary-glow: #9f5afd;
-}
+/* ============================================================
+   EXPERIENCE SECTION - INDIGO TIMELINE EDITION
+   ============================================================ */
 
 .experience-section {
   padding: 120px 0;
   position: relative;
+  background-color: #020617; /* Slate 950 */
+  color: #f8fafc;
   overflow: hidden;
 }
 
-/* --- AMBIENTNÍ ZÁŘE --- */
-.experience-glow {
+/* Indigo aura na pozadí */
+.experience-ambient-glow {
   position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
   pointer-events: none;
   z-index: 0;
-  filter: blur(80px);
-}
-
-.experience-glow.top-left { 
-  top: 100px; 
-  left: 0px; 
-  background: radial-gradient(circle, rgba(159, 90, 253, 0.1) 0%, transparent 70%); 
-}
-.experience-glow.bottom-right { 
-  bottom: 100px; 
-  right: 0px; 
-  background: radial-gradient(circle, rgba(41, 151, 255, 0.1) 0%, transparent 70%); 
 }
 
 .experience-container {
-  position: relative;
-  z-index: 2;
-  padding: 0 24px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
 }
 
-/* --- HLAVIČKA SEKCE --- */
-.experience-header-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* --- HEADER --- */
+.experience-header-pro {
   text-align: center;
   margin-bottom: 80px;
 }
 
-.experience-tag {
+.experience-tag-pro {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(159, 90, 253, 0.1);
-  color: #c084fc;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #818cf8;
   padding: 8px 16px;
   border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(159, 90, 253, 0.2);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
-.experience-title-large {
-  font-size: 3rem;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 16px;
-  line-height: 1.1;
-  background: linear-gradient(90deg, #fff, #999);
+.experience-title-pro {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.text-pro-gradient {
+  background: linear-gradient(to right, #818cf8, #6366f1);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-.experience-description {
-  font-size: 1.1rem;
-  color: #a0a0a0;
-  line-height: 1.7;
+.experience-desc-pro {
+  color: #94a3b8;
   max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 /* =========================================
-   --- ČASOVÁ OSA (TIMELINE) --- 
+   TIMELINE CORE (STŘEDOVÁ OSA)
    ========================================= */
-.timeline-wrapper {
+.timeline-container-pro {
   position: relative;
-  width: 100%;
+  padding: 40px 0;
 }
 
-.timeline-line {
+/* Centrální linka */
+.timeline-spine {
   position: absolute;
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(159, 90, 253, 0.5), rgba(41, 151, 255, 0.5), transparent);
-  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(99, 102, 241, 0.3) 15%,
+    rgba(99, 102, 241, 0.3) 85%,
+    transparent
+  );
+  transform: translateX(-50%);
 }
 
-.timeline-item {
-  position: relative;
-  width: 100%;
+/* Řada timeline */
+.timeline-row-pro {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 60px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 80px; /* Mezera mezi zkušenostmi */
 }
 
-.timeline-item:last-child {
+.timeline-row-pro:last-child {
   margin-bottom: 0;
 }
 
-.timeline-marker {
+/* =========================================
+   MARKER (TEČKA NA STŘEDU)
+   ========================================= */
+
+.timeline-dot-wrapper {
   position: absolute;
   left: 50%;
+  top: 24px;
   transform: translateX(-50%);
-  top: 20px;
-  z-index: 3;
+  z-index: 20;
 }
 
-.marker-icon {
-  width: 44px;
-  height: 44px;
-  background: #1e293b;
-  border: 2px solid #a855f7;
+.timeline-dot-pro {
+  width: 16px;
+  height: 16px;
+  background: #020617;
+  border: 2px solid #6366f1;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #c084fc;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
 }
 
-.timeline-item:hover .marker-icon {
-  transform: scale(1.1);
-  background: #a855f7;
-  color: white;
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+.dot-inner {
+  width: 6px;
+  height: 6px;
+  background: #6366f1;
+  border-radius: 50%;
 }
-
 /* =========================================
-   --- LIQUID GLASS PRO KARTY --- 
+   KARTY (CARDS)
    ========================================= */
-.timeline-content-card {
-  width: calc(50% - 50px);
+.timeline-card-wrapper {
+  width: 45%; /* Karta zabírá necelou polovinu */
+}
+
+/* Levá řada */
+.left-row {
+  justify-content: flex-start;
+}
+
+/* Pravá řada */
+.right-row {
+  justify-content: flex-end;
+}
+
+.timeline-card-pro {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 24px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  z-index: 10;
-  isolation: isolate;
-  background: transparent !important;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.timeline-item.left .timeline-content-card { margin-right: auto; }
-.timeline-item.right .timeline-content-card { margin-left: auto; }
-
-/* Čistý Blur (Spodní vrstva) */
-.timeline-content-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-  background: transparent; 
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%); 
-  overflow: hidden;
-}
-
-/* Odlesky a tmavý tón (Vrchní vrstva) */
-.timeline-content-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  box-sizing: border-box; 
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.03) 0%, 
-    rgba(18, 18, 20, 0.5) 20%, 
-    rgba(18, 18, 20, 0.6) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  pointer-events: none;
-}
-
-/* Efekt při najetí myší na celý timeline bod */
-.timeline-item:hover .timeline-content-card {
+.timeline-card-pro:hover {
   transform: translateY(-5px);
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover odlesky přes ::before */
-.timeline-item:hover .timeline-content-card::before {
-  border-color: rgba(168, 85, 247, 0.4);
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(168, 85, 247, 0.05) 100%
-  );
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.2), 
-    0 15px 40px rgba(0, 0, 0, 0.3);
+/* Header karty (Období + Ikona) */
+.card-header-pro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-/* --- Texty v kartě --- */
-.timeline-year {
-  display: inline-block;
+.card-period {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #c084fc;
-  margin-bottom: 12px;
-  letter-spacing: 1px;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 4px 12px;
+  border-radius: 100px;
 }
 
-.timeline-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-
-.timeline-company {
-  display: block;
-  font-size: 0.95rem;
+.card-type-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #94a3b8;
-  margin-bottom: 16px;
-  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.timeline-description {
+/* Texty v kartě */
+.card-role {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.card-institution {
+  display: block;
   font-size: 1rem;
-  color: #a0a0a0;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.card-details {
+  font-size: 0.95rem;
+  color: #64748b;
   line-height: 1.6;
-  margin: 0;
 }
 
 /* =========================================
-   --- RESPONSIVITA (Mobil a Tablet) --- 
+   RESPONZIVITA (MOBILNÍ VERZE)
    ========================================= */
 @media (max-width: 768px) {
-  .experience-title-large { font-size: 2.2rem; }
-
-  .timeline-line {
+  .timeline-spine {
     left: 20px;
     transform: none;
   }
 
-  .timeline-marker {
+  /* Změněno na wrapper */
+  .timeline-dot-wrapper {
     left: 20px;
     transform: translateX(-50%);
   }
 
-  .timeline-content-card {
-    width: calc(100% - 60px);
+  .timeline-card-wrapper {
+    width: calc(100% - 50px);
     margin-left: 50px !important;
-    margin-right: 0 !important;
-    text-align: left;
-    padding: 24px;
   }
-}
 
-/* =========================================
-   --- SVĚTLÝ MOTIV (LIGHT MODE) --- 
-   ========================================= */
-
-body.light-mode .experience-title-large {
-  background: linear-gradient(90deg, #1e293b, #64748b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-body.light-mode .experience-description,
-body.light-mode .timeline-company,
-body.light-mode .timeline-description {
-  color: #475569;
-}
-
-body.light-mode .timeline-title {
-  color: #0f172a;
-}
-
-body.light-mode .timeline-line {
-  background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.4), rgba(37, 99, 235, 0.4), transparent);
-}
-
-/* Světlé sklo pro Karty */
-body.light-mode .timeline-content-card::before {
-  background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.6) 0%, 
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.8), 
-    0 4px 15px rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode .timeline-item:hover .timeline-content-card::before {
-  border-color: rgba(168, 85, 247, 0.3);
-  box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.8), 
-    0 10px 30px rgba(0, 0, 0, 0.06);
-}
-
-body.light-mode .marker-icon {
-  background: #ffffff;
-  border: 2px solid #a855f7;
-  color: #9333ea;
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
-}
-
-body.light-mode .timeline-item:hover .marker-icon {
-  background: #9333ea;
-  color: white;
+  .timeline-row-pro {
+    justify-content: flex-start !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }

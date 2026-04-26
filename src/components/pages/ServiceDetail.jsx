@@ -128,6 +128,8 @@ const ServiceDetail = () => {
                 <div className="sd-form-group">
                   <label>Vaše Jméno</label>
                   <input 
+                  id="sd_name"
+                  name="user_name"
                      type="text" 
                      placeholder="Jan Novák" 
                      className="sd-input"
@@ -140,6 +142,8 @@ const ServiceDetail = () => {
                 <div className="sd-form-group">
                   <label>Váš Email</label>
                   <input 
+                  id="sd_email"
+                  name="user_email"
                      type="email" 
                      placeholder="vas@email.cz" 
                      className="sd-input"
@@ -152,6 +156,8 @@ const ServiceDetail = () => {
                 <div className="sd-form-group">
                   <label>Detail projektu / Zpráva</label>
                   <textarea 
+                  id="sd_message"
+                  name="message"
                      rows="4" 
                      placeholder={`Dobrý den, mám zájem o ${service.title}...`} 
                      className="sd-textarea"
