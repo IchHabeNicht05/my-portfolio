@@ -21,12 +21,10 @@ const DOCK_ITEMS = [
   { id: 'about', icon: User, label: 'O mně', href: '#about' },
   { id: 'experience', icon: Award, label: 'Zkušenosti', href: '#experience' },
   { id: 'projects', icon: Briefcase, label: 'Projekty', href: '#projects' },
-  { id: 'playground', icon: Sparkles, label: 'Playground', href: '#playground' },
   { id: 'services', icon: Layers, label: 'Služby', href: '#services' },
   { id: 'workflow', icon: Workflow, label: 'Workflow', href: '#workflow' },
   { id: 'faq', icon: HelpCircle, label: 'FAQ', href: '#faq' },
   { id: 'reviews', icon: Star, label: 'Recenze', href: '#reviews'},
-  { id: 'insights', icon: BookOpen, label: 'Insights', href: '#insights'},
   { id: 'contact', icon: Mail, label: 'Kontakt', href: '#contact' },
   { id: 'feedback', icon: MessageSquare, label: 'Feedback', href: '#feedback' },
 ];
