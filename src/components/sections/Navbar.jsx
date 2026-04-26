@@ -18,7 +18,7 @@ const Navbar = () => {
   });
 
   // --- 1. Logika pro Light/Dark mode ---
-  const [isLightMode, setIsLightMode] = useState(() => {
+ {/*const [isLightMode, setIsLightMode] = useState(() => {
   const savedTheme = localStorage.getItem('theme');
   return savedTheme === 'light';
 });
@@ -31,8 +31,9 @@ const Navbar = () => {
       document.body.classList.remove('light-mode');
     }
   }, [isLightMode]);
+  */}
 
-  const toggleTheme = () => {
+  {/*const toggleTheme = () => {
     setIsLightMode(!isLightMode);
     if (!isLightMode) {
       document.body.classList.add('light-mode');
@@ -41,7 +42,7 @@ const Navbar = () => {
       document.body.classList.remove('light-mode');
       localStorage.setItem('theme', 'dark');
     }
-  };
+  };*/}
 
   return (
     <header className="navbar-wrapper">
@@ -63,7 +64,7 @@ const Navbar = () => {
         {/* PRAVÁ ČÁST - AKCE */}
         <div className="nav-right">
           
-          {/* TLAČÍTKO PRO PŘEPÍNÁNÍ REŽIMU */}
+          {/* TLAČÍTKO PRO PŘEPÍNÁNÍ REŽIMU
           <button 
               className="theme-toggle" 
               onClick={toggleTheme}
@@ -71,6 +72,7 @@ const Navbar = () => {
           >
               {isLightMode ? <Moon size={18} /> : <Sun size={18} />}
           </button>
+          */}
                   
           <div className="social-icons">
             <a href="https://github.com/IchHabeNicht05" target="_blank" rel="noreferrer" className="nav-icon" aria-label="GitHub">
