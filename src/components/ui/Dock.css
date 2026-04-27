@@ -337,6 +337,36 @@ body.light-mode .dock-tooltip {
 }
 
 @media (max-width: 600px) {
-  .dock-container.expanded { width: 360px; padding: 0 8px; } /* Zvětšeno, aby se vešlo 8 položek */
-  .dock-item { width: 38px; height: 38px; } /* Mírně zmenšeno pro úsporu místa */
+  .dock-wrapper {
+    /* Zvedneme dock mírně výš kvůli domovské čáře na iPhonech */
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)); 
+  }
+
+  .dock-container.expanded { 
+    /* Místo fixních 360px použijeme dynamickou šířku přesně na velikost displeje */
+    width: calc(100vw - 32px); 
+    max-width: 400px; 
+    padding: 0 8px; 
+  } 
+
+  .dock-item { 
+    width: 36px; /* Trochu zmenšeno pro lepší dýchání 8 ikon */
+    height: 36px; 
+  }
+
+  /* Vypnutí bublin na dotykových zařízeních – zrychluje to navigaci prstem */
+  .dock-tooltip {
+    display: none !important;
+  }
+}
+
+/* Ošetření pro ultra úzké displeje (šířka kolem 320px) */
+@media (max-width: 360px) {
+  .dock-container.expanded {
+    padding: 0 4px;
+  }
+  .dock-item {
+    width: 32px;
+    height: 32px;
+  }
 }

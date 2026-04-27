@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TechStack.css';
 import { SKILLS } from '../../data/skills';
 import ScrollReveal from '../ui/RevealOnScroll';
 
 const TechStack = () => {
   const categoryOrder = ["Frontend", "Backend & Cloud", "Nástroje", "Video Produkce"];
-  const [hoveredTech, setHoveredTech] = useState(null);
+  // const [hoveredTech, setHoveredTech] = useState(null);
 
   // Seskupení dovedností
   const groupedSkills = SKILLS.reduce((acc, skill) => {
@@ -36,8 +36,8 @@ const TechStack = () => {
                     <div 
                       key={index} 
                       className="tech-item-badge"
-                      onMouseEnter={() => setHoveredTech(skill.name)}
-                      onMouseLeave={() => setHoveredTech(null)}
+                      /*onMouseEnter={() => setHoveredTech(skill.name)}
+                      onMouseLeave={() => setHoveredTech(null)}}*/
                     >
                       {/* Vnitřní část, která ořezává shine effect */}
                       <div className="badge-content">
@@ -50,12 +50,12 @@ const TechStack = () => {
                         <span className="tech-name">{skill.name}</span>
                       </div>
 
-                      {/* Tooltip je mimo badge-content, aby mohl vyčnívat ven */}
+                      {/* Tooltip je mimo badge-content, aby mohl vyčnívat ven
                       {hoveredTech === skill.name && skill.info && (
                         <div className="tech-tooltip">
                           {skill.info}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   ))}
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dock.css';
 import { 
   Home, 
@@ -31,18 +31,40 @@ const DOCK_ITEMS = [
 
 const Dock = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // NOVÉ: Zavření Docku při scrollování
+  useEffect(() => {
+    const handleScroll = () => {
+      // window.innerWidth <= 768 zajistí, že se to nespustí na velkém monitoru
+      if (isOpen && window.innerWidth <= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
 
   return (
     <div className="dock-wrapper">
       <nav 
         className={`dock-container ${isOpen ? 'expanded' : 'collapsed'}`}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
-        onClick={() => setIsOpen(!isOpen)}
+        onTouchStart={() => setIsTouchDevice(true)}
+        onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
+        onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
       >
         
         {/* Obsah sbaleného Docku (Ikona Menu) */}
-        <div className="dock-collapsed-view">
+        <div 
+          className="dock-collapsed-view"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <Menu size={24} className="menu-icon" />
         </div>
 
@@ -54,12 +76,11 @@ const Dock = () => {
               href={item.href} 
               className="dock-item"
               aria-label={item.label}
+              onClick={() => setIsOpen(false)}
             >
               <div className="icon-wrapper">
                 <item.icon size={20} />
               </div>
-              
-              {/* Tooltip (bublina s textem) */}
               <span className="dock-tooltip">{item.label}</span>
             </a>
           ))}
