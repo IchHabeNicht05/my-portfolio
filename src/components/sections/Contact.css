@@ -204,6 +204,7 @@
 /* --- FORMULÁŘ (PRAVÁ ČÁST) --- */
 .contact-form {
   padding: 60px;
+  box-sizing: border-box; /* 👈 Pojistka, aby padding nerozbil grid na mobilech */
   background: rgba(13, 14, 18, 0.4) !important;
   border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -226,6 +227,8 @@
 
 .contact-input {
   width: 100%;
+  box-sizing: border-box; /* 👈 Přinutí padding počítat se do 100% šířky */
+  font-family: inherit;   /* 👈 Zabrání výchozímu monospace fontu u textarey */
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 16px 20px;
@@ -240,6 +243,11 @@
   background: rgba(99, 102, 241, 0.03);
   border-color: #6366f1;
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.textarea-resize-vertical {
+  resize: vertical;       /* 👈 Zabrání roztahování do strany, povolí jen dolů */
+  min-height: 120px;      /* 👈 Nastaví rozumnou výchozí výšku, aby to nebyla jen nudle */
 }
 
 .submit-btn {

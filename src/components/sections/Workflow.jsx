@@ -1,37 +1,10 @@
 import React from 'react';
 import { Target, Zap, Code, BarChart3, MessageCircle, Sparkles } from 'lucide-react';
 import ScrollReveal from '../ui/RevealOnScroll';
+import { steps } from '../../data/stepData';
 import './Workflow.css';
 
 const Workflow = () => {
-  // Data pro jednotlivé kroky spolupráce
-  const steps = [
-    {
-      icon: <Target size={32} />,
-      title: "1. Strategie & Cíle",
-      description: "Nezačínám kódem, ale otázkami. Pochopím váš byznys, zákazníky a definujeme jasné cíle, které má web plnit.",
-      color: "#60a5fa" // Modrá
-    },
-    {
-      icon: <Zap size={32} />,
-      title: "2. UX & Návrh",
-      description: "Navrhnu cestu zákazníka tak, aby byla intuitivní a vedla k nákupu nebo poptávce. Žádné zbytečné překážky.",
-      color: "#a78bfa" // Fialová
-    },
-    {
-      icon: <Code size={32} />,
-      title: "3. Vývoj & Optimalizace",
-      description: "Kóduji moderně (React/Next.js) s důrazem na brutální rychlost a SEO. Protože pomalý web zákazníci opouštějí.",
-      color: "#f87171" // Červená
-    },
-    {
-      icon: <BarChart3 size={32} />,
-      title: "4. Data & Spuštění",
-      description: "Spuštěním to nekončí. Nastavím měření, analyzuji data a ladím detaily, aby web dosahoval maximálních konverzí.",
-      color: "#34d399" // Zelená
-    }
-  ];
-
   return (
     <section id="workflow" className="workflow-section">
       <ScrollReveal direction="up" delay={0.1}>
@@ -59,7 +32,7 @@ const Workflow = () => {
                 
                 {/* Ikona s barevným glow */}
                 <div className="step-icon-wrapper">
-                  {step.icon}
+                  <step.icon size={32} color={step.color} />
                 </div>
                 
                 <h3 className="step-title">{step.title}</h3>
