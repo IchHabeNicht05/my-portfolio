@@ -160,18 +160,19 @@ const Feedback = () => {
                 {error && <p className="error-text">{error}</p>}
 
                 <div className="submit-wrapper">
-                  <div
-                    type="button"
+                  <button
+                    type="submit" // Toto řekne formuláři: "Teď se odešli"
                     className="btn-feedback"
                     disabled={isSending}
                     aria-label='Odeslat hodnocení'
+                    style={{ cursor: isSending ? 'not-allowed' : 'pointer', width: '100%' }} // Přidáno pro jistotu
                   >
                     {isSending ? (
                       <>Odesílám... <Loader2 size={18} className="spin-animation" style={{ marginLeft: 8 }} /></>
                     ) : (
                       <>Odeslat hodnocení <Send size={18} style={{ marginLeft: 8 }} /></>
                     )}
-                  </div>
+                  </button>
                 </div>
               </form>
             </>
