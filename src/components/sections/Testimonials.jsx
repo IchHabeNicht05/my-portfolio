@@ -11,6 +11,14 @@ const reviews = [
     text: "Spolupráce s tebou byla velmi dobrá, práce je odvedená kvalitně a výsledek vypadá opravdu dobře. Navíc jsi byl ochotný pomoct i s věcmi mimo samotný projekt, čehož si vážím.",
     avatar: "ŠM",
     rating: 5
+  },
+  {
+    id: 2,
+    name: "Zuzana H.",
+    role: "Psí salon U Zuzky",
+    text: "Jsem velice spokojená s vytvořeným webem pro můj nový psí salon 🐕🤩✂️ Krásně barevné, přehledné a celkově líbivé 🤩",
+    avatar: "ZH",
+    rating: 5
   }
 ];
 
