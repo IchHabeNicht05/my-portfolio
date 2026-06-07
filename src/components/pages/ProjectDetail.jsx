@@ -10,7 +10,11 @@ import './ProjectDetail.css';
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const project = ProjectsData.find(p => p.id === parseInt(id) || p.id === id);
+  const project = ProjectsData.find(p => 
+    p.id?.toString() === id?.toString() || 
+    p.liveLink?.includes(id) || 
+    p.slug === id
+  );
 
   const [cookieConsent, setCookieConsent] = useState(
     localStorage.getItem('cookieConsent') === 'accepted'
@@ -182,6 +186,11 @@ const ProjectDetail = () => {
                 {isVideo && project.youtubeLink && (
                   <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="btn-video-link">
                     Otevřít na YouTube <Youtube size={18} />
+                  </a>
+                )}
+                {!isVideo && project.liveLink && (
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn-live-link">
+                    Zobrazit web naživo <Maximize size={18} />
                   </a>
                 )}
                 {project.githubLink && !isVideo && (

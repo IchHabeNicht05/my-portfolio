@@ -450,6 +450,29 @@
   gap: 12px;
 }
 
+.btn-live-link {
+  width: 100%;
+  padding: 16px;
+  background: #6366f1; /* Tvoje Indigo barva */
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+  margin-bottom: 12px; /* Mezera, pokud by pod ním byl ještě GitHub */
+}
+
+.btn-live-link:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+}
+
 .btn-video-link {
   background: var(--indigo-primary);
   color: white;
@@ -472,23 +495,24 @@
 }
 
 .btn-outline-link {
-  background: transparent;
-  border: 1px solid var(--border-glass);
+  width: 100%;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   text-decoration: none;
-  padding: 16px;
-  border-radius: 16px;
+  border-radius: 12px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-weight: 700;
   transition: all 0.3s ease;
 }
 
 .btn-outline-link:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: white;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* 404 NENALEZENO */
