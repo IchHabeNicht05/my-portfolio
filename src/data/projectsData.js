@@ -18,7 +18,7 @@ export const ProjectsData = [
     tech: ["React", "Python", "TailwindCSS", "Django", "SQLite", "Render", "Vercel", "Neon"],
     image: "/salonuzuzky.webp",
     liveLink: "https://www.salonuzuzky.cz",
-    githubLink: "#",
+    githubLink: "https://github.com/IchHabeNicht05/frontend-salon",
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const ProjectsData = [
     tech: ["React", "Tailwind CSS", "Formspree", "Vercel"],
     image: "/bohemiapath.webp",
     liveLink: "https://www.bohemia-path.com",
-    githubLink: "#",
+    githubLink: "https://github.com/IchHabeNicht05/bohemia-trails",
   },
   {
     id: 3,

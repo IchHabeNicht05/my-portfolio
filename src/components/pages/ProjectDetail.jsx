@@ -188,12 +188,12 @@ const ProjectDetail = () => {
                     Otevřít na YouTube <Youtube size={18} />
                   </a>
                 )}
-                {!isVideo && project.liveLink && (
+                {!isVideo && project.liveLink && project.liveLink !== "#" && (
                   <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn-live-link">
                     Zobrazit web naživo <Maximize size={18} />
                   </a>
                 )}
-                {project.githubLink && !isVideo && (
+                {project.githubLink && !isVideo && project.githubLink !== "#" && (
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="btn-outline-link">
                     Zdrojový kód <Github size={18} />
                   </a>
