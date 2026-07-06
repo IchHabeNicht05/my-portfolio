@@ -70,7 +70,7 @@ export const ProjectsData = [
     longDesc: 'Aplikace je určena pro hráče šachu a dalších her, kteří chtějí rychle vypočítat svůj Elo rating na základě zadaných parametrů. Důraz byl kladen na UX na mobilních zařízeních a rychlou odezvu.',
     tech: ['React', 'Tailwind CSS', 'Vercel'],
     image: '/EloCalculator.webp',
-    liveLink: '#',
+    liveLink: 'https://chess-elo-calculator-beta.vercel.app/',
     githubLink: '#',
   },
   {
