@@ -28,14 +28,12 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import PageLayout from './components/ui/PageLayout'; 
 import Dock from './components/ui/Dock';
 import ScrollReveal from './components/ui/RevealOnScroll';
+import ScrollProgress from './components/ui/ScrollProgress';
 
 /* =========================================
    KOMPONENTA DOMOVSKÉ STRÁNKY
    ========================================= */
-/* =========================================
-   KOMPONENTA DOMOVSKÉ STRÁNKY
-   ========================================= */
-const HomePortfolio = ({ activeSection, setActiveSection }) => {
+const HomePortfolio = ({ activeSection, setActiveSection })=> {
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
     
@@ -70,9 +68,9 @@ const HomePortfolio = ({ activeSection, setActiveSection }) => {
               <Hero />
           </section>
 
-          <section>
+          {/*<section>
               <TechStack /> 
-          </section>
+          </section>*/}
           
           {/* O mně - klasický výjezd nahoru */}
           <section id='about'>
@@ -151,6 +149,8 @@ function App() {
       </Routes>
       
       <CookieConsent />
+
+      <ScrollProgress />
     </>
   );
 }

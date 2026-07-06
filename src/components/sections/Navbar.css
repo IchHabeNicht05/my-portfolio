@@ -48,6 +48,7 @@
   z-index: -2;
   border-radius: inherit;
   
+  /* Vlnění a blur */
   background: transparent; 
   -webkit-backdrop-filter: blur(8px) saturate(150%);
   backdrop-filter: blur(8px) saturate(150%); 
@@ -55,7 +56,11 @@
   -webkit-filter: url(#container-glass);
   filter: url(#container-glass);
   
-  overflow: hidden;
+  /* ✅ KLÍČOVÉ OPRAVY PRO VYHLAZENÍ */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: filter;
+  transform: translateZ(0); /* Vynutí akceleraci GPU a vyhlazení */
 }
 
 /* HORNÍ VRSTVA: TMAVÝ TÓN, GRADIENT A HRANY */

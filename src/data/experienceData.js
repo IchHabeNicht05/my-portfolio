@@ -35,7 +35,7 @@ export const experienceData = [
     },
         {
       id: 5,
-      year: '2022 - 2025',
+      year: '2021 - 2025',
       title: 'První krůčky v kódování',
       company: 'HTML, CSS & JS',
       description: 'Úplné začátky s tvorbou webů, pochopení struktury stránek a základní interaktivity. Zde začala moje vášeň pro frontend.',

@@ -43,19 +43,7 @@ const Hero = () => {
                 Konzultovat projekt
             </a>
         </div>
-
-        {/* Trust Section - pro firmy zásadní
-        <div className="hero-trust-bar animate-fade-in">
-          <p>Technologický stack</p>
-          <div className="trust-logos">
-            <span>React / Next.js</span>
-            <span>TypeScript</span>
-            <span>Node.js</span>
-            <span>Python / Django</span>
-            <span>PostgreSQL</span>
-          </div>
-        </div>
-        */}
+        
       </div>
       </ScrollReveal>
     </section>

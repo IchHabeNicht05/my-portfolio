@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import InquiryModal from './InquiryModal';
 import './Navbar.css';
 import { Mail, Github, Linkedin, ArrowUpRight, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   // --- 1. Logika pro čas ---
   const [time, setTime] = useState(new Date());
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 60000); // Aktualizuje každou minutu
@@ -85,12 +87,19 @@ const Navbar = () => {
           
           <div className="divider"></div>
           
-          <a href="mailto:martin.habenicht@icloud.com" className="nav-btn-contact" aria-label="Napsat email">
+          <button 
+            onClick={() => setIsInquiryOpen(true)} 
+            className="nav-btn-contact" 
+            style={{ border: 'none', cursor: 'pointer' }}
+            aria-label="Otevřít poptávkový formulář"
+          >
             Poptat <ArrowUpRight size={16} strokeWidth={2.5} />
-          </a>
+          </button>
         </div>
 
       </nav>
+      
+      <InquiryModal isOpen={isInquiryOpen} onClose={() => setIsInquiryOpen(false)} />
     </header>
   );
 };

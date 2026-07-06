@@ -1,0 +1,105 @@
+/* ============================================================
+   💎 PREMIUM NEON SCROLL PROGRESS (Finální high-contrast verze)
+   ============================================================ */
+
+.scroll-progress-wrapper {
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%; /* Vynutí dokonalý kruh celého prvku */
+  z-index: 100;
+  cursor: pointer;
+  
+  /* Nástupní animace */
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: 
+    opacity 0.4s ease,
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.3s ease;
+
+  /* Jemná záře v základu */
+  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.15);
+}
+
+.scroll-progress-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* 👉 HOVER EFEKT - Aktivace záře */
+.scroll-progress-wrapper:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 
+    0 0 8px rgba(0, 210, 255, 0.6),
+    0 0 25px rgba(0, 210, 255, 0.3);
+}
+
+.scroll-progress-wrapper:hover .progress-icon {
+  color: #00d2ff !important; /* Rozsvícení šipky do cyan modré */
+  background: rgba(15, 18, 25, 0.85) !important; /* Ztmavnutí skla pro kontrast */
+}
+
+/* ⚪ SVG CONTAINER */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 66px;
+  height: 66px;
+  transform: rotate(-90deg); /* Start progressu nahoře */
+  z-index: 5; /* KLÍČOVÉ: SVG musí být nad skleněnou ikonou */
+  pointer-events: none; /* Kliknutí propadnou na wrapper */
+}
+
+/* Šedá vodící linka (Pozadí trackeru) */
+.progress-ring-bg {
+  stroke: rgba(255, 255, 255, 0.06);
+}
+
+/* ✅ AKTIVNÍ NEONOVÁ ČÁRA (Vysoký kontrast) */
+.progress-ring-circle {
+  stroke: #00d2ff; /* Zářivá elektrická modrá/cyan */
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* ⬆️ SKLENĚNÝ STŘED A ŠIPKA (Glassmorphism) */
+.progress-icon {
+  position: absolute;
+  inset: 0; /* Vyplní celý kruh */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  
+  /* Barva šipky v základu */
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  
+  /* Temné prémiové sklo */
+  background: rgba(20, 24, 35, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Jemná vnitřní hrana pro 3D efekt */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 1; /* Pod SVG čarou */
+}
+
+/* 📱 MOBILNÍ OPTIMALIZACE */
+@media (max-width: 768px) {
+  .scroll-progress-wrapper {
+    bottom: 25px;
+    right: 25px;
+    width: 56px;
+    height: 56px;
+  }
+  .progress-ring {
+    width: 56px;
+    height: 56px;
+  }
+}
