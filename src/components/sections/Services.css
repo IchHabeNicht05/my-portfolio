@@ -76,7 +76,7 @@
 /* Hlavička */
 .services-header-pro {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 64px; /* Zmenšeno z 80px, aby karty nebyly tak daleko */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,8 +84,8 @@
 
 .services-desc-pro {
   color: #94a3b8;
-  max-width: 600px;
-  margin-top: 20px;
+  max-width: 580px;
+  margin-top: 16px;
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -94,10 +94,14 @@
 .services-meta-info-pro {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 24px;
   color: #64748b;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
 .pro-separator { color: #334155; }
@@ -119,6 +123,13 @@
   font-size: 0.95rem;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+}
+
+.pro-bonus-text {
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
 .promo-icon-pro { color: #6366f1; }

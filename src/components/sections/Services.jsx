@@ -12,35 +12,30 @@ const Services = () => {
 
       <div className="container relative-z">
         
-        {/* HLAVIČKA, INFO A PROMO - Vyjede jako první */}
+        {/* HLAVIČKA A INFO */}
         <ScrollReveal direction="up" delay={0}>
           <div className="services-header-pro">
             <div className="section-tag-pro">
-              <Briefcase size={14} style={{ marginRight: '8px' }} />
-              NABÍDKA SPOLUPRÁCE
+              <Briefcase size={14} />
+              <span>Nabídka služeb</span>
             </div>
-            <h2 className="section-title-pro">Služby & <span className="text-pro-gradient">Digitální Řešení</span></h2>
+            
+            <h2 className="section-title-pro">
+              Služby & <span className="text-pro-gradient">digitální řešení</span>
+            </h2>
+            
             <p className="services-desc-pro">
-              Od rychlých iterací po komplexní systémy. Vyberte si model, 
-              který nejlépe odpovídá cílům vašeho byznysu.
+              Od rychlých webových prezentací po komplexní systémy s databází. 
+              Vyberte si řešení na míru vašemu projektu.
             </p>
 
-            {/* INFO O DPH & ZÁLOZE */}
+            {/* Sjednocené, čisté klientské info - bez zbytečného šumu */}
             <div className="services-meta-info-pro">
-              <span className="pro-label-muted">Nejsem plátce DPH</span>
+              <span>Nejsem plátce DPH</span>
               <span className="pro-separator">•</span>
-              <p className="pro-payment-info">
-                <ShieldCheck size={14} className="text-indigo" /> 
-                Realizace začíná po uhrazení <strong>50% zálohy</strong>
-              </p>
-            </div>
-
-            {/* PROMO BADGE */}
-            <div className="special-promo-badge-pro">
-              <Tag size={16} className="promo-icon-pro" />
-              <span>
-                <strong>Startovací bonus:</strong> Získejte zvýhodnění <strong>20 %</strong> na náš první společný projekt.
-              </span>
+              <span>Záloha 50 % před startem</span>
+              <span className="pro-separator">•</span>
+              <span className="pro-bonus-text">Startovací bonus −20 % na první projekt</span>
             </div>
           </div>
         </ScrollReveal>

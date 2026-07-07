@@ -1,78 +1,93 @@
 .roi-section-card {
-  background: linear-gradient(145deg, rgba(20, 20, 25, 0.7) 0%, rgba(10, 10, 12, 0.9) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  max-width: 960px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px; /* Stejné jako u služeb, zapadne to do mřížky */
+  max-width: 1000px;
   margin: 60px auto;
   overflow: hidden;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .roi-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.1fr 0.9fr;
 }
 
-/* LEVÁ STRANA */
+/* LEVÁ STRANA - OVLÁDÁNÍ */
 .roi-controls {
-  padding: 40px;
+  padding: 48px;
 }
 
+/* Sjednocený styl pilulky s ostatními sekcemi */
 .roi-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
+  gap: 8px;
+  background: rgba(99, 102, 241, 0.06) !important; /* Jemný podkres */
+  border: 1px solid rgba(99, 102, 241, 0.15) !important; /* Jeden čistý border */
+  padding: 6px 14px !important;
+  border-radius: 30px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #4f46e5;
-  background: rgba(79, 70, 229, 0.08);
-  padding: 4px 12px;
-  border-radius: 100px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  border: 1px solid rgba(79, 70, 229, 0.2);
+  color: #94a3b8 !important; /* Čitelný, ne moc zářivý text */
+  margin-bottom: 24px;
+}
+
+.roi-badge svg {
+  color: #6366f1 !important;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
 .roi-controls h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 800;
   color: #ffffff;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .roi-controls p {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  color: #94a3b8;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+}
+
+.roi-controls p strong {
+  color: #f8fafc;
 }
 
 .roi-sliders-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .roi-slider-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .roi-slider-label {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+  font-size: 0.95rem;
+  color: #94a3b8;
 }
 
 .roi-slider-label strong {
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-/* Custom styl pro input range (posuvník) */
+/* Custom posuvník */
 .roi-slider-group input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -81,6 +96,7 @@
   background: rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   outline: none;
+  background: linear-gradient(to right, #6366f1 0%, #6366f1 var(--value), rgba(255, 255, 255, 0.08) var(--value), rgba(255, 255, 255, 0.08) 100%);
 }
 
 .roi-slider-group input[type="range"]::-webkit-slider-thumb {
@@ -89,52 +105,54 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #4f46e5;
+  background: #6366f1; /* Sjednocená fialová s tlačítkem */
   cursor: pointer;
   border: 2px solid #ffffff;
-  box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
   transition: transform 0.1s ease;
 }
 
 .roi-slider-group input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
-/* PRAVÁ STRANA */
+/* PRAVÁ STRANA - VÝSLEDKY */
 .roi-results-display {
-  background: rgba(255, 255, 255, 0.02);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 40px;
+  background: rgba(99, 102, 241, 0.015);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .roi-result-title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  color: #64748b;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .roi-big-number {
-  font-size: 2.2rem;
+  font-size: 2.6rem; /* Větší a údernější */
   font-weight: 800;
-  color: #10b981;
-  margin: 6px 0;
+  color: #10b981; /* Nádherná smaragdová zelená pro zisk */
+  margin: 10px 0;
   letter-spacing: -0.02em;
+  text-shadow: 0 0 30px rgba(16, 185, 129, 0.15); /* Jemná záře úspěchu */
 }
 
 .roi-period {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.1rem;
+  color: #64748b;
   font-weight: 500;
 }
 
 .roi-secondary-number {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.5;
 }
 
 .roi-secondary-number strong {
@@ -143,50 +161,79 @@
 
 .roi-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  margin: 24px 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
+  margin: 28px 0;
 }
 
 .roi-pitch {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
-  line-height: 1.5;
-  margin: 0 0 24px 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
 }
 
 .roi-cta-btn {
   width: 100%;
-  background: #4f46e5;
+  background: #6366f1;
   border: none;
   color: #ffffff;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
-  transition: all 0.2s ease;
+  gap: 10px;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
 }
 
 .roi-cta-btn:hover {
-  background: #4338ca;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.4);
+}
+
+.roi-dynamic-status {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: -4px;
+}
+
+/* Boxík s informací o rychlé návratnosti */
+.roi-roi-badge-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.roi-roi-badge-box strong {
+  color: #10b981;
+}
+
+.text-emerald {
+  color: #10b981;
 }
 
 /* RESPONSIVITA */
-@media (max-width: 850px) {
+@media (max-width: 900px) {
   .roi-grid {
     grid-template-columns: 1fr;
   }
   .roi-results-display {
     border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: transparent;
-    padding: 32px 40px 40px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(99, 102, 241, 0.005);
+    padding: 40px;
   }
 }

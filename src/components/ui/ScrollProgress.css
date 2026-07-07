@@ -21,7 +21,7 @@
     box-shadow 0.3s ease;
 
   /* Jemná záře v základu */
-  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
 }
 
 .scroll-progress-wrapper.visible {
@@ -34,12 +34,12 @@
 .scroll-progress-wrapper:hover {
   transform: translateY(-6px) scale(1.05);
   box-shadow: 
-    0 0 8px rgba(0, 210, 255, 0.6),
-    0 0 25px rgba(0, 210, 255, 0.3);
+    0 0 8px rgba(99, 102, 241, 0.6),
+    0 0 25px rgba(99, 102, 241, 0.3);
 }
 
 .scroll-progress-wrapper:hover .progress-icon {
-  color: #00d2ff !important; /* Rozsvícení šipky do cyan modré */
+  color: #6366f1 !important; /* Rozsvícení šipky do cyan modré */
   background: rgba(15, 18, 25, 0.85) !important; /* Ztmavnutí skla pro kontrast */
 }
 
@@ -62,7 +62,7 @@
 
 /* ✅ AKTIVNÍ NEONOVÁ ČÁRA (Vysoký kontrast) */
 .progress-ring-circle {
-  stroke: #00d2ff; /* Zářivá elektrická modrá/cyan */
+  stroke: #6366f1; /* Zářivá elektrická modrá/cyan */
   stroke-linecap: round;
   transition: stroke-dashoffset 0.1s linear;
 }

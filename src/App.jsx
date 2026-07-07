@@ -16,6 +16,7 @@ import Contact from './components/sections/Contact';
 import Feedback from './components/sections/Feedback';
 import NotFound from './components/sections/NotFound'; 
 import Footer from './components/sections/Footer';
+import RoiCalculator from './components/sections/RoiCalculator';
 
 // --- PAGES ---
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
@@ -91,6 +92,12 @@ const HomePortfolio = ({ activeSection, setActiveSection })=> {
           <section id='services'>
               <Services />
           </section>
+
+          {/* ROI Kalkulačka - jemný delay pro pocit lehkosti
+          <section id='roi-calculator'>
+              <RoiCalculator />
+          </section>
+          */}
 
           {/* Workflow - vyžaduje soustředění, proto čistý výjezd nahoru */}
           <section id='workflow'>

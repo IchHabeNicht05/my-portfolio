@@ -40,16 +40,38 @@
 .experience-tag-pro {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  
+  /* Indigo skleněný podklad */
   background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #818cf8;
-  padding: 8px 16px;
+  color: #818cf8; /* Světlejší indigo pro lepší čitelnost v tmě */
+  
+  padding: 10px 20px;
   border-radius: 100px;
-  font-size: 0.75rem;
+  
+  /* Typografie podle tvého screenshotu */
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Rozestupy mezi písmeny dělají ten "luxusní" look */
+  
+  /* Jemný Indigo border */
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  
+  /* Glass efekt */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  
+  margin-bottom: 24px;
+  transition: all 0.4s ease;
+}
+
+.experience-tag-pro:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+  color: #a5b4fc;
 }
 
 .experience-title-pro {

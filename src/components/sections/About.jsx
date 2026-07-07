@@ -21,14 +21,14 @@ const About = () => {
           <div className="about-content">
             <div className="section-header-pro">
               <div className="icon-box-pro">
-                <ShieldCheck size={18} />
+                {/*<ShieldCheck size={18} />*/}
               </div>
               <span className="section-tag-pro">Strategický partner</span>
             </div>
 
             <h2 className="about-title-pro">
               Vaše vize. <br />
-              <span className="text-pro-gradient">Moje exekutiva.</span>
+              <span className="text-pro-gradient">Moje realizace.</span>
             </h2>
 
             <p className="about-desc-pro">
@@ -40,19 +40,19 @@ const About = () => {
             <div className="expertise-list">
               <div className="expertise-item-pro">
                 <div className="check-circle"><CheckCircle2 size={16} /></div>
-                <span>Enterprise-ready weby</span>
+                <span>Rychlé a moderní weby</span>
               </div>
               <div className="expertise-item-pro">
                 <div className="check-circle"><CheckCircle2 size={16} /></div>
-                <span>E-commerce a firemní systémy</span>
+                <span>E-shopy a interní systémy</span>
               </div>
               <div className="expertise-item-pro">
                 <div className="check-circle"><CheckCircle2 size={16} /></div>
-                <span>High-end postprodukce a video</span>
+                <span>Tvorba a střih videa</span>
               </div>
               <div className="expertise-item-pro">
                 <div className="check-circle"><CheckCircle2 size={16} /></div>
-                <span>SEO a technická optimalizace</span>
+                <span>SEO a viditelnost na Google</span>
               </div>
             </div>
 

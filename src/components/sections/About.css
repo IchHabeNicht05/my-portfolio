@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-/* Hlavička sekce */
+/* Hlavička sekce
 .section-header-pro {
   display: flex;
   align-items: center;
@@ -46,6 +46,7 @@
   letter-spacing: 0.1em;
   color: #64748b;
 }
+  */
 
 .about-title-pro {
   font-size: clamp(2.2rem, 5vw, 3.5rem);

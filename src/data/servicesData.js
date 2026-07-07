@@ -1,4 +1,4 @@
-import { Smartphone, Code, Layout, Settings, RefreshCw, ShoppingCart, Video } from 'lucide-react';
+import { Smartphone, Code, Layout, Settings, RefreshCw, ShoppingCart, Video, Search } from 'lucide-react';
 
 export const ServicesData = [
   {
@@ -10,128 +10,100 @@ export const ServicesData = [
     price: 'od 12 900 Kč',
     deliveryTime: '2-4 týdny',
     isPopular: true,
-    desc: 'Postavím vám web od A do Z. Moderní vzhled, blesková rychlost a čistý kód.',
-    longDesc: 'Nemusíte mít vlastní grafický návrh. Stačí mi říct vaši představu nebo poslat ukázku webu, který se vám líbí. Vytvořím pro vás moderní, přehledné stránky rovnou v kódu. Výsledkem je rychlý web, který vypadá profesionálně a funguje na jedničku.',
-    features: ["Moderní design na míru", "Základní SEO optimalizace", "Responzivita", "Nasazení na doménu"]
+    desc: 'Kompletní web od A do Z. Moderní vzhled, blesková rychlost a kód optimalizovaný pro Google.',
+    longDesc: 'Nemusíte mít vlastní grafický návrh. Stačí mi říct vaši představu. Vytvořím pro vás přehledné stránky přímo v kódu, což zajišťuje maximální rychlost načítání. Samozřejmostí je plná přizpůsobivost pro mobily a základní nastavení pro vyhledávače.',
+    features: ["Moderní design na míru", "Plná mobilní responzivita", "Základní SEO optimalizace", "Nasazení na doménu a hosting"]
   },
   {
     id: 'dev',
     icon: Code,
     title: 'Webová aplikace',
     packageLabel: 'Pro náročné',
-    target: 'Startupy a větší projekty',
+    target: 'Startupy a online projekty',
     price: 'od 19 900 Kč',
     deliveryTime: '1-2 měsíce',
     isPopular: false,
-    desc: 'Pro náročnější projekty. Rychlé interaktivní aplikace s dynamickým obsahem.',
-    longDesc: 'Pokud potřebujete víc než jen statickou stránku. Naprogramuji vám webovou aplikaci na technologii React nebo Next.js. To zajišťuje bleskové načítání a možnost budoucího rozšiřování. Ideální pro složitější weby, portfolia s administrací nebo interaktivní projekty.',
-    features: ["Moderní technologie", "Vysoká rychlost a výkon", "Pokročilé funkce", "Snadná rozšiřitelnost"]
-  },
-  {
-    id: 'redesign',
-    icon: RefreshCw,
-    packageLabel: 'NOVÝ DECH',
-    title: 'Kompletní redesign',
-    desc: 'Váš web už neodpovídá moderním trendům nebo je pomalý? Postavím ho úplně od znova.',
-    target: 'Firmy se starým webem',
-    deliveryTime: '3-5 týdnů',
-    price: 'od 24 900 Kč',
-    isPopular: false,
-    features: [
-      'Vylepšení současného stavu',
-      'Nový moderní UX/UI design',
-      'Zachování SEO',
-      'Extrémní zrychlení načítání webu'
-    ]
+    desc: 'Pokročilé interaktivní systémy s dynamickým obsahem a databází na míru.',
+    longDesc: 'Pokud potřebujete víc než jen statickou stránku. Naprogramuji vám webovou aplikaci na technologiích React, Next.js nebo Vue. To zajišťuje okamžitou odezvu a možnost budoucího rozšiřování. Ideální pro klientské portály, systémy s administrací nebo interaktivní weby.',
+    features: ["Špičkové tech. stacky (React/Python)", "Vysoká rychlost a zabezpečení", "Propojení s databází a API", "Snadná rozšiřitelnost do budoucna"]
   },
   {
     id: 'eshop',
     icon: ShoppingCart,
     title: 'Tvorba E-shopu',
     packageLabel: 'Prodej online',
-    target: 'Obchodníci a tvůrci',
+    target: 'Obchodníci a značky',
     price: 'od 29 900 Kč',
     deliveryTime: '1-3 měsíce',
     isPopular: false,
-    desc: 'Kompletní internetový obchod navržený tak, aby z návštěvníků dělal platící zákazníky.',
-    longDesc: 'Převeďte své podnikání do online světa. Vytvořím pro vás moderní a rychlý e-shop, ve kterém se lidé neztratí. Postarám se o přehledný katalog produktů, plynulý průchod košíkem a responzivní design, aby zákazníci mohli pohodlně nakupovat i z mobilu.',
+    desc: 'Kompletní internetový obchod navržený pro maximální konverze a pohodlný nákup.',
+    longDesc: 'Převeďte své podnikání do online světa. Vytvořím pro vás rychlý e-shop, ve kterém se zákazníci neztratí. Postarám se o přehledný katalog produktů, intuitivní průchod košíkem a integraci platebních bran, aby lidé mohli pohodlně nakupovat i z mobilu.',
     features: [
-      "Přehledný katalog a filtrování",
-      "Optimalizace nákupního procesu",
-      "Snadná správa produktů",
-      "Napojení na platební brány"
+      "Přehledný katalog a filtrace",
+      "Optimalizovaný nákupní proces",
+      "Snadná správa produktů a objednávek",
+      "Bezpečné napojení na platební brány"
     ]
   },
   {
-    id: 'responsive',
-    icon: Smartphone,
-    title: 'Mobilní optimalizace',
-    packageLabel: 'Rychlá pomoc',
-    target: 'Firmy s rozbitým webem',
-    price: 'od 2 500 Kč',
-    deliveryTime: 'Pár dní',
+    id: 'redesign',
+    icon: RefreshCw,
+    title: 'Kompletní redesign',
+    packageLabel: 'Nový dech',
+    target: 'Firmy se starším webem',
+    price: 'od 14 900 Kč',
+    deliveryTime: '2-4 týdny',
     isPopular: false,
-    desc: 'Váš web se bude perfektně zobrazovat na telefonech, tabletech i počítačích.',
-    longDesc: 'Máte web, který se na mobilu špatně čte nebo má rozbité menu? Opravím to. Upravím styly (CSS) tak, aby se váš obsah automaticky přizpůsobil velikosti displeje. Dnes je mobilní verze důležitější než ta počítačová.',
-    features: ["Mobile-first přístup", "Oprava rozbitého menu", "Testování na zařízeních", "Lepší čitelnost textu"]
+    desc: 'Váš web už neodpovídá moderním trendům nebo je pomalý? Přepíšu ho od základů.',
+    longDesc: 'Vezmu váš stávající obsah a texty, ale zabalím je do úplně nového, moderního vizuálu. Web kompletně vyčistím od starého kódu, extrémně zrychlím jeho načítání a zajistím, aby bezchybně fungoval na nejnovějších telefonech bez ztráty pozic na Google.',
+    features: [
+      'Kompletní UX/UI modernizace',
+      'Zachování stávajícího SEO a textů',
+      'Extrémní zrychlení načítání',
+      'Přechod na moderní technologie'
+    ]
   },
   {
     id: 'seo-analytics',
-    icon: Layout,
+    icon: Search, /* Změněno na Search pro lepší vizuální rozlišení */
     title: 'SEO & Analytika',
     packageLabel: 'Viditelnost',
     target: 'Weby, které chtějí růst',
     price: 'od 3 500 Kč',
     deliveryTime: '1 týden',
     isPopular: false,
-    desc: 'Nastavím váš web tak, aby ho lidé i Google milovali - měření návštěvností a vyhledávání.',
-    features: ["Nastavení Google Analytics 4", "Optimalizace pro vyhledávače", "Indexace stránek", "Rychlostní audit"]
+    desc: 'Optimalizace webu pro vyhledávače a přesné měření chování uživatelů.',
+    longDesc: 'Pomohu vašemu webu získat lepší pozice na Google a Seznamu. Nastavím profesionální měření přes Google Analytics 4, optimalizuji rychlost webu, klíčová slova a správné indexování stránek, abyste přesně věděli, odkud vaši zákazníci přicházejí.',
+    features: ["Nastavení Google Analytics 4", "Optimalizace rychlosti a struktury", "Správná indexace na vyhledávačích", "Analýza klíčových slov"]
+  },
+  {
+    id: 'video-produkce',
+    icon: Video,
+    title: 'Video a Postprodukce',
+    packageLabel: 'Vizuální obsah',
+    target: 'Tvůrci, brandy a firmy',
+    price: 'Na domluvě',
+    deliveryTime: '3-7 dní',
+    isPopular: false,
+    desc: 'Profesionální střih krátkých Reels, TikToků, promo videí nebo dynamických pozadí pro váš web.',
+    longDesc: 'Kvalitní web si zaslouží poutavý vizuální obsah. Postarám se o kompletní postprodukci vašich surových záběrů – od střihu do rytmu hudby přes pokročilý color grading (barvy) a sound design až po formátování pro sociální sítě s cílem maximalizovat dosahy.',
+    features: [
+      "Dynamický střih Reels / TikTok / YouTube",
+      "Filmové úpravy barev a sound design",
+      "Tvorba optimalizovaných videopozadí na web"
+    ]
   },
   {
     id: 'maintenance',
     icon: Settings,
     title: 'Správa a údržba',
-    packageLabel: 'Hodinová sazba',
-    target: 'Dlouhodobí klienti',
-    price: '400 Kč / hod',
+    packageLabel: 'Dlouhodobě',
+    target: 'Dlouhodobá spolupráce',
+    price: 'od 400 Kč / hod',
     deliveryTime: 'Dle domluvy',
     isPopular: false,
-    desc: 'Potřebujete něco změnit, opravit texty nebo aktualizovat fotky? Jsem tu pro vás.',
-    longDesc: 'Web není jednorázová záležitost. Nabízím dlouhodobou spolupráci při správě vašeho webu. Ať už potřebujete přepsat ceník, vyměnit fotky v galerii nebo provést drobné úpravy v kódu. Platíte jen za čas, který reálně odpracuji.',
-    features: ["Aktualizace obsahu", "Drobné opravy kódu", "Prioritní komunikace", "Zálohování webu"]
-  },
-  {
-    id: 'video-postprodukce',
-    icon: Video,
-    title: 'Střih & Postprodukce',
-    packageLabel: 'Vizuální obsah',
-    target: 'Tvůrci a firmy',
-    price: 'Na domluvě',
-    deliveryTime: '3-7 dní',
-    isPopular: false,
-    desc: 'Proměňte své surové záběry v poutavý příběh. Střihám Reels, reklamy i produktová videa pro váš web.',
-    longDesc: 'Kvalitní web si zaslouží kvalitní video. Ať už potřebujete dynamické Reels na Instagram, krátkou video-vizitku na úvodní stránku nebo sestříhat záznam z akce, postarám se o barvy, zvuk i rytmus tak, aby výsledek zaujal na první pohled.',
-    features: [
-      "Barevné korekce a sound design",
-      "Tvorba videopozadí pro web",
-      "Dodání v libovolném formátu"
-    ]
-  },
-  {
-    id: 'video-reels',
-    icon: Video,
-    title: 'Reels & Krátká videa',
-    packageLabel: 'Vizuální obsah',
-    target: 'Tvůrci a firmy',
-    price: 'Na domluvě',
-    deliveryTime: '3-7 dní',
-    isPopular: false,
-    desc: 'Proměňte své surové záběry v poutavý příběh. Střihám Reels, reklamy i produktová videa pro váš web.',
-    longDesc: 'Kvalitní web si zaslouží kvalitní video. Ať už potřebujete dynamické Reels na Instagram, krátkou video-vizitku na úvodní stránku nebo sestříhat záznam z akce, postarám se o barvy, zvuk i rytmus tak, aby výsledek zaujal na první pohled.',
-    features: [
-      "Střih pro sociální sítě (Instagram/TikTok)",
-      "Dynamické úpravy pro maximální engagement",
-      "Dodání v libovolném formátu"
-    ]
+    desc: 'Potřebujete na webu něco změnit, upravit texty nebo přidat fotky? Jsem k dispozici.',
+    longDesc: 'Web není jednorázová záležitost. Nabízím dlouhodobou pomoc při úpravách obsahu. Ať už potřebujete přepsat ceník, vyměnit fotky v galerii nebo provést drobné úpravy v kódu. Platíte férově jen za čas, který na webu reálně strávím.',
+    features: ["Pravidelné aktualizace obsahu", "Drobné programátorské úpravy", "Prioritní komunikace a zálohování"]
   }
 ];
