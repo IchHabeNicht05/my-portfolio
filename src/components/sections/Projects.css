@@ -122,24 +122,73 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.filter-title-pro { font-size: 1.8rem; color: white; font-weight: 700; }
+.filter-title-pro { 
+  font-size: 1.8rem; 
+  color: white; 
+  font-weight: 700; 
+}
 
+/* 🔥 KONTEJNER: Přidán position relative */
 .tabs-pro {
-  display: flex; gap: 8px;
+  position: relative;
+  display: flex; 
+  gap: 8px;
   background: rgba(255, 255, 255, 0.03);
-  padding: 6px; border-radius: 100px;
+  padding: 6px; 
+  border-radius: 100px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
+/* TLAČÍTKA: Zvýšen z-index, aby text zůstal nad klouzajícím pozadím */
 .tab-btn-pro {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border-radius: 100px;
-  border: none; background: transparent;
-  color: #64748b; font-weight: 700; font-size: 0.9rem;
-  cursor: pointer; transition: all 0.3s;
+  position: relative;
+  z-index: 2;
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+  padding: 10px 20px; 
+  border-radius: 100px;
+  border: none; 
+  background: transparent !important; /* Pozadí tlačítka je VŽDY průhledné */
+  color: #64748b; 
+  font-weight: 700; 
+  font-size: 0.9rem;
+  cursor: pointer; 
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tab-btn-pro.active { background: #6366f1; color: white; }
+.tab-btn-pro.active { 
+  color: white; 
+}
+
+/* 🔥 KLOUZAJÍCÍ INDIKÁTOR: Absolutně pozicované pozadí */
+.tab-indicator-pro {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  /* Šířka odpovídá přesně jednomu tlačítku (50 % šířky mínus padding) */
+  width: calc(50% - 10px); 
+  background: #6366f1; /* Tvoje fialová */
+  border-radius: 100px;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  
+  /* Matematicky dokonalá animace pohybu */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Když je aktivní 'web', indikátor zůstává vlevo */
+.tab-indicator-pro.is-web {
+  transform: translateX(0);
+}
+
+/* Když skočíš na 'video', indikátor se hladce posune doprava */
+.tab-indicator-pro.is-video {
+  /* Posune se přesně o 100 % své šířky + připočte mezeru (gap) */
+  transform: translateX(calc(100% + 8px));
+}
 
 /* Projects Grid */
 .projects-grid-pro {

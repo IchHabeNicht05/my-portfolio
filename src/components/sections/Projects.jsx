@@ -77,6 +77,10 @@ const Projects = () => {
           <div className="projects-filter-wrapper-pro">
             <h3 className="filter-title-pro">Projekty</h3>
             <div className="tabs-pro">
+              
+              {/* Dynamic sliding background indicator */}
+              <div className={`tab-indicator-pro is-${activeTab}`} />
+
               <button 
                 className={`tab-btn-pro ${activeTab === 'web' ? 'active' : ''}`}
                 onClick={() => setActiveTab('web')}
@@ -84,6 +88,7 @@ const Projects = () => {
                 <Monitor size={16} />
                 <span>Weby</span>
               </button>
+              
               <button 
                 className={`tab-btn-pro ${activeTab === 'video' ? 'active' : ''}`}
                 onClick={() => setActiveTab('video')}
@@ -91,6 +96,7 @@ const Projects = () => {
                 <Video size={16} />
                 <span>Video</span>
               </button>
+
             </div>
           </div>
         </ScrollReveal>

@@ -6,7 +6,7 @@ export const experienceData = [
       year: '2026 - Současnost',
       title: 'Freelance Fullstack Vývojář',
       company: 'Nezávislý profesionál',
-      description: 'Tvorba moderních webových aplikací a prezentací pro klienty na míru. Zaměření na React, moderní CSS (Tailwind, Glassmorphism) a perfektní uživatelský zážitek (UX/UI).',
+      description: 'Kompletní vývoj webových aplikací a systémů na míru – od architektury databází po špičkový frontend. Spojuji robustní backend (Node.js, API, databáze) s rychlým a vizuálně podmanivým rozhraním v Reactu. Stavím komplexní řešení, která skvěle vypadají, bleskově reagují a bezpečně škálují váš byznys.',
       icon: Rocket
     },
     {
