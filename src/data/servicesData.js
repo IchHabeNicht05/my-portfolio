@@ -77,20 +77,22 @@ export const ServicesData = [
     features: ["Nastavení Google Analytics 4", "Optimalizace rychlosti a struktury", "Správná indexace na vyhledávačích", "Analýza klíčových slov"]
   },
   {
-    id: 'video-produkce',
+    id: 'video-social-media',
     icon: Video,
-    title: 'Video a Postprodukce',
-    packageLabel: 'Vizuální obsah',
-    target: 'Tvůrci, brandy a firmy',
+    title: 'Video & Obsah pro sítě',
+    packageLabel: 'Vizuální dosah',
+    target: 'Značky a tvůrci',
     price: 'Na domluvě',
-    deliveryTime: '3-7 dní',
+    deliveryTime: 'Pravidelně',
     isPopular: false,
-    desc: 'Profesionální střih krátkých Reels, TikToků, promo videí nebo dynamických pozadí pro váš web.',
-    longDesc: 'Kvalitní web si zaslouží poutavý vizuální obsah. Postarám se o kompletní postprodukci vašich surových záběrů – od střihu do rytmu hudby přes pokročilý color grading (barvy) a sound design až po formátování pro sociální sítě s cílem maximalizovat dosahy.',
+    desc: 'Kompletní postprodukce vašich záběrů (Reels, TikTok, YouTube) plus pravidelná správa publikování a grafika.',
+    longDesc: 'Web a video jdou ruku v ruce. Nabízím Vám ucelené řešení. Postarám se o profesionální střih vašich surových záběrů – dynamické Reels do rytmu hudby, color grading, sound design – a navíc mohu zajistit pravidelné publikování, grafickou přípravu feedu a základní správu vašich účtů. Vy dodáte záběry, já se postarám o dosah.',
     features: [
       "Dynamický střih Reels / TikTok / YouTube",
       "Filmové úpravy barev a sound design",
-      "Tvorba optimalizovaných videopozadí na web"
+      "Tvorba optimalizovaných videopozadí na web",
+      "Plánování a správa publikování na sítích (Insta/Linked/TikTok)",
+      "Měsíční report dosahu"
     ]
   },
   {
