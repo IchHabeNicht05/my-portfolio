@@ -101,7 +101,7 @@ export const ServicesData = [
     title: 'Správa a údržba',
     packageLabel: 'Dlouhodobě',
     target: 'Dlouhodobá spolupráce',
-    price: 'od 400 Kč / hod',
+    price: 'od 3 500 Kč / měsíc',
     deliveryTime: 'Dle domluvy',
     isPopular: false,
     desc: 'Potřebujete na webu něco změnit, upravit texty nebo přidat fotky? Jsem k dispozici.',
