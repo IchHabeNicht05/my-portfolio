@@ -10,7 +10,7 @@ export const ServicesData = [
     price: 'od 12 900 Kč',
     deliveryTime: '2-4 týdny',
     isPopular: true,
-    desc: 'Kompletní web od A do Z. Moderní vzhled, blesková rychlost a kód optimalizovaný pro Google.',
+    desc: 'Kompletní web od A do Z. Moderní vzhled, blesková rychlost a optimalizovaný kód.',
     longDesc: 'Nemusíte mít vlastní grafický návrh. Stačí mi říct vaši představu. Vytvořím pro vás přehledné stránky přímo v kódu, což zajišťuje maximální rychlost načítání. Samozřejmostí je plná přizpůsobivost pro mobily a základní nastavení pro vyhledávače.',
     features: ["Moderní design na míru", "Plná mobilní responzivita", "Základní SEO optimalizace", "Nasazení na doménu a hosting"]
   },
@@ -85,7 +85,7 @@ export const ServicesData = [
     price: 'Na domluvě',
     deliveryTime: 'Pravidelně',
     isPopular: false,
-    desc: 'Kompletní postprodukce vašich záběrů (Reels, TikTok, YouTube) plus pravidelná správa publikování a grafika.',
+    desc: 'Kompletní postprodukce vašich záběrů (Reels, TikTok, YouTube) a grafika.',
     longDesc: 'Web a video jdou ruku v ruce. Nabízím Vám ucelené řešení. Postarám se o profesionální střih vašich surových záběrů – dynamické Reels do rytmu hudby, color grading, sound design – a navíc mohu zajistit pravidelné publikování, grafickou přípravu feedu a základní správu vašich účtů. Vy dodáte záběry, já se postarám o dosah.',
     features: [
       "Dynamický střih Reels / TikTok / YouTube",

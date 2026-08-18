@@ -1,0 +1,153 @@
+/* ============================================================
+   MULTI-DEVICE SHOWCASE - RAYCAST TACTILE EMBER
+   ============================================================ */
+
+.showcase-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.showcase-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(
+    circle, 
+    rgba(255, 122, 89, 0.12) 0%, 
+    rgba(168, 85, 247, 0.06) 50%, 
+    transparent 75%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.showcase-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SPOLEČNÉ RÁMY ZAŘÍZENÍ */
+.device-frame {
+  position: absolute;
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.device-screen {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #020617;
+  border-radius: 12px;
+}
+
+.device-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+/* --- 1. DESKTOP MONITOR --- */
+.device-desktop {
+  width: 76%;
+  top: 4%;
+  z-index: 1;
+  border-radius: 12px;
+  padding: 10px 10px 12px 10px;
+}
+
+.desktop-stand-neck {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 22px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.desktop-stand-base {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 8px;
+  border-radius: 4px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* --- 2. TABLET (Dole vlevo) --- */
+.device-tablet {
+  width: 28%;
+  bottom: 0%;
+  left: 2%;
+  z-index: 2;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.device-tablet:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 5;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 122, 89, 0.2);
+}
+
+/* --- 3. MOBIL (Dole vpravo) --- */
+.device-mobile {
+  width: 18%;
+  bottom: -2%;
+  right: 4%;
+  z-index: 3;
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.mobile-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 10px;
+  background: #020617;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.device-mobile:hover {
+  transform: translateY(-8px) scale(1.03);
+  z-index: 5;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 122, 89, 0.25);
+}
+
+/* RESPONZIVITA PREVIEW */
+@media (max-width: 640px) {
+  .showcase-container {
+    aspect-ratio: 4 / 3;
+  }
+  .device-desktop { width: 90%; }
+  .device-tablet { width: 35%; left: 0; }
+  .device-mobile { width: 24%; right: 0; }
+}

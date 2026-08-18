@@ -1,64 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 /* ============================================================
-   1. ZÁKLADNÍ PROMĚNNÉ (DARK MODE - KOSMICKÁ NOCI)
+   1. DESIGN SYSTEM & DESIGN VARIABLES (RAYCAST TACTILE EMBER)
    ============================================================ */
 :root {
-  /* Změna z #000000 na luxusní břidlicovo-safírovou čerň */
-  --bg-main: #03050d; 
-  /* Povrchy karet jemně tónované do tmavě modré místo neutrální šedé */
-  --bg-surface: #0b0e17;
-  --bg-surface-hover: #121624;
-  --text-main: #f5f5f7;
-  --text-muted: #86868b;
-  --primary: #2997ff;
-  
-  --border-color: rgba(255, 255, 255, 0.06);
-  /* Sklo tónované do barvy pozadí s nižší opacitou – klíč pro skvělý efekt */
-  --glass-bg: rgba(6, 9, 22, 0.65);
-  --glass-blur: blur(20px);
-  
-  --radius-xl: 28px;
+  /* Pozadí: Hluboká obsidianová tma s jemným teplým tónem */
+  --bg-main: #09090b;
+  --bg-surface: rgba(255, 255, 255, 0.03);
+  --bg-surface-hover: rgba(255, 255, 255, 0.06);
+  --bg-glass: rgba(18, 18, 22, 0.75);
+
+  /* Neutrální typografie */
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-dim: #52525b;
+
+  /* Raycast Teplá Paleta (Ohnivý jantar & Elektrická fialová) */
+  --ember-primary: #ff5722;
+  --ember-secondary: #a855f7;
+  --ember-glow: rgba(255, 87, 34, 0.22);
+  --violet-glow: rgba(168, 85, 247, 0.18);
+
+  /* Mikroskopické rámečky & Taktilní efekty */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 87, 34, 0.35);
+  --border-shine: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.02) 100%);
+
+  /* Zaoblení & Stíny pro hmatatelný pocit */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
-  --max-width: 1100px;
-  --nav-height: 60px;
+
+  --shadow-tactile: 0 20px 40px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  --max-width: 1200px;
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 /* ============================================================
-   2. RESET A GLOBÁLNÍ STYLY
+   2. RESET & BASE STYLES
    ============================================================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-  position: relative; /* Klíčové pro správné oříznutí na iOS */
-}
-
-body {
-  font-family: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
-}
-
-/* Pojistka pro React root obal */
-#root, .app {
-  max-width: 100vw;
-  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  color-scheme: dark;
 }
 
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
 
 .container {
   max-width: var(--max-width);
@@ -66,77 +69,65 @@ ul { list-style: none; }
   padding: 0 24px;
 }
 
-/* --- Posuvník --- */
-::-webkit-scrollbar { width: 10px; }
+/* Subtilní mřížka pro pozadí */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Stylový tmavý posuvník */
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-main); }
-::-webkit-scrollbar-thumb { background: #1e2538; border-radius: 5px; border: 2px solid var(--bg-main); }
-::-webkit-scrollbar-thumb:hover { background: #2c3652; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ember-primary); }
 
 ::selection {
-  background: rgba(41, 151, 255, 0.3);
-  color: white;
-  text-shadow: 0 0 10px rgba(41, 151, 255, 0.5);
+  background: var(--ember-primary);
+  color: #ffffff;
 }
 
 /* ============================================================
-   3. ANIMACE A POZADÍ (AURORA VYLEPŠENÁ)
+   3. ANIMACE PULZU A AURY
    ============================================================ */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInApp { 0% { opacity: 0; transform: scale(0.98); filter: blur(10px); } 100% { opacity: 1; transform: scale(1); filter: blur(0); } }
-@keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(40px, 40px) scale(1.05); } 100% { transform: translate(-20px, 15px) scale(0.95); } }
-@keyframes floatReverse { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-40px, -30px) rotate(5deg); } }
-
-.animate-fade-in { animation: fadeIn 1s ease-out forwards; }
-.animate-slide-up { animation: slideUp 0.8s ease-out forwards; opacity: 0; }
-.fade-in-content { animation: fadeInApp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
-.page-layout { animation: fadeIn 0.3s ease-out; }
-
-.reveal-item {
-  opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: opacity, transform;
-}
-.reveal-item.is-visible { opacity: 1; transform: translateY(0) scale(1); }
-
-/* Globální ambientní vrstva */
-.ambient-glow {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: -1; overflow: hidden; background-color: var(--bg-main);
-  /* Subtilní gradientní podkres, který sjednotí prostor pod koulemi */
-  background-image: radial-gradient(at 50% 0%, rgba(41, 151, 255, 0.04) 0px, transparent 60%);
+@keyframes auraPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1) translateX(-50%); }
+  50% { opacity: 0.75; transform: scale(1.08) translateX(-50%); }
 }
 
-/* ✅ ZVĚTŠEN BLUR Z 80px NA 140px PRO MÁSLOVĚ JEMNÝ PŘECHOD LIGHTU */
-.glow-orb { 
-  position: absolute; 
-  border-radius: 50%; 
-  filter: blur(140px); 
-  opacity: 0.3; /* Mírně staženo, aby to nerušilo čitelnost textu */
-  animation: float 22s infinite alternate ease-in-out; 
-  will-change: transform;
-}
-.orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(41, 151, 255, 0.35) 0%, transparent 70%); animation-delay: 0s; }
-.orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(147, 51, 234, 0.25) 0%, transparent 70%); animation-delay: -5s; }
-.orb-3 { top: 35%; left: 25%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(41, 151, 255, 0.15) 0%, transparent 70%); animation: floatReverse 28s infinite alternate ease-in-out; }
-
-/* Výjimky pro animace */
-.tech-item-badge, .levitating, .animate-float {
-  transition: transform 0.1s linear, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.3; }
 }
 
-/* Záchranná brzda pro mobilní Safari */
-@media (max-width: 768px) {
-  .insight-card, .project-card, .project-card-inner, .service-card, .service-card-popular,
-  .timeline-content-card, .workflow-card, .p-card, .feedback-glass-card, .glass-cta-card {
-    -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
-    background-color: #1a1a1c !important; box-shadow: none !important; 
+{/*@keyframes glowPulseLeft {
+  0%, 100% {
+    transform: translate(-20%, -20%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-15%, -25%) scale(1.12);
+    opacity: 1;
   }
 }
 
-@media (min-width: 1600px) {
-  html {
-    font-size: 18px; 
+@keyframes glowPulseRight {
+  0%, 100% {
+    transform: translate(10%, -20%) scale(1);
+    opacity: 0.7;
   }
+  50% {
+    transform: translate(15%, -15%) scale(1.15);
+    opacity: 1;
+  }
+}*/}
+
+/* Aplikace na jednotlivé sekce
+.testimonials-ambient-glow,
+.feedback-ambient-glow {
+  animation: glowPulseLeft 8s ease-in-out infinite alternate;
 }
+
+.contact-ambient-glow,
+.footer-glow-bg {
+  animation: glowPulseRight 10s ease-in-out infinite alternate;
+}*/

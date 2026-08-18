@@ -1,257 +1,218 @@
-/* =========================================
-   --- ZÁKLAD PATIČKY (Indigo High-End) --- 
-   ========================================= */
-.footer-glass {
-  background: #020617; /* Hluboká černá pro kontrast se sklem */
-  color: #f5f5f7;
-  padding: 120px 0 40px 0;
-  font-family: 'Inter', -apple-system, sans-serif;
+/* ============================================================
+   FOOTER SECTION - RAYCAST TACTILE EMBER
+   ============================================================ */
+
+.footer-section {
+  background-color: transparent;
+  color: var(--text-main, #f8fafc);
+  padding: 100px 0 40px 0;
   position: relative;
   overflow: hidden;
   width: 100%;
 }
 
-/* Ambientní Indigo záře v pozadí */
+/* Ambientní záře na pozadí */
 .footer-glow-bg {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1200px;
-  height: 700px;
+  bottom: 10%;
+  right: 8%;
+  top: auto;
+  left: auto;
+  transform: translate(15%, 15%);
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(
+    circle, 
+    var(--ember-glow, rgba(255, 122, 89, 0.05)) 0%, 
+    var(--violet-glow, rgba(168, 85, 247, 0.03)) 50%, 
+    transparent 75%
+  );
   pointer-events: none;
   z-index: 0;
-  background: #020617;
+  filter: blur(80px);
 }
 
-/* Sjednocení na 1400px jako u zbytku webu */
-.footer-glass .container {
+.footer-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--max-width, 1400px);
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
   z-index: 1;
-  background: #020617;
 }
 
 /* =========================================
-   --- MASIVNÍ LIQUID GLASS CTA KARTA --- 
+   --- MASIVNÍ CTA KARTA --- 
    ========================================= */
-.glass-cta-card {
+.footer-cta-card {
   position: relative;
-  isolation: isolate; 
-  background: rgba(13, 14, 18, 0.4) !important;
-  border-radius: 40px;
-  padding: 100px 40px;
+  background: var(--bg-surface, rgba(15, 23, 42, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-xl, 28px);
+  padding: 70px 40px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  gap: 40px;
-  margin-bottom: 100px;
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  justify-content: center;
+  gap: 32px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile, 0 20px 50px rgba(0, 0, 0, 0.3));
+  margin-bottom: 80px;
   overflow: hidden;
+  transition: border-color 0.3s ease;
 }
 
-.glass-cta-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: inherit;
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  backdrop-filter: blur(25px) saturate(180%);
+.footer-cta-card:hover {
+  border-color: rgba(255, 122, 89, 0.25);
 }
 
-.glass-cta-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(15, 23, 42, 0.3) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.1), 
-    0 40px 80px rgba(0, 0, 0, 0.5);
-}
-
-.glass-cta-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(99, 102, 241, 0.4);
-}
-
-.glass-cta-heading {
-  font-size: clamp(2.5rem, 6vw, 4.2rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.05em;
+.footer-cta-heading {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-main, #ffffff);
   margin: 0;
-  color: white;
 }
 
-.text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Hlavní Indigo Button */
-.primary-glow-btn {
+.btn-footer-cta {
+  background: linear-gradient(135deg, var(--ember-primary, #ff7a59) 0%, #e05230 100%);
+  color: #ffffff;
+  padding: 16px 36px;
+  border-radius: var(--radius-md, 14px);
+  font-weight: 700;
+  font-size: 1.05rem;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: #6366f1;
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  padding: 20px 45px;
-  border-radius: 100px;
+  gap: 10px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 122, 89, 0.35);
 }
 
-.primary-glow-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
-  filter: brightness(1.1);
+.btn-footer-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(255, 122, 89, 0.5);
+  filter: brightness(1.08);
 }
 
 /* =========================================
-   --- NAVIGACE --- 
+   --- PROSTŘEDNÍ NAVIGAČNÍ LIŠTA --- 
    ========================================= */
 .footer-links-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 60px;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 40px;
 }
 
-.footer-brand a {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: white;
-  text-decoration: none;
-  letter-spacing: -1px;
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.brand-dot { color: #6366f1; }
+.brand-logo-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main, #ffffff);
+  letter-spacing: -0.01em;
+}
+
+.brand-tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted, #94a3b8);
+  margin: 0;
+}
 
 .footer-nav-minimal {
   display: flex;
-  gap: 50px;
+  align-items: center;
+  gap: 28px;
 }
 
 .footer-nav-minimal a {
-  color: #94a3b8;
+  color: var(--text-muted, #94a3b8);
   text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.footer-nav-minimal a:hover { color: #6366f1; }
+.footer-nav-minimal a:hover {
+  color: var(--ember-primary, #ff7a59);
+}
 
 .footer-socials-minimal {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 12px;
 }
 
-.footer-socials-minimal a {
-  color: #64748b;
-  transition: all 0.3s ease;
+.social-icon-link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md, 10px);
+  background: var(--bg-surface, rgba(15, 23, 42, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
 }
 
-.footer-socials-minimal a:hover {
-  color: #6366f1;
-  transform: translateY(-4px);
+.social-icon-link:hover {
+  color: var(--ember-primary, #ff7a59);
+  border-color: rgba(255, 122, 89, 0.3);
+  transform: translateY(-2px);
 }
 
 /* =========================================
-   --- SPODNÍ LIŠTA A BILLING --- 
+   --- SPODNÍ ODDĚLOVAČ A PRAVA --- 
    ========================================= */
 .footer-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
-  margin-bottom: 40px;
+  background: var(--border-color, rgba(255, 255, 255, 0.08));
+  margin-bottom: 30px;
 }
 
 .footer-bottom-bar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-end;
-  color: #64748b;
-  font-size: 0.95rem;
+  gap: 20px;
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.88rem;
 }
 
-.footer-info-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.footer-info-group p {
+  margin: 0;
 }
 
-.footer-billing-info {
-  font-size: 0.8rem;
-  color: #475569;
-  line-height: 1.6;
-  max-width: 500px;
-  transition: color 0.3s ease;
-}
-
-.footer-billing-info:hover { color: #94a3b8; }
-
-/* Zpět nahoru */
 .scroll-to-top {
-  background: transparent;
-  border: none;
-  color: #64748b;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  background: var(--bg-surface, rgba(15, 23, 42, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  color: var(--text-muted, #94a3b8);
+  padding: 8px 16px;
+  border-radius: var(--radius-full, 100px);
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s ease;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.icon-circle {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  transition: all 0.4s ease;
+  gap: 6px;
+  transition: all 0.25s ease;
 }
 
-.scroll-to-top:hover { color: white; }
-.scroll-to-top:hover .icon-circle {
-  background: #6366f1;
-  border-color: #6366f1;
-  color: white;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+.scroll-to-top:hover {
+  color: var(--ember-primary, #ff7a59);
+  border-color: rgba(255, 122, 89, 0.3);
+  transform: translateY(-2px);
 }
-
-/* =========================================
-   --- LIGHT MODE --- 
-   ========================================= */
-body.light-mode .footer-glass { background-color: #f8fafc; color: #1e293b; }
-body.light-mode .glass-cta-card { background: white !important; }
-body.light-mode .glass-cta-card::before {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-body.light-mode .glass-cta-heading { color: #0f172a; }
-body.light-mode .footer-billing-info { color: #94a3b8; }
 
 /* =========================================
    --- RESPONZIVITA --- 
@@ -259,34 +220,25 @@ body.light-mode .footer-billing-info { color: #94a3b8; }
 @media (max-width: 992px) {
   .footer-links-row {
     flex-direction: column;
-    gap: 40px;
     text-align: center;
+    gap: 30px;
   }
-  .footer-nav-minimal { gap: 25px; }
-}
-
-@media (max-width: 768px) {
-  .glass-cta-heading { font-size: 2.8rem; }
-  .glass-cta-card { padding: 60px 20px; border-radius: 30px; }
-  .footer-bottom-bar { 
-    flex-direction: column-reverse; 
-    align-items: center;
-    gap: 40px; 
-    text-align: center; 
-  }
-  .footer-info-group { align-items: center; }
-  .footer-nav-minimal { flex-direction: column; gap: 15px; }
-}
-
-@media (min-width: 1600px) {
-  .footer-glass .container {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  
+  .footer-nav-minimal {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
 }
 
-@media (min-width: 2000px) {
-  .footer-glass .container {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+@media (max-width: 640px) {
+  .footer-cta-card {
+    padding: 45px 20px;
+    border-radius: 20px;
+  }
+  
+  .footer-bottom-bar {
+    flex-direction: column-reverse;
+    text-align: center;
   }
 }

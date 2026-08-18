@@ -1,7 +1,7 @@
 import React from 'react';
-import './Testimonials.css';
-import { Star, MessageSquare, Quote } from 'lucide-react';
+import { Sparkles, Quote, Star } from 'lucide-react';
 import ScrollReveal from '../ui/RevealOnScroll';
+import './Testimonials.css';
 
 const reviews = [
   {
@@ -24,60 +24,80 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section id='reviews' className="testimonials-section">
-      {/* Ambientní fialová záře na pozadí */}
-      <div className="testimonials-bg-glow" />
-      <ScrollReveal direction="up" delay={0.1}>
+    <section id="reviews" className="testimonials-section">
+      {/* Ambientní fialovo-jantarová záře na pozadí */}
+      <div className="testimonials-ambient-glow" />
 
-      <div className="testimonials-container">
+      <div className="container testimonials-container">
         
         {/* HLAVIČKA SEKCE */}
-        <div className="testimonials-header-wrapper">
-          <div className="testimonials-tag">
-            <MessageSquare size={14} />
-            REFERENCE
-          </div>
-          <h2 className="testimonials-title-large">Co o mně říkají klienti</h2>
-          <p className="testimonials-description">
-            Důvěra a spokojenost mých klientů je pro mě největší motivací.
-          </p>
-        </div>
-        
-        {/* KONTEJNER PRO KARTY */}
-        <div className="testimonials-grid">
-          {reviews.map((review) => (
-            <div className="review-card" key={review.id}>
-              
-              {/* Ikona uvozovek v rohu */}
-              <Quote className="card-quote-icon" size={44} />
-
-              <div className="review-header">
-                <div className="review-avatar">{review.avatar}</div>
-                <div className="review-meta">
-                  <h4 className="review-name">{review.name}</h4>
-                  <p className="review-role">{review.role}</p>
-                </div>
-              </div>
-
-              {/* HODNOCENÍ HVĚZDIČKAMI */}
-              <div className="review-stars">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={16} 
-                    fill={i < review.rating ? "#fbbf24" : "none"} 
-                    color={i < review.rating ? "#fbbf24" : "#4b5563"} 
-                    strokeWidth={i < review.rating ? 0 : 1.5}
-                  />
-                ))}
-              </div>
-
-              <p className="review-text">"{review.text}"</p>
+        <ScrollReveal direction="up" delay={0.1}>
+          <div className="testimonials-header-pro">
+            <div className="testimonials-tag-pro">
+              <Sparkles size={13} className="tag-sparkle" />
+              <span>Reference & Hodnocení</span>
             </div>
+            
+            <h2 className="testimonials-title-pro">
+              Co o mně říkají <span className="ember-text-gradient">klienti</span>
+            </h2>
+            
+            <p className="testimonials-desc-pro">
+              Důvěra a spokojenost mých klientů je pro mě největší motivací. Každý projekt stavím na maximální kvalitě a preciznosti.
+            </p>
+          </div>
+        </ScrollReveal>
+        
+        {/* MŘÍŽKA KARET (RAYCAST TACTILE CARDS) */}
+        <div className="testimonials-grid-pro">
+          {reviews.map((review, index) => (
+            <ScrollReveal 
+              key={review.id || index} 
+              direction="up" 
+              delay={0.1 + index * 0.1}
+            >
+              <div className="testimonial-card-pro">
+                
+                {/* Horní lišta: Autor & Ikona */}
+                <div className="card-top-bar">
+                  <div className="author-info-box">
+                    <div className="author-avatar">{review.avatar}</div>
+                    <div className="author-meta">
+                      <h3 className="author-name">{review.name}</h3>
+                      <span className="author-role">{review.role}</span>
+                    </div>
+                  </div>
+                  <div className="quote-icon-box">
+                    <Quote size={18} />
+                  </div>
+                </div>
+
+                {/* Tělo karty */}
+                <div className="card-body-pro">
+                  <div className="stars-rating">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        size={14} 
+                        className={i < review.rating ? "star-active" : "star-inactive"} 
+                      />
+                    ))}
+                  </div>
+                  <p className="testimonial-text">"{review.text}"</p>
+                </div>
+
+                {/* Spodní dekorativní linka s jantarovým bodem */}
+                <div className="card-footer-pro">
+                  <span className="review-verified-label">Ověřená reference</span>
+                  <div className="ember-dot-indicator" />
+                </div>
+
+              </div>
+            </ScrollReveal>
           ))}
         </div>
+
       </div>
-      </ScrollReveal>
     </section>
   );
 };

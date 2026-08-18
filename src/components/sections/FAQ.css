@@ -1,187 +1,282 @@
-/* =========================================
-   --- FAQ SECTION (High-End Indigo) --- 
-   ========================================= */
+/* ============================================================
+   FAQ SECTION - RAYCAST TACTILE EMBER
+   ============================================================ */
 
 .faq-section {
-  padding: 120px 0;
-  background: #020617;
+  padding: 130px 0;
   position: relative;
+  background-color: transparent;
+  color: var(--text-main, #f8fafc);
+  overflow: hidden;
 }
 
-/* Sjednocení kontejneru pro konzistenci webu */
-.faq-section .container {
-  max-width: 900px; /* FAQ vypadá lépe v užším kontejneru pro čitelnost */
+.faq-container {
+  max-width: 860px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
-/* --- FAQ HLAVIČKA --- */
-.faq-header {
+/* Ambientní fialovo-jantarová záře */
+.faq-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(
+    circle, 
+    var(--ember-glow, rgba(255, 122, 89, 0.06)) 0%, 
+    var(--violet-glow, rgba(168, 85, 247, 0.05)) 40%, 
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
+}
+
+/* --- HLAVIČKA --- */
+.faq-header-pro {
+  text-align: center;
+  margin-bottom: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  margin-bottom: 70px;
 }
 
-.faq-label {
+.faq-tag-pro {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(99, 102, 241, 0.1); /* Indigo pozadí */
-  color: #6366f1; /* Indigo text */
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+  background: var(--bg-surface, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.07));
+  padding: 6px 14px;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.78rem;
+  color: var(--text-muted, #8e95a2);
+  font-weight: 500;
+  margin-bottom: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-tactile, 0 4px 20px rgba(0, 0, 0, 0.2));
 }
 
-.faq-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  color: #ffffff;
-  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+.tag-sparkle {
+  color: var(--ember-primary, #ff7a59);
+}
+
+.faq-title-pro {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+  color: var(--text-main, #f8fafc);
+}
+
+.ember-text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #ff7a59 50%, #a855f7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* --- FAQ LIST --- */
-.faq-list {
+.faq-desc-pro {
+  color: var(--text-muted, #8e95a2);
+  max-width: 540px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* --- LIST KARTICEK --- */
+.faq-list-pro {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.faq-card-pro {
+  background: var(--bg-surface, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.07));
+  border-radius: var(--radius-xl, 16px);
+  padding: 22px 26px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile, 0 4px 20px rgba(0, 0, 0, 0.15));
+  user-select: none;
+}
+
+.faq-card-pro:hover {
+  border-color: rgba(255, 122, 89, 0.3);
+  background: var(--bg-surface-hover, rgba(255, 255, 255, 0.04));
+  transform: translateY(-2px);
+}
+
+.faq-card-pro.active {
+  border-color: rgba(255, 122, 89, 0.4);
+  background: linear-gradient(135deg, rgba(255, 122, 89, 0.04) 0%, rgba(168, 85, 247, 0.02) 100%);
+  box-shadow: 0 8px 30px rgba(255, 122, 89, 0.08);
+}
+
+/* OTÁZKA */
+.faq-question-pro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
 }
 
-/* --- MASIVNÍ INDIGO GLASS ITEM --- */
-.faq-item {
-  position: relative;
-  /* Pozadí shodné s Workflow/Services */
-  background: rgba(13, 14, 18, 0.4) !important;
-  border-radius: 24px;
-  cursor: pointer;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.faq-item:hover {
-  border-color: rgba(99, 102, 241, 0.3);
-  background: rgba(20, 22, 28, 0.6) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.faq-item.active {
-  border-color: rgba(99, 102, 241, 0.5);
-  background: rgba(20, 22, 28, 0.7) !important;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    inset 0 0 15px rgba(99, 102, 241, 0.05);
-}
-
-/* --- OTÁZKA --- */
-.faq-question {
-  padding: 30px 35px;
+.q-left-box {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 16px;
+}
+
+.q-number {
+  font-size: 0.8rem;
   font-weight: 700;
-  color: #ffffff;
-  font-size: 1.15rem;
+  color: var(--ember-primary, #ff7a59);
+  background: rgba(255, 122, 89, 0.1);
+  border: 1px solid rgba(255, 122, 89, 0.2);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm, 6px);
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+}
+
+.q-text {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--text-main, #f8fafc);
   letter-spacing: -0.01em;
 }
 
-.question-text {
+.faq-card-pro.active .q-text {
+  color: #ffffff;
+}
+
+.q-chevron-box {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.07));
   display: flex;
   align-items: center;
-  gap: 18px;
-  text-align: left;
-}
-
-.q-icon {
-  color: #6366f1; /* Indigo ikona */
+  justify-content: center;
+  color: var(--text-muted, #8e95a2);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: all 0.25s ease;
 }
 
-.faq-item:hover .q-icon {
-  transform: scale(1.1);
+.faq-card-pro:hover .q-chevron-box {
+  color: var(--text-main, #f8fafc);
+  border-color: rgba(255, 122, 89, 0.3);
 }
 
-.chevron {
-  color: #64748b;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  flex-shrink: 0;
+.faq-card-pro.active .q-chevron-box {
+  background: rgba(255, 122, 89, 0.12);
+  border-color: rgba(255, 122, 89, 0.35);
+  color: var(--ember-primary, #ff7a59);
 }
 
-.chevron.rotate {
+.chevron-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chevron-icon.rotate {
   transform: rotate(180deg);
-  color: #6366f1;
 }
 
-/* --- ODPOVĚĎ --- */
-.faq-answer-wrapper {
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+/* ODPOVĚĎ */
+.faq-answer-pro {
+  margin-top: 18px;
+  animation: fadeInAnswer 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.faq-answer {
-  padding: 0 35px 35px 78px; /* Zarovnání textu pod text otázky */
-  text-align: left;
-  color: #94a3b8;
-  line-height: 1.8;
-  font-size: 1.05rem;
+.answer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 122, 89, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+  margin-bottom: 16px;
+}
+
+.faq-answer-pro p {
+  color: var(--text-muted, #8e95a2);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  padding-left: 38px;
+}
+
+@keyframes fadeInAnswer {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- FOOTER HINT --- */
+.faq-footer-hint {
+  display: flex;
+  justify-content: center;
+}
+
+.hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--bg-surface, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.07));
+  border-radius: var(--radius-full, 9999px);
+  font-size: 0.88rem;
+  color: var(--text-muted, #8e95a2);
+  backdrop-filter: blur(12px);
+}
+
+.hint-icon {
+  color: var(--ember-primary, #ff7a59);
+}
+
+.hint-link {
+  color: var(--text-main, #ffffff);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hint-link:hover {
+  color: var(--ember-primary, #ff7a59);
 }
 
 /* --- RESPONZIVITA --- */
-@media (max-width: 768px) {
-  .faq-section { padding: 80px 0; }
-  .faq-title { font-size: 2.2rem; }
-  .faq-question { padding: 25px; font-size: 1.05rem; }
-  .faq-answer { padding: 0 25px 25px 25px; font-size: 1rem; }
-}
+@media (max-width: 640px) {
+  .faq-card-pro {
+    padding: 18px 20px;
+  }
 
-@media (min-width: 1600px) {
-  .faq-section .container  {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+  .q-left-box {
+    gap: 12px;
+  }
+
+  .q-text {
+    font-size: 0.98rem;
+  }
+
+  .faq-answer-pro p {
+    padding-left: 0;
+    font-size: 0.9rem;
+  }
+
+  .hint-pill {
+    flex-direction: column;
+    text-align: center;
+    border-radius: 16px;
+    padding: 14px 20px;
   }
 }
-
-@media (min-width: 2000px) {
-  .faq-section .container  {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
-  }
-}
-
-
-/* --- LIGHT MODE OPTIMALIZACE --- */
-body.light-mode .faq-title {
-  background: linear-gradient(180deg, #1e293b 0%, #64748b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-body.light-mode .faq-item {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode .faq-item.active {
-  border-color: #6366f1;
-  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.1);
-}
-
-body.light-mode .faq-question { color: #1e293b; }
-body.light-mode .faq-answer { color: #475569; }
-body.light-mode .chevron { color: #94a3b8; }
-body.light-mode .chevron.rotate { color: #6366f1; }

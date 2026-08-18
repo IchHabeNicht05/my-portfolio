@@ -1,305 +1,293 @@
-/* =========================================
-   --- FEEDBACK SECTION (High-End Indigo) --- 
-   ========================================= */
+/* ============================================================
+   FEEDBACK SECTION - RAYCAST TACTILE EMBER
+   ============================================================ */
 
 .feedback-section {
-  padding: 120px 0;
+  padding: 130px 0;
   position: relative;
-  background: #020617;
-  z-index: 2;
+  background-color: transparent;
+  color: var(--text-main, #f8fafc);
   overflow: hidden;
   width: 100%;
 }
 
 .feedback-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  z-index: 10;
-  max-width: 1400px; /* Sjednocení s ostatními sekcemi */
+  max-width: var(--max-width, 1400px);
   margin: 0 auto;
   padding: 0 24px;
-}
-
-/* --- AMBIENTNÍ ZÁŘE (Indigo Focus) --- */
-.ambient-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(80px);
-}
-.ambient-glow.left { top: -100px; left: -150px; }
-.ambient-glow.right { bottom: -100px; right: -150px; background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%); }
-
-/* --- HLAVIČKA --- */
-.feedback-header-wrapper {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Ambientní záře na pozadí */
+.feedback-ambient-glow {
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  transform: translate(-20%, -50%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    circle, 
+    var(--violet-glow, rgba(168, 85, 247, 0.06)) 0%, 
+    var(--ember-glow, rgba(255, 122, 89, 0.04)) 50%, 
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+/* --- HLAVIČKA --- */
+.feedback-header-pro {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 700px;
 }
 
-.feedback-tag {
+.feedback-tag-pro {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-}
-
-.feedback-title-large {
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  font-weight: 800;
-  color: white;
+  background: var(--bg-surface, rgba(15, 23, 42, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  padding: 6px 14px;
+  border-radius: var(--radius-full, 100px);
+  font-size: 0.78rem;
+  color: var(--text-muted, #94a3b8);
   margin-bottom: 16px;
-  line-height: 1.1;
-  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  backdrop-filter: blur(12px);
 }
 
-.feedback-description {
-  font-size: 1.15rem;
-  color: #94a3b8;
-  line-height: 1.7;
+.feedback-tag-pro .tag-sparkle {
+  color: var(--ember-primary, #ff7a59);
 }
 
-/* =========================================
-   --- LIQUID GLASS KARTA (Indigo Update) --- 
-   ========================================= */
-.feedback-glass-card {
-  width: 100%;
-  max-width: 800px;
-  box-sizing: border-box; /* 👈 Zabrání tomu, aby padding 60px rozbil šířku samotné karty na mobilu */
-  border-radius: 32px;
-  padding: 60px;
-  position: relative;
-  z-index: 10;
-  isolation: isolate;
-  background: rgba(13, 14, 18, 0.4) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%);
-  box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.05);
-}
-
-/* --- OBSAH KARTY --- */
-.feedback-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.section-title-small {
-  font-size: 2rem;
-  font-weight: 800;
-  color: white;
+.feedback-title-pro {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  color: var(--text-main, #ffffff);
 }
 
-.feedback-subtitle {
+.feedback-desc-pro {
+  color: var(--text-muted, #94a3b8);
   font-size: 1.05rem;
-  color: #94a3b8;
   line-height: 1.6;
 }
 
-/* --- HVĚZDIČKY --- */
-.star-rating-container {
+/* --- TACTILE GLASS KARTA --- */
+.feedback-glass-card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--bg-surface, rgba(15, 23, 42, 0.6));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-xl, 24px);
+  padding: 44px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile, 0 20px 40px rgba(0, 0, 0, 0.3));
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.3s ease;
+}
+
+.feedback-glass-card:hover {
+  border-color: rgba(255, 122, 89, 0.2);
+}
+
+/* --- FORMULÁŘ & PRVKY --- */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.rating-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.label-text {
-  font-size: 0.9rem;
-  color: #64748b;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 700;
-}
-
-.stars-wrapper {
+.stars-row {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .star-btn {
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  color: #1e293b;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  padding: 4px;
+  padding: 6px;
+  border-radius: var(--radius-sm, 8px);
+  transition: transform 0.2s ease;
 }
 
-.star-btn:hover { transform: scale(1.2); color: #6366f1; }
-.star-btn.active {
-  color: #fbbf24; /* Zlatá pro hvězdy je standard */
-  filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.4));
+.star-btn:hover {
+  transform: scale(1.18);
 }
 
-/* =========================================
-   --- FORMULÁŘ --- 
-   ========================================= */
-.inputs-grid {
+.form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 18px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  text-align: left;
 }
 
 .form-label {
-  font-size: 0.95rem;
-  color: #cbd5e1;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-left: 4px;
+  color: var(--text-muted, #94a3b8);
+  letter-spacing: 0.02em;
 }
 
 .glass-input {
   width: 100%;
-  box-sizing: border-box; /* 👈 TOTO JE KLÍČOVÉ: Přinutí padding, aby se počítal DO 100% šířky, ne navíc */
-  font-family: inherit; /* 👈 Textarea má tendenci brát hnusný základní font, toto ho sjednotí s webem */
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 16px 20px;
-  border-radius: 16px;
-  color: white;
-  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-md, 12px);
+  padding: 14px 18px;
+  color: var(--text-main, #f8fafc);
+  font-size: 0.95rem;
   transition: all 0.3s ease;
+  outline: none;
+  font-family: inherit;
 }
 
 .glass-input::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(148, 163, 184, 0.5);
 }
 
 .glass-input:focus {
-  border-color: #6366f1;
-  background: rgba(99, 102, 241, 0.03);
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  border-color: var(--ember-primary, #ff7a59);
+  box-shadow: 0 0 15px rgba(255, 122, 89, 0.2);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* 2. Doplnění chybějící třídy z tvého JSX */
-.textarea-resize-none {
-  resize: vertical; /* 👈 Dovolí uživateli zvětšit pole jen směrem dolů, nikdy do šířky */
-  min-height: 120px; /* 👈 Zaručí, že pole nebude na začátku zbytečně úzké */
+.textarea-resize-vertical {
+  resize: vertical;
+  min-height: 110px;
 }
 
+.feedback-error-msg {
+  color: #f87171;
+  font-size: 0.9rem;
+  margin: 0;
+}
 
+/* --- TLAČÍTKO ODESLAT --- */
+.submit-wrapper {
+  margin-top: 10px;
+}
 
-/* Tlačítko (Indigo Power) */
-.btn-feedback {
+.btn-feedback-submit {
   width: 100%;
-  padding: 18px;
-  font-size: 1.05rem;
-  background: #6366f1;
-  color: white;
-  border: none;
-  border-radius: 16px;
+  padding: 16px 28px;
+  border-radius: var(--radius-md, 14px);
   font-weight: 700;
+  font-size: 0.98rem;
+  background: linear-gradient(135deg, var(--ember-primary, #ff7a59) 0%, #e05230 100%);
+  color: #ffffff;
+  border: none;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 122, 89, 0.35);
 }
 
-.btn-feedback:hover:not(:disabled) { 
-  transform: translateY(-3px); 
-  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
-  filter: brightness(1.1);
+.btn-feedback-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 122, 89, 0.5);
+  filter: brightness(1.08);
 }
 
-/* =========================================
-   --- SUCCESS STATE (Indigo/Gold) --- 
-   ========================================= */
+.btn-feedback-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* --- ÚSPĚŠNÝ STAV --- */
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+}
+
 .success-icon-box {
-  width: 90px;
-  height: 90px;
-  background: rgba(99, 102, 241, 0.1);
-  border-radius: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full, 100px);
+  background: rgba(255, 122, 89, 0.1);
+  border: 1px solid rgba(255, 122, 89, 0.3);
+  color: var(--ember-primary, #ff7a59);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6366f1;
-  margin-bottom: 30px;
-  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+  margin-bottom: 20px;
+}
+
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main, #ffffff);
+  margin-bottom: 8px;
+}
+
+.success-desc {
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.98rem;
+  margin-bottom: 24px;
 }
 
 .btn-text-only {
   background: none;
   border: none;
-  color: #6366f1;
+  color: var(--ember-primary, #ff7a59);
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  transition: all 0.2s;
-}
-.btn-text-only:hover { color: #818cf8; text-decoration: underline; }
-
-/* =========================================
-   --- LIGHT MODE --- 
-   ========================================= */
-body.light-mode .feedback-title-large { color: #1e293b; background: none; -webkit-text-fill-color: initial; }
-body.light-mode .feedback-glass-card {
-  background: white !important;
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-}
-body.light-mode .section-title-small { color: #1e293b; }
-body.light-mode .glass-input { background: #f8fafc; border-color: #cbd5e1; color: #1e293b; }
-body.light-mode .form-label { color: #475569; }
-
-/* RESPONZIVITA */
-@media (max-width: 768px) {
-  .feedback-title-large { font-size: 2.2rem; }
-  .feedback-glass-card { padding: 40px 24px; }
-  .inputs-grid { grid-template-columns: 1fr; }
-  .section-title-small { font-size: 1.6rem; }
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-@media (min-width: 1600px) {
-  .feedback-container {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+.btn-text-only:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* --- RESPONZIVITA --- */
+@media (max-width: 640px) {
+  .feedback-glass-card {
+    padding: 28px 20px;
   }
-}
-
-@media (min-width: 2000px) {
-  .feedback-container {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 }

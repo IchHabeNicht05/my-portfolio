@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Cookie } from 'lucide-react';
 import './CookieConsent.css';
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Zkontrolujeme localStorage
     const consent = localStorage.getItem('cookieConsent');
     if (!consent) {
-      // Elegantní delay 600ms – web se načte a pak jemně vyjede lišta
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 600);
@@ -31,17 +30,27 @@ const CookieConsent = () => {
   if (!isVisible) return null;
 
   return (
-    /* Pokud bys chtěl web na pozadí úplně zablokovat (přísný režim), 
-       stačí obalit banner ještě do jednoho divu s třídou "cookie-overlay" */
-    <div className="cookie-banner">
+    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Nastavení souborů cookie">
       <div className="cookie-content">
-        <p className="cookie-text">
-          Tento web používá cookies pro základní analytiku a lepší uživatelský zážitek. 🍪
-          <Link to="/privacy-policy" className="cookie-link"> Více informací</Link>
-        </p>
+        <div className="cookie-header">
+          <div className="cookie-icon-wrapper">
+            <Cookie size={20} className="text-primary" />
+          </div>
+          <p className="cookie-text">
+            Tento web používá cookies pro základní analytiku a lepší uživatelský zážitek.{' '}
+            <Link to="/privacy-policy" className="cookie-link">
+              Více informací
+            </Link>
+          </p>
+        </div>
+
         <div className="cookie-buttons">
-          <button onClick={handleDecline} className="btn-decline">Pouze nutné</button>
-          <button onClick={handleAccept} className="btn-accept">Přijmout vše</button>
+          <button onClick={handleDecline} className="btn-decline">
+            Pouze nutné
+          </button>
+          <button onClick={handleAccept} className="btn-accept">
+            Přijmout vše
+          </button>
         </div>
       </div>
     </div>

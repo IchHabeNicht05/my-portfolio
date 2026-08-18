@@ -1,221 +1,236 @@
-/* =========================================
-   --- TESTIMONIALS SEKCE (High-End Indigo) --- 
-   ========================================= */
+/* ============================================================
+   TESTIMONIALS SECTION - RAYCAST TACTILE EMBER
+   ============================================================ */
 
 .testimonials-section {
-  padding: 120px 0 160px;
+  padding: 130px 0;
   position: relative;
+  background-color: transparent;
+  color: var(--text-main);
   overflow: hidden;
-  background: #020617;
 }
 
-/* Ambientní Indigo záře na pozadí */
-.testimonials-bg-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Sjednocení kontejneru na 1400px */
 .testimonials-container {
-  position: relative;
-  z-index: 1;
-  max-width: 1400px;
-  width: 95%;
+  max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Ambientní fialovo-jantarová záře pozadí */
+.testimonials-ambient-glow {
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  transform: translate(-20%, -50%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    circle, 
+    var(--violet-glow, rgba(168, 85, 247, 0.06)) 0%, 
+    var(--ember-glow, rgba(255, 122, 89, 0.04)) 50%, 
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
 }
 
 /* --- HLAVIČKA --- */
-.testimonials-header-wrapper {
+.testimonials-header-pro {
+  text-align: center;
+  margin-bottom: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  margin-bottom: 80px;
 }
 
-.testimonials-tag {
+.testimonials-tag-pro {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
-  padding: 10px 22px;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-tactile);
 }
 
-.testimonials-title-large {
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  font-weight: 800;
-  color: white;
+.tag-sparkle {
+  color: var(--ember-primary, #ff7a59);
+}
+
+.testimonials-title-pro {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
   margin-bottom: 16px;
-  line-height: 1.1;
-  background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
 }
 
-.testimonials-description {
-  font-size: 1.15rem;
-  color: #94a3b8;
-  max-width: 600px;
-  line-height: 1.7;
+.testimonials-desc-pro {
+  color: var(--text-muted);
+  max-width: 580px;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-/* --- GRID (MASIVNÍ ROZLOŽENÍ) --- */
-.testimonials-grid {
+/* --- MŘÍŽKA KARET --- */
+.testimonials-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.testimonial-card-pro {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 30px 24px;
   display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-}
-
-/* --- KARTA (LIQUID GLASS 2.0 - INDIGO) --- */
-.review-card {
-  max-width: 440px; /* Širší karta pro High-End pocit */
-  width: 100%;
-  background: rgba(13, 14, 18, 0.4) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 32px;
-  padding: 50px;
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
-  backdrop-filter: blur(15px) saturate(180%);
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
-  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  display: flex;
-  flex-direction: column;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
 }
 
-.review-card:hover {
-  transform: translateY(-12px);
-  background: rgba(20, 22, 28, 0.6) !important;
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 
-    0 30px 60px -12px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(99, 102, 241, 0.1);
+.testimonial-card-pro:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+  transform: translateY(-4px);
 }
 
-/* Ikona uvozovky v rohu */
-.card-quote-icon {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  color: rgba(99, 102, 241, 0.2); /* Indigo uvozovka */
-  pointer-events: none;
-}
-
-.review-header {
+/* HORNÍ LIŠTA KARTY */
+.card-top-bar {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 28px;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-/* Avatar v Indigo stylu */
-.review-avatar {
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  border-radius: 20px; /* Moderní squircle místo kruhu */
+.author-info-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 87, 34, 0.08);
+  border: 1px solid rgba(255, 87, 34, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  color: white;
-  font-size: 1.3rem;
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--ember-primary, #ff7a59);
+  font-size: 0.88rem;
 }
 
-.review-info {
+.author-meta {
   display: flex;
   flex-direction: column;
 }
 
-.review-name {
-  color: white;
-  margin: 0;
-  font-size: 1.25rem;
+.author-name {
+  font-size: 1.05rem;
   font-weight: 700;
+  color: var(--text-main);
   letter-spacing: -0.01em;
+  margin: 0;
 }
 
-.review-role {
-  color: #64748b;
-  margin: 4px 0 0;
-  font-size: 0.95rem;
+.author-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-.review-stars {
+.quote-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
   display: flex;
-  gap: 6px;
-  margin-bottom: 24px;
-  color: #6366f1; /* Indigo hvězdy pro čistší look, nebo #fbbf24 pro zlatou */
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.25s ease;
 }
 
-.review-text {
-  color: #cbd5e1;
-  line-height: 1.8;
-  font-size: 1.1rem;
+.testimonial-card-pro:hover .quote-icon-box {
+  background: rgba(255, 87, 34, 0.1);
+  border-color: rgba(255, 87, 34, 0.3);
+  color: var(--ember-primary, #ff7a59);
+}
+
+/* TĚLO KARTY */
+.card-body-pro {
+  flex-grow: 1;
+}
+
+.stars-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.star-active {
+  color: var(--ember-primary, #ff7a59);
+  fill: var(--ember-primary, #ff7a59);
+}
+
+.star-inactive {
+  color: var(--border-color);
+  fill: none;
+}
+
+.testimonial-text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
   margin: 0;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 0.9;
+}
+
+/* PATKA KARTY */
+.card-footer-pro {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-verified-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.testimonial-card-pro:hover .ember-dot-indicator {
+  background: var(--ember-primary, #ff7a59);
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.6);
+  transform: scale(1.3);
 }
 
 /* --- RESPONZIVITA --- */
-@media (max-width: 1200px) {
-  .review-card { max-width: 45%; }
-}
-
-@media (max-width: 768px) {
-  .testimonials-title-large { font-size: 2.5rem; }
-  .review-card { 
-    max-width: 100%; 
-    padding: 35px;
-  }
-  .review-text { font-size: 1.05rem; }
-}
-
-@media (min-width: 1600px) {
-  .testimonials-container  {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+@media (max-width: 640px) {
+  .testimonials-grid-pro {
+    grid-template-columns: 1fr;
   }
 }
-
-@media (min-width: 2000px) {
-  .testimonials-container  {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
-  }
-}
-
-
-/* --- LIGHT MODE --- */
-body.light-mode .testimonials-title-large {
-  color: #1e293b;
-  background: none;
-  -webkit-text-fill-color: initial;
-}
-
-body.light-mode .review-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
-
-body.light-mode .review-name { color: #1e293b; }
-body.light-mode .review-text { color: #475569; }

@@ -37,10 +37,11 @@ const ScrollProgress = () => {
       className={`scroll-progress-wrapper ${scrollProgress > 0.05 ? 'visible' : ''}`}
       onClick={scrollToTop}
       title="Zpět nahoru"
+      aria-label="Zpět na začátek stránky"
     >
-      {/* 1. SKLENĚNÉ POZADÍ (Nyní jako první prvek v DOMu, pod čarou) */}
+      {/* 1. SKLENĚNÉ POZADÍ (Pod indikátorem) */}
       <div className="progress-icon">
-        <ArrowUp size={22} />
+        <ArrowUp size={20} />
       </div>
 
       {/* 2. PROGRESS RING (Plave na povrchu nad sklem) */}

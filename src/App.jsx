@@ -7,16 +7,16 @@ import Hero from './components/sections/Hero';
 import TechStack from './components/sections/TechStack';
 import Projects from './components/sections/Projects';
 import About from './components/sections/About'; 
-import Experience from './components/sections/Experience'; // Vráceno
+import Experience from './components/sections/Experience';
 import Services from './components/sections/Services';
-import Workflow from './components/sections/Workflow';     // Vráceno
+import Workflow from './components/sections/Workflow';
 import Testimonials from './components/sections/Testimonials';
 import FAQ from './components/sections/FAQ';
 import Contact from './components/sections/Contact';
-import Feedback from './components/sections/Feedback';
+// import Feedback from './components/sections/Feedback';
 import NotFound from './components/sections/NotFound'; 
 import Footer from './components/sections/Footer';
-import RoiCalculator from './components/sections/RoiCalculator';
+import InquiryModal from './components/sections/InquiryModal';
 
 // --- PAGES ---
 import PrivacyPolicy from './components/pages/PrivacyPolicy';
@@ -27,14 +27,13 @@ import ServiceDetail from './components/pages/ServiceDetail';
 import CookieConsent from './components/ui/CookieConsent';
 import ScrollToTop from './components/ui/ScrollToTop';
 import PageLayout from './components/ui/PageLayout'; 
-import Dock from './components/ui/Dock';
-import ScrollReveal from './components/ui/RevealOnScroll';
+// import Dock from './components/ui/Dock';
 import ScrollProgress from './components/ui/ScrollProgress';
 
 /* =========================================
    KOMPONENTA DOMOVSKÉ STRÁNKY
    ========================================= */
-const HomePortfolio = ({ activeSection, setActiveSection })=> {
+const HomePortfolio = ({ setActiveSection, onOpenInquiry }) => {
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
     
@@ -56,77 +55,58 @@ const HomePortfolio = ({ activeSection, setActiveSection })=> {
 
   return (
     <>
-      <div className="app fade-in-content">
+      <div className="app bg-grid-pattern">
         <div className="ambient-glow">
           <div className="glow-orb orb-1" />
           <div className="glow-orb orb-2" />
-          <div className="glow-orb orb-3" />
         </div>
         
         <main>
-          {/* Hero sekce - animuje se shora dolů hned při načtení */}
-          <section id='home'>
-              <Hero />
+          <section id="home">
+            <Hero onOpenInquiry={onOpenInquiry} />
           </section>
 
-          {/*<section>
-              <TechStack /> 
-          </section>*/}
-          
-          {/* O mně - klasický výjezd nahoru */}
-          <section id='about'>
-              <About />
+          <section id="about">
+            <About />
           </section>
 
-          {/* Zkušenosti - nástup zleva pro dynamiku */}
-          <section id='experience'>
-              <Experience />
+          <section id="experience">
+            <Experience />
           </section>
           
-          {/* Projekty - bezpečný výjezd nahoru, aby vynikly karty */}
-          <section id='projects'>
-              <Projects />
+          <section id="projects">
+            <Projects />
           </section>
           
-          {/* Služby - nástup zprava */}
-          <section id='services'>
-              <Services />
+          <section id="services">
+            <Services onOpenInquiry={onOpenInquiry} />
           </section>
 
-          {/* ROI Kalkulačka - jemný delay pro pocit lehkosti
-          <section id='roi-calculator'>
-              <RoiCalculator />
-          </section>
-          */}
-
-          {/* Workflow - vyžaduje soustředění, proto čistý výjezd nahoru */}
-          <section id='workflow'>
-              <Workflow />
+          <section id="workflow">
+            <Workflow />
           </section>
           
-          <section id='faq'>
-              <FAQ />
+          <section id="faq">
+            <FAQ />
           </section>
           
-          {/* Reference - jemný delay pro pocit lehkosti */}
-          <section id='reviews'>
-              <Testimonials />
+          <section id="reviews">
+            <Testimonials />
           </section>
           
-          {/* Kontakt a Feedback - vizuální "sevření" (jeden zleva, druhý zprava) */}
-          <section id='contact'>
-              <Contact />
+          <section id="contact">
+            <Contact />
           </section>
           
-          <section id='feedback'>
-              <Feedback />
-          </section>
+          {/* <section id="feedback">
+            <Feedback />
+          </section> */}
         </main>
         
-        <Footer />
+        <Footer onOpenInquiry={onOpenInquiry} />
       </div>
 
-      <Dock activeSection={activeSection} />
+      {/* <Dock activeSection={activeSection} /> */}
     </>
   );
 };
@@ -136,17 +116,25 @@ const HomePortfolio = ({ activeSection, setActiveSection })=> {
    ========================================= */
 function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const location = useLocation();
+
+  const handleOpenInquiry = () => setIsInquiryOpen(true);
+  const handleCloseInquiry = () => setIsInquiryOpen(false);
 
   return (
     <>
-      <Navbar />
+      <Navbar onOpenInquiry={handleOpenInquiry} />
       <ScrollToTop />
 
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={
           <PageLayout>
-            <HomePortfolio activeSection={activeSection} setActiveSection={setActiveSection} />
+            <HomePortfolio 
+              activeSection={activeSection} 
+              setActiveSection={setActiveSection} 
+              onOpenInquiry={handleOpenInquiry}
+            />
           </PageLayout>
         } />
         <Route path="/privacy-policy" element={<PageLayout><PrivacyPolicy /></PageLayout>} />
@@ -156,8 +144,10 @@ function App() {
       </Routes>
       
       <CookieConsent />
-
       <ScrollProgress />
+
+      {/* Global Inquiry Modal */}
+      <InquiryModal isOpen={isInquiryOpen} onClose={handleCloseInquiry} />
     </>
   );
 }

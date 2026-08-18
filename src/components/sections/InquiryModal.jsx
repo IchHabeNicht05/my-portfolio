@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, ArrowRight, ArrowLeft, CheckCircle2, Send } from 'lucide-react';
-import './InquiryModal.css'; // Zde si nastyloval skleněný design
+import './InquiryModal.css';
 
 const InquiryModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState(1);
@@ -29,7 +29,7 @@ const InquiryModal = ({ isOpen, onClose }) => {
       email: '',
       note: ''
     });
-    onClose(); // Zavolá původní funkci z rodiče (Navbaru) pro skrytí modalu
+    onClose();
   };
 
   const handleSelect = (field, value) => {
@@ -44,17 +44,15 @@ const InquiryModal = ({ isOpen, onClose }) => {
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
-  // Funkce pro odeslání dat (např. na Discord Webhook)
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Tvá Discord Webhook URL (příklad)
     const DISCORD_WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
 
     const discordMessage = {
       embeds: [{
         title: "💼 Nová poptávka z portfolia!",
-        color: 2725887, // Krásná modrá barva
+        color: 16743001, // Ember Orange tone (#FF7A59)
         fields: [
           { name: "👤 Jméno", value: formData.name, inline: true },
           { name: "✉️ Email", value: formData.email, inline: true },
@@ -79,7 +77,6 @@ const InquiryModal = ({ isOpen, onClose }) => {
         console.warn("Discord Webhook URL chybí v souboru .env");
       }
       
-      // Přepneme na úspěšnou obrazovku
       setSubmitted(true);
     } catch (error) {
       console.error("Chyba při odesílání poptávky", error);
@@ -89,11 +86,11 @@ const InquiryModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="im-overlay">
-      <div className="im-container glass-card">
+      <div className="im-container">
         
         {/* Zavírací tlačítko */}
-        <button className="im-close-btn" onClick={handleClose}>
-          <X size={20} />
+        <button className="im-close-btn" onClick={handleClose} aria-label="Zavřít">
+          <X size={18} />
         </button>
 
         {!submitted ? (
@@ -113,6 +110,7 @@ const InquiryModal = ({ isOpen, onClose }) => {
                   {['Webová stránka', 'Webová aplikace (SaaS)', 'Střih videa / Postprodukce'].map((service) => (
                     <button 
                       key={service}
+                      type="button"
                       className={`im-option-card ${formData.serviceType === service ? 'active' : ''}`}
                       onClick={() => handleSelect('serviceType', service)}
                     >
@@ -125,56 +123,56 @@ const InquiryModal = ({ isOpen, onClose }) => {
 
             {/* KROK 2: Rozsah projektu */}
             {step === 2 && (
-            <div className="im-step-slide animate-fade-in">
+              <div className="im-step-slide animate-fade-in">
                 {formData.serviceType?.includes('video') || formData.serviceType?.includes('Střih') ? (
-                // 🎥 Varianta pro VIDEO
-                <>
+                  <>
                     <h2>Jak dlouhé video budeme tvořit?</h2>
                     <p>Pomůže mi to udělat si představu o množství materiálu a náročnosti postprodukce.</p>
                     <div className="im-options-grid">
-                    {[
+                      {[
                         'Krátký formát / Shorts / Reels (do 1 min)',
                         'YouTube video / Klasický sestřih (10-20 min)',
                         'Dlouhý dokument / Komplexní firemní video'
-                    ].map((opt) => (
+                      ].map((opt) => (
                         <button 
-                        key={opt}
-                        className={`im-option-card ${formData.scope === opt ? 'active' : ''}`}
-                        onClick={() => handleSelect('scope', opt)}
+                          key={opt}
+                          type="button"
+                          className={`im-option-card ${formData.scope === opt ? 'active' : ''}`}
+                          onClick={() => handleSelect('scope', opt)}
                         >
-                        {opt}
+                          {opt}
                         </button>
-                    ))}
+                      ))}
                     </div>
-                </>
+                  </>
                 ) : (
-                // 💻 Varianta pro WEB
-                <>
+                  <>
                     <h2>Jaký je přibližný rozsah webu?</h2>
                     <p>Zvolte, jak moc robustní systém budeme stavět.</p>
                     <div className="im-options-grid">
-                    {[
+                      {[
                         'Jednostránkový web (Landing Page)',
                         'Menší web (Prezentace do 5 stránek)',
                         'Komplexní systém / Webová aplikace / E-shop'
-                    ].map((opt) => (
+                      ].map((opt) => (
                         <button 
-                        key={opt}
-                        className={`im-option-card ${formData.scope === opt ? 'active' : ''}`}
-                        onClick={() => handleSelect('scope', opt)}
+                          key={opt}
+                          type="button"
+                          className={`im-option-card ${formData.scope === opt ? 'active' : ''}`}
+                          onClick={() => handleSelect('scope', opt)}
                         >
-                        {opt}
+                          {opt}
                         </button>
-                    ))}
+                      ))}
                     </div>
-                </>
+                  </>
                 )}
-            </div>
+              </div>
             )}
 
             {/* KROK 3: Budget & Termín */}
             {step === 3 && (
-              <div className="im-step-slide">
+              <div className="im-step-slide animate-fade-in">
                 <h2>Finanční rámec a termín</h2>
                 <p>Abychom věděli, zda jsme na stejné vlně.</p>
                 
@@ -183,6 +181,7 @@ const InquiryModal = ({ isOpen, onClose }) => {
                   {['Méně než 10k Kč', '10k - 30k Kč', '30k - 70k Kč', '70k+ Kč'].map((b) => (
                     <button 
                       key={b}
+                      type="button"
                       className={`im-option-card ${formData.budget === b ? 'active' : ''}`}
                       onClick={() => handleSelect('budget', b)}
                     >
@@ -191,11 +190,14 @@ const InquiryModal = ({ isOpen, onClose }) => {
                   ))}
                 </div>
 
-                <label className="im-label" style={{marginTop: '20px', display:'block'}}>Kdy to potřebujete mít hotové?</label>
+                <label className="im-label" style={{ marginTop: '20px', display: 'block' }}>
+                  Kdy to potřebujete mít hotové?
+                </label>
                 <div className="im-options-grid mini">
                   {['Spěchá to (do 2 týdnů)', 'Do měsíce', 'Nespěchá (1-2 měsíce)'].map((d) => (
                     <button 
                       key={d}
+                      type="button"
                       className={`im-option-card ${formData.deadline === d ? 'active' : ''}`}
                       onClick={() => handleSelect('deadline', d)}
                     >
@@ -208,22 +210,33 @@ const InquiryModal = ({ isOpen, onClose }) => {
 
             {/* KROK 4: Kontaktní údaje */}
             {step === 4 && (
-              <div className="im-step-slide">
+              <div className="im-step-slide animate-fade-in">
                 <h2>Kam vám mohu poslat nabídku?</h2>
                 <p>Zanechte mi na sebe kontakt a ozvu se vám do 24 hodin.</p>
                 
                 <div className="im-form-group">
                   <input 
-                    type="text" name="name" placeholder="Vaše jméno / Firma" 
-                    value={formData.name} onChange={handleInputChange} required 
+                    type="text" 
+                    name="name" 
+                    placeholder="Vaše jméno / Firma" 
+                    value={formData.name} 
+                    onChange={handleInputChange} 
+                    required 
                   />
                   <input 
-                    type="email" name="email" placeholder="Váš e-mail" 
-                    value={formData.email} onChange={handleInputChange} required 
+                    type="email" 
+                    name="email" 
+                    placeholder="Váš e-mail" 
+                    value={formData.email} 
+                    onChange={handleInputChange} 
+                    required 
                   />
                   <textarea 
-                    name="note" placeholder="Řekněte mi o projektu víc (dobrovolné)..." 
-                    value={formData.note} onChange={handleInputChange} rows={3}
+                    name="note" 
+                    placeholder="Řekněte mi o projektu víc (dobrovolné)..." 
+                    value={formData.note} 
+                    onChange={handleInputChange} 
+                    rows={3}
                   />
                 </div>
               </div>
@@ -232,37 +245,49 @@ const InquiryModal = ({ isOpen, onClose }) => {
             {/* Navigační tlačítka dole */}
             <div className="im-navigation-bar">
               {step > 1 && (
-                <button className="im-btn-back" onClick={prevStep}>
+                <button type="button" className="im-btn-back" onClick={prevStep}>
                   <ArrowLeft size={16} /> Zpět
                 </button>
               )}
               
               {step < 4 ? (
                 <button 
+                  type="button"
                   className="im-btn-next" 
                   onClick={nextStep}
-                  disabled={step === 1 && !formData.serviceType || step === 2 && !formData.scope || step === 3 && (!formData.budget || !formData.deadline)}
+                  disabled={
+                    (step === 1 && !formData.serviceType) || 
+                    (step === 2 && !formData.scope) || 
+                    (step === 3 && (!formData.budget || !formData.deadline))
+                  }
                 >
-                  Pokračovat <ArrowRight size={16} />
+                  <span>Pokračovat</span>
+                  <ArrowRight size={16} />
                 </button>
               ) : (
                 <button 
+                  type="button"
                   className="im-btn-submit" 
                   onClick={handleSubmit}
                   disabled={!formData.name || !formData.email}
                 >
-                  Odeslat poptávku <Send size={16} />
+                  <span>Odeslat poptávku</span>
+                  <Send size={15} />
                 </button>
               )}
             </div>
           </div>
         ) : (
-          /* Stav po úspěšném odeslání */
+          /* Úspěšná obrazovka */
           <div className="im-success-screen animate-scale-up">
-            <CheckCircle2 size={64} className="success-icon" />
+            <CheckCircle2 size={58} className="success-icon" />
             <h2>Poptávka úspěšně odeslána!</h2>
-            <p>Děkuji vám za zájem. Podívám se na detaily a do 24 hodin se vám ozvu na e-mail <strong>{formData.email}</strong>.</p>
-            <button className="im-btn-finish" onClick={handleClose}>Zavřít okno</button>
+            <p>
+              Děkuji vám za zájem. Podívám se na detaily a do 24 hodin se vám ozvu na e-mail <strong>{formData.email}</strong>.
+            </p>
+            <button type="button" className="im-btn-finish" onClick={handleClose}>
+              Zavřít okno
+            </button>
           </div>
         )}
 

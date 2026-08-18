@@ -5,12 +5,10 @@ import {
   User, 
   Award, 
   Briefcase, 
-  Sparkles, 
   Layers, 
   Workflow,    
   HelpCircle,
   Star, 
-  BookOpen,
   Mail, 
   MessageSquare, 
   Menu
@@ -24,7 +22,7 @@ const DOCK_ITEMS = [
   { id: 'services', icon: Layers, label: 'Služby', href: '#services' },
   { id: 'workflow', icon: Workflow, label: 'Workflow', href: '#workflow' },
   { id: 'faq', icon: HelpCircle, label: 'FAQ', href: '#faq' },
-  { id: 'reviews', icon: Star, label: 'Recenze', href: '#reviews'},
+  { id: 'reviews', icon: Star, label: 'Recenze', href: '#reviews' },
   { id: 'contact', icon: Mail, label: 'Kontakt', href: '#contact' },
   { id: 'feedback', icon: MessageSquare, label: 'Feedback', href: '#feedback' },
 ];
@@ -33,10 +31,9 @@ const Dock = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // NOVÉ: Zavření Docku při scrollování
+  // Zavření Docku při scrollování na mobilních zařízeních
   useEffect(() => {
     const handleScroll = () => {
-      // window.innerWidth <= 768 zajistí, že se to nespustí na velkém monitoru
       if (isOpen && window.innerWidth <= 768) {
         setIsOpen(false);
       }
@@ -64,8 +61,9 @@ const Dock = () => {
         <div 
           className="dock-collapsed-view"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Otevřít menu"
         >
-          <Menu size={24} className="menu-icon" />
+          <Menu size={22} className="menu-icon" />
         </div>
 
         {/* Obsah rozbaleného Docku (Ikonky) */}
@@ -79,7 +77,7 @@ const Dock = () => {
               onClick={() => setIsOpen(false)}
             >
               <div className="icon-wrapper">
-                <item.icon size={20} />
+                <item.icon size={19} />
               </div>
               <span className="dock-tooltip">{item.label}</span>
             </a>

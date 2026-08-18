@@ -1,353 +1,424 @@
+/* ============================================================
+   PROJECTS SECTION - RAYCAST TACTILE EMBER
+   ============================================================ */
+
 .projects-section {
-  padding: 140px 0;
-  background: #020617;
+  padding: 130px 0;
   position: relative;
+  background-color: transparent;
+  color: var(--text-main);
   overflow: hidden;
 }
 
-.projects-section .container {
-  max-width: 1400px; /* Sjednoceno se Services pro High-End pocit */
-  width: 95%;
-  margin: 0 auto;
-}
-
+/* Ambientní záře na pozadí */
 .projects-ambient-glow {
   position: absolute;
-  top: 10%;
+  top: 20%;
   right: -10%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.05), transparent 70%);
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(
+    circle, 
+    var(--ember-glow) 0%, 
+    var(--violet-glow) 40%, 
+    transparent 75%
+  );
   pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
 }
 
-/* Hlavička */
+.projects-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- HLAVIČKA SEKCE --- */
 .projects-header-pro {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.projects-desc-pro {
-  color: #94a3b8;
-  max-width: 600px;
-  margin-top: 20px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.section-title-pro {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 900;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-
-/* Featured Showcase */
-.featured-card-pro {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 60px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 32px;
-  padding: 60px;
-  margin-bottom: 100px;
-  align-items: center;
-  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5);
-}
-
-.featured-badge-pro {
+.projects-tag-pro {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #6366f1;
-  font-size: 0.8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-tactile);
 }
 
-.star-icon-pro { fill: #6366f1; }
-
-.featured-title-pro {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  font-weight: 800;
-  color: white;
-  margin-bottom: 24px;
-  line-height: 1.1;
+.tag-sparkle {
+  color: var(--ember-primary);
 }
 
-.featured-text-pro {
-  color: #94a3b8;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  margin-bottom: 32px;
+.section-title-pro {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+}
+
+.ember-text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #ff7a59 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.projects-desc-pro {
+  color: var(--text-muted);
+  max-width: 580px;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* --- TABS / PREPÍNAČ --- */
+.projects-tabs-pro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.tab-btn-pro {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+}
+
+.tab-btn-pro:hover {
+  color: var(--text-main);
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+}
+
+.tab-btn-pro.active {
+  color: #ffffff;
+  background: rgba(255, 87, 34, 0.12);
+  border-color: rgba(255, 87, 34, 0.35);
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.15);
+}
+
+/* --- FEATURED SHOWCASE CARD --- */
+.featured-card-pro {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  margin-bottom: 60px;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.featured-card-pro:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+  transform: translateY(-4px);
+}
+
+.featured-badge-top {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10, 10, 12, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-main);
+  backdrop-filter: blur(10px);
+}
+
+.star-icon {
+  color: #f59e0b;
 }
 
 .featured-image-wrapper-pro {
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 16/10;
-  cursor: pointer;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  min-height: 320px;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .featured-image-wrapper-pro img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.indigo-overlay-pro {
-  position: absolute; inset: 0;
-  background: linear-gradient(45deg, #6366f1, transparent);
-  opacity: 0; mix-blend-mode: overlay;
-  transition: opacity 0.4s ease; z-index: 1;
+.featured-card-pro:hover .featured-image-wrapper-pro img {
+  transform: scale(1.04);
 }
 
-.featured-image-wrapper-pro:hover img { transform: scale(1.03); }
-.featured-image-wrapper-pro:hover .indigo-overlay-pro { opacity: 0.3; }
-
-/* Filter & Tabs */
-.projects-filter-wrapper-pro {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.filter-title-pro { 
-  font-size: 1.8rem; 
-  color: white; 
-  font-weight: 700; 
-}
-
-/* 🔥 KONTEJNER: Přidán position relative */
-.tabs-pro {
-  position: relative;
-  display: flex; 
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 6px; 
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: hidden;
-}
-
-/* TLAČÍTKA: Zvýšen z-index, aby text zůstal nad klouzajícím pozadím */
-.tab-btn-pro {
-  position: relative;
-  z-index: 2;
-  display: flex; 
-  align-items: center; 
-  gap: 8px;
-  padding: 10px 20px; 
-  border-radius: 100px;
-  border: none; 
-  background: transparent !important; /* Pozadí tlačítka je VŽDY průhledné */
-  color: #64748b; 
-  font-weight: 700; 
-  font-size: 0.9rem;
-  cursor: pointer; 
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tab-btn-pro.active { 
-  color: white; 
-}
-
-/* 🔥 KLOUZAJÍCÍ INDIKÁTOR: Absolutně pozicované pozadí */
-.tab-indicator-pro {
+.image-overlay-pro {
   position: absolute;
-  top: 6px;
-  bottom: 6px;
-  left: 6px;
-  /* Šířka odpovídá přesně jednomu tlačítku (50 % šířky mínus padding) */
-  width: calc(50% - 10px); 
-  background: #6366f1; /* Tvoje fialová */
-  border-radius: 100px;
-  z-index: 1;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-  
-  /* Matematicky dokonalá animace pohybu */
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
 }
 
-/* Když je aktivní 'web', indikátor zůstává vlevo */
-.tab-indicator-pro.is-web {
-  transform: translateX(0);
+.featured-content-pro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Když skočíš na 'video', indikátor se hladce posune doprava */
-.tab-indicator-pro.is-video {
-  /* Posune se přesně o 100 % své šířky + připočte mezeru (gap) */
-  transform: translateX(calc(100% + 8px));
+.card-category-pro {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ember-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
-/* Projects Grid */
+.featured-title-pro {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.featured-desc-pro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.featured-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  transition: color 0.2s ease;
+}
+
+.featured-card-pro:hover .featured-cta-btn {
+  color: var(--ember-primary);
+}
+
+/* --- GRID PROJEKTŮ --- */
 .projects-grid-pro {
   display: grid;
-  /* Vynutíme 3 sloupce, které si rozdělí prostor 1400px */
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 32px; /* Mezera mezi kartami */
-  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
 }
 
 .project-card-pro {
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-tactile);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .project-card-pro:hover {
-  transform: translateY(-10px);
-  border-color: rgba(99, 102, 241, 0.3);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+  transform: translateY(-4px);
 }
 
-.card-image-pro { width: 100%; height: 240px; position: relative; overflow: hidden; }
-.card-image-pro img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
-.project-card-pro:hover img { transform: scale(1.05); }
+.card-image-pro {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.card-image-pro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card-pro:hover .card-image-pro img {
+  transform: scale(1.05);
+}
 
 .card-overlay-pro {
-  position: absolute; inset: 0; background: rgba(2, 6, 23, 0.8);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: 0.3s; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(4px);
 }
-.project-card-pro:hover .card-overlay-pro { opacity: 1; }
+
+.project-card-pro:hover .card-overlay-pro {
+  opacity: 1;
+}
 
 .overlay-btn-pro {
-  color: white; font-weight: 700; background: #6366f1;
-  padding: 12px 24px; border-radius: 100px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000000;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transform: translateY(10px);
+  transition: transform 0.25s ease;
 }
 
+.project-card-pro:hover .overlay-btn-pro {
+  transform: translateY(0);
+}
+
+/* KARTA TEXTY A FOOTER */
 .card-content-pro {
-  padding: 32px 28px; 
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-.card-category-pro { font-size: 0.75rem; color: #6366f1; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-.card-title-pro { font-size: 1.4rem; color: white; margin: 12px 0; font-weight: 700; }
-.card-desc-pro { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; }
+
+.card-title-pro {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.card-desc-pro {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
 
 .card-footer-pro {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* TAGY TECHNOLOGIÍ */
+.card-tech-pro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .tech-tag-pro {
-  font-size: 0.7rem; color: #cbd5e1; background: rgba(255, 255, 255, 0.05);
-  padding: 5px 12px; border-radius: 6px; margin-right: 6px; font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  padding: 3px 8px;
+  border-radius: 4px;
 }
 
 .arrow-circle-pro {
-  width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.05);
-  display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s;
-}
-.project-card-pro:hover .arrow-circle-pro { background: #6366f1; transform: rotate(-45deg); }
-
-/* Základní styl pro hlavní tlačítko (Indigo) */
-.btn-indigo {
-  background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
-  color: white;
-  margin-top: 20px;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Vnější jemný okraj */
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2); /* Ten vnitřní odlesk nahoře */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.btn-indigo:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 10px 20px rgba(79, 70, 229, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  filter: brightness(1.1);
+.project-card-pro:hover .arrow-circle-pro,
+.featured-card-pro:hover .arrow-circle-pro {
+  background: var(--ember-primary);
+  border-color: var(--ember-primary);
+  color: #ffffff;
+  transform: translateX(2px);
 }
 
-.btn-indigo:active {
-  transform: translateY(0);
-}
-
-/* Styl pro sekundární tlačítko (Outline / Glass) */
-.btn-outline {
-  background: rgba(255, 255, 255, 0.03);
-  color: #f8fafc;
-  padding: 14px 28px;
-  border-radius: 12px;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-/* Responsivita */
+/* =========================================
+   RESPONZIVITA
+   ========================================= */
 @media (max-width: 1024px) {
-  .featured-card-pro { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
-  .featured-image-wrapper-pro { order: -1; }
+  .featured-card-pro {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 28px;
+  }
+
+  .featured-image-wrapper-pro {
+    min-height: 240px;
+  }
 }
 
 @media (max-width: 640px) {
-  .projects-filter-wrapper-pro { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .featured-title-pro { font-size: 2.2rem; }
-}
-
-@media (max-width: 1200px) {
   .projects-grid-pro {
-    grid-template-columns: repeat(2, 1fr); /* Na tabletech 2 vedle sebe */
+    grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 768px) {
-  .projects-grid-pro {
-    grid-template-columns: 1fr; /* Na mobilu 1 pod druhou */
+  .projects-tabs-pro {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
   }
-}
 
-@media (min-width: 1600px) {
-  .projects-section .container {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
-  }
-}
-
-@media (min-width: 2000px) {
-  .projects-section .container {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+  .tab-btn-pro {
+    white-space: nowrap;
   }
 }

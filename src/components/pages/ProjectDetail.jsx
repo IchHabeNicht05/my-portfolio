@@ -4,7 +4,8 @@ import {
   ArrowLeft, Github, CheckCircle, Code2, Briefcase, 
   LayoutTemplate, Clock, Maximize, Cpu, Youtube, Lock 
 } from 'lucide-react';
-import { ProjectsData } from '../../data/projectsData'; // Uprav cestu ke svým datům
+import { ProjectsData } from '../../data/projectsData';
+import DeviceShowcase from '../sections/DeviceShowcase';
 import './ProjectDetail.css';
 
 const ProjectDetail = () => {
@@ -53,56 +54,69 @@ const ProjectDetail = () => {
       
       <div className="pd-container relative-z">
         
+        {/* NAVIGACE ZPĚT */}
         <div className="pd-top-bar">
           <button onClick={() => navigate(-1)} className="btn-back-ghost">
-            <ArrowLeft size={16} /> Zpět
+            <ArrowLeft size={16} /> Zpět na projekty
           </button>
         </div>
 
-        {/* HLAVNÍ VIZUÁL - Zmenšený a vycentrovaný */}
-        <div className="pd-hero-visual-wrapper">
+      {/* HLAVNÍ VIZUÁL (VIDEO / MULTI-DEVICE / STANDARDNÍ OBRÁZEK) */}
+      <div className="pd-hero-visual-wrapper">
+        {isVideo && project.videoUrl ? (
           <div className="pd-hero-visual">
-            {isVideo && project.videoUrl ? (
-              cookieConsent ? (
-                <div className="pd-video-wrapper">
-                  <iframe 
-                    src={project.videoUrl} 
-                    title={project.title}
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              ) : (
-                <div className="video-blocked-placeholder">
-                  <div className="blocked-content">
-                    <div className="blocked-icon-wrapper">
-                      <div className="icon-circle">
-                        <Youtube size={48} className="yt-icon" />
-                      </div>
-                      <div className="lock-badge">
-                        <Lock size={16} className="lock-icon" />
-                      </div>
-                    </div>
-                    <h3>Video je chráněno</h3>
-                    <p>Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies.</p>
-                    <button onClick={handleInlineAccept} className="btn-accept-inline">
-                      Povolit cookies a přehrát
-                    </button>
-                  </div>
-                </div>
-              )
+            {cookieConsent ? (
+              <div className="pd-video-wrapper">
+                <iframe 
+                  src={project.videoUrl} 
+                  title={project.title}
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             ) : (
-              /* Fallback pro běžné projekty (obrázek) */
-              <div className="pd-image-wrapper">
-                <img src={project.image || '/api/placeholder/1200/600'} alt={project.title} />
+              <div className="video-blocked-placeholder">
+                <div className="blocked-content">
+                  <div className="blocked-icon-wrapper">
+                    <div className="icon-circle">
+                      <Youtube size={48} className="yt-icon" />
+                    </div>
+                    <div className="lock-badge">
+                      <Lock size={16} className="lock-icon" />
+                    </div>
+                  </div>
+                  <h3>Video je chráněno</h3>
+                  <p>Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies.</p>
+                  <button onClick={handleInlineAccept} className="btn-accept-inline">
+                    Povolit cookies a přehrát
+                  </button>
+                </div>
               </div>
             )}
           </div>
-        </div>
+        ) : project.hasMultiDevice ? (
+          /* MULTI-DEVICE SHOWCASE (pokud je zapnuto v datech) */
+          <DeviceShowcase 
+            desktopImg={project.desktopImg || project.image}
+            tabletImg={project.tabletImg || project.image}
+            mobileImg={project.mobileImg || project.image}
+            title={project.title}
+          />
+        ) : (
+          /* KLASICKÝ SAMOSTATNÝ OBRÁZEK (výchozí stav) */
+          <div className="pd-hero-visual">
+            <div className="pd-image-wrapper">
+              <img src={project.image || '/api/placeholder/1200/600'} alt={project.title} />
+            </div>
+          </div>
+        )}
+      </div>
 
+        {/* LAYOUT GRID */}
         <div className="pd-layout-grid">
           
+          {/* HLAVNÍ OBSAH */}
           <div className="pd-main-content">
             <div className="pd-header-meta">
               <span className="pd-badge">{project.category}</span>
@@ -131,12 +145,18 @@ const ProjectDetail = () => {
             )}
 
             <div className="pd-text-block">
-              <h3><LayoutTemplate size={22} className="title-icon" /> {isVideo ? 'O videu a konceptu' : 'Úvod a Výzva'}</h3>
+              <h3>
+                <LayoutTemplate size={22} className="title-icon" /> 
+                {isVideo ? 'O videu a konceptu' : 'Úvod a Výzva'}
+              </h3>
               <p>{project.challenge}</p>
             </div>
 
             <div className="pd-text-block">
-              <h3><CheckCircle size={22} className="title-icon" /> {isVideo ? 'Postprodukce' : 'Moje Řešení'}</h3>
+              <h3>
+                <CheckCircle size={22} className="title-icon" /> 
+                {isVideo ? 'Postprodukce' : 'Moje Řešení'}
+              </h3>
               <p>{project.solution}</p>
             </div>
 
@@ -185,22 +205,26 @@ const ProjectDetail = () => {
               <div className="pd-action-buttons">
                 {isVideo && project.youtubeLink && (
                   <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="btn-video-link">
-                    Otevřít na YouTube <Youtube size={18} />
+                    <span>Otevřít na YouTube</span>
+                    <Youtube size={18} />
                   </a>
                 )}
                 {!isVideo && project.liveLink && project.liveLink !== "#" && (
                   <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn-live-link">
-                    Zobrazit web naživo <Maximize size={18} />
+                    <span>Zobrazit web naživo</span>
+                    <Maximize size={18} />
                   </a>
                 )}
                 {project.githubLink && !isVideo && project.githubLink !== "#" && (
                   <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="btn-outline-link">
-                    Zdrojový kód <Github size={18} />
+                    <span>Zdrojový kód</span>
+                    <Github size={18} />
                   </a>
                 )}
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

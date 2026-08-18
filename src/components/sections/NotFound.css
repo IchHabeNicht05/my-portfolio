@@ -1,11 +1,11 @@
 /* ============================================================
-   NOT FOUND (404) - FROSTED MIDNIGHT / INDIGO STYLE
+   NOT FOUND (404) - RAYCAST TACTILE EMBER STYLE
    ============================================================ */
 
 :root {
-  --indigo-primary: #6366f1;
-  --indigo-glow: rgba(99, 102, 241, 0.4);
-  --glass-bg: rgba(15, 23, 42, 0.6);
+  --ember-primary: #ff7a59;
+  --ember-glow: rgba(255, 122, 89, 0.35);
+  --glass-bg: rgba(15, 23, 42, 0.82);
   --border-glass: rgba(255, 255, 255, 0.08);
   --text-muted: #94a3b8;
 }
@@ -19,12 +19,12 @@
   position: relative;
   overflow: hidden;
   padding: 20px;
-  background-color: #020617; /* Temný základ Slate 950 */
-  font-family: 'Inter', sans-serif;
+  background-color: #080b12;
+  font-family: inherit;
   z-index: 1;
 }
 
-/* Ambientní podkres - stejný jako v Projects */
+/* Ambientní záře v pozadí */
 .not-found-bg-glow {
   position: absolute;
   top: 50%;
@@ -33,78 +33,81 @@
   width: 100%;
   max-width: 800px;
   height: 800px;
-  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.12), transparent 60%);
+  background: radial-gradient(circle at center, rgba(255, 122, 89, 0.12), transparent 60%);
   pointer-events: none;
   z-index: -1;
 }
 
 /* =========================================
-   --- LIQUID GLASS KARTIČKA (404) --- 
+   --- SKLENĚNÁ KARTIČKA (404) --- 
    ========================================= */
 .not-found-content {
   position: relative;
   z-index: 10;
-  background: #0a0f1e; /* Stejná barva jako sidebar v ProjectDetail */
-  padding: 4rem 3rem;
-  max-width: 550px;
+  background: var(--glass-bg);
+  padding: 3.5rem 2.5rem;
+  max-width: 520px;
   width: 100%;
-  border-radius: 32px;
+  border-radius: 28px;
   border: 1px solid var(--border-glass);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 30px 70px -15px rgba(0, 0, 0, 0.7), 
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
+  animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* TEXTY A ELEMENTY */
 .error-code {
-  font-size: 8rem;
+  font-size: 7.5rem;
   font-weight: 900;
   margin: 0;
   line-height: 1;
-  background: linear-gradient(135deg, #fff 0%, #818cf8 50%, #4f46e5 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--ember-primary) 50%, #e05230 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
+  filter: drop-shadow(0 0 25px rgba(255, 122, 89, 0.3));
   letter-spacing: -0.04em;
 }
 
 .error-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
-  margin: 1.5rem 0 1rem;
-  color: white;
+  margin: 1.25rem 0 0.85rem;
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
 .error-desc {
-  font-size: 1.1rem;
-  color: #cbd5e1;
-  margin-bottom: 3rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
   line-height: 1.6;
 }
 
-/* TLAČÍTKO */
+/* TLAČÍTKO - TACTILE EMBER BUTTON */
 .btn-back-home {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  background: var(--indigo-primary);
-  color: white;
-  padding: 16px 36px;
-  border-radius: 100px; /* Pilulkový tvar jako u accept cookies */
+  gap: 10px;
+  background: linear-gradient(135deg, var(--ember-primary) 0%, #e05230 100%);
+  color: #ffffff;
+  padding: 14px 32px;
+  border-radius: 100px;
   text-decoration: none;
-  font-weight: 800;
-  font-size: 1.05rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 25px var(--indigo-glow);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(255, 122, 89, 0.3);
 }
 
 .btn-back-home:hover {
-  background: #4f46e5;
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.6);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 122, 89, 0.45);
+  filter: brightness(1.05);
 }
 
 /* =========================================
@@ -115,12 +118,12 @@ body.light-mode .not-found-wrapper {
 }
 
 body.light-mode .not-found-bg-glow {
-  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.08), transparent 60%);
+  background: radial-gradient(circle at center, rgba(255, 122, 89, 0.1), transparent 60%);
 }
 
 body.light-mode .not-found-content {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 122, 89, 0.2);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
@@ -133,17 +136,29 @@ body.light-mode .error-desc {
 }
 
 body.light-mode .error-code {
-  background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+  background: linear-gradient(135deg, #e05230 0%, var(--ember-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.15));
+  filter: drop-shadow(0 0 20px rgba(255, 122, 89, 0.2));
+}
+
+/* ANIMACE */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* RESPONZIVITA */
 @media (max-width: 600px) {
-  .error-code { font-size: 6rem; }
-  .error-title { font-size: 1.8rem; }
-  .not-found-content { padding: 3rem 1.5rem; border-radius: 24px; }
-  .btn-back-home { padding: 14px 28px; font-size: 1rem; }
+  .error-code { font-size: 5.5rem; }
+  .error-title { font-size: 1.6rem; }
+  .not-found-content { padding: 2.5rem 1.5rem; border-radius: 20px; }
+  .btn-back-home { padding: 12px 24px; font-size: 0.9rem; }
 }

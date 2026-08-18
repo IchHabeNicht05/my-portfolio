@@ -1,3 +1,14 @@
+/* ============================================================
+   FLOATING DOCK - RAYCAST TACTILE EMBER EDITION
+   ============================================================ */
+
+:root {
+  --ember-primary: #ff7a59;
+  --ember-glow: rgba(255, 122, 89, 0.25);
+  --dock-bg-dark: rgba(12, 16, 26, 0.75);
+  --dock-border: rgba(255, 255, 255, 0.08);
+}
+
 /* =========================================
    --- KONTEJNER (Pozice a Levitace) --- 
    ========================================= */
@@ -13,23 +24,20 @@
 }
 
 /* =========================================
-   --- DOCK CONTAINER (Liquid Glass) --- 
+   --- DOCK CONTAINER (Liquid Glass Lens) --- 
    ========================================= */
 .dock-container {
   position: relative; 
-  isolation: isolate; /* Zabrání přetečení skla přes ikonky */
+  isolation: isolate;
   background: transparent !important;
   
   border-radius: 100px;
-  height: 64px; 
+  height: 60px; 
   display: flex;
   align-items: center;
   justify-content: center;
   
-  /* Základní stín pod dockem pro hloubku */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  
-  /* Pružná Apple-like animace rozbalování */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -42,14 +50,13 @@
   border-radius: inherit;
   
   background: transparent; 
-  /* Čistý blur a vysoká saturace pro vytahování barev z pozadí */
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
-  backdrop-filter: blur(10px) saturate(180%); 
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%); 
   
   overflow: hidden;
 }
 
-/* HORNÍ VRSTVA: TMAVÝ TÓN, GRADIENT A HRANY */
+/* HORNÍ VRSTVA: SKLO, EMBER TÓN A MIKRO-HRANY */
 .dock-container::before {
   content: '';
   position: absolute;
@@ -58,21 +65,18 @@
   border-radius: inherit;
   box-sizing: border-box; 
   
-  /* Jemný, hodně průhledný gradient (aby sklo dýchalo) */
   background: linear-gradient(
     135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(18, 18, 20, 0.25) 40%, 
-    rgba(18, 18, 20, 0.4) 100%
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(15, 23, 42, 0.65) 50%, 
+    rgba(8, 11, 18, 0.85) 100%
   );
   
-  /* Krásná micro-hrana kolem celého docku */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--dock-border);
   
-  /* Vnitřní odlesky (nahoře světlo, dole stín) */
   box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.15), 
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
+    inset 1px 1px 0px rgba(255, 255, 255, 0.12), 
+    inset 0 0 6px rgba(0, 0, 0, 0.4);
     
   pointer-events: none;
 }
@@ -81,8 +85,15 @@
    --- STAV: SBALENO (Collapsed) --- 
    ========================================= */
 .dock-container.collapsed {
-  width: 64px;
+  width: 60px;
   padding: 0;
+}
+
+.dock-container.collapsed:hover::before {
+  border-color: rgba(255, 122, 89, 0.3);
+  box-shadow: 
+    inset 1px 1px 0px rgba(255, 255, 255, 0.2), 
+    0 0 20px rgba(255, 122, 89, 0.2);
 }
 
 .dock-container.collapsed .dock-expanded-view {
@@ -102,12 +113,15 @@
    --- STAV: ROZBALENO (Expanded) --- 
    ========================================= */
 .dock-container.expanded {
-  width: 600px; /* ZVĚTŠENO pro 8 položek */
-  padding: 0 16px;
-  /* Přidáme tvou modrou záři a prohloubíme stín pro rozbalený stav */
+  width: 640px; /* Rozšířeno pro perfektní rozestupy 10 ikon */
+  padding: 0 12px;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(41, 151, 255, 0.15); 
+    0 25px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px var(--ember-glow); 
+}
+
+.dock-container.expanded::before {
+  border-color: rgba(255, 122, 89, 0.25);
 }
 
 .dock-container.expanded .dock-collapsed-view {
@@ -121,7 +135,7 @@
   opacity: 1;
   transform: scale(1) translateX(0);
   pointer-events: auto;
-  transition: all 0.4s ease 0.15s;
+  transition: all 0.4s ease 0.12s;
 }
 
 /* =========================================
@@ -132,7 +146,15 @@
   display: flex; 
   align-items: center; 
   justify-content: center;
-  color: white;
+  color: var(--ember-primary);
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.dock-collapsed-view:hover {
+  transform: scale(1.1);
 }
 
 .dock-expanded-view {
@@ -140,7 +162,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 8px;
+  padding: 0 4px;
 }
 
 /* =========================================
@@ -151,12 +173,12 @@
   display: flex; 
   align-items: center; 
   justify-content: center;
-  color: #999;
+  color: #94a3b8;
   text-decoration: none;
   width: 44px; 
   height: 44px;
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 /* Hover podsvícení ikonek */
@@ -164,11 +186,12 @@
   content: '';
   position: absolute;
   inset: 0; 
-  background: rgba(255, 255, 255, 0.1); 
+  background: rgba(255, 122, 89, 0.12); 
+  border: 1px solid rgba(255, 122, 89, 0.2);
   border-radius: 12px;
   opacity: 0; 
-  transform: scale(0.8);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.85);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .dock-item:hover::before {
@@ -177,194 +200,175 @@
 }
 
 .dock-item:hover {
-  color: white;
-}
-
-/* --- TOOLTIP BUBILNA --- */
-.dock-tooltip {
-  position: absolute;
-  /* Zvedne tooltip kousek nad ikonku */
-  bottom: calc(100% + 15px); 
-  left: 50%;
-  transform: translateX(-50%) scale(0.8) translateY(10px);
-  
-  /* Glassmorphism vzhled */
-  background: rgba(15, 23, 42, 0.85);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  padding: 8px 14px;
-  border-radius: 10px;
-  
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  white-space: nowrap; /* Aby se text nezalomil do dvou řádků */
-  
-  /* Animace skrytí */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-}
-
-/* --- MALÁ ŠIPKA POD TOOLTIPEM --- */
-.dock-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%; /* Spodek bubliny */
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 6px;
-  border-style: solid;
-  border-color: rgba(15, 23, 42, 0.85) transparent transparent transparent;
-}
-
-/* --- HOVER EFEKT (Zobrazení Tooltipu) --- */
-.dock-item:hover .dock-tooltip {
-  opacity: 1;
-  visibility: visible;
-  /* Bublina vyjede plynule nahoru a zvětší se */
-  transform: translateX(-50%) scale(1) translateY(0);
+  transform: translateY(-2px);
 }
 
 .icon-wrapper {
   position: relative;
   z-index: 2; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 
-/* Choreografie: Postupné objevování ikon */
-.dock-container.expanded .dock-item:nth-child(1) { transition-delay: 0.1s; }
-.dock-container.expanded .dock-item:nth-child(2) { transition-delay: 0.15s; }
-.dock-container.expanded .dock-item:nth-child(3) { transition-delay: 0.2s; }
-.dock-container.expanded .dock-item:nth-child(4) { transition-delay: 0.25s; }
-.dock-container.expanded .dock-item:nth-child(5) { transition-delay: 0.3s; }
-.dock-container.expanded .dock-item:nth-child(6) { transition-delay: 0.35s; }
-.dock-container.expanded .dock-item:nth-child(7) { transition-delay: 0.4s; }  /* PŘIDÁNO */
-.dock-container.expanded .dock-item:nth-child(8) { transition-delay: 0.45s; } /* PŘIDÁNO */
+.dock-item:hover .icon-wrapper {
+  color: var(--ember-primary);
+  filter: drop-shadow(0 0 8px rgba(255, 122, 89, 0.4));
+}
+
+/* CHOREOGRAFIE: Postupné objevování 10 ikon */
+.dock-container.expanded .dock-item:nth-child(1)  { transition-delay: 0.05s; }
+.dock-container.expanded .dock-item:nth-child(2)  { transition-delay: 0.08s; }
+.dock-container.expanded .dock-item:nth-child(3)  { transition-delay: 0.11s; }
+.dock-container.expanded .dock-item:nth-child(4)  { transition-delay: 0.14s; }
+.dock-container.expanded .dock-item:nth-child(5)  { transition-delay: 0.17s; }
+.dock-container.expanded .dock-item:nth-child(6)  { transition-delay: 0.20s; }
+.dock-container.expanded .dock-item:nth-child(7)  { transition-delay: 0.23s; }
+.dock-container.expanded .dock-item:nth-child(8)  { transition-delay: 0.26s; }
+.dock-container.expanded .dock-item:nth-child(9)  { transition-delay: 0.29s; }
+.dock-container.expanded .dock-item:nth-child(10) { transition-delay: 0.32s; }
 
 /* =========================================
    --- TOOLTIP (Bublina) --- 
    ========================================= */
 .dock-tooltip {
   position: absolute;
-  top: -45px; 
+  bottom: calc(100% + 14px); 
   left: 50%;
-  transform: translateX(-50%) translateY(10px) scale(0.9);
-  background: rgba(0, 0, 0, 0.85);
-  color: white;
-  padding: 6px 10px;
+  transform: translateX(-50%) translateY(8px) scale(0.85);
+  
+  background: rgba(15, 23, 42, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 122, 89, 0.2);
+  color: #ffffff;
+  padding: 6px 12px;
   border-radius: 8px;
-  font-size: 0.75rem; 
+  
+  font-size: 0.75rem;
   font-weight: 600;
-  opacity: 0; 
-  pointer-events: none;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  letter-spacing: 0.5px;
   white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(255, 122, 89, 0.15);
+  z-index: 100;
+}
+
+/* Šipka pod tooltipem */
+.dock-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.92) transparent transparent transparent;
 }
 
 .dock-item:hover .dock-tooltip {
   opacity: 1;
+  visibility: visible;
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
-/* 1. Zjemnění stínů pro kontejner */
+/* =========================================
+   --- SVĚTLÝ MOTIV (Light Mode) --- 
+   ========================================= */
 body.light-mode .dock-container {
-  background: transparent !important; 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); 
 }
 
-/* 2. Zjemnění stínů při rozbalení */
 body.light-mode .dock-container.expanded {
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.12),
-    0 0 20px rgba(41, 151, 255, 0.15); 
+    0 20px 45px rgba(0, 0, 0, 0.12),
+    0 0 25px rgba(255, 122, 89, 0.2); 
 }
 
-/* 3. Světlé ledové sklo */
 body.light-mode .dock-container::before {
   background: linear-gradient(
     135deg, 
-    rgba(255, 255, 255, 0.25) 0%, 
-    rgba(255, 255, 255, 0.05) 50%, 
-    rgba(255, 255, 255, 0) 100%    
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(241, 245, 249, 0.75) 100%    
   );
   
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   
   box-shadow: 
-    inset 1px 1px 0px rgba(255, 255, 255, 0.5), 
-    inset 0 0 4px rgba(0, 0, 0, 0.02);
+    inset 1px 1px 0px rgba(255, 255, 255, 0.9), 
+    inset 0 0 4px rgba(0, 0, 0, 0.03);
 }
 
-/* 4. Tmavé ikonky (Menu) */
 body.light-mode .dock-collapsed-view {
-  color: #1a1a1c; 
+  color: var(--ember-primary); 
 }
 
-/* 5. Tmavé ikonky v rozbaleném stavu */
 body.light-mode .dock-item {
-  color: #666; 
+  color: #64748b; 
 }
 
 body.light-mode .dock-item:hover {
-  color: #111; 
+  color: #0f172a; 
 }
 
 body.light-mode .dock-item::before {
-  background: rgba(0, 0, 0, 0.06); 
+  background: rgba(255, 122, 89, 0.1); 
+  border-color: rgba(255, 122, 89, 0.25);
 }
 
-/* 6. Tooltip ve světlém kabátu */
 body.light-mode .dock-tooltip {
-  background: rgba(255, 255, 255, 0.9);
-  color: #111;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+  border-color: rgba(255, 122, 89, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .dock-tooltip::after {
+  border-color: rgba(255, 255, 255, 0.95) transparent transparent transparent;
 }
 
 /* =========================================
-   --- ANIMACE A RESPONSIVITA --- 
+   --- ANIMACE A RESPONZIVITA --- 
    ========================================= */
 @keyframes floatUp {
-  from { opacity: 0; transform: translateX(-50%) translateY(100px); }
+  from { opacity: 0; transform: translateX(-50%) translateY(80px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .dock-wrapper {
-    /* Zvedneme dock mírně výš kvůli domovské čáře na iPhonech */
     bottom: calc(16px + env(safe-area-inset-bottom, 0px)); 
   }
 
   .dock-container.expanded { 
-    /* Místo fixních 360px použijeme dynamickou šířku přesně na velikost displeje */
-    width: calc(100vw - 32px); 
-    max-width: 400px; 
-    padding: 0 8px; 
+    width: calc(100vw - 24px); 
+    max-width: 480px; 
+    padding: 0 6px; 
   } 
 
   .dock-item { 
-    width: 36px; /* Trochu zmenšeno pro lepší dýchání 8 ikon */
-    height: 36px; 
+    width: 38px; 
+    height: 38px; 
   }
 
-  /* Vypnutí bublin na dotykových zařízeních – zrychluje to navigaci prstem */
   .dock-tooltip {
     display: none !important;
   }
 }
 
-/* Ošetření pro ultra úzké displeje (šířka kolem 320px) */
-@media (max-width: 360px) {
+@media (max-width: 400px) {
   .dock-container.expanded {
-    padding: 0 4px;
+    padding: 0 2px;
   }
+  
   .dock-item {
     width: 32px;
     height: 32px;

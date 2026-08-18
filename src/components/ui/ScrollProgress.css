@@ -1,6 +1,13 @@
 /* ============================================================
-   💎 PREMIUM NEON SCROLL PROGRESS (Finální high-contrast verze)
+   SCROLL PROGRESS - RAYCAST TACTILE EMBER EDITION
    ============================================================ */
+
+:root {
+  --ember-primary: #ff7a59;
+  --ember-glow: rgba(255, 122, 89, 0.35);
+  --sp-glass: rgba(12, 16, 26, 0.75);
+  --sp-border: rgba(255, 255, 255, 0.08);
+}
 
 .scroll-progress-wrapper {
   position: fixed;
@@ -8,20 +15,21 @@
   right: 35px;
   width: 66px;
   height: 66px;
-  border-radius: 50%; /* Vynutí dokonalý kruh celého prvku */
+  border-radius: 50%;
   z-index: 100;
   cursor: pointer;
   
   /* Nástupní animace */
   opacity: 0;
+  pointer-events: none;
   transform: translateY(20px) scale(0.9);
   transition: 
     opacity 0.4s ease,
     transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     box-shadow 0.3s ease;
 
-  /* Jemná záře v základu */
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+  /* Základní stín */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .scroll-progress-wrapper.visible {
@@ -30,17 +38,19 @@
   pointer-events: auto;
 }
 
-/* 👉 HOVER EFEKT - Aktivace záře */
+/* 👉 HOVER EFEKT - Ember Glow */
 .scroll-progress-wrapper:hover {
-  transform: translateY(-6px) scale(1.05);
+  transform: translateY(-4px) scale(1.05);
   box-shadow: 
-    0 0 8px rgba(99, 102, 241, 0.6),
-    0 0 25px rgba(99, 102, 241, 0.3);
+    0 0 15px rgba(255, 122, 89, 0.4),
+    0 0 30px rgba(255, 122, 89, 0.2),
+    0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
 .scroll-progress-wrapper:hover .progress-icon {
-  color: #6366f1 !important; /* Rozsvícení šipky do cyan modré */
-  background: rgba(15, 18, 25, 0.85) !important; /* Ztmavnutí skla pro kontrast */
+  color: var(--ember-primary) !important;
+  background: rgba(15, 23, 42, 0.9) !important;
+  border-color: rgba(255, 122, 89, 0.3);
 }
 
 /* ⚪ SVG CONTAINER */
@@ -50,51 +60,80 @@
   left: 0;
   width: 66px;
   height: 66px;
-  transform: rotate(-90deg); /* Start progressu nahoře */
-  z-index: 5; /* KLÍČOVÉ: SVG musí být nad skleněnou ikonou */
-  pointer-events: none; /* Kliknutí propadnou na wrapper */
+  transform: rotate(-90deg);
+  z-index: 5;
+  pointer-events: none;
 }
 
-/* Šedá vodící linka (Pozadí trackeru) */
+/* Šedá vodící linka */
 .progress-ring-bg {
   stroke: rgba(255, 255, 255, 0.06);
 }
 
-/* ✅ AKTIVNÍ NEONOVÁ ČÁRA (Vysoký kontrast) */
+/* 🔥 AKTIVNÍ NEONOVÁ ČÁRA (Ember Orange) */
 .progress-ring-circle {
-  stroke: #6366f1; /* Zářivá elektrická modrá/cyan */
+  stroke: var(--ember-primary);
   stroke-linecap: round;
   transition: stroke-dashoffset 0.1s linear;
+  filter: drop-shadow(0 0 4px rgba(255, 122, 89, 0.5));
 }
 
-/* ⬆️ SKLENĚNÝ STŘED A ŠIPKA (Glassmorphism) */
+/* ⬆️ SKLENĚNÝ STŘED A ŠIPKA */
 .progress-icon {
   position: absolute;
-  inset: 0; /* Vyplní celý kruh */
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   
-  /* Barva šipky v základu */
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   transition: all 0.3s ease;
   
-  /* Temné prémiové sklo */
-  background: rgba(20, 24, 35, 0.65);
+  background: var(--sp-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   
-  /* Jemná vnitřní hrana pro 3D efekt */
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 1; /* Pod SVG čarou */
+  border: 1px solid var(--sp-border);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.08);
+  z-index: 1;
+}
+
+/* =========================================
+   --- SVĚTLÝ MOTIV (Light Mode) --- 
+   ========================================= */
+body.light-mode .scroll-progress-wrapper {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .scroll-progress-wrapper:hover {
+  box-shadow: 
+    0 0 15px rgba(255, 122, 89, 0.3),
+    0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .progress-ring-bg {
+  stroke: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .progress-icon {
+  background: rgba(255, 255, 255, 0.85);
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode .scroll-progress-wrapper:hover .progress-icon {
+  background: #ffffff !important;
+  color: var(--ember-primary) !important;
+  border-color: rgba(255, 122, 89, 0.3);
 }
 
 /* 📱 MOBILNÍ OPTIMALIZACE */
 @media (max-width: 768px) {
   .scroll-progress-wrapper {
-    bottom: 25px;
-    right: 25px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    right: 20px;
     width: 56px;
     height: 56px;
   }

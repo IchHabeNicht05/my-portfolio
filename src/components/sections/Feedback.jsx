@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Feedback.css";
-import { Star, Send, CheckCircle, Loader2, MessageSquare } from "lucide-react";
+import { Star, Send, CheckCircle, Loader2, Sparkles } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import ScrollReveal from '../ui/RevealOnScroll';
 
@@ -40,161 +40,151 @@ const Feedback = () => {
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
-      .then((response) => {
-        console.log('Feedback odeslán!', response.status, response.text);
-        setIsSubmitted(true);
-        setFormData({ name: "", project: "", text: "" });
-        setRating(0);
-      })
-      .catch((err) => {
-        console.error('Chyba při odesílání:', err);
-        setError("Nepodařilo se odeslat hodnocení. Zkuste to prosím později.");
-      })
-      .finally(() => {
-        setIsSending(false);
-      });
+      .then(
+        () => {
+          setIsSending(false);
+          setIsSubmitted(true);
+          setFormData({ name: "", project: "", text: "" });
+          setRating(0);
+        },
+        (err) => {
+          setIsSending(false);
+          setError("Došlo k chybě při odesílání. Zkuste to prosím znovu.");
+          console.error("EmailJS Error:", err);
+        }
+      );
   };
 
   return (
-    <section className="feedback-section">
-      {/* Ambientní pozadí pro sjednocení s About sekcí - teď se může bezpečně rozlít do stran */}
-      <div className="ambient-glow left"></div>
-      <div className="ambient-glow right"></div>
+    <section id="feedback" className="feedback-section">
+      <div className="feedback-ambient-glow" />
 
       <ScrollReveal direction="up" delay={0.1}>
-
-      {/* Nový obal kontejneru pro vycentrování obsahu */}
-      <div className="container feedback-container">
-        
-        {/* HLAVIČKA SEKCE */}
-        <div className="feedback-header-wrapper">
-          <div className="feedback-tag">
-            <MessageSquare size={14} />
-            ZPĚTNÁ VAZBA
+        <div className="container feedback-container">
+          
+          {/* HLAVIČKA SEKCE S POŽADOVANÝM STYLEM */}
+          <div className="feedback-header-pro">
+            <div className="feedback-tag-pro">
+              <Sparkles size={13} className="tag-sparkle" />
+              <span>Zpětná vazba</span>
+            </div>
+            
+            <h2 className="feedback-title-pro">
+              Vaše <span className="ember-text-gradient">hodnocení</span>
+            </h2>
+            
+            <p className="feedback-desc-pro">
+              Pomozte mi neustále posouvat kvalitu služeb. Vaše zkušenost a názor jsou pro mě zásadní.
+            </p>
           </div>
-          <h2 className="feedback-title-large">Vaše spokojenost</h2>
-          <p className="feedback-description">
-            Pomozte mi se zlepšovat. Vaše hodnocení je pro mě klíčové.
-          </p>
-        </div>
 
-        <div className="feedback-glass-card">
-          {!isSubmitted ? (
-            <>
-              <div className="feedback-header">
-                <h2 className="section-title-small">Spokojenost s prací?</h2>
-                <p className="feedback-subtitle">
-                  Vaše zpětná vazba mi pomáhá se zlepšovat a dodávat ještě lepší
-                  výsledky.
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="feedback-form" aria-label="Formulář pro odeslání zpětné vazby">
+          {/* KARTA FORMULÁŘE (TACTILE GLASS) */}
+          <div className="feedback-glass-card">
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} className="feedback-form">
                 
-                {/* --- HVĚZDIČKY --- */}
-                <div className="star-rating-container">
-                  <p className="label-text">Vaše hodnocení:</p>
-                  <div className="stars-wrapper">
+                {/* HODNOCENÍ HVĚZDIČKAMI */}
+                <div className="rating-container">
+                  <label className="form-label">Jak jste byli spokojeni?</label>
+                  <div className="stars-row">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
-                        type="button"
                         key={star}
-                        className={`star-btn ${star <= (hoverRating || rating) ? "active" : ""}`}
+                        type="button"
+                        className={`star-btn ${star <= (hoverRating || rating) ? 'active' : ''}`}
                         onClick={() => setRating(star)}
                         onMouseEnter={() => setHoverRating(star)}
                         onMouseLeave={() => setHoverRating(0)}
-                        aria-label={`Ohodnotit ${star} hvězdičkami`}
+                        aria-label={`Hodnocení ${star} z 5`}
                       >
-                        <Star
-                          size={32}
-                          fill={star <= (hoverRating || rating) ? "currentColor" : "none"}
+                        <Star 
+                          size={28} 
+                          fill={star <= (hoverRating || rating) ? "var(--ember-primary, #ff7a59)" : "none"}
+                          color={star <= (hoverRating || rating) ? "var(--ember-primary, #ff7a59)" : "var(--text-muted, #64748b)"}
                         />
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* --- VSTUPY --- */}
-                <div className="inputs-grid">
+                <div className="form-grid">
                   <div className="form-group">
-                    <label className="form-label">Vaše jméno</label>
+                    <label htmlFor="feedback-name" className="form-label">Jméno / Firma</label>
                     <input
-                    id="feedback_name"
+                      id="feedback-name"
                       type="text"
-                      name="name"
                       className="glass-input"
-                      placeholder="Petr Novák"
-                      required
+                      placeholder="Jan Novák"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
                     />
                   </div>
+                  
                   <div className="form-group">
-                    <label className="form-label">Projekt / Firma</label>
+                    <label htmlFor="feedback-project" className="form-label">Název projektu</label>
                     <input
-                    id="feedback_text"
+                      id="feedback-project"
                       type="text"
-                      name="text"
                       className="glass-input"
-                      placeholder="E-shop s kávou"
+                      placeholder="Redesign webu / E-shop..."
                       value={formData.project}
                       onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                      aria-label="Název projektu nebo firmy"
+                      required
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Slovní hodnocení (volitelné)</label>
+                  <label htmlFor="feedback-text" className="form-label">Slovní hodnocení</label>
                   <textarea
-                    rows="4"
-                    className="glass-input textarea-resize-none"
-                    placeholder="Co se vám líbilo nejvíce a co mohu zlepšit?"
-                    aria-label="Slovní hodnocení"
+                    id="feedback-text"
+                    className="glass-input textarea-resize-vertical"
+                    placeholder="Napište krátkou recenzi vaší zkušenosti..."
+                    rows={4}
                     value={formData.text}
                     onChange={(e) => setFormData({ ...formData, text: e.target.value })}
+                    required
                   ></textarea>
                 </div>
 
-                {/* Chybová hláška */}
-                {error && <p className="error-text">{error}</p>}
+                {error && <p className="feedback-error-msg">{error}</p>}
 
                 <div className="submit-wrapper">
                   <button
-                    type="submit" // Toto řekne formuláři: "Teď se odešli"
-                    className="btn-feedback"
+                    type="submit"
+                    className="btn-feedback-submit"
                     disabled={isSending}
-                    aria-label='Odeslat hodnocení'
-                    style={{ cursor: isSending ? 'not-allowed' : 'pointer', width: '100%' }} // Přidáno pro jistotu
+                    aria-label="Odeslat hodnocení"
                   >
                     {isSending ? (
-                      <>Odesílám... <Loader2 size={18} className="spin-animation" style={{ marginLeft: 8 }} /></>
+                      <>Odesílám... <Loader2 size={18} className="spin-animation" /></>
                     ) : (
-                      <>Odeslat hodnocení <Send size={18} style={{ marginLeft: 8 }} /></>
+                      <>Odeslat hodnocení <Send size={18} /></>
                     )}
                   </button>
                 </div>
               </form>
-            </>
-          ) : (
-            /* --- STAV PO ODESLÁNÍ --- */
-            <div className="success-message animate-pop-in">
-              <div className="success-icon-box">
-                <CheckCircle size={48} />
+            ) : (
+              /* STAV PO ODESLÁNÍ */
+              <div className="success-message animate-pop-in">
+                <div className="success-icon-box">
+                  <CheckCircle size={44} />
+                </div>
+                <h3 className="success-title">Děkuji za hodnocení!</h3>
+                <p className="success-desc">Vážím si vašeho času. Zpětná vazba byla úspěšně doručena.</p>
+                <button
+                  type="button"
+                  className="btn-text-only"
+                  onClick={() => setIsSubmitted(false)}
+                >
+                  Odeslat další hodnocení
+                </button>
               </div>
-              <h3>Děkuji za hodnocení!</h3>
-              <p>Vážím si vašeho času. Zpětná vazba byla úspěšně odeslána.</p>
-              <button
-                className="btn-text-only"
-                onClick={() => setIsSubmitted(false)}
-                aria-label="Odeslat další hodnocení"
-              >
-                Odeslat další
-              </button>
-            </div>
-          )}
+            )}
+          </div>
+
         </div>
-      </div>
       </ScrollReveal>
     </section>
   );

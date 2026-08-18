@@ -1,50 +1,58 @@
 import React from 'react';
 import './Hero.css';
 import ScrollReveal from '../ui/RevealOnScroll';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight, Command, Terminal, Sparkles } from 'lucide-react';
 
-const Hero = () => {
-  // Pro firmy je důležitá dostupnost a jasný timeline
+const Hero = ({ onOpenInquiry }) => {
   const isAvailable = true; 
 
   return (
-    <section className="hero">
-      <div className="hero-ambient-glow"></div>
+    <section id="hero" className="hero">
+      {/* Živá jantaro-fialová aura v pozadí */}
+      <div className="raycast-aura"></div>
+      <div className="grid-pattern"></div>
+      
       <ScrollReveal direction="up" delay={0.1}>
+        <div className="container hero-content">
+          
+          {/* Raycast Status Badge s ⌘K akcentem */}
+          <div className="raycast-badge-wrapper animate-fade-in">
+            <div className="raycast-badge">
+              <span className="live-dot-container">
+                <span className={`live-dot-pulse ${isAvailable ? 'active' : ''}`}></span>
+                <span className={`live-dot ${isAvailable ? 'active' : ''}`}></span>
+              </span>
+              <span className="badge-text">
+                {isAvailable ? "Dostupný pro nové projekty" : "Obsazený kapacitně"}
+              </span>
+            </div>
+          </div>
 
-      <div className="container hero-content">
-        
-        {/* Status Badge - čistší, korporátní design */}
-        <div className="status-badge-pro animate-fade-in">
-          <span className="status-indicator"></span>
-          <span className="status-label">
-            {isAvailable ? "Přijímám nové projekty" : "Aktuálně plná kapacita"}
-          </span>
-        </div>
+          {/* Hlavní Headline s ohnivým gradientem */}
+          <h1 className="hero-title animate-slide-up">
+            Kóduji digitální produkty <br />
+            s <span className="ember-text">duší a extrémním výkonem.</span>
+          </h1>
+          
+          <p className="hero-text animate-slide-up">
+            Juniorní Full-Stack vývojář. Spojuji taktilní mikromoderní UI, bleskovou architekturu a nekompromisní smysl pro každý pixel.
+          </p>
+          
+          {/* Taktilní tlačítka */}
+          <div className="hero-buttons animate-slide-up">
+            <button onClick={onOpenInquiry} className="btn-raycast-primary">
+              <Sparkles size={16} className="sparkle-icon" />
+              <span>Zahájit projekt</span>
+              <ArrowRight size={16} />
+            </button>
 
-        {/* Headline - Ocelový gradient a precizní typografie */}
-        <h1 className="hero-title animate-slide-up">
-          Stavím digitální řešení, <br />
-          která <span className="hero-text-gradient">pohánějí váš byznys.</span>
-        </h1>
-        
-        <p className="hero-text animate-slide-up">
-          Full-stack vývojář specializovaný na výkonné webové aplikace a vizuální identitu. 
-          Spojuji technickou preciznost s designem, který buduje autoritu vaší značky.
-        </p>
-        
-        <div className="hero-buttons animate-slide-up">
-            <a href="#projects" className="btn-pro-primary">
-                Zobrazit případové studie
-                <ArrowRight size={18} strokeWidth={2.5} />
+            <a href="#projects" className="btn-raycast-secondary">
+              <Terminal size={15} />
+              <span>Prohlédnout práce</span>
             </a>
-
-            <a href="#contact" className="btn-pro-secondary">
-                Konzultovat projekt
-            </a>
+          </div>
+          
         </div>
-        
-      </div>
       </ScrollReveal>
     </section>
   );

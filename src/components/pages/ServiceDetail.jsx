@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-import { ArrowLeft, Check, Mail, Loader2, Sparkles, User } from 'lucide-react'; // Přidána ikonka User
+import { ArrowLeft, Check, Mail, Loader2, Sparkles, User } from 'lucide-react';
 import { ServicesData } from '../../data/servicesData';
 import './ServiceDetail.css';
 
@@ -14,7 +14,7 @@ const ServiceDetail = () => {
   const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   // STAVY FORMULÁŘE
-  const [userName, setUserName] = useState(""); // Nový stav pro jméno
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [emailStatus, setEmailStatus] = useState("idle");
@@ -27,8 +27,8 @@ const ServiceDetail = () => {
     return (
       <div className="sd-not-found">
         <h2 className="sd-title">Služba nenalezena</h2>
-        <Link to="/" className="btn-back">
-          <ArrowLeft size={16} /> Zpět
+        <Link to="/" className="btn-back-ghost">
+          <ArrowLeft size={16} /> Zpět na hlavní stránku
         </Link>
       </div>
     );
@@ -47,9 +47,9 @@ const ServiceDetail = () => {
     
     const templateParams = { 
       user_email: email, 
-      user_name: userName, // Teď posíláme reálné jméno místo statického textu
+      user_name: userName,
       message: fullMessage,
-      service_title: service.title // Můžeš využít v šabloně jako {{service_title}}
+      service_title: service.title
     };
 
     try {
@@ -70,7 +70,7 @@ const ServiceDetail = () => {
         {/* NAVIGACE ZPĚT */}
         <div className="sd-top-bar">
           <Link to="/" className="btn-back-ghost">
-            <ArrowLeft size={16} /> Zpět
+            <ArrowLeft size={16} /> Zpět na služby
           </Link>
         </div>
 
@@ -80,7 +80,7 @@ const ServiceDetail = () => {
           {/* LEVÝ SLOUPEC: Informace */}
           <div className="sd-content-column">
             <div className="sd-header-badge">
-              <service.icon size={20} className="sd-badge-icon" />
+              <service.icon size={18} className="sd-badge-icon" />
               <span>Detail služby</span>
             </div>
 
@@ -96,7 +96,7 @@ const ServiceDetail = () => {
 
             <div className="sd-features-section">
               <h3 className="sd-section-title">
-                <Sparkles size={18} className="text-primary" /> Co je zahrnuto v ceně:
+                <Sparkles size={20} className="sparkle-icon" /> Co je zahrnuto v ceně:
               </h3>
               <div className="sd-features-grid">
                 {service.features.map((feature, i) => (
@@ -124,46 +124,45 @@ const ServiceDetail = () => {
                 <h3 className="sd-form-title">Poptat tuto službu</h3>
                 <p className="sd-form-subtitle">Napište mi detaily a obratem se vám ozvu s dalším postupem.</p>
                 
-                {/* NOVÉ POLE: JMÉNO */}
                 <div className="sd-form-group">
-                  <label>Vaše Jméno</label>
+                  <label htmlFor="sd_name">Vaše Jméno</label>
                   <input 
-                  id="sd_name"
-                  name="user_name"
-                     type="text" 
-                     placeholder="Jan Novák" 
-                     className="sd-input"
-                     value={userName}
-                     onChange={(e) => setUserName(e.target.value)}
-                     disabled={emailStatus === "success" || emailStatus === "sending"}
+                    id="sd_name"
+                    name="user_name"
+                    type="text" 
+                    placeholder="Jan Novák" 
+                    className="sd-input"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    disabled={emailStatus === "success" || emailStatus === "sending"}
                   />
                 </div>
 
                 <div className="sd-form-group">
-                  <label>Váš Email</label>
+                  <label htmlFor="sd_email">Váš Email</label>
                   <input 
-                  id="sd_email"
-                  name="user_email"
-                     type="email" 
-                     placeholder="vas@email.cz" 
-                     className="sd-input"
-                     value={email}
-                     onChange={(e) => setEmail(e.target.value)}
-                     disabled={emailStatus === "success" || emailStatus === "sending"}
+                    id="sd_email"
+                    name="user_email"
+                    type="email" 
+                    placeholder="vas@email.cz" 
+                    className="sd-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={emailStatus === "success" || emailStatus === "sending"}
                   />
                 </div>
                 
                 <div className="sd-form-group">
-                  <label>Detail projektu / Zpráva</label>
+                  <label htmlFor="sd_message">Detail projektu / Zpráva</label>
                   <textarea 
-                  id="sd_message"
-                  name="message"
-                     rows="4" 
-                     placeholder={`Dobrý den, mám zájem o ${service.title}...`} 
-                     className="sd-textarea"
-                     value={message}
-                     onChange={(e) => setMessage(e.target.value)}
-                     disabled={emailStatus === "success" || emailStatus === "sending"}
+                    id="sd_message"
+                    name="message"
+                    rows="4" 
+                    placeholder={`Dobrý den, mám zájem o ${service.title}...`} 
+                    className="sd-textarea"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    disabled={emailStatus === "success" || emailStatus === "sending"}
                   />
                 </div>
                 
@@ -172,10 +171,10 @@ const ServiceDetail = () => {
                    onClick={handleSendInquiry}
                    disabled={emailStatus === "success" || emailStatus === "sending"}
                 >
-                  {emailStatus === "idle" && <>Odeslat poptávku <Mail size={18} /></>}
-                  {emailStatus === "sending" && <>Odesílám... <Loader2 size={18} className="sd-spin" /></>}
-                  {emailStatus === "success" && <>Odesláno <Check size={18} /></>}
-                  {emailStatus === "error" && <>Chyba, zkuste to znovu</>}
+                  {emailStatus === "idle" && <><span>Odeslat poptávku</span> <Mail size={18} /></>}
+                  {emailStatus === "sending" && <><span>Odesílám...</span> <Loader2 size={18} className="sd-spin" /></>}
+                  {emailStatus === "success" && <><span>Odesláno</span> <Check size={18} /></>}
+                  {emailStatus === "error" && <><span>Chyba, zkuste to znovu</span></>}
                 </button>
               </div>
 

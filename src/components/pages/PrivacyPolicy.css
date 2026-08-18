@@ -1,26 +1,35 @@
 /* ============================================================
-   PRIVACY POLICY / TEXT PAGE - FROSTED MIDNIGHT EDITION
+   PRIVACY POLICY - RAYCAST TACTILE EMBER EDITION
    ============================================================ */
+
+:root {
+  --ember-primary: #ff7a59;
+  --ember-glow: rgba(255, 122, 89, 0.35);
+  --pp-bg-dark: #080b12;
+  --pp-border: rgba(255, 255, 255, 0.08);
+  --pp-text-muted: #94a3b8;
+}
 
 /* ZÁKLAD STRÁNKY */
 .pp-section {
   min-height: 100vh;
-  padding: 120px 0 100px;
+  padding: 130px 0 100px;
   position: relative;
-  background-color: #020617; /* Slate 950 */
+  background-color: var(--pp-bg-dark);
   color: #f8fafc;
   overflow: hidden;
+  font-family: inherit;
 }
 
-/* Prémiová horní záře (Indigo & Violet mix) */
+/* Ambientní Ember záře v pozadí */
 .pp-bg-glow {
   position: absolute;
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
+  width: 900px;
   height: 600px;
-  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.05) 40%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255, 122, 89, 0.12) 0%, rgba(255, 122, 89, 0.02) 45%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -36,80 +45,85 @@
   z-index: 10;
 }
 
-/* Primární barva sjednocená na Indigo */
+/* Primární akcentní barva */
 .text-primary { 
-  color: #818cf8; 
+  color: var(--ember-primary); 
 }
 
-/* TOP BAR (Zpět) - Skleněná pilulka */
+/* TOP BAR (Zpět) */
+.pp-top-bar {
+  margin-bottom: 40px;
+}
+
 .btn-back-ghost {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #94a3b8;
+  color: var(--pp-text-muted);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
   padding: 10px 20px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  margin-bottom: 50px;
+  border: 1px solid var(--pp-border);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
 .btn-back-ghost:hover {
   color: #ffffff;
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
-  transform: translateX(-5px);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+  background: rgba(255, 122, 89, 0.08);
+  border-color: rgba(255, 122, 89, 0.3);
+  transform: translateX(-3px);
+  box-shadow: 0 0 20px rgba(255, 122, 89, 0.15);
 }
 
 /* NADPIS */
 .pp-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 900;
-  margin-bottom: 48px;
-  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #ffffff;
   line-height: 1.1;
-  letter-spacing: -1px;
+  letter-spacing: -0.03em;
 }
 
 /* GRID PRO KARTIČKY */
 .pp-cards-grid {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
 }
 
 /* =========================================
-   --- FROSTED NEO-GLASS KARTIČKY --- 
+   --- TACTILE EMBEDDED KARTIČKY --- 
    ========================================= */
 .pp-card {
   position: relative;
-  background: rgba(15, 23, 42, 0.4);
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-left: 4px solid rgba(255, 255, 255, 0.1); /* Decentní levý okraj */
+  background: rgba(15, 23, 42, 0.5);
+  padding: 32px 36px;
+  border-radius: 20px;
+  border: 1px solid var(--pp-border);
+  border-left: 3px solid rgba(255, 122, 89, 0.25);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 0px rgba(255, 255, 255, 0.04);
 }
 
 .pp-card:hover {
-  transform: translateY(-5px);
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(99, 102, 241, 0.2);
-  border-left: 4px solid #6366f1; /* Na hover se levý okraj rozsvítí Indigo */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-              inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transform: translateY(-2px);
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(255, 122, 89, 0.3);
+  border-left: 3px solid var(--ember-primary);
+  box-shadow: 
+    0 15px 35px -10px rgba(0, 0, 0, 0.6), 
+    0 0 25px rgba(255, 122, 89, 0.08),
+    inset 1px 1px 0px rgba(255, 255, 255, 0.06);
 }
 
 .pp-card h2 {
@@ -117,17 +131,17 @@
   align-items: center;
   gap: 12px;
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
 }
 
 .pp-card p {
-  color: #94a3b8;
-  line-height: 1.8;
-  font-size: 1.05rem;
-  margin-bottom: 16px;
+  color: var(--pp-text-muted);
+  line-height: 1.75;
+  font-size: 1rem;
+  margin-bottom: 14px;
 }
 
 .pp-card p strong {
@@ -145,36 +159,38 @@
 
 /* PATIČKA (DATUM) */
 .pp-footer-date {
-  margin-top: 60px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  margin-top: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: #64748b;
   text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+  border-top: 1px solid var(--pp-border);
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.5px;
 }
 
 /* RESPONZIVITA */
 @media (max-width: 768px) {
   .pp-card { 
-    padding: 28px; 
-    border-radius: 20px;
+    padding: 24px; 
+    border-radius: 16px;
   }
   .pp-card h2 { 
-    font-size: 1.3rem; 
+    font-size: 1.2rem; 
   }
 }
 
 @media (min-width: 1600px) {
   .pp-container {
-    max-width: 1550px; /* Původně bylo 1300px, teď mu dáme víc prostoru */
-    width: 90%;        /* Necháme po stranách jen 5% mezeru místo prázdna */
+    max-width: 1400px;
+    width: 90%;
   }
 }
 
 @media (min-width: 2000px) {
   .pp-container {
-    max-width: 1800px; /* Pro opravdu obří ultrawide monitory */
+    max-width: 1600px;
   }
 }
 
@@ -186,40 +202,37 @@ body.light-mode .pp-section {
 }
 
 body.light-mode .pp-bg-glow {
-  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(255, 122, 89, 0.08) 0%, transparent 70%);
 }
 
 body.light-mode .btn-back-ghost {
   background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.06);
   color: #64748b;
 }
 
 body.light-mode .btn-back-ghost:hover {
-  background: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.2);
-  color: #4f46e5;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+  background: rgba(255, 122, 89, 0.08);
+  border-color: rgba(255, 122, 89, 0.3);
+  color: var(--ember-primary);
+  box-shadow: 0 0 15px rgba(255, 122, 89, 0.1);
 }
 
 body.light-mode .pp-title { 
-  background: linear-gradient(135deg, #0f172a 0%, #475569 100%); 
-  -webkit-background-clip: text; 
-  background-clip: text; 
-  color: transparent; 
+  color: #0f172a; 
 }
 
 body.light-mode .pp-card {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(0, 0, 0, 0.05);
-  border-left-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.06);
+  border-left-color: rgba(255, 122, 89, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 body.light-mode .pp-card:hover { 
-  background: rgba(255, 255, 255, 1);
-  border-color: rgba(99, 102, 241, 0.2);
-  border-left-color: #6366f1;
+  background: #ffffff;
+  border-color: rgba(255, 122, 89, 0.4);
+  border-left-color: var(--ember-primary);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06); 
 }
 
@@ -227,4 +240,4 @@ body.light-mode .pp-card h2 { color: #0f172a; }
 body.light-mode .pp-card p { color: #475569; }
 body.light-mode .pp-card strong, 
 body.light-mode .pp-card p strong { color: #1e293b; }
-body.light-mode .pp-footer-date { border-top-color: rgba(0, 0, 0, 0.05); color: #94a3b8; }
+body.light-mode .pp-footer-date { border-top-color: rgba(0, 0, 0, 0.06); color: #94a3b8; }
