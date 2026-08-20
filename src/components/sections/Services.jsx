@@ -16,10 +16,6 @@ const Services = () => {
         {/* HLAVIČKA A INFO */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="services-header-pro">
-            <div className="services-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Nabídka služeb</span>
-            </div>
             
             <h2 className="section-title-pro">
               Služby & <span className="ember-text-gradient">digitální řešení</span>

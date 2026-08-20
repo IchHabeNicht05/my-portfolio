@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, Sparkles, MessageCircle } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../ui/RevealOnScroll';
 import './FAQ.css';
 
@@ -38,10 +40,6 @@ const FAQ = () => {
         {/* HLAVIČKA SEKCE */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="faq-header-pro">
-            <div className="faq-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Odpovědi na otázky</span>
-            </div>
             
             <h2 className="faq-title-pro">
               Často kladené <span className="ember-text-gradient">otázky</span>
@@ -77,12 +75,24 @@ const FAQ = () => {
                     </div>
                   </div>
 
-                  {isOpen && (
-                    <div className="faq-answer-pro">
-                      <div className="answer-divider" />
-                      <p>{faq.answer}</p>
-                    </div>
-                  )}
+                  {/* ANIMOVANÉ ROZBALENÍ ODPOVĚDI */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div className="faq-answer-pro">
+                          <div className="answer-divider" />
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                 </div>
               </ScrollReveal>
             );
@@ -95,7 +105,7 @@ const FAQ = () => {
             <div className="hint-pill">
               <MessageCircle size={15} className="hint-icon" />
               <span>Nenašli jste odpověď na vaši otázku?</span>
-              <a href="#kontakt" className="hint-link">Napište mi přímo &rarr;</a>
+              <a href="#contact" className="hint-link">Napište mi přímo &rarr;</a>
             </div>
           </div>
         </ScrollReveal>

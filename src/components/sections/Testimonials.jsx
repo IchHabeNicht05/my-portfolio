@@ -33,11 +33,6 @@ const Testimonials = () => {
         {/* HLAVIČKA SEKCE */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="testimonials-header-pro">
-            <div className="testimonials-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Reference & Hodnocení</span>
-            </div>
-            
             <h2 className="testimonials-title-pro">
               Co o mně říkají <span className="ember-text-gradient">klienti</span>
             </h2>

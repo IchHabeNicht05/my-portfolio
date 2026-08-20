@@ -1,0 +1,53 @@
+/* ============================================================
+   SECTION DIVIDER - MINIMAL DEV NODE
+   ============================================================ */
+.section-divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+}
+
+.divider-line.left {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+.divider-line.right {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 100%
+  );
+}
+
+.divider-node {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  padding: 0 16px;
+  line-height: 1;
+}
+
+.divider-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--text-muted, #8e95a2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 16px;
+  opacity: 0.5;
+}

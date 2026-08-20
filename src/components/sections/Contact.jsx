@@ -48,10 +48,6 @@ const Contact = () => {
         {/* HLAVIČKA SEKCE */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="contact-header-pro">
-            <div className="contact-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Spolupráce & Kontakt</span>
-            </div>
             
             <h2 className="contact-title-pro">
               Máte projekt? <span className="ember-text-gradient">Napište mi</span>

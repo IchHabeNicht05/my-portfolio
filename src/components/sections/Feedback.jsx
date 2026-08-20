@@ -64,11 +64,6 @@ const Feedback = () => {
           
           {/* HLAVIČKA SEKCE S POŽADOVANÝM STYLEM */}
           <div className="feedback-header-pro">
-            <div className="feedback-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Zpětná vazba</span>
-            </div>
-            
             <h2 className="feedback-title-pro">
               Vaše <span className="ember-text-gradient">hodnocení</span>
             </h2>

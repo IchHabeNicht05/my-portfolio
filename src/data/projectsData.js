@@ -16,6 +16,12 @@ export const ProjectsData = [
     shortDesc: "Svěží a rychlý web pro psí salon s interaktivní galerií.",
     longDesc: "Moderní webová prezentace zaměřená na maximální konverzi a příjemný uživatelský zážitek. Návštěvníci zde najdou přehledný ceník, služby a dynamickou galerii realizací, která pomáhá budovat důvěru se zákazníky.",
     tech: ["React", "Python", "TailwindCSS", "Django", "SQLite", "Render", "Vercel", "Neon"],
+    metrics: [
+    { label: "Lighthouse Score", value: "92 / 100", type: "performance" },
+    { label: "Rychlost načtení (LCP)", value: "1.8s", type: "speed" },
+    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
+    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
+  ],
     hasMultiDevice: true,
     image: "/salonuzuzky-desktop.png",
     liveLink: "https://www.salonuzuzky.cz",
@@ -38,6 +44,12 @@ export const ProjectsData = [
     shortDesc: "Interaktivní webový průvodce pro českou turistickou trasu.",
     longDesc: "Aplikace navržená pro outdoorové nadšence, kteří chtějí objevovat krásy naší přírody. Hlavní důraz jsem kladl na bezchybné zobrazení na telefonech přímo v terénu a okamžitou odezvu při proklikávání trasy.",
     tech: ["Next.js", "Tailwind CSS", "Formspree", "Vercel"],
+    metrics: [
+    { label: "Lighthouse Score", value: "96 / 100", type: "performance" },
+    { label: "Rychlost načtení (LCP)", value: "1.5s", type: "speed" },
+    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
+    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
+  ],
     hasMultiDevice: true,
     image: "/bohemiapath-desktop.png",
     liveLink: "https://www.bohemia-path.com",
@@ -60,6 +72,12 @@ export const ProjectsData = [
     shortDesc: "Zábavná aplikace pro filmové nadšence s možností sdílení výsledků.",
     longDesc: "CineVibe je navrženo pro všechny, kteří hledají inspiraci pro večerní filmový zážitek. Uživatelé mohou zadat své oblíbené žánry a filmy, a aplikace jim nabídne personalizovaná doporučení, která mohou okamžitě sdílet s přáteli.",
     tech: ["Next.js", "Tailwind CSS", "Vercel"],
+    metrics: [
+    { label: "Lighthouse Score", value: "93 / 100", type: "performance" },
+    { label: "Rychlost načtení (LCP)", value: "1.8s", type: "speed" },
+    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
+    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
+  ],
     hasMultiDevice: true,
     image: "/cinevibe-desktop.png",
     liveLink: "https://cine-vibe-three.vercel.app/",

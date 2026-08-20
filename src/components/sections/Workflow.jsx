@@ -15,10 +15,6 @@ const Workflow = ({ onOpenInquiry }) => {
         {/* HLAVIČKA SEKCE */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="workflow-header-pro">
-            <div className="workflow-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Metodika & Proces</span>
-            </div>
             
             <h2 className="workflow-title-pro">
               Jak probíhá <span className="ember-text-gradient">spolupráce</span>

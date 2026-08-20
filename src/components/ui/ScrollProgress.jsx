@@ -6,30 +6,37 @@ const ScrollProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = document.documentElement.scrollTop;
-      const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let animationFrameId;
+
+    const updateProgress = () => {
+      const scrolled = window.scrollY || document.documentElement.scrollTop;
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
       
       const progress = scrollableHeight > 0 ? scrolled / scrollableHeight : 0;
       setScrollProgress(progress);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    const handleScroll = () => {
+      // Synchronizace s obnovovací frekvencí monitoru i během Lenis animace
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(updateProgress);
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateProgress();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0 });
   };
 
-  // KORREKCE GEOMETRIE: Pro kontejner 66x66px je ideální radius 30 (střed 33)
   const radius = 30;
-  const circumference = 2 * Math.PI * radius; // cca 188.5
+  const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - scrollProgress * circumference;
 
   return (
@@ -39,13 +46,11 @@ const ScrollProgress = () => {
       title="Zpět nahoru"
       aria-label="Zpět na začátek stránky"
     >
-      {/* 1. SKLENĚNÉ POZADÍ (Pod indikátorem) */}
       <div className="progress-icon">
         <ArrowUp size={20} />
       </div>
 
-      {/* 2. PROGRESS RING (Plave na povrchu nad sklem) */}
-      <svg className="progress-ring" width="66" height="66" viewBox="0 0 66 66">
+      <svg className="progress-ring" width="100%" height="100%" viewBox="0 0 66 66">
         <circle
           className="progress-ring-bg"
           strokeWidth="3"

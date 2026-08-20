@@ -16,10 +16,6 @@ const Experience = () => {
         {/* Hlavička sekce */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="experience-header-pro">
-            <div className="experience-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Profesní historie</span>
-            </div>
             <h2 className="experience-title-pro">
               Zkušenosti & <span className="ember-text-gradient">Vzdělání</span>
             </h2>

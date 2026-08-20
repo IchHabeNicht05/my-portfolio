@@ -239,3 +239,71 @@
     max-width: 1280px;
   }
 }
+
+/* Tlačítko pro hamburger (na desktopu skryté) */
+.mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  color: var(--text-main, #ffffff);
+  cursor: pointer;
+  z-index: 10;
+  margin-left: 4px;
+}
+
+/* Mobilní vyskakovací nabídka */
+.mobile-menu {
+  position: absolute;
+  top: calc(var(--nav-height) + 12px);
+  left: 20px;
+  right: 20px;
+  background: var(--bg-glass, rgba(18, 18, 22, 0.95));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-lg, 16px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  animation: mobileMenuFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-link {
+  color: var(--text-muted, #94a3b8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: var(--radius-md, 10px);
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--ember-primary, #ff7a59);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@keyframes mobileMenuFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Úprava responzivity pro zobrazení hamburgeru */
+@media (max-width: 1024px) {
+  .mobile-toggle {
+    display: flex;
+  }
+}

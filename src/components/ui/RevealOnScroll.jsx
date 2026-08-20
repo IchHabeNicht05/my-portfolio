@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 const ScrollReveal = ({ children, direction = "up", delay = 0 }) => {
   const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
+    up: { y: 30, x: 0 },
+    down: { y: -30, x: 0 },
+    left: { x: 30, y: 0 },
+    right: { x: -30, y: 0 },
   };
 
   return (
@@ -21,11 +21,11 @@ const ScrollReveal = ({ children, direction = "up", delay = 0 }) => {
         y: 0, 
         x: 0 
       }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-60px" }} // Menší margin pro dřívější plynulejší náběh
       transition={{ 
-        duration: 0.8, 
+        duration: 0.9, 
         delay: delay, 
-        ease: [0.21, 0.47, 0.32, 0.98] // Smooth High-end easing
+        ease: [0.16, 1, 0.3, 1] // Custom Apple/Raycast spring easing
       }}
     >
       {children}

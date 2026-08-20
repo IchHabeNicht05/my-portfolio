@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 // --- SECTIONS ---
 import Navbar from './components/sections/Navbar';
@@ -24,8 +25,10 @@ import ProjectDetail from './components/pages/ProjectDetail';
 import ServiceDetail from './components/pages/ServiceDetail';
 
 // --- UI COMPONENTS ---
+import PageTransition from './components/ui/PageTransition';
 import CookieConsent from './components/ui/CookieConsent';
-import ScrollToTop from './components/ui/ScrollToTop';
+import SectionDivider from './components/ui//SectionDivider';
+// import ScrollToTop from './components/ui/ScrollToTop';
 import PageLayout from './components/ui/PageLayout'; 
 // import Dock from './components/ui/Dock';
 import ScrollProgress from './components/ui/ScrollProgress';
@@ -66,33 +69,49 @@ const HomePortfolio = ({ setActiveSection, onOpenInquiry }) => {
             <Hero onOpenInquiry={onOpenInquiry} />
           </section>
 
+          <SectionDivider label="O mně" />
+
           <section id="about">
             <About />
           </section>
 
+          <SectionDivider label="Portfolio" />
+
           <section id="experience">
             <Experience />
           </section>
+
+          <SectionDivider label="Projekty" />
           
           <section id="projects">
             <Projects />
           </section>
+
+          <SectionDivider label="Služby" />
           
           <section id="services">
             <Services onOpenInquiry={onOpenInquiry} />
           </section>
 
+          <SectionDivider label="Průběh práce" />
+
           <section id="workflow">
             <Workflow />
           </section>
+
+          <SectionDivider label="FAQ" />
           
           <section id="faq">
             <FAQ />
           </section>
+
+          <SectionDivider label="Reference" />
           
           <section id="reviews">
             <Testimonials />
           </section>
+
+          <SectionDivider label="Kontakt" />
           
           <section id="contact">
             <Contact />
@@ -125,8 +144,16 @@ function App() {
   return (
     <>
       <Navbar onOpenInquiry={handleOpenInquiry} />
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
 
+      <AnimatePresence 
+        mode="wait" 
+        onExitComplete={() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTo(0, 0);
+          document.body.scrollTo(0, 0);
+        }}
+      >
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={
           <PageLayout>
@@ -142,6 +169,7 @@ function App() {
         <Route path="/service/:id" element={<PageLayout><ServiceDetail /></PageLayout>} />
         <Route path="*" element={<PageLayout><NotFound /></PageLayout>} />
       </Routes>
+      </AnimatePresence>
       
       <CookieConsent />
       <ScrollProgress />

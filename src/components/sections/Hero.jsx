@@ -18,12 +18,9 @@ const Hero = ({ onOpenInquiry }) => {
           {/* Raycast Status Badge s ⌘K akcentem */}
           <div className="raycast-badge-wrapper animate-fade-in">
             <div className="raycast-badge">
-              <span className="live-dot-container">
-                <span className={`live-dot-pulse ${isAvailable ? 'active' : ''}`}></span>
-                <span className={`live-dot ${isAvailable ? 'active' : ''}`}></span>
-              </span>
+              <span className="live-dot"></span>
               <span className="badge-text">
-                {isAvailable ? "Dostupný pro nové projekty" : "Obsazený kapacitně"}
+                {isAvailable ? "Volná kapacita" : "Kapacita naplněna"}
               </span>
             </div>
           </div>
@@ -35,7 +32,7 @@ const Hero = ({ onOpenInquiry }) => {
           </h1>
           
           <p className="hero-text animate-slide-up">
-            Juniorní Full-Stack vývojář. Spojuji taktilní mikromoderní UI, bleskovou architekturu a nekompromisní smysl pro každý pixel.
+            Full-Stack vývojář se zaměřením na React, TypeScript a Node.js. Spojuji taktilní mikromoderní UI, bleskovou architekturu a nekompromisní smysl pro každý pixel.
           </p>
           
           {/* Taktilní tlačítka */}

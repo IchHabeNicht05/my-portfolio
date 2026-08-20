@@ -16,10 +16,6 @@ const About = () => {
         <div className="container about-container">
           
           <div className="about-header-center">
-            <div className="about-tag-badge">
-              <Sparkles size={13} className="tag-icon" />
-              <span>Inženýrská preciznost</span>
-            </div>
             <h2 className="about-title-pro">
               Architektura. <span className="ember-text-gradient">Výkon. Spolehlivost.</span>
             </h2>

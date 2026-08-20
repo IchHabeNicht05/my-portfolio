@@ -27,10 +27,6 @@ const Projects = () => {
         {/* Hlavička sekce */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="projects-header-pro">
-            <div className="projects-tag-pro">
-              <Sparkles size={13} className="tag-sparkle" />
-              <span>Vybraná práce</span>
-            </div>
             <h2 className="section-title-pro">
               Případové <span className="ember-text-gradient">studie</span>
             </h2>

@@ -1,16 +1,21 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    // Vypne automatické scrollování prohlížeče při refreshi
+  useLayoutEffect(() => {
+    // Vypne automatické zapamatování pozice scrollu prohlížečem
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
-    // Vynutí scrollování úplně nahoru
-    window.scrollTo(0, 0);
+
+    // Vynutí okamžitý přesun na začátek bez plynulé animace
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
   }, [pathname]);
 
   return null;

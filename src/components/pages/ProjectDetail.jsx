@@ -1,12 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion'; // 1. IMPORT FRAMER MOTION
 import { 
   ArrowLeft, Github, CheckCircle, Code2, Briefcase, 
   LayoutTemplate, Clock, Maximize, Cpu, Youtube, Lock 
 } from 'lucide-react';
 import { ProjectsData } from '../../data/projectsData';
 import DeviceShowcase from '../sections/DeviceShowcase';
+import Metrics from '../ui/ProjectMetrics';
 import './ProjectDetail.css';
+
+// Konfigurace plynulých animací
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } 
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+  }
+};
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -52,72 +73,75 @@ const ProjectDetail = () => {
     <section className="pd-section">
       <div className="pd-bg-glow" />
       
-      <div className="pd-container relative-z">
+      <motion.div 
+        className="pd-container relative-z"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
         
         {/* NAVIGACE ZPĚT */}
-        <div className="pd-top-bar">
+        <motion.div className="pd-top-bar" variants={fadeInUp}>
           <button onClick={() => navigate(-1)} className="btn-back-ghost">
             <ArrowLeft size={16} /> Zpět na projekty
           </button>
-        </div>
+        </motion.div>
 
-      {/* HLAVNÍ VIZUÁL (VIDEO / MULTI-DEVICE / STANDARDNÍ OBRÁZEK) */}
-      <div className="pd-hero-visual-wrapper">
-        {isVideo && project.videoUrl ? (
-          <div className="pd-hero-visual">
-            {cookieConsent ? (
-              <div className="pd-video-wrapper">
-                <iframe 
-                  src={project.videoUrl} 
-                  title={project.title}
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ) : (
-              <div className="video-blocked-placeholder">
-                <div className="blocked-content">
-                  <div className="blocked-icon-wrapper">
-                    <div className="icon-circle">
-                      <Youtube size={48} className="yt-icon" />
-                    </div>
-                    <div className="lock-badge">
-                      <Lock size={16} className="lock-icon" />
-                    </div>
-                  </div>
-                  <h3>Video je chráněno</h3>
-                  <p>Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies.</p>
-                  <button onClick={handleInlineAccept} className="btn-accept-inline">
-                    Povolit cookies a přehrát
-                  </button>
+        {/* HLAVNÍ VIZUÁL */}
+        <motion.div className="pd-hero-visual-wrapper" variants={fadeInUp}>
+          {isVideo && project.videoUrl ? (
+            <div className="pd-hero-visual">
+              {cookieConsent ? (
+                <div className="pd-video-wrapper">
+                  <iframe 
+                    src={project.videoUrl} 
+                    title={project.title}
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-              </div>
-            )}
-          </div>
-        ) : project.hasMultiDevice ? (
-          /* MULTI-DEVICE SHOWCASE (pokud je zapnuto v datech) */
-          <DeviceShowcase 
-            desktopImg={project.desktopImg || project.image}
-            tabletImg={project.tabletImg || project.image}
-            mobileImg={project.mobileImg || project.image}
-            title={project.title}
-          />
-        ) : (
-          /* KLASICKÝ SAMOSTATNÝ OBRÁZEK (výchozí stav) */
-          <div className="pd-hero-visual">
-            <div className="pd-image-wrapper">
-              <img src={project.image || '/api/placeholder/1200/600'} alt={project.title} />
+              ) : (
+                <div className="video-blocked-placeholder">
+                  <div className="blocked-content">
+                    <div className="blocked-icon-wrapper">
+                      <div className="icon-circle">
+                        <Youtube size={48} className="yt-icon" />
+                      </div>
+                      <div className="lock-badge">
+                        <Lock size={16} className="lock-icon" />
+                      </div>
+                    </div>
+                    <h3>Video je chráněno</h3>
+                    <p>Pro spuštění přehrávače YouTube je nutné přijmout soubory cookies.</p>
+                    <button onClick={handleInlineAccept} className="btn-accept-inline">
+                      Povolit cookies a přehrát
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
-      </div>
+          ) : project.hasMultiDevice ? (
+            <DeviceShowcase 
+              desktopImg={project.desktopImg || project.image}
+              tabletImg={project.tabletImg || project.image}
+              mobileImg={project.mobileImg || project.image}
+              title={project.title}
+            />
+          ) : (
+            <div className="pd-hero-visual">
+              <div className="pd-image-wrapper">
+                <img src={project.image || '/api/placeholder/1200/600'} alt={project.title} />
+              </div>
+            </div>
+          )}
+        </motion.div>
 
         {/* LAYOUT GRID */}
         <div className="pd-layout-grid">
           
           {/* HLAVNÍ OBSAH */}
-          <div className="pd-main-content">
+          <motion.div className="pd-main-content" variants={fadeInUp}>
             <div className="pd-header-meta">
               <span className="pd-badge">{project.category}</span>
             </div>
@@ -165,18 +189,24 @@ const ProjectDetail = () => {
                 <h3>Použité techniky</h3>
                 <div className="pd-features-grid">
                   {project.features.map((feature, i) => (
-                    <div key={i} className="pd-feature-card">
+                    <motion.div 
+                      key={i} 
+                      className="pd-feature-card"
+                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    >
                       <CheckCircle size={18} className="check-icon" />
                       <span>{feature}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
             )}
-          </div>
+
+            <Metrics metrics={project.metrics} />
+          </motion.div>
 
           {/* SIDEBAR */}
-          <div className="pd-sidebar">
+          <motion.div className="pd-sidebar" variants={fadeInUp}>
             <div className="pd-sticky-card">
               <h3 className="pd-sidebar-title">Detaily projektu</h3>
               
@@ -223,10 +253,10 @@ const ProjectDetail = () => {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
