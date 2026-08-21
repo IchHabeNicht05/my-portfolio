@@ -1,0 +1,15 @@
+# Martin Habenicht - Portfolio
+
+> Full-Stack & Frontend Developer zaměřený na React, Next.js a vysoký výkon.
+
+## Projects
+
+- [Salon U Zuzky](https://www.salonuzuzky.cz)
+- [Bohemia Path](https://www.bohemia-path.com)
+- [CineVibe](https://cine-vibe-three.vercel.app/)
+- [Elektro Jan Novák](https://elektro-novak.vercel.app/)
+
+## Profile
+
+- [GitHub](https://github.com/IchHabeNicht05)
+- [Website](https://martinhabenicht.cz)

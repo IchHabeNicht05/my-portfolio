@@ -136,7 +136,8 @@
 .btn-accept {
   background: var(--ember-primary);
   border: 1px solid var(--ember-primary);
-  color: #ffffff;
+  color: #0f172a; /* Tmavá barva textu zajistí kontrast přes 6.5:1 */
+  font-weight: 600; /* Zvýší čitelnost */
   box-shadow: 
     0 4px 15px rgba(255, 122, 89, 0.3),
     inset 1px 1px 0px rgba(255, 255, 255, 0.2);
@@ -146,6 +147,7 @@
   transform: translateY(-2px);
   background: var(--ember-hover);
   border-color: var(--ember-hover);
+  color: #000000;
   box-shadow: 
     0 8px 25px rgba(255, 122, 89, 0.45),
     inset 1px 1px 0px rgba(255, 255, 255, 0.3);

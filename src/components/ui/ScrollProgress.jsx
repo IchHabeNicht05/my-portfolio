@@ -40,17 +40,17 @@ const ScrollProgress = () => {
   const strokeDashoffset = circumference - scrollProgress * circumference;
 
   return (
-    <div 
-      className={`scroll-progress-wrapper ${scrollProgress > 0.05 ? 'visible' : ''}`}
+    <button 
+      type="button" 
+      className={`scroll-progress-wrapper ${scrollProgress > 0.05 ? 'visible' : ''}`} 
+      aria-label="Zpět na začátek stránky" 
       onClick={scrollToTop}
-      title="Zpět nahoru"
-      aria-label="Zpět na začátek stránky"
     >
-      <div className="progress-icon">
+      <div className="progress-icon" aria-hidden="true">
         <ArrowUp size={20} />
       </div>
 
-      <svg className="progress-ring" width="100%" height="100%" viewBox="0 0 66 66">
+      <svg className="progress-ring" width="100%" height="100%" viewBox="0 0 66 66" aria-hidden="true">
         <circle
           className="progress-ring-bg"
           strokeWidth="3"
@@ -72,7 +72,7 @@ const ScrollProgress = () => {
           }}
         />
       </svg>
-    </div>
+    </button>
   );
 };
 
