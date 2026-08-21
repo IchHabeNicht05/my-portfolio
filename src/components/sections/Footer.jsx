@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="footer-links-row">
           <div className="footer-brand">
             <span className="brand-logo-text">Martin Habenicht</span>
-            <p className="brand-tagline">Weby & Digitální řešení s inženýrskou precizností</p>
+            <p className="brand-tagline">Weby & Digitální řešení</p>
           </div>
 
           <nav className="footer-nav-minimal">

@@ -17,11 +17,12 @@ export const ProjectsData = [
     longDesc: "Moderní webová prezentace zaměřená na maximální konverzi a příjemný uživatelský zážitek. Návštěvníci zde najdou přehledný ceník, služby a dynamickou galerii realizací, která pomáhá budovat důvěru se zákazníky.",
     tech: ["React", "Python", "TailwindCSS", "Django", "SQLite", "Render", "Vercel", "Neon"],
     metrics: [
-    { label: "Lighthouse Score", value: "92 / 100", type: "performance" },
-    { label: "Rychlost načtení (LCP)", value: "1.8s", type: "speed" },
-    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
-    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
-  ],
+      { label: "Performance", value: 92, type: "circle" },
+      { label: "Accessibility", value: 96, type: "circle" },
+      { label: "Best Practices", value: 100, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
     hasMultiDevice: true,
     image: "/salonuzuzky-desktop.png",
     liveLink: "https://www.salonuzuzky.cz",
@@ -45,11 +46,12 @@ export const ProjectsData = [
     longDesc: "Aplikace navržená pro outdoorové nadšence, kteří chtějí objevovat krásy naší přírody. Hlavní důraz jsem kladl na bezchybné zobrazení na telefonech přímo v terénu a okamžitou odezvu při proklikávání trasy.",
     tech: ["Next.js", "Tailwind CSS", "Formspree", "Vercel"],
     metrics: [
-    { label: "Lighthouse Score", value: "96 / 100", type: "performance" },
-    { label: "Rychlost načtení (LCP)", value: "1.5s", type: "speed" },
-    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
-    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
-  ],
+      { label: "Performance", value: 96, type: "circle" },
+      { label: "Accessibility", value: 98, type: "circle" },
+      { label: "Best Practices", value: 100, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
     hasMultiDevice: true,
     image: "/bohemiapath-desktop.png",
     liveLink: "https://www.bohemia-path.com",
@@ -60,6 +62,35 @@ export const ProjectsData = [
   },
   {
     id: 3,
+    type: 'web',
+    title: "Elektro - Jan Novák",
+    category: "Prezentace firmy",
+    platform: "Next.js",
+    role: "Frontend Developer",
+    year: "2026",
+    challenge: "Vytvořit moderní webovou prezentaci pro lokálního elektrikáře, která bude přehledná, rychlá a optimalizovaná pro vyhledávače.",
+    solution: "Použil jsem Next.js pro rychlé načítání a SEO optimalizaci. Implementoval jsem kontaktní formulář, sekci referencí a interaktivní mapu s lokalitou firmy.",
+    features: ["Rychlá a responzivní prezentace", "Kontaktní formulář pro zákazníky", "Sekce referencí a hodnocení"],
+    shortDesc: "Moderní webová prezentace pro lokálního elektrikáře s kontaktním formulářem.",
+    longDesc: "Web navržený pro malé podnikatele, kteří chtějí být vidět online. Stránka je optimalizovaná pro mobilní zařízení a obsahuje všechny potřebné informace pro potenciální zákazníky, včetně kontaktních údajů a ukázek realizovaných projektů.",
+    tech: ["Next.js", "Tailwind CSS", "Vercel"],
+    metrics: [
+      { label: "Performance", value: 100, type: "circle" },
+      { label: "Accessibility", value: 96, type: "circle" },
+      { label: "Best Practices", value: 100, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
+    hasMultiDevice: true,
+    image: "/elektro-desktop.png",
+    liveLink: "https://elektro-novak.vercel.app/",
+    githubLink: "#",
+    desktopImg: "/elektro-desktop.png",
+    tabletImg: "/elektro-tablet.png",
+    mobileImg: "/elektro-mobile.png",
+  },
+  {
+    id: 4,
     type: 'web',
     title: "CineVibe - Filmový Match",
     category: "Zábavná aplikace",
@@ -73,11 +104,12 @@ export const ProjectsData = [
     longDesc: "CineVibe je navrženo pro všechny, kteří hledají inspiraci pro večerní filmový zážitek. Uživatelé mohou zadat své oblíbené žánry a filmy, a aplikace jim nabídne personalizovaná doporučení, která mohou okamžitě sdílet s přáteli.",
     tech: ["Next.js", "Tailwind CSS", "Vercel"],
     metrics: [
-    { label: "Lighthouse Score", value: "93 / 100", type: "performance" },
-    { label: "Rychlost načtení (LCP)", value: "1.8s", type: "speed" },
-    { label: "Nárůst konverzí", value: "+35 %", type: "business" },
-    { label: "Odezva serveru (TTFB)", value: "0 ms", type: "speed" }
-  ],
+      { label: "Performance", value: 93, type: "circle" },
+      { label: "Accessibility", value: 95, type: "circle" },
+      { label: "Best Practices", value: 100, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
     hasMultiDevice: true,
     image: "/cinevibe-desktop.png",
     liveLink: "https://cine-vibe-three.vercel.app/",
@@ -87,7 +119,7 @@ export const ProjectsData = [
     mobileImg: "/cinevibe-mobile.png",
   },
   {
-    id: 4,
+    id: 5,
     type: 'web',
     title: "Elo Rating Calculator",
     category: 'Kalkulačka pro hráče',
@@ -109,7 +141,7 @@ export const ProjectsData = [
     mobileImg: "/images/projects/lokna-mobile.jpg",
   },
   {
-    id: 5,
+    id: 6,
     type: 'web',
     title: "SecureChat",
     category: "Chatovací aplikace",
@@ -128,7 +160,7 @@ export const ProjectsData = [
     githubLink: "https://github.com/IchHabeNicht05/Fullstack-chat-app",
   },
   {
-    id: 6,
+    id: 7,
     type: 'web',
     title: "Chess Manager",
     category: "Organizační systém",
@@ -147,7 +179,7 @@ export const ProjectsData = [
     githubLink: "#",
   },
   {
-    id: 7,
+    id: 8,
     type: 'web',
     title: "První webový projekt",
     category: "Školní projekt",
@@ -166,7 +198,7 @@ export const ProjectsData = [
     githubLink: "https://github.com/IchHabeNicht05/rocnikova_prace",
   },
   {
-    id: 8,
+    id: 9,
     type: 'web',
     title: "Rezervační systém s platbami",
     category: "Webová aplikace",
@@ -185,7 +217,7 @@ export const ProjectsData = [
     githubLink: "https://github.com/IchHabeNicht05/Barber-Reservation-System",
   },
   {
-    id: 9,
+    id: 10,
     type: 'web',
     title: "GymFlow - Fitness SaaS",
     category: "SaaS Aplikace",
