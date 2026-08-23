@@ -35,7 +35,7 @@ const Hero = ({ onOpenInquiry }) => {
           {/* Hlavní Headline s ohnivým gradientem */}
           <h1 className="hero-title animate-slide-up">
             Kóduji digitální produkty <br />
-            s <span className="ember-text">duší a extrémním výkonem.</span>
+            <span className="ember-text">s&nbsp;duší a extrémním výkonem.</span>
           </h1>
           
           <p className="hero-text animate-slide-up">

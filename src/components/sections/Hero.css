@@ -113,11 +113,11 @@
   letter-spacing: -0.04em;
   margin-bottom: 24px;
   color: var(--text-main);
+  text-wrap: balance; /* Zazalmenuje nadpis vyváženě na všech šířkách */
 }
 
-/* GPU-akcelerovaný přechod bez repaintu (0% zátež CPU) */
 .ember-text {
-  display: inline-block;
+  display: inline; /* Zruší pevný blok, text se bude zalamovat po slovách */
   background: linear-gradient(
     135deg, 
     var(--ember-primary, #ff7a59) 0%, 
@@ -128,7 +128,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transform: translateZ(0);
   will-change: filter;
   animation: emberGlowPulse 4s ease-in-out infinite alternate;
 }
