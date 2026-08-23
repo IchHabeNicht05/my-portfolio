@@ -4,7 +4,7 @@ import ScrollReveal from '../ui/RevealOnScroll';
 import './About.css';
 import { 
   ArrowRight, FileText, CheckCircle, 
-  Terminal, Zap, Globe, Sparkles
+  Terminal, Zap, Globe, Gauge
 } from 'lucide-react';
 
 const About = () => {
@@ -64,7 +64,7 @@ const About = () => {
               </div>
             </div>
 
-            {/* KARTA 2: RAYCAST TERMINAL SIMULATOR (5 sloupců) */}
+            {/* KARTA 2: TERMINAL SIMULATOR S LIGHTHOUSE SKÓRE (5 sloupců) */}
             <div className="bento-card bento-code">
               <div className="code-window">
                 <div className="window-header">
@@ -75,17 +75,18 @@ const About = () => {
                   </div>
                   <div className="window-title">
                     <Terminal size={12} />
-                    <span>config.ts</span>
+                    <span>audit.config.ts</span>
                   </div>
                 </div>
                 <div className="window-body">
                   <pre>
                     <code>
-                      <span className="k font-bold">export const</span> <span className="f">Standards</span> = <span className="b">{`{`}</span>{'\n'}
-                      <span className="indent"><span className="p">performance:</span> <span className="s">100</span>,</span>{'\n'}
-                      <span className="indent"><span className="p">ui_precision:</span> <span className="s">'Pixel-Perfect'</span>,</span>{'\n'}
-                      <span className="indent"><span className="p">architecture:</span> <span className="s">'Scalable'</span>,</span>{'\n'}
-                      <span className="indent"><span className="p">stack:</span> [<span className="s">'React'</span>, <span className="s">'Node'</span>, <span className="s">'TS'</span>]</span>{'\n'}
+                      <span className="k font-bold">export const</span> <span className="f">LighthouseScore</span> = <span className="b">{`{`}</span>{'\n'}
+                      <span className="indent"><span className="p">performance:</span> <span className="s font-bold text-emerald">100</span>,</span>{'\n'}
+                      <span className="indent"><span className="p">accessibility:</span> <span className="s font-bold text-emerald">100</span>,</span>{'\n'}
+                      <span className="indent"><span className="p">best_practices:</span> <span className="s font-bold text-emerald">100</span>,</span>{'\n'}
+                      <span className="indent"><span className="p">seo:</span> <span className="s font-bold text-emerald">100</span>,</span>{'\n'}
+                      <span className="indent"><span className="p">agentic_browsing:</span> <span className="s">'3/3'</span></span>{'\n'}
                       <span className="b">{`}`}</span>;
                     </code>
                   </pre>
@@ -106,14 +107,19 @@ const About = () => {
               </div>
             </div>
 
-            {/* KARTA 4: FEATURE ZERO COMPROMISE (7 sloupců) */}
-            <div className="bento-card bento-feature">
-              <div className="feature-icon-box">
-                <Zap size={18} />
+            {/* KARTA 4: ZERO COMPROMISE + LIGHTHOUSE METRIKY (7 sloupců) */}
+            <div className="bento-card bento-feature bento-lighthouse-feature">
+              <div className="feature-icon-box lighthouse-icon-box">
+                <Gauge size={20} />
               </div>
-              <div>
-                <h4 className="card-sub-title">Zero Compromise Standard</h4>
-                <p className="card-sub-desc">Každý řádek kódu má svúj smysl. Rychlost načítání, bezpečnost dat a plynulost animací na prvním místě.</p>
+              <div className="feature-text-content">
+                <div className="feature-title-row">
+                  <h4 className="card-sub-title">Zero Compromise Standard</h4>
+                  <span className="lighthouse-mini-pill">4x 100% Google Lighthouse</span>
+                </div>
+                <p className="card-sub-desc">
+                  Nekompromisní rychlost načtení do 0.3s, 0ms render-blocking a 100% skóre přístupnosti i SEO na všech projektech.
+                </p>
               </div>
             </div>
 

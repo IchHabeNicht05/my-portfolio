@@ -72,6 +72,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-tactile);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -181,6 +182,7 @@
 .b { color: #a1a1aa; }
 .p { color: #f4f4f5; }
 .s { color: #ff7a59; }
+.text-emerald { color: #27c93f; }
 .indent { padding-left: 18px; display: block; }
 
 /* KARTA 3: LOCATION */
@@ -204,7 +206,7 @@
   border: 1px solid rgba(255, 87, 34, 0.2);
 }
 
-/* KARTA 4: FEATURE ZERO COMPROMISE */
+/* KARTA 4: FEATURE ZERO COMPROMISE + LIGHTHOUSE */
 .bento-feature {
   grid-column: span 7;
   display: flex;
@@ -212,13 +214,31 @@
   gap: 18px;
 }
 
-.feature-icon-box {
-  background: rgba(168, 85, 247, 0.1);
-  color: var(--ember-secondary);
+.lighthouse-icon-box {
+  background: rgba(39, 201, 63, 0.1);
+  color: #27c93f;
   padding: 12px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(39, 201, 63, 0.25);
   flex-shrink: 0;
+}
+
+.feature-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lighthouse-mini-pill {
+  background: rgba(39, 201, 63, 0.15);
+  color: #27c93f;
+  border: 1px solid rgba(39, 201, 63, 0.3);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
 }
 
 .card-sub-title {

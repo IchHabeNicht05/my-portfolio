@@ -1,7 +1,7 @@
 import React from 'react';
 import './Hero.css';
 import ScrollReveal from '../ui/RevealOnScroll';
-import { ArrowRight, Command, Terminal, Sparkles } from 'lucide-react';
+import { ArrowRight, Terminal, Sparkles, Gauge } from 'lucide-react';
 
 const Hero = ({ onOpenInquiry }) => {
   const isAvailable = true; 
@@ -15,12 +15,19 @@ const Hero = ({ onOpenInquiry }) => {
       <ScrollReveal direction="up" delay={0.1}>
         <div className="container hero-content">
           
-          {/* Raycast Status Badge s ⌘K akcentem */}
+          {/* Status Badge + Lighthouse 100/100 Trust Badge */}
           <div className="raycast-badge-wrapper animate-fade-in">
             <div className="raycast-badge">
               <span className="live-dot"></span>
               <span className="badge-text">
                 {isAvailable ? "Volná kapacita" : "Kapacita naplněna"}
+              </span>
+            </div>
+
+            <div className="raycast-badge lighthouse-badge">
+              <Gauge size={13} className="lighthouse-icon" />
+              <span className="badge-text font-mono">
+                Lighthouse <strong className="score-text">100/100</strong>
               </span>
             </div>
           </div>
