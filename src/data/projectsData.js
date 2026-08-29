@@ -92,6 +92,47 @@ export const ProjectsData = [
   {
     id: 4,
     type: 'web',
+    title: "ClientFlow",
+    category: "SaaS aplikace",
+    platform: "Next.js",
+    role: "Frontend a Backend Developer",
+    year: "2026",
+    challenge: "Vytvořit moderní SaaS aplikaci pro efektivní správu klientů, zakázek a pracovních procesů na jednom místě.",
+    solution: "ClientFlow jsem vytvořil jako full-stack webovou aplikaci v Next.js. Pro správu databáze jsem použil Prisma ORM a Neon PostgreSQL. Aplikace umožňuje efektivně organizovat klienty, sledovat zakázky a spravovat důležité informace v přehledném rozhraní.",
+    features: [
+      "Správa klientů a jejich informací",
+      "Přehled a organizace zakázek",
+      "Moderní a responzivní uživatelské rozhraní",
+      "Full-stack architektura s databází",
+      "Rychlé a přehledné řízení pracovních procesů"
+    ],
+    shortDesc: "Moderní SaaS aplikace pro správu klientů, zakázek a pracovních procesů na jednom místě.",
+    longDesc: "ClientFlow je moderní full-stack SaaS aplikace navržená pro efektivní správu klientů a zakázek. Cílem projektu bylo vytvořit přehledné a intuitivní prostředí, které uživatelům umožní mít důležité informace a pracovní procesy organizované na jednom místě. Aplikace kombinuje moderní frontend vytvořený v Next.js a Tailwind CSS s robustním backendem a databází PostgreSQL hostovanou na platformě Neon.",
+    tech: [
+      "Next.js",
+      "Prisma",
+      "Neon PostgreSQL",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    metrics: [
+      { label: "Performance", value: 99, type: "circle" },
+      { label: "Accessibility", value: 100, type: "circle" },
+      { label: "Best Practices", value: 96, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
+    hasMultiDevice: true,
+    image: "/ClientFlow-desktop.png",
+    liveLink: "https://clientflow-pink.vercel.app/",
+    githubLink: "#",
+    desktopImg: "/ClientFlow-desktop.png",
+    tabletImg: "/ClientFlow-tablet.png",
+    mobileImg: "/ClientFlow-mobile.png",
+  },
+  {
+    id: 5,
+    type: 'web',
     title: "CineVibe - Filmový Match",
     category: "Zábavná aplikace",
     platform: "Next.js",
@@ -119,7 +160,7 @@ export const ProjectsData = [
     mobileImg: "/cinevibe-mobile.png",
   },
   {
-    id: 5,
+    id: 6,
     type: 'web',
     title: "Flow - Instalatérské služby",
     category: "Web pro služby",
@@ -148,7 +189,7 @@ export const ProjectsData = [
     mobileImg: "/flow-instalater-mobile.png",
   },
   {
-    id: 6,
+    id: 7,
     type: 'web',
     title: "Topenářství - Therma Warmth Engineered",
     category: "Web pro služby",
@@ -177,7 +218,7 @@ export const ProjectsData = [
     mobileImg: "/therma-mobile.png",
   },
   {
-    id: 7,
+    id: 8,
     type: 'web',
     title: "MONOLIT STAVBY",
     category: "Web pro stavební firmu",
@@ -206,7 +247,7 @@ export const ProjectsData = [
     mobileImg: "/monolit-mobile.png",
   },
   {
-    id: 8,
+    id: 9,
     type: 'web',
     title: "Truhlářství Krčil",
     category: "Web pro řemeslníky",
@@ -235,7 +276,7 @@ export const ProjectsData = [
     mobileImg: "/truhlarstvi-mobile.png",
   },
   {
-    id: 9,
+    id: 10,
     type: 'web',
     title: "Motus - Autoservis",
     category: "Web pro autoservis",
@@ -264,7 +305,7 @@ export const ProjectsData = [
     mobileImg: "/motus-mobile.png",
   },
   {
-    id: 10,
+    id: 11,
     type: 'web',
     title: "Verde Studio - Zahradní architektura",
     category: "Web pro zahradnické služby",
@@ -293,7 +334,7 @@ export const ProjectsData = [
     mobileImg: "/verde-mobile.png",
   },
   {
-    id: 11,
+    id: 12,
     type: 'web',
     title: "Tidy - Úklidová služba",
     category: 'Web pro úlidovou službu',
@@ -322,7 +363,7 @@ export const ProjectsData = [
     mobileImg: "/tidy-mobile.png",
   },
   {
-    id: 12,
+    id: 13,
     type: 'web',
     title: 'Roof North',
     category: 'Web pro pokrývačství střech',

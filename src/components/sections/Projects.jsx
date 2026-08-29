@@ -1,30 +1,68 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layers, Monitor, Video, ArrowRight, Star, Sparkles } from 'lucide-react';
+import { Layers, Layout, Server, Cloud, Video, ArrowRight, Star } from 'lucide-react';
 import { ProjectsData } from '../../data/projectsData';
 import ScrollReveal from '../ui/RevealOnScroll';
 import './Projects.css';
 
+const TABS = [
+  { id: 'all', label: 'Všechny projekty', icon: Layers },
+  { id: 'frontend', label: 'Frontend', icon: Layout },
+  { id: 'backend', label: 'Backend', icon: Server },
+  { id: 'saas', label: 'SaaS aplikace', icon: Cloud },
+  { id: 'video', label: 'Video & Motion', icon: Video },
+];
+
 const Projects = () => {
-  const [activeTab, setActiveTab] = useState('web');
+  const [activeTab, setActiveTab] = useState('all');
   const navigate = useNavigate();
+
+  // Chytrá filtrační logika adaptovaná na strukturu tvojich dat
+  const matchesFilter = (project, tab) => {
+    if (tab === 'all') return true;
+
+    const category = (project.category || '').toLowerCase();
+    const role = (project.role || '').toLowerCase();
+    const type = (project.type || '').toLowerCase();
+    const tech = (project.tech || []).map(t => t.toLowerCase());
+
+    switch (tab) {
+      case 'frontend':
+        return type === 'web' || role.includes('frontend') || role.includes('full-stack');
+
+      case 'backend': {
+        const backendTechKeywords = ['python', 'django', 'prisma', 'postgresql', 'neon', 'sqlite', 'node', 'express'];
+        const hasBackendTech = tech.some(t => backendTechKeywords.some(kw => t.includes(kw)));
+        return role.includes('backend') || role.includes('full-stack') || hasBackendTech;
+      }
+
+      case 'saas':
+        return category.includes('saas') || type === 'saas';
+
+      case 'video':
+        return type === 'video' || category.includes('video') || category.includes('střih');
+
+      default:
+        return true;
+    }
+  };
 
   // Hlavní / doporučený projekt
   const featuredProject = ProjectsData.find(project => project.isFeatured) || ProjectsData[0];
-  
-  // Vyfiltrované projekty podle vybrané záložky (mimo featured)
+  const isFeaturedVisible = featuredProject && matchesFilter(featuredProject, activeTab);
+
+  // Vyfiltrované projekty
   const filteredProjects = ProjectsData.filter(
-    project => (activeTab === 'all' || project.type === activeTab) && project.id !== featuredProject?.id
+    project => matchesFilter(project, activeTab) && project.id !== featuredProject?.id
   );
 
   return (
     <section id="projects" className="projects-section">
-      {/* Ambientní fialovo-jantarová záře na pozadí */}
       <div className="projects-ambient-glow" />
 
       <div className="container projects-container">
         
-        {/* Hlavička sekce */}
+        {/* Hlavička */}
         <ScrollReveal direction="up" delay={0.1}>
           <div className="projects-header-pro">
             <h2 className="section-title-pro">
@@ -37,37 +75,27 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
-        {/* Přepínač kategorií / Taktilní záložky */}
+        {/* Přepínač kategorií */}
         <ScrollReveal direction="up" delay={0.2}>
           <div className="projects-tabs-pro">
-            <button 
-              className={`tab-btn-pro ${activeTab === 'web' ? 'active' : ''}`}
-              onClick={() => setActiveTab('web')}
-            >
-              <Monitor size={15} />
-              <span>Webové aplikace</span>
-            </button>
-            
-            <button 
-              className={`tab-btn-pro ${activeTab === 'video' ? 'active' : ''}`}
-              onClick={() => setActiveTab('video')}
-            >
-              <Video size={15} />
-              <span>Video & Motion</span>
-            </button>
-
-            <button 
-              className={`tab-btn-pro ${activeTab === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveTab('all')}
-            >
-              <Layers size={15} />
-              <span>Všechny projekty</span>
-            </button>
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  className={`tab-btn-pro ${activeTab === tab.id ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tab.id)}
+                >
+                  <Icon size={15} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </ScrollReveal>
 
-        {/* FEATURING SHOWCASE (Hlavní projekt) */}
-        {featuredProject && (activeTab === 'all' || featuredProject.type === activeTab) && (
+        {/* Featured Projekt */}
+        {isFeaturedVisible && (
           <ScrollReveal direction="up" delay={0.25}>
             <div 
               className="featured-card-pro"
@@ -109,7 +137,7 @@ const Projects = () => {
           </ScrollReveal>
         )}
 
-        {/* MŘÍŽKA PROJEKTŮ */}
+        {/* Mřížka projektů */}
         <div className="projects-grid-pro">
           {filteredProjects.map((project, index) => (
             <ScrollReveal 
