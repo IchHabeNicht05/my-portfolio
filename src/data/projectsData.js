@@ -133,6 +133,68 @@ export const ProjectsData = [
   {
     id: 5,
     type: 'web',
+    title: "BookingOS",
+    category: "SaaS aplikace",
+    platform: "Next.js",
+    role: "Frontend a Backend Developer",
+    year: "2026",
+
+    challenge:
+      "Vytvořit univerzální full-stack rezervační systém pro malé podniky poskytující služby, který umožní efektivní správu rezervací, zaměstnanců, služeb a dostupných termínů.",
+
+    solution:
+      "BookingOS jsem navrhl jako moderní SaaS aplikaci postavenou na Next.js a TypeScriptu. Backend využívá PostgreSQL databázi spravovanou pomocí Prisma ORM a REST API vytvořené pomocí Next.js Route Handlers. Systém obsahuje autentizaci, správu podniků, služeb, zaměstnanců, pracovních hodin a rezervační systém s backendovou kontrolou kolizí termínů.",
+
+    features: [
+      "Autentizace a správa uživatelských rolí",
+      "Správa podniků, služeb a zaměstnanců",
+      "Inteligentní výpočet dostupných termínů",
+      "Rezervační systém s kontrolou kolizí",
+      "Business dashboard se statistikami",
+      "Kalendář s denním a týdenním pohledem",
+      "REST API s validací pomocí Zod",
+      "Responzivní moderní SaaS rozhraní"
+    ],
+
+    shortDesc:
+      "Univerzální full-stack SaaS rezervační systém pro malé podniky poskytující služby.",
+
+    longDesc:
+      "BookingOS je moderní full-stack SaaS aplikace určená pro malé podniky, které potřebují efektivně spravovat své rezervace. Systém je navržen pro širokou škálu služeb, například kadeřnictví, kosmetické salony, psí salony, fitness trenéry nebo autoservisy. Business owner může spravovat svůj podnik, služby, zaměstnance, pracovní dobu a rezervace, zatímco zákazníci mohou jednoduše vybrat službu, zaměstnance, datum a dostupný čas. Důležitou součástí aplikace je backendová kontrola dostupnosti, která zabraňuje vytváření kolidujících rezervací.",
+
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Zod",
+      "Vercel"
+    ],
+
+    metrics: [
+      { label: "Performance", value: 100, type: "circle" },
+      { label: "Accessibility", value: 100, type: "circle" },
+      { label: "Best Practices", value: 100, type: "circle" },
+      { label: "SEO", value: 100, type: "circle" },
+      { label: "Agentic Browsing", value: "2/2", type: "pill" }
+    ],
+
+    hasMultiDevice: true,
+
+    image: "/bookingos-desktop.png",
+
+    liveLink: "https://booking-os-two.vercel.app/",
+    githubLink: "#",
+
+    desktopImg: "/bookingos-desktop.png",
+    tabletImg: "/bookingos-tablet.png",
+    mobileImg: "/bookingos-mobile.png",
+  },
+  {
+    id: 6,
+    type: 'web',
     title: "CineVibe - Filmový Match",
     category: "Zábavná aplikace",
     platform: "Next.js",
@@ -160,7 +222,7 @@ export const ProjectsData = [
     mobileImg: "/cinevibe-mobile.png",
   },
   {
-    id: 6,
+    id: 7,
     type: 'web',
     title: "Flow - Instalatérské služby",
     category: "Web pro instalatéry",
@@ -189,7 +251,7 @@ export const ProjectsData = [
     mobileImg: "/flow-instalater-mobile.png",
   },
   {
-    id: 7,
+    id: 8,
     type: 'web',
     title: "Topenářství - Therma Warmth Engineered",
     category: "Web pro topenářství",
@@ -218,7 +280,7 @@ export const ProjectsData = [
     mobileImg: "/therma-mobile.png",
   },
   {
-    id: 8,
+    id: 9,
     type: 'web',
     title: "MONOLIT STAVBY",
     category: "Web pro stavební firmu",
@@ -247,7 +309,7 @@ export const ProjectsData = [
     mobileImg: "/monolit-mobile.png",
   },
   {
-    id: 9,
+    id: 10,
     type: 'web',
     title: "Truhlářství Krčil",
     category: "Web pro řemeslníky",
@@ -276,7 +338,7 @@ export const ProjectsData = [
     mobileImg: "/truhlarstvi-mobile.png",
   },
   {
-    id: 10,
+    id: 11,
     type: 'web',
     title: "Motus - Autoservis",
     category: "Web pro autoservis",
@@ -305,7 +367,7 @@ export const ProjectsData = [
     mobileImg: "/motus-mobile.png",
   },
   {
-    id: 11,
+    id: 12,
     type: 'web',
     title: "Verde Studio - Zahradní architektura",
     category: "Web pro zahradnické služby",
@@ -334,7 +396,7 @@ export const ProjectsData = [
     mobileImg: "/verde-mobile.png",
   },
   {
-    id: 12,
+    id: 13,
     type: 'web',
     title: "Tidy - Úklidová služba",
     category: 'Web pro úlidovou službu',
@@ -363,7 +425,7 @@ export const ProjectsData = [
     mobileImg: "/tidy-mobile.png",
   },
   {
-    id: 13,
+    id: 14,
     type: 'web',
     title: 'Roof North',
     category: 'Web pro pokrývačství střech',
